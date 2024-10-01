@@ -11,7 +11,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #000; /* Black background for the entire page */
     color: #fff; /* White text as default color */
-    min-height: 600px; /* Set a minimum height to ensure footer is always visible until this limit is reached */
+    min-height: 100vh; /* Ensure body takes full height */
 }
 
 /* Wrapper to ensure content is pushed to take up available height */
@@ -26,10 +26,34 @@ main {
 footer {
     background: #333;
     color: white;
-    padding: 10px 0;
-    text-align: center;
-    margin-top: auto; /* Ensures footer sticks to the bottom until min height is hit */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Space between social links and copyright text */
+    align-items: center; /* Vertically align social links and text */
     font-size: 0.9em;
+}
+
+/* Social Links Styling */
+footer .social-links {
+    display: flex;
+    align-items: center;
+}
+
+footer .social-links a {
+    color: #fff; /* White text for links */
+    text-decoration: none;
+    margin-right: 20px; /* Spacing between social links */
+    font-size: 1.2em;
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+}
+
+footer .social-links a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+footer .social-links a:hover {
+    color: #aaa; /* Light gray hover effect for links */
 }
 
 /* Header Navigation Styles */
@@ -89,14 +113,14 @@ section {
     background-color: #000; /* Keeps the background black */
 }
 
-/* White Content Box for About Section */
+/* White Content Box for About Section and Contact Form */
 .content-box {
     background-color: #fff; /* White box for content */
     color: #333; /* Dark text color inside the box */
     padding: 40px;
     border-radius: 15px; /* Rounded edges */
     max-width: 800px; /* Maximum width for the content box */
-    margin: 20px;
+    margin: 20px auto; /* Centers the content box */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     text-align: left;
 }
@@ -110,4 +134,68 @@ section {
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 20px;
+}
+
+/* Contact Section Styling */
+#contact {
+    background-color: #000; /* Black background */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Social Links Styling (For other pages outside footer) */
+.social-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.social-links a:hover {
+    color: #555;
 }
