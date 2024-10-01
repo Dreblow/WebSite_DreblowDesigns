@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+}
+
+header nav ul {
+    list-style-type: none;
+    text-align: center;
+    background: #333;
+    padding: 20px 0;
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.intro {
+    display: flex;
+    align-items: center; /* Vertically centers the content in the container */
+    justify-content: center; /* Horizontally centers the content in the flex container */
+    padding: 100px 20px; /* Adjust padding as needed */
+    max-width: 900px; /* Sets a maximum width for the entire intro section */
+    margin: 0 auto; /* Centers the intro section horizontally */
+}
+
+.intro div {
+    flex: 1; /* Gives each div an equal opportunity to grow */
+    text-align: left; /* Aligns the text inside the left div */
+}
+
+.intro div img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15%; /* Gives the image rounded corners */
+    display: block; /* Ensures the image does not have extra space below it */
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #333;
+}
+
+/* Add more specific styles as needed */
