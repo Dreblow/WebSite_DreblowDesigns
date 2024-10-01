@@ -1,15 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Body Styles */
+html, body {
+    height: 100%; /* Ensure the body takes the full height of the viewport */
     margin: 0;
     padding: 0;
-    background-color: #000;
-    color: #fff;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background for the entire page */
+    color: #fff; /* White text as default color */
+    min-height: 600px; /* Set a minimum height to ensure footer is always visible until this limit is reached */
+}
+
+/* Wrapper to ensure content is pushed to take up available height */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically when there's not enough content */
+}
+
+/* Footer Styles */
+footer {
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto; /* Ensures footer sticks to the bottom until min height is hit */
+    font-size: 0.9em;
+}
+
+/* Header Navigation Styles */
 header nav ul {
     list-style-type: none;
     text-align: center;
-    background: #333;
+    background: #333; /* Dark background for the header */
     padding: 20px 0;
     margin: 0;
 }
@@ -25,36 +52,62 @@ header nav ul li a {
     font-size: 1.2em;
 }
 
+/* Intro Section Styles */
 .intro {
     display: flex;
-    align-items: center; /* Vertically centers the content in the container */
-    justify-content: center; /* Horizontally centers the content in the flex container */
-    padding: 100px 20px; /* Adjust padding as needed */
-    max-width: 900px; /* Sets a maximum width for the entire intro section */
+    align-items: center; /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers the content */
+    padding: 100px 20px;
+    max-width: 900px; /* Maximum width for the intro */
     margin: 0 auto; /* Centers the intro section horizontally */
 }
 
 .intro div {
-    flex: 1; /* Gives each div an equal opportunity to grow */
-    text-align: left; /* Aligns the text inside the left div */
+    flex: 1; /* Distributes space evenly between divs */
+    text-align: left; /* Aligns text in the left div */
 }
 
 .intro div img {
     max-width: 100%;
     height: auto;
-    border-radius: 15%; /* Gives the image rounded corners */
-    display: block; /* Ensures the image does not have extra space below it */
+    border-radius: 15%; /* Rounded corners for the image */
+    display: block; /* Ensures no extra space below the image */
 }
 
+/* General Section Styles */
 section {
     padding: 40px 20px;
     text-align: center;
 }
 
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background: #333;
+/* About Section Styling */
+#about {
+    display: flex; /* Ensure flexbox is applied */
+    justify-content: center;
+    align-items: flex-start; /* Align content closer to the top */
+    min-height: 100vh; /* Ensures full viewport height */
+    background-color: #000; /* Keeps the background black */
 }
 
-/* Add more specific styles as needed */
+/* White Content Box for About Section */
+.content-box {
+    background-color: #fff; /* White box for content */
+    color: #333; /* Dark text color inside the box */
+    padding: 40px;
+    border-radius: 15px; /* Rounded edges */
+    max-width: 800px; /* Maximum width for the content box */
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    text-align: left;
+}
+
+.content-box h2 {
+    font-size: 28px;
+    margin-top: 0; /* Removes extra margin from the top */
+}
+
+.content-box p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
