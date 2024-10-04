@@ -3,6 +3,8 @@ html, body {
     height: 100%; /* Ensure the body takes the full height of the viewport */
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
@@ -14,46 +16,85 @@ body {
     min-height: 100vh; /* Ensure body takes full height */
 }
 
-/* Wrapper to ensure content is pushed to take up available height */
 main {
-    flex: 1;
+    display: flex;
+    flex-grow: 1; /* Ensure main takes up available space between header and footer */
+    flex-direction: column;
+    justify-content: space-between; /* Centers content vertically if content is short */
+    padding: 20px; /* Optional padding for spacing */
+}
+
+#home {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers content vertically when there's not enough content */
+    justify-content: center; /* Centers the home section vertically */
+    align-items: center; /* Centers content horizontally */
+    height: 50vh; /* Optional: You can adjust this for how much space home takes */
+    text-align: center;
+}
+
+#whatIdo {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center; /* Center the text horizontally */
+}
+
+.intro {
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers the content */
+    max-width: 900px; /* Maximum width for the intro */
+    margin: 0 auto; /* Centers the intro section horizontally */
+}
+
+.intro div {
+    flex: 1; /* Distributes space evenly between divs */
+    text-align: left; /* Aligns text in the left div */
+}
+
+.intro div img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15%; /* Rounded corners for the image */
+    display: block; /* Ensures no extra space below the image */
+}
+
+#whatIdo {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center; /* Center content horizontally */
 }
 
 /* Footer Styles */
 footer {
     background: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between; /* Space between social links and copyright text */
-    align-items: center; /* Vertically align social links and text */
-    font-size: 0.9em;
+    color: white; 
+    width: 100%; /* Ensure footer spans the full width */
+    padding: 10px 0;
+    position: relative;
 }
 
-/* Social Links Styling */
 footer .social-links {
-    display: flex;
-    align-items: center;
+    float: left;
+    margin-left: 10px;
+}
+
+footer .copy-right {
+    float: right;
+    margin-right: 10px;
 }
 
 footer .social-links a {
     color: #fff; /* White text for links */
-    text-decoration: none;
-    margin-right: 20px; /* Spacing between social links */
-    font-size: 1.2em;
-    display: flex;
-    align-items: center; /* Align icon and text vertically */
+    margin-right: 10px;
 }
 
-footer .social-links a i {
-    margin-right: 8px; /* Space between icon and text */
+footer .social-links i {
+    margin-right: 2px; /* Space between icon and text */
 }
 
 footer .social-links a:hover {
-    color: #aaa; /* Light gray hover effect for links */
+    color: #aaa;
 }
 
 /* Header Navigation Styles */
@@ -76,40 +117,9 @@ header nav ul li a {
     font-size: 1.2em;
 }
 
-/* Intro Section Styles */
-.intro {
-    display: flex;
-    align-items: center; /* Vertically centers the content */
-    justify-content: center; /* Horizontally centers the content */
-    padding: 100px 20px;
-    max-width: 900px; /* Maximum width for the intro */
-    margin: 0 auto; /* Centers the intro section horizontally */
-}
-
-.intro div {
-    flex: 1; /* Distributes space evenly between divs */
-    text-align: left; /* Aligns text in the left div */
-}
-
-.intro div img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15%; /* Rounded corners for the image */
-    display: block; /* Ensures no extra space below the image */
-}
-
-/* General Section Styles */
-section {
-    padding: 40px 20px;
-    text-align: center;
-}
-
 /* About Section Styling */
 #about {
-    display: flex; /* Ensure flexbox is applied */
     justify-content: center;
-    align-items: flex-start; /* Align content closer to the top */
-    min-height: 100vh; /* Ensures full viewport height */
     background-color: #000; /* Keeps the background black */
 }
 
