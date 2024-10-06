@@ -1,10 +1,61 @@
+/* Mobile */
+@media (max-width: 768px) {
+    .intro {
+        flex-direction: column; /* Stack text and image vertically */
+        align-items: center; /* Center align the content */
+        /* Reduce padding for smaller screens */
+        max-width: 500px;
+    }
+
+    .intro div {
+        max-width: 80%;
+        margin-bottom: 20px; /* Add space between stacked elements */
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav ul {
+        padding: 15px 0; /* Reduce padding for header on mobile */
+    }
+
+    header nav ul li {
+        display: block; /* Stack navigation items vertically */
+        margin-bottom: 10px; /* Add space between links */
+    }
+}
+
+@media (min-width: 768px) {
+    .intro {
+        max-width: 900px; /* Maximum width for the intro */
+    }
+
+    .intro_description {
+        padding-right: 10px;
+    }
+
+    #whatIdo {
+        padding-top: 50px;
+    }
+
+    footer .social-links {
+        float: left;
+        margin-left: 10px;
+    }
+    
+    footer .copy-right {
+        float: right;
+        margin-right: 10px;
+    }
+}
+
 /* General Body Styles */
 html, body {
     height: 100%; /* Ensure the body takes the full height of the viewport */
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 body {
@@ -20,22 +71,17 @@ main {
     display: flex;
     flex-grow: 1; /* Ensure main takes up available space between header and footer */
     flex-direction: column;
-    justify-content: space-between; /* Centers content vertically if content is short */
+    justify-content: center; /* Centers content vertically if content is short */
     padding: 20px; /* Optional padding for spacing */
 }
 
 #home {
-    display: flex;
-    flex-direction: column;
     justify-content: center; /* Centers the home section vertically */
     align-items: center; /* Centers content horizontally */
-    height: 50vh; /* Optional: You can adjust this for how much space home takes */
     text-align: center;
 }
 
 #whatIdo {
-    margin-top: auto;
-    margin-bottom: auto;
     text-align: center; /* Center the text horizontally */
 }
 
@@ -43,26 +89,20 @@ main {
     display: flex;
     align-items: center; /* Vertically centers the content */
     justify-content: center; /* Horizontally centers the content */
-    max-width: 900px; /* Maximum width for the intro */
-    margin: 0 auto; /* Centers the intro section horizontally */
-}
-
-.intro div {
-    flex: 1; /* Distributes space evenly between divs */
-    text-align: left; /* Aligns text in the left div */
+    margin: 0 auto;
 }
 
 .intro div img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15%; /* Rounded corners for the image */
-    display: block; /* Ensures no extra space below the image */
+    max-width: 400px; /* Ensures the image doesn't exceed the width of its container */
+    max-height: 100%; /* Limit the maximum height of the image */
+    width: auto; /* Adjusts the width proportionally */
+    height: auto; /* Adjusts the height proportionally */
+    border-radius: 15%; /* Optional: Rounded corners */
+    display: block;
 }
 
-#whatIdo {
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: center; /* Center content horizontally */
+.intro div p {
+    text-align: justify; /* Justifies the text within the container */
 }
 
 /* Footer Styles */
@@ -72,16 +112,6 @@ footer {
     width: 100%; /* Ensure footer spans the full width */
     padding: 10px 0;
     position: relative;
-}
-
-footer .social-links {
-    float: left;
-    margin-left: 10px;
-}
-
-footer .copy-right {
-    float: right;
-    margin-right: 10px;
 }
 
 footer .social-links a {
@@ -127,7 +157,7 @@ header nav ul li a {
 .content-box {
     background-color: #fff; /* White box for content */
     color: #333; /* Dark text color inside the box */
-    padding: 40px;
+    padding: 2.5rem;
     border-radius: 15px; /* Rounded edges */
     max-width: 800px; /* Maximum width for the content box */
     margin: 20px auto; /* Centers the content box */
