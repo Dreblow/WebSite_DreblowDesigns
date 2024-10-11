@@ -8,8 +8,13 @@
     }
 
     .intro div {
-        max-width: 80%;
+        max-width: 400px;
         margin-bottom: 20px; /* Add space between stacked elements */
+    }
+
+    .intro div img {
+        width: 100%; /* Adjusts the width proportionally */
+        height: 100%; /* Adjusts the height proportionally */
     }
 
     footer {
@@ -36,6 +41,11 @@
         padding-right: 10px;
     }
 
+    .intro div img {
+        width: auto; /* Adjusts the width proportionally */
+        height: auto; /* Adjusts the height proportionally */
+    }
+    
     #whatIdo {
         padding-top: 50px;
     }
@@ -95,8 +105,7 @@ main {
 .intro div img {
     max-width: 400px; /* Ensures the image doesn't exceed the width of its container */
     max-height: 100%; /* Limit the maximum height of the image */
-    width: auto; /* Adjusts the width proportionally */
-    height: auto; /* Adjusts the height proportionally */
+
     border-radius: 15%; /* Optional: Rounded corners */
     display: block;
 }
