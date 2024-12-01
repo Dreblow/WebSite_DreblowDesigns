@@ -53,12 +53,13 @@ h4 {
 }
 
 /* List styling */
-ul, ol {
+.markdown-body ul, 
+.markdown-body ol {
     padding-left: 20px; /* Indent lists */
     margin-bottom: 15px; /* Add spacing after lists */
 }
 
-li {
+.markdown-body li {
     margin-bottom: 5px; /* Add spacing between list items */
     line-height: 1.5; /* Adjust line height for readability */
 }

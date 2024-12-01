@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-<url>
-  <loc>https://dreblowdesigns.com/</loc>
-  <lastmod>2024-10-12T02:34:05+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://dreblowdesigns.com/index.html</loc>
-  <lastmod>2024-10-12T02:34:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://dreblowdesigns.com/pages/about.html</loc>
-  <lastmod>2024-10-12T02:34:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://dreblowdesigns.com/pages/contact/contact.html</loc>
-  <lastmod>2024-10-12T02:34:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+  <url>
+       <loc>https://dreblowdesigns.com/</loc>
+       <lastmod>2024-12-02T04:46:40+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/index.html</loc>
+       <lastmod>2024-12-02T04:46:40+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/pages/about.html</loc>
+       <lastmod>2024-12-02T04:46:42+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/pages/contact/contact.html</loc>
+       <lastmod>2024-12-02T04:46:42+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/pages/blog/local_html/blog.html</loc>
+       <lastmod>2024-12-02T04:46:42+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/pages/blog/local_html/Web%20Dev/Local%20Server.html</loc>
+       <lastmod>2024-12-02T04:46:42+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>https://dreblowdesigns.com/pages/blog/local_html/Ubuntu%20Server/Setting%20IP%20to%20Static.html</loc>
+       <lastmod>2024-12-02T04:46:42+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
 </urlset>

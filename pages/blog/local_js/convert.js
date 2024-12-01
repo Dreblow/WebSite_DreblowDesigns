@@ -101,6 +101,8 @@ function processDirectory(inputPath, outputPath) {
             const description = frontMatter.description || 'Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.';
             const author = frontMatter.author || "Derek Dreblow"
             const keyword = frontMatter.keyword || "Dreblow Design's Blog"
+            const image = frontMatter.image || "https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg"
+            const url = frontMatter.url || "https://dreblowdesigns.com"
 
             // Generate HTML content
             const htmlContent = `
@@ -109,10 +111,42 @@ function processDirectory(inputPath, outputPath) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
     <meta name="description" content="${description}">
     <meta name="author" content="${author}">
     <meta name="keywords" content="${keyword}">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:image" content="${image}">
+    <meta property="og:url" content="${url}>
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${title}">
+    <meta name="twitter:description" content="${description}">
+    <meta name="twitter:image" content="${image}
+
+    <!-- Default favicon -->
+    <link rel="icon" href="${ROOT_DIR}${relativePath}favicon.ico" type="image/x-icon">
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/apple-touch-icon.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">

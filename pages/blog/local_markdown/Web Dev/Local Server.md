@@ -89,10 +89,11 @@ If Python 3 is not recognized after installation, ensure Homebrew’s Python pat
 ```py
 import http.server
 import socketserver
+import threading
 
 class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Add Cache-Control header
+        # Add Cache-Control headers to prevent caching
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
@@ -101,14 +102,25 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 # Define the port
 PORT = 8000
 
-try:
-    # Start the server
-    with socketserver.TCPServer(("", PORT), NoCacheHTTPRequestHandler) as httpd:
-        print(f"Serving at http://localhost:{PORT}")
-        httpd.serve_forever()
-except KeyboardInterrupt:
-    print("\nServer interrupted. Shutting down gracefully...")
-    httpd.server_close()
+def start_server():
+    try:
+        with socketserver.TCPServer(("", PORT), NoCacheHTTPRequestHandler) as httpd:
+            print(f"Serving at http://localhost:{PORT}")
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServer interrupted. Shutting down gracefully...")
+        httpd.server_close()
+
+if __name__ == "__main__":
+    # Run the server in a thread for improved responsiveness
+    server_thread = threading.Thread(target=start_server, daemon=True)
+    server_thread.start()
+
+    try:
+        while True:
+            pass  # Keep the main thread alive
+    except KeyboardInterrupt:
+        print("\nExiting...")
 ```
 * Then in shell, be in the current directory of your index.html file. If you have the .py file in a different location, then you'll have to state it. In the below example, `LocalServer.py` is the example file name for the .py file.
   ```bash
