@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Derek Dreblow, Dreblow Designs, Portfolio, Engineering, Software Development, LabVIEW, Metrology">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Dreblow Designs Portfolio">
+    <meta property="og:description" content="Explore Derek Dreblow's professional portfolio showcasing engineering and software development projects.">
+    <meta property="og:image" content="https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg">
+    <meta property="og:url" content="https://dreblowdesigns.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dreblow Designs Portfolio">
+    <meta name="twitter:description" content="Explore Derek Dreblow's professional portfolio showcasing engineering and software development projects.">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg">
+
     <title>Dreblow Designs Portfolio</title>
     <link rel="stylesheet" href="resources/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,7 +40,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-9RT1T06DM1');
     </script>
 </head>
@@ -31,14 +47,15 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/pages/about.html">About</a></li>
-                <!--<li><a href="/pages/work.html">Work</a></li>-->
-                <li><a href="/pages/contact/contact.html">Contact</a></li>
+                <li><a href="/index.html" aria-label="Home">Home</a></li>
+                <li><a href="/pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="/pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="portfolio">
         <section id="home">
             <div class="intro">
                 <div class="intro_description">
@@ -46,7 +63,7 @@
                     <p>For the ever-continuing pursuit of excellent design, and robustness for
                         sophisticated technology. I strive to push my knowledge and capabilities to
                         new levels, while bringing those around me up.</p>
-                    <a href="/pages/about.html">Learn more ></a>
+                        <a href="/pages/about.html" aria-label="Learn more about Derek Dreblow">Learn more ></a>
                 </div>
                 <div>
                     <img src="resources/images/profile_DerekDreblow.jpeg" alt="Derek Dreblow">

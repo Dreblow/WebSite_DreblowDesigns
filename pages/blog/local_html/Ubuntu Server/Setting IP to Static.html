@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting IP to Static on Ubuntu Server</title>
+    <meta name="description" content="Learn how to set a static IP address on Ubuntu Server step-by-step.">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../../../index.html" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Nov 15, 2024</em></p>
+            <h1>Setting a Static IP Address on Ubuntu Server</h1>
+<h2>1. Identify Network Interface Details</h2>
+<ul>
+<li>Use the command:<pre><code class="hljs bash">ip addr
+</code></pre>
+</li>
+<li>Identify the network interface name (e.g., <code>eth0</code>, <code>ens33</code>, <code>wlan0</code>) and current IP configuration.</li>
+</ul>
+<h2>2. Access Netplan Configuration</h2>
+<ul>
+<li>Ubuntu uses Netplan for network configuration. Locate the configuration file, typically in <code>/etc/netplan/</code>. Common filenames are <code>01-netcfg.yaml</code> or <code>50-cloud-init.yaml</code>.</li>
+<li>Use:<pre><code class="hljs bash"><span class="hljs-built_in">ls</span> /etc/netplan/
+</code></pre>
+</li>
+</ul>
+<h2>3. Back Up the Original Configuration</h2>
+<ul>
+<li>Always back up the file before making changes:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> /etc/netplan/01-netcfg.yaml /etc/netplan/01-netcfg.yaml.bak
+</code></pre>
+</li>
+</ul>
+<h2>4. Edit the Configuration File</h2>
+<ul>
+<li>
+<p>Open the configuration file with a text editor:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/netplan/01-netcfg.yaml
+</code></pre>
+</li>
+<li>
+<p>Replace or add the following configuration, substituting with your desired IP, gateway, and DNS:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">network:</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">2</span>
+  <span class="hljs-attr">ethernets:</span>
+    <span class="hljs-attr">ens33:</span>                   <span class="hljs-comment"># Replace with your interface name</span>
+      <span class="hljs-attr">addresses:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">/24</span>   <span class="hljs-comment"># Replace with your desired IP and subnet mask</span>
+      <span class="hljs-attr">gateway4:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>  <span class="hljs-comment"># Replace with your gateway</span>
+      <span class="hljs-attr">nameservers:</span>
+        <span class="hljs-attr">addresses:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.8</span><span class="hljs-number">.8</span>          <span class="hljs-comment"># Google DNS</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.4</span><span class="hljs-number">.4</span>
+</code></pre>
+</li>
+</ul>
+<h2>5. Apply Configuration</h2>
+<ul>
+<li>Apply the changes using:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> netplan apply
+</code></pre>
+</li>
+</ul>
+<h2>6. Verify Configuration</h2>
+<ul>
+<li>Confirm the changes using:<pre><code class="hljs bash">ip addr
+</code></pre>
+</li>
+<li>Test connectivity by pinging the gateway or an external IP:<pre><code class="hljs bash">ping 8.8.8.8
+</code></pre>
+</li>
+</ul>
+<h2>7. Troubleshooting</h2>
+<ul>
+<li>If the network does not come up after applying the changes:
+<ul>
+<li>Revert to the backup file:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> /etc/netplan/01-netcfg.yaml.bak /etc/netplan/01-netcfg.yaml
+<span class="hljs-built_in">sudo</span> netplan apply
+</code></pre>
+</li>
+<li>Check Netplan syntax before applying changes:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> netplan try
+</code></pre>
+</li>
+<li>Verify the correct interface name and ensure no conflicting DHCP settings.</li>
+</ul>
+</li>
+</ul>
+<h2>8. Optional: Disable DHCP (if needed)</h2>
+<ul>
+<li>
+<p>If your network was using DHCP and you're switching to a static IP, ensure that DHCP is disabled for the interface.</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">dhcp4:</span> <span class="hljs-literal">false</span>
+</code></pre>
+</li>
+</ul>
+<h2>9. Restart Network Services</h2>
+<ul>
+<li>If issues persist, restart the network service:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart systemd-networkd
+</code></pre>
+</li>
+</ul>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

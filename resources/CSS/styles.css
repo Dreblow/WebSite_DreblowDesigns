@@ -78,11 +78,14 @@ body {
 }
 
 main {
-    display: flex;
     flex-grow: 1; /* Ensure main takes up available space between header and footer */
     flex-direction: column;
-    justify-content: center; /* Centers content vertically if content is short */
     padding: 20px; /* Optional padding for spacing */
+}
+
+.portfolio {
+    display: flex;
+    justify-content: center; /* Centers content vertically if content is short */
 }
 
 #home {
@@ -105,7 +108,6 @@ main {
 .intro div img {
     max-width: 400px; /* Ensures the image doesn't exceed the width of its container */
     max-height: 100%; /* Limit the maximum height of the image */
-
     border-radius: 15%; /* Optional: Rounded corners */
     display: block;
 }

@@ -1,0 +1,79 @@
+/* Center and control content width */
+.markdown-body {
+    max-width: 900px; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the content */
+    padding: 20px; /* Add some padding for better readability */
+    line-height: 1.6; /* Improve text readability */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* GitHub-style font stack */
+}
+
+/* General link styles */
+a {
+    color: #0969da; /* GitHub link blue color */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Add underline on hover */
+a:hover {
+    color: #054a91; /* Slightly darker color for hover effect */
+    text-decoration: underline; /* Optional underline for better visibility */
+}
+
+/* General reset for heading margins */
+h1, h2, h4 {
+    margin: 0; /* Remove all default margins */
+    padding: 0; /* Remove all default padding */
+}
+
+/* Heading styles */
+h1 {
+    margin-bottom: 15px; /* Add spacing below */
+    padding-bottom: 5px; /* Add padding below the text */
+    border-bottom: 3px solid #d1d5da; /* Slightly thicker underline for h1 */
+    font-size: 32px; /* Larger font size for the main heading */
+    font-weight: bold; /* Make the text bold */
+}
+
+h2 {
+    margin-top: 20px; /* Add spacing above */
+    margin-bottom: 10px; /* Add spacing below */
+    padding-bottom: 5px; /* Add padding below the text */
+    border-bottom: 2px solid #d1d5da; /* Lighter underline for h2 */
+    font-size: 24px; /* Slightly smaller than h1 */
+    font-weight: bold; /* Bold text for h2 */
+    line-height: 1.4; /* Adjust line spacing */
+}
+
+h4 {
+    margin-top: 15px; /* Add spacing above */
+    margin-bottom: 8px; /* Add spacing below */
+    line-height: 1.3; /* Adjust line spacing */
+    font-size: 18px; /* Smaller font size for h4 */
+    font-weight: bold; /* Bold text for h4 */
+}
+
+/* List styling */
+ul, ol {
+    padding-left: 20px; /* Indent lists */
+    margin-bottom: 15px; /* Add spacing after lists */
+}
+
+li {
+    margin-bottom: 5px; /* Add spacing between list items */
+    line-height: 1.5; /* Adjust line height for readability */
+}
+
+/* Styling for the version date */
+.blogVersion {
+    color: #434445; /* GitHub-style gray */
+    font-size: 0.9em;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* Add a slight radius to code boxes */
+pre, code {
+    border-radius: 8px; /* Adjust the value for more or less rounding */
+    overflow: auto; /* Ensures content stays inside the box */
+}

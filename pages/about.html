@@ -19,21 +19,26 @@
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="/index.html">Home</a></li>   <!-- Link to Home page -->
-                <li><a href="/pages/about.html">About</a></li>   <!-- Link to About page -->
-                <!--<li><a href="/pages/work.html">Work</a></li>   <!-- Link to Work page -->
-                <li><a href="/pages/contact/contact.html">Contact</a></li>   <!-- Link to Contact page -->
+                <li><a href="/index.html" aria-label="Home">Home</a></li>
+                <li><a href="/pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="/pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
             </ul>
         </nav>
     </header>
-
-    <!-- Wrap your about section in a main tag -->
-    <main>
+    <main class="portfolio">
         <section id="about">
             <div class="content-box">
                 <h2>About Me</h2>
