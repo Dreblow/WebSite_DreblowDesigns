@@ -11,7 +11,7 @@ Enjoy some simple HTML and CSS, with a minimist approach to the site. This repo 
 
 ## Development
 ### Local Server
-* Its best to develop webpages through a local server. Launch the `LocalServer.py`, located in root/resources/dev/
+* Its best to develop webpages through a local server. Launch the `LocalServer.py`, located in root/resources/dev/ via `python resources/dev/LocalServer.py`
 * Make sure to be in the directory of `index.html`, and call the location of the py file. 
 
 ### Blog

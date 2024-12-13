@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tips and tricks for ssh">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="All that is ssh">
+    <meta property="og:description" content="Tips and tricks for ssh">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://dreblowdesigns.com>
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All that is ssh">
+    <meta name="twitter:description" content="Tips and tricks for ssh">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png
+
+    <!-- Default favicon -->
+    <link rel="icon" sizes="192x192" href="https://dreblowdesigns.com/favicon.ico" type="image/x-icon">
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" href="../../../../resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="../../../../resources/images/favicon_io/apple-touch-icon.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../../../index.html" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Dec 13, 2024</em></p>
+            <h1>All that is ssh</h1>
+<h2>Overview</h2>
+<p>For now this is the area of the blog where I put ssh commands I use hardly so I don't remember by heart. Hopefully it grows into something great!</p>
+<hr>
+<h2>1. Removing RSA key from a know IP</h2>
+<ul>
+<li>
+<p>This is useful when you redid a computer and set it to the same static IP address. So if you're working from a Mac or other machine, you need to
+remove the old RSA key so it can be replaced with the new one from the new machine.</p>
+</li>
+<li>
+<p>Run the following command to remove the conflicting key associated with the specific IP address:</p>
+<pre><code class="hljs bash">ssh-keygen -R &lt;IP_ADDRESS&gt;
+</code></pre>
+</li>
+<li>
+<p>For example:</p>
+<pre><code class="hljs bash">ssh-keygen -R 192.168.1.100
+</code></pre>
+</li>
+</ul>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

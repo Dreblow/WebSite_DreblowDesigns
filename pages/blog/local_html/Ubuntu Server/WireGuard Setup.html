@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to setup wireguard on a linux server.">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="WireGuard Self-Hosting Setup Instructions">
+    <meta property="og:description" content="Learn how to setup wireguard on a linux server.">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://dreblowdesigns.com>
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WireGuard Self-Hosting Setup Instructions">
+    <meta name="twitter:description" content="Learn how to setup wireguard on a linux server.">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png
+
+    <!-- Default favicon -->
+    <link rel="icon" sizes="192x192" href="https://dreblowdesigns.com/favicon.ico" type="image/x-icon">
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" href="../../../../resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../../../resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="../../../../resources/images/favicon_io/apple-touch-icon.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../../../index.html" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Dec 11, 2024</em></p>
+            <h1>WireGuard Self-Hosting Setup Instructions</h1>
+<h2>Overview</h2>
+<p>This guide walks you through setting up a self-hosted WireGuard server for secure remote access, restricting access to only your Linux server on Hyper-V while keeping the rest of your network hidden.</p>
+<p>As of now this guide is WIP, which only supports IPv4 communications. I hope to explain IPv6 in the near future.</p>
+<hr>
+<h2>1. Install WireGuard on the Server</h2>
+<ul>
+<li>Ensure you have root access to the Linux server.</li>
+<li>Run the following commands:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y
+<span class="hljs-built_in">sudo</span> apt install wireguard
+</code></pre>
+</li>
+<li>Alternatively, you can use Docker if preferred.</li>
+</ul>
+<hr>
+<h2>2. Generate Keys</h2>
+<ul>
+<li>Create private and public keys for the server. This example goes over how to setup the server and, MacBook Pro and iPhone as clients.<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> server_privatekey | wg pubkey &gt; server_publickey
+</code></pre>
+<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> maclappy_privatekey | wg pubkey &gt; maclappy_publickey
+</code></pre>
+<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> phone_privatekey | wg pubkey &gt; phone_publickey
+</code></pre>
+</li>
+<li>This didn't work out the box, it was easiest to be in root. Some don't like this, but for the ease of this tutorial, we'll be bad ;)<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -i
+</code></pre>
+</li>
+<li>Also note, if you forgot your keys, you can look them up as so, but remember, if you used <code>sudo -i</code> then the files are in the root directory. Use <code>sudo ls /root/</code> to see them.<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span>  /root/maclappy_privatekey
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span>  /root/maclappy_publickey
+</code></pre>
+</li>
+<li>To exit out of root, type <code>exit</code> in terminal and hit enter.</li>
+</ul>
+<hr>
+<h2>3. Set Up the WireGuard Configuration</h2>
+<ul>
+<li>Create a configuration file with:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/wireguard/wg0.conf
+</code></pre>
+</li>
+<li>and add the following:<pre><code class="hljs ini"><span class="hljs-section">[Interface]</span>
+<span class="hljs-attr">PrivateKey</span> = &lt;ServerPrivateKey&gt;
+<span class="hljs-attr">Address</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">24</span>
+<span class="hljs-attr">ListenPort</span> = <span class="hljs-number">42465</span>
+
+<span class="hljs-comment"># MacLappy Configuration</span>
+<span class="hljs-section">[Peer]</span>
+<span class="hljs-attr">PublicKey</span> = &lt;MacLappyPublicKey&gt;
+<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.2</span>/<span class="hljs-number">32</span>
+
+<span class="hljs-comment"># iPhone Configuration</span>
+<span class="hljs-section">[Peer]</span>
+<span class="hljs-attr">PublicKey</span> = &lt;iPhonePublicKey&gt;
+<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.3</span>/<span class="hljs-number">32</span>
+</code></pre>
+</li>
+<li>Replace <code>ServerPrivateKey</code> and a <code>machinePublicKey</code> via the cat command back in section 2.</li>
+</ul>
+<hr>
+<h2>4. Enable port forwarding (WIP)</h2>
+<ul>
+<li>
+<p>Enabled IP forwarding to allow routing between the VPN subnet <code>10.0.0.0/24</code> and the specific network address <code>192.168.1.186</code></p>
+</li>
+<li>
+<p>To test if it is enabled, which should return a <code>1</code></p>
+<pre><code class="hljs bash">sysctl net.ipv4.ip_forward
+</code></pre>
+</li>
+<li>
+<p>Edit <code>/etc/sysctl.conf</code> and ensure this line exists:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/sysctl.conf
+</code></pre>
+</li>
+<li>
+<p>And update</p>
+<pre><code class="hljs bash">net.ipv4.ip_forward=1
+</code></pre>
+</li>
+<li>
+<p>And then apply</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> sysctl -p
+</code></pre>
+</li>
+<li>
+<p>Make sure the WireGuard server knows how to forward traffic from the 10.0.0.0/24 subnet to the specific IP in your LAN (e.g., 192.168.1. 186). Add this NAT rule to allow traffic to the specific IP:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -d 192.168.1.186 -j MASQUERADE
+</code></pre>
+</li>
+<li>
+<p>Add this forwarding rule to allow traffic from <code>10.0.0.0/24</code> to <code>192.168.1.186</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -A FORWARD -s 10.0.0.0/24 -d 192.168.1.186 -j ACCEPT
+</code></pre>
+</li>
+<li>
+<p>Save the rule to make it persistent across reboots:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install iptables-persistent
+<span class="hljs-built_in">sudo</span> netfilter-persistent save
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>5. Enable and Start the WireGuard Interface</h2>
+<ul>
+<li>Start the service<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start wg-quick@wg0
+</code></pre>
+</li>
+<li>Or if you want to shutdown the service and restart it.<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> wg-quick down wg0
+<span class="hljs-built_in">sudo</span> wg-quick up wg0
+</code></pre>
+</li>
+<li>Persist after a reboot, add:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> wg-quick@wg0
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>5. Firewall Configuration</h2>
+<ul>
+<li>
+<p>Use <code>ufw</code> or <code>iptables</code> to allow traffic on port 51564:</p>
+</li>
+<li>
+<p><code>ufw</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ufw allow ListenPort = 51564/udp
+</code></pre>
+</li>
+<li>
+<p><code>iptables</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -A INPUT -p udp --dport 51564 -j ACCEPT
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>6. Router Configuration</h2>
+<ul>
+<li>There is where you need to hop on the your web browser and put in the ip address of your router. Go find where port forwarding is handled. Since I setup the port to be <code>51564</code>. Mu router allowed for external and internal ports, internal ip address of the server, and the connection type <code>UDP</code></li>
+</ul>
+<hr>
+<h2>7. Client Configuration</h2>
+<ul>
+<li>Install WireGuard on your remote device (e.g., laptop or phone).</li>
+<li>Create a configuration file for the client, here is one for maclappy.conf:<pre><code class="hljs ini"><span class="hljs-section">[Interface]</span>
+<span class="hljs-attr">PrivateKey</span> = <span class="hljs-number">000000000000000000000000000000000000000000</span>= <span class="hljs-comment">#&lt;DevicePrivateKey&gt;</span>
+<span class="hljs-attr">Address</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.2</span>/<span class="hljs-number">24</span>
+<span class="hljs-attr">DNS</span> = <span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span>
+
+<span class="hljs-section">[Peer]</span>
+<span class="hljs-attr">PublicKey</span> = <span class="hljs-number">000000000000000000000000000000000000000000</span>= <span class="hljs-comment">#&lt;ServerPublicKey&gt;</span>
+<span class="hljs-attr">Endpoint</span> = <span class="hljs-number">999.999</span>.<span class="hljs-number">9.999</span>:<span class="hljs-number">42465</span>                          <span class="hljs-comment">#&lt;ServerPublicIP&gt;:51564</span>
+<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">24</span>
+</code></pre>
+</li>
+<li>Then in the GUI app, upload the file to it, and let her rip!</li>
+</ul>
+<hr>
+<h2>8. Test the Connection</h2>
+<ul>
+<li>Start the client interface and verify connectivity on laptop:<pre><code class="hljs bash">wg-quick up wg0
+ping 10.0.0.1
+</code></pre>
+</li>
+<li>From the phone, I used <a href="https://whatismyipaddress.com">whatismyipaddress</a> to confirm my home's outside IP address.</li>
+</ul>
+<hr>
+<h2>Optional Enhancements</h2>
+<ul>
+<li><strong>NAT Traversal</strong>: Use <code>Tailscale</code> if your setup requires it.</li>
+<li><strong>DNS Configuration</strong>: Set up DNS for hostname resolution.</li>
+<li><strong>Firewall Setup</strong>: Ensure your router only exposes port 42465 to the server.</li>
+</ul>
+<hr>
+<h2>Notes</h2>
+<ul>
+<li>Use secure methods to store and transfer keys.</li>
+<li>Regularly update WireGuard and monitor the configuration for any unauthorized changes.</li>
+</ul>
+<hr>
+<h3>Additional Resources</h3>
+<ul>
+<li><a href="https://www.wireguard.com/">WireGuard Documentation</a></li>
+<li><a href="https://tailscale.com/kb/">Tailscale Documentation</a></li>
+</ul>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

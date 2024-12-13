@@ -1,10 +1,17 @@
-/* Center and control content width */
-.markdown-body {
-    max-width: 900px; /* Adjust this value as needed */
-    margin: 0 auto; /* Center the content */
-    padding: 20px; /* Add some padding for better readability */
-    line-height: 1.6; /* Improve text readability */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* GitHub-style font stack */
+@media (max-width: 768px) {
+    .markdown-body {
+        max-width: 100%; /* Take up the full screen width */
+        padding: 0.5em; /* Reduce padding for smaller screens */
+    }
+}
+
+@media (min-width: 768px) {
+    .markdown-body {
+        width: auto;
+        max-width: 900px;
+        margin: 0 auto;
+        min-width: 0;
+    }
 }
 
 /* General link styles */

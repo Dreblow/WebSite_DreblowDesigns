@@ -7,11 +7,12 @@
     <meta name="description" content="Learn how to set a static IP address on Ubuntu Server step-by-step.">
     <meta name="author" content="Derek Dreblow">
     <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
     
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Setting IP to Static on Ubuntu Server">
     <meta property="og:description" content="Learn how to set a static IP address on Ubuntu Server step-by-step.">
-    <meta property="og:image" content="https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
     <meta property="og:url" content="https://dreblowdesigns.com>
     <meta property="og:type" content="website">
     
@@ -19,10 +20,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Setting IP to Static on Ubuntu Server">
     <meta name="twitter:description" content="Learn how to set a static IP address on Ubuntu Server step-by-step.">
-    <meta name="twitter:image" content="https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png
 
     <!-- Default favicon -->
-    <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="192x192" href="https://dreblowdesigns.com/favicon.ico" type="image/x-icon">
 
     <!-- PNG favicon for high-resolution displays -->
     <link rel="icon" href="../../../../resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -59,7 +60,7 @@
     </header>
     <main class="markdown-body">
         <article>
-            <p><em class="blogVersion">Version: Nov 15, 2024</em></p>
+            <p><em class="blogVersion">Version: Dec 13, 2024</em></p>
             <h1>Setting a Static IP Address on Ubuntu Server</h1>
 <h2>1. Identify Network Interface Details</h2>
 <ul>
@@ -93,10 +94,12 @@
 <pre><code class="hljs yaml"><span class="hljs-attr">network:</span>
   <span class="hljs-attr">version:</span> <span class="hljs-number">2</span>
   <span class="hljs-attr">ethernets:</span>
-    <span class="hljs-attr">ens33:</span>                   <span class="hljs-comment"># Replace with your interface name</span>
+    <span class="hljs-attr">eth0:</span>                   <span class="hljs-comment"># Replace with your interface name</span>
       <span class="hljs-attr">addresses:</span>
         <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">/24</span>   <span class="hljs-comment"># Replace with your desired IP and subnet mask</span>
-      <span class="hljs-attr">gateway4:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>  <span class="hljs-comment"># Replace with your gateway</span>
+      <span class="hljs-attr">routes:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">to:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">/0</span>
+          <span class="hljs-attr">via:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>   <span class="hljs-comment"># Replace with your gateway</span>
       <span class="hljs-attr">nameservers:</span>
         <span class="hljs-attr">addresses:</span>
           <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.8</span><span class="hljs-number">.8</span>          <span class="hljs-comment"># Google DNS</span>
@@ -106,7 +109,8 @@
 </ul>
 <h2>5. Apply Configuration</h2>
 <ul>
-<li>Apply the changes using:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> netplan apply
+<li>Apply the changes using:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> netplan generate
+<span class="hljs-built_in">sudo</span> netplan apply
 </code></pre>
 </li>
 </ul>
