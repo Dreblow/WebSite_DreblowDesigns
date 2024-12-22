@@ -130,14 +130,22 @@ function processDirectory(inputPath, outputPath) {
     <meta name="twitter:image" content="${image}
 
     <!-- Default favicon -->
-    <link rel="icon" sizes="192x192" href="https://dreblowdesigns.com/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" sizes="192x192" type="image/x-icon">
 
     <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="${ROOT_DIR}${relativePath}resources/images/favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-512x512.png">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
+    
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>

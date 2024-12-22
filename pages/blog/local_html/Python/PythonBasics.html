@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tips and tricks for Python">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Python">
+    <meta property="og:description" content="Tips and tricks for Python">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://dreblowdesigns.com>
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Python">
+    <meta name="twitter:description" content="Tips and tricks for Python">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png
+
+    <!-- Default favicon -->
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" sizes="192x192" type="image/x-icon">
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-512x512.png">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../../../index.html" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Dec 20, 2024</em></p>
+            <h1>Python Basics</h1>
+<h2>Overview</h2>
+<p>Times keep changing for the tools we use. Since so many solutions are relaying on Python, Python has gotten to the point
+where it needs to be isolated so packages don't negatively impact each other.</p>
+<p>This guide hopes to help those who run into issues with Python. Please note this guide is from the perspective of MacOS Sequoia.</p>
+<hr>
+<h2>Checking Python Version</h2>
+<ul>
+<li>For Python under 3 or python 3, respectively.<pre><code class="hljs bash">python --version
+python3 --version
+</code></pre>
+</li>
+</ul>
+<h2>Locate Python</h2>
+<ul>
+<li>Find the exact locations of the Python executables:<pre><code class="hljs bash"><span class="hljs-built_in">which</span> python
+<span class="hljs-built_in">which</span> python3
+</code></pre>
+</li>
+<li>List Python Installed via Homebrew<pre><code class="hljs bash">brew list | grep python
+</code></pre>
+</li>
+<li>You can check the version via <code>pyenv</code><pre><code class="hljs bash">brew install pyenv
+pyenv versions
+</code></pre>
+</li>
+</ul>
+<h2>Installing Python</h2>
+<h4>Check Home Brew</h4>
+<ul>
+<li><code>Homnebrew</code> is a good choice as package manager. Its good practice to update <code>Homebrew</code> is you have'nt done so.<pre><code class="hljs bash">brew --version
+brew update
+</code></pre>
+</li>
+<li>Then to install <code>Python</code><pre><code class="hljs bash">brew install python
+</code></pre>
+</li>
+</ul>
+<h4>Updating PATH</h4>
+<ul>
+<li>Use the correct Python version. Homebrew installs Python in /usr/local/bin (Intel Macs) or /opt/homebrew/bin (M1/M2 Macs). Ensure that this version is prioritized in your PATH.</li>
+<li>Add the following to your ~/.zshrc or ~/.bashrc (depending on your shell):<pre><code class="hljs bash"><span class="hljs-built_in">export</span> PATH=<span class="hljs-string">&quot;/usr/local/bin:<span class="hljs-variable">$PATH</span>&quot;</span>  <span class="hljs-comment"># For Intel Macs</span>
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-string">&quot;/opt/homebrew/bin:<span class="hljs-variable">$PATH</span>&quot;</span>  <span class="hljs-comment"># For M1/M2 Macs</span>
+</code></pre>
+</li>
+<li>Reload your shell:<pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc
+</code></pre>
+</li>
+</ul>
+<h2>Install a Specific Version of Python</h2>
+<ul>
+<li>If you need a specific version of Python, you can use Homebrew’s <code>python@x</code> formula. For example:</li>
+<li>Install Python 3.10:<pre><code class="hljs bash">brew install python@3.10
+</code></pre>
+</li>
+<li>To use a specific version, link it to your default python3 command:<pre><code class="hljs bash">brew <span class="hljs-built_in">link</span> --overwrite python@3.10
+</code></pre>
+</li>
+</ul>
+<h2>Setting up a Virtual Environment</h2>
+<ul>
+<li>This one was new to me, I need to know setup virtual environments to download packages and develop!</li>
+</ul>
+<h4>1. Prerequisites</h4>
+<ul>
+<li>Ensure you have Python installed. Verify the version:<pre><code class="hljs bash">python3 --version
+</code></pre>
+</li>
+</ul>
+<h4>2. Create a Virtual Environment</h4>
+<ul>
+<li>
+<p>Navigate to Your Project Directory:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /path/to/your/project
+</code></pre>
+</li>
+<li>
+<p>Use Python’s built-in <code>venv</code> module to create the environment:</p>
+<pre><code class="hljs bash">python3 -m venv venv_name
+</code></pre>
+</li>
+<li>
+<p>Replace <code>venv_name</code> with the desired name for the virtual environment (e.g., venv or env).</p>
+</li>
+<li>
+<p>This creates a directory named <code>venv_name</code> containing the virtual environment.</p>
+</li>
+</ul>
+<h4>3. Activate the Virtual Environment</h4>
+<ul>
+<li>
+<p>macOS/Linux:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">source</span> venv_name/bin/activate
+</code></pre>
+</li>
+<li>
+<p>Windows:</p>
+<pre><code class="hljs bash">venv_name\Scripts\activate
+</code></pre>
+</li>
+<li>
+<p>Once activated, you’ll see the environment name in your shell prompt, indicating that the virtual environment is active, e.g.:</p>
+<pre><code class="hljs bash">(venv_name) user@computer:~/project$
+</code></pre>
+</li>
+<li>
+<p>To exit the virtual environment:</p>
+<pre><code class="hljs bash">deactivate
+</code></pre>
+</li>
+</ul>
+<h4>4. Install Packages</h4>
+<ul>
+<li>
+<p>This will install packages locally to the virtual environment only, which is the point of it.</p>
+</li>
+<li>
+<p>Once you <code>deactivate</code>, the packages are no longer reachable, but they are still there in the project directory.</p>
+</li>
+<li>
+<p>Inside the virtual environment, you can use pip to install packages:</p>
+<pre><code class="hljs bash">pip install package_name
+</code></pre>
+</li>
+<li>
+<p>Example:</p>
+<pre><code class="hljs bash">pip install numpy
+</code></pre>
+</li>
+<li>
+<p>List current packages:</p>
+<pre><code class="hljs bash">pip list
+</code></pre>
+</li>
+</ul>
+<h4>5. Re-Activate the Environment</h4>
+<ul>
+<li>If you need to work on the project again, re-activate the virtual environment:<pre><code class="hljs bash"><span class="hljs-built_in">source</span> venv_name/bin/activate  <span class="hljs-comment"># macOS/Linux</span>
+venv_name\Scripts\activate     <span class="hljs-comment"># Windows</span>
+</code></pre>
+</li>
+</ul>
+<h4>6. Save and Reuse Dependencies</h4>
+<ul>
+<li>
+<p>To share your environment with others or recreate it via export installed packages:</p>
+<pre><code class="hljs bash">pip freeze &gt; requirements.txt
+</code></pre>
+</li>
+<li>
+<p>Reinstall Dependencies in a New Environment:</p>
+<pre><code class="hljs bash">pip install -r requirements.txt
+</code></pre>
+</li>
+<li>
+<p>Delete a Virtual Environment</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf venv_name
+</code></pre>
+</li>
+</ul>
+<h4>7. Using Virtual Environments with IDEs</h4>
+<ul>
+<li>Most modern IDEs (like VSCode or PyCharm) detect and integrate with virtual environments automatically.</li>
+<li>VSCode:
+<ul>
+<li>Install the Python extension.</li>
+<li>Open the Command Palette <code>(Ctrl+Shift+P</code> or <code>Cmd+Shift+P)</code></li>
+<li>Select “Python: Select Interpreter” and choose the virtual environment.</li>
+</ul>
+</li>
+<li>PyCharm:
+<ul>
+<li>Go to “Settings” → “Project Interpreter.”</li>
+<li>Add your virtual environment as a new interpreter.</li>
+</ul>
+</li>
+</ul>
+<p>By using virtual environments, you can keep your Python projects organized and avoid dependency conflicts. Cheers!</p>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
