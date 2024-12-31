@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Dreblow Design's Blog">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Nginx Web Server Setup Guide">
+    <meta property="og:description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://dreblowdesigns.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nginx Web Server Setup Guide">
+    <meta name="twitter:description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+
+    <!-- Default favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
+    <link rel="shortcut icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" />
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" type="image/png" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Feb 2, 2025</em></p>
+            <h1>Nginx Web Server Setup Guide</h1>
+<h2>Overview</h2>
+<p>This guide goes over how to install and setup Ngnix Web Server. Don't believe it? You're using it right now! Running on
+Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
+<hr>
+<h2>1. Install Nginx</h2>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt install nginx -y
+</code></pre>
+<h2>2. Start &amp; Enable Nginx</h2>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start nginx
+<span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> nginx  <span class="hljs-comment"># Auto-start on boot</span>
+</code></pre>
+<p>To check status</p>
+<pre><code class="hljs bash">systemctl status nginx
+</code></pre>
+<h2>3. Configure Firewall (if needed)</h2>
+<p><strong>Allow HTTP &amp; HTTPS traffic:</strong></p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ufw allow <span class="hljs-string">&#x27;Nginx Full&#x27;</span>  <span class="hljs-comment"># Ubuntu/Debian</span>
+<span class="hljs-built_in">sudo</span> firewall-cmd --permanent --add-service=http
+<span class="hljs-built_in">sudo</span> firewall-cmd --permanent --add-service=https
+<span class="hljs-built_in">sudo</span> firewall-cmd --reload
+</code></pre>
+<h2>4. Set Up Website Directory</h2>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /var/www/mywebsite.com/html
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-variable">$USER</span>:<span class="hljs-variable">$USER</span> /var/www/mywebsite.com/html
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> -R 755 /var/www/mywebsite.com
+</code></pre>
+<p>Create an index.html file:</p>
+<pre><code class="hljs bash">nano /var/www/mywebsite.com/html/index.html
+</code></pre>
+<p>Example content:</p>
+<pre><code class="hljs bash">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;<span class="hljs-built_in">head</span>&gt;&lt;title&gt;Welcome to My Website&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>5. Create Nginx Server Block</h2>
+<p>Create a new Nginx config file:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/nginx/sites-available/mywebsite.com
+</code></pre>
+<p>Add the following:</p>
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> mywebsite.com www.mywebsite.com;
+    
+    <span class="hljs-attribute">root</span> /var/www/mywebsite.com/html;
+    <span class="hljs-attribute">index</span> index.html index.htm;
+
+    <span class="hljs-section">location</span> / {
+        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ =<span class="hljs-number">404</span>;
+    }
+}
+</code></pre>
+<p>Create a symlink to enable the site:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /etc/nginx/sites-available/mywebsite.com /etc/nginx/sites-enabled/
+</code></pre>
+<p>Test the configuration:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nginx -t
+</code></pre>
+<p>Restart Nginx:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
+</code></pre>
+<h2>6. Configure SSL with Let’s Encrypt (HTTPS)</h2>
+<p>Install Certbot:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install certbot python3-certbot-nginx -y
+</code></pre>
+<p>Get an SSL certificate:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> certbot --nginx -d mywebsite.com -d www.mywebsite.com
+</code></pre>
+<p>Auto-renew SSL:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> certbot renew --dry-run
+</code></pre>
+<h2>7. Set Up Automatic HTTP to HTTPS Redirect</h2>
+<p>Modify your Nginx configuration:</p>
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> mywebsite.com www.mywebsite.com;
+    <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://<span class="hljs-variable">$server_name</span><span class="hljs-variable">$request_uri</span>;
+}
+</code></pre>
+<p>Restart Nginx:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
+</code></pre>
+<h2>8. Commands to remember for Nginx</h2>
+<ul>
+<li>
+<p>Restart Nginx:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
+</code></pre>
+</li>
+<li>
+<p>Stop Nginx:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl stop nginx
+</code></pre>
+</li>
+<li>
+<p>Reload (without downtime):</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl reload nginx
+</code></pre>
+</li>
+<li>
+<p>View logs:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tail</span> -f /var/log/nginx/access.log
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tail</span> -f /var/log/nginx/error.log
+</code></pre>
+</li>
+</ul>
+<h2>Thank You &amp; Enjoy!</h2>
+<p>Thank you for following this guide! I hope it helped you successfully set up your Nginx web server. Whether you're hosting a personal project, a portfolio, or a business site, you're now equipped with the knowledge to configure, secure, and manage your server effectively.</p>
+<h3>🔥 What We Learned:</h3>
+<ul>
+<li>How to <strong>install and configure Nginx</strong> on Ubuntu.</li>
+<li>Setting up <strong>virtual hosts</strong> and serving multiple domains.</li>
+<li>Securing your site with <strong>Let's Encrypt SSL</strong>.</li>
+<li>Managing <strong>firewall rules</strong> for better security.</li>
+<li>Backing up <strong>critical server files</strong> to prevent data loss.</li>
+</ul>
+<p>Now you’re ready to deploy, scale, and maintain your Nginx server like a pro. If you have any issues, feel free to troubleshoot, tweak, and explore more advanced configurations.</p>
+<p>Happy hosting! 🚀🎉</p>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://leetcode.com/u/dreblow/" target="_blank">
+                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+</body>
+</html>

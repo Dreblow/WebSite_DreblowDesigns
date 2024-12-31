@@ -138,6 +138,10 @@ footer .social-links a:hover {
     color: #aaa;
 }
 
+footer a:hover img {
+    filter: grayscale(100%) brightness(50%); /* Makes image grey */
+}
+
 /* Header Navigation Styles */
 header nav ul {
     list-style-type: none;

@@ -3,7 +3,7 @@ title: Setting up a local server to test your DIY webpage
 description: Learn how to kick off a python local server step-by-step.
 keywords: DIY, web development, local server, python
 author: Derek Dreblow
-version: 2024-11-30
+version: 2025-05-04
 categories:
   - Web Development
   - Local Server
@@ -13,7 +13,9 @@ tags:
   - Python
   - Home Brew
 ---
-Notes: Running on `MacOS`, getting `Python 3` on `Homebrew`, then creating a script to launch a local server that doesn't cache.
+Notes: 
+* Running on `MacOS`, getting `Python 3` on `Homebrew`, then creating a script to launch a local server that doesn't cache.
+* If you have Python up, and want a quick generic server, type `python3 -m http.server 8000`
 
 # Setting up a local server
 

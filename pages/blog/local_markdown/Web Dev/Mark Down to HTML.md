@@ -1,3 +1,149 @@
+---
+title: Converting Markdown to HTML with Node.js
+description: Learn how to convert Markdown files into HTML using Node.js, Markdown-It, and Highlight.js.
+keywords: Markdown, HTML, Node.js, Markdown-It, Highlight.js, Web Development
+author: Derek Dreblow
+version: 2025-02-23
+categories:
+  - Web Development
+  - Markdown
+  - Node.js
+tags:
+  - Markdown
+  - HTML Conversion
+  - Node.js
+  - Web Development
+  - Automation
+---
+
+# **Converting Markdown to HTML with Node.js**
+
+Converting Markdown (`.md`) files into HTML is a common task when generating static web pages, documentation, or blogs. This guide explains how to build a Markdown-to-HTML converter using **Node.js**, **Markdown-It**, and **Highlight.js** for syntax highlighting. The 
+blow js file is what I use on my own sites. 
+
+Some of the key features:
+
+* Parses Front Matter: Extracts metadata like title, description, and version.
+* Syntax Highlighting: Uses highlight.js for code block styling.
+* Custom HTML Template: Wraps the converted Markdown content in a structured HTML template.
+* Recursive Directory Processing: Converts all Markdown files, even inside subdirectories.
+
+---
+
+## **Prerequisites**
+Before running the script, ensure you have the necessary dependencies installed.
+
+### **Install Required Packages**
+Run the following command:
+```sh
+npm install fs path markdown-it gray-matter highlight.js
+```
+
+---
+
+At the very end, I'll provide the js script I use, but I wanted to take a minute and break down the script. I usually don't like
+to add mindless filler text, so its just the code. It should be self explanatory. 
+
+## Import Required Modules
+``` js
+const fs = require('fs');
+const path = require('path');
+const MarkdownIt = require('markdown-it');
+const matter = require('gray-matter');
+const hljs = require('highlight.js');
+```
+
+## Define Input and Output Directories
+``` js 
+const inputDir = path.join(__dirname, '../local_markdown');
+const outputDir = path.join(__dirname, '../local_html');
+
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+```
+
+## Initialize Markdown Parser with Syntax Highlighting
+``` js
+const md = new MarkdownIt({
+    highlight: (str, lang) => {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return `<pre><code class="hljs ${lang}">` +
+                    hljs.highlight(str, { language: lang }).value +
+                    `</code></pre>`;
+            } catch (_) {}
+        }
+        return `<pre><code class="hljs">` + md.utils.escapeHtml(str) + `</code></pre>`;
+    }
+});
+```
+
+## Convert Markdown Files to HTML
+``` js
+function processDirectory(inputPath, outputPath) {
+    if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath, { recursive: true });
+    }
+
+    const items = fs.readdirSync(inputPath);
+
+    items.forEach(item => {
+        const itemPath = path.join(inputPath, item);
+        const outputItemPath = path.join(outputPath, item);
+
+        if (fs.lstatSync(itemPath).isDirectory()) {
+            processDirectory(itemPath, outputItemPath);
+        } else if (path.extname(item) === '.md') {
+            const fileContent = fs.readFileSync(itemPath, 'utf-8');
+            const { data: frontMatter, content } = matter(fileContent);
+
+            const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="${frontMatter.description || 'Markdown to HTML Conversion'}">
+    <meta name="author" content="Derek Dreblow">
+    <title>${frontMatter.title || 'Markdown to HTML'}</title>
+</head>
+<body>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: ${frontMatter.version || 'Unknown'}</em></p>
+            ${md.render(content)}
+        </article>
+    </main>
+</body>
+</html>`;
+
+            const outputFilePath = path.join(outputPath, `${path.basename(item, '.md')}.html`);
+            fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
+            console.log(`Converted: ${itemPath} -> ${outputFilePath}`);
+        }
+    });
+}
+```
+
+## Start the Conversion Process
+Throw this at the end of the script.
+``` js
+processDirectory(inputDir, outputDir);
+```
+
+## Run the Script
+``` sh 
+node convert.js
+```
+
+---
+
+
+## Personal Code - edited  
+Below is my personal code, I use it still to this day.
+
+``` js
 const fs = require('fs');
 const path = require('path');
 const MarkdownIt = require('markdown-it');
@@ -145,17 +291,17 @@ function processDirectory(inputPath, outputPath) {
     
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+    gtag('config', '');
     </script>
 
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css">
+    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -209,3 +355,4 @@ function processDirectory(inputPath, outputPath) {
 
 // Start processing from the root directory
 processDirectory(inputDir, outputDir);
+```

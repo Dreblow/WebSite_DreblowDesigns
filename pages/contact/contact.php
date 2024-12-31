@@ -1,14 +1,25 @@
 <?php
+// Validate and sanitize input
+$name = htmlspecialchars(trim($_POST['name']));
+$email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+$message = htmlspecialchars(trim($_POST['message']));
+
+// Spam honeypot check
+if (!empty($_POST['website']) || !$name || !$email || empty($message)) {
+    echo "Invalid submission.";
+    exit;
+}
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Update these paths to reflect the actual location of PHPMailer
-require '/var/www/html/global/PHPMailer-master/src/Exception.php';
-require '/var/www/html/global/PHPMailer-master/src/PHPMailer.php';
-require '/var/www/html/global/PHPMailer-master/src/SMTP.php';
+// Load PHPMailer from correct local path
+require __DIR__ . '/../../global/PHPMailer-master/src/Exception.php';
+require __DIR__ . '/../../global/PHPMailer-master/src/PHPMailer.php';
+require __DIR__ . '/../../global/PHPMailer-master/src/SMTP.php';
 
 // Load SMTP credentials from an external file
-$config = require '/var/www/html/resources/config.php';
+$config = require __DIR__ . '/../../resources/config.php';
 
 $mail = new PHPMailer(true);
 

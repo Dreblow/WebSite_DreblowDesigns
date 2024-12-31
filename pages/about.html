@@ -21,22 +21,19 @@
     <meta name="twitter:description" content="Explore Derek Dreblow's professional portfolio showcasing engineering and software development projects.">
     <meta name="twitter:image" content="https://dreblowdesigns.com/resources/images/profile_DerekDreblow.jpeg">
 
-     <!-- Default favicon -->
-     <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" sizes="192x192" type="image/x-icon">
+    <!-- Default favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
+    <link rel="shortcut icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" />
 
-     <!-- PNG favicon for high-resolution displays -->
-     <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-32x32.png" sizes="32x32" type="image/png">
-     <link rel="icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-16x16.png" sizes="16x16" type="image/png">
- 
-     <!-- Apple Touch Icon -->
-     <link rel="apple-touch-icon" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
- 
-     <!-- Android Chrome Icons -->
-     <link rel="icon" type="image/png" sizes="192x192" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-192x192.png">
-     <link rel="icon" type="image/png" sizes="512x512" href="https://dreblowdesigns.com/resources/images/favicon_io/android-chrome-512x512.png">
-     
-     <!-- Site Manifest-->
-     <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" type="image/png" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
      
 
     <!-- Google tag (gtag.js) -->
@@ -52,7 +49,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/index.html" aria-label="Home">Home</a></li>
+                <li><a href="/" aria-label="Home">Home</a></li>
                 <li><a href="/pages/about.html" aria-label="About">About</a></li>
                 <!--<li><a href="/pages/portfolio.html">Portfolio</a></li>-->
                 <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
@@ -120,11 +117,17 @@
             <a href="https://github.com/Dreblow" target="_blank">
                 <i class="fab fa-github"></i> GitHub
             </a>
+            <a href="https://leetcode.com/u/dreblow/" target="_blank">
+                <img src="../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
+            </a>
             <a href="https://www.threads.net/@derek_dre" target="_blank">
                 <img src="../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
             </a>
         </div>
-        <p class="copy-right">&copy; 2024 Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
     </footer>
 </body>
 </html>
