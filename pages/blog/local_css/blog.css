@@ -86,7 +86,7 @@ pre, code {
     overflow: auto; /* Ensures content stays inside the box */
 }
 
-code {
+:not(pre) > code {
     background-color: #30363d;       /* dark, neutral background */
     color: #c9d1d9;                  /* light gray text for dark mode */
     font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;

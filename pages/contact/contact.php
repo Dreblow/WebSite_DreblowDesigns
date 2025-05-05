@@ -38,9 +38,51 @@ try {
     $mail->addAddress('Derek.Dreblow@gmail.com');  // Add a recipient
 
     // Content
-    $mail->isHTML(false);  // Set email format to plain text
-    $mail->Subject = 'Dreblow Designs New contact message from ' . $_POST['name'];
+    $mail->isHTML(true);  // Set email format to HTML
+    $mail->Subject = 'New Contact from DreblowDesigns.com - ' . $_POST['name'];
     $mail->Body    = "Name: " . $_POST['name'] . "\nEmail: " . $_POST['email'] . "\n\nMessage:\n" . $_POST['message'];
+
+        $mail->Body = "
+            <html>
+                <head>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #ffffff; /* pure white background */
+                            color: #1B4C84; /* primary text color */
+                            padding: 20px;
+                        }
+                        .container {
+                            background-color: #ffffff;
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 0 10px rgba(27, 76, 132, 0.15); /* soft brand blue shadow */
+                            border-left: 4px solid #0077cc; /* accent bar */
+                        }
+                        .label {
+                            font-weight: bold;
+                            color: #0077cc; /* brighter blue for emphasis */
+                            margin-top: 10px;
+                        }
+                        .message {
+                            margin-top: 15px;
+                            white-space: pre-wrap;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h2>You've received a new message via DreblowDesigns.com</h2>
+                        <p class='label'>Name:</p>
+                        <p>{$_POST['name']}</p>
+                        <p class='label'>Email:</p>
+                        <p>{$_POST['email']}</p>
+                        <p class='label'>Message:</p>
+                        <div class='message'>{$_POST['message']}</div>
+                    </div>
+                </body>
+            </html>
+    ";
 
     $mail->send();
     
