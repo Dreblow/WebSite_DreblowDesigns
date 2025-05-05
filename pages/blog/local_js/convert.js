@@ -113,8 +113,9 @@ function processDirectory(inputPath, outputPath) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="${description}">
     <meta name="author" content="${author}">
-    <meta name="keywords" content="${keyword}">
-    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/blog.html">
+    <title>${title}</title>
+    <meta name="keywords" content="${frontMatter.keywords || keyword}">
+    <link rel="canonical" href="${url}">
     
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="${title}">
@@ -209,3 +210,22 @@ function processDirectory(inputPath, outputPath) {
 
 // Start processing from the root directory
 processDirectory(inputDir, outputDir);
+
+
+// Kick sitemap generator
+const { exec } = require('child_process');
+
+console.log("✅ Markdown-to-HTML conversion complete. Waiting for disk write...");
+
+setTimeout(() => {
+    exec('python3 ./resources/dev/generate-sitemap.py', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`❌ Sitemap generation failed: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`⚠️ Sitemap stderr: ${stderr}`);
+        }
+        console.log(`✅ Kicking off Sitemap generator:\n`);
+    });
+}, 100);
