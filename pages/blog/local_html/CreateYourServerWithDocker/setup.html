@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step-by-step guide to creating your own self-hosted web server using Docker, NGINX, and automatic HTTPS with Let's Encrypt.">
+    <meta name="author" content="Derek Dreblow">
+    <title>Dreblow Design - Create Your Own Server with Docker and NGINX blog</title>
+    <meta name="keywords" content="Derek Dreblow, Docker, NGINX, HTTPS, Let's Encrypt, server setup, self-hosting, reverse proxy">
+    <link rel="canonical" href="https://dreblowdesigns.com/pages/blog/local_html/CreateYourServerWithDocker/setup.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Create Your Own Server with Docker and NGINX">
+    <meta property="og:description" content="Step-by-step guide to creating your own self-hosted web server using Docker, NGINX, and automatic HTTPS with Let's Encrypt.">
+    <meta property="og:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://dreblowdesigns.com/pages/blog/local_html/CreateYourServerWithDocker/setup.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Create Your Own Server with Docker and NGINX">
+    <meta name="twitter:description" content="Step-by-step guide to creating your own self-hosted web server using Docker, NGINX, and automatic HTTPS with Let's Encrypt.">
+    <meta name="twitter:image" content="https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+
+    <!-- Default favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
+    <link rel="shortcut icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" />
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" type="image/png" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="../../local_css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Jun 2, 2025</em></p>
+            <h1>DreblowDesignsWebServer</h1>
+<p>Dreblow Designs server</p>
+<h2>Getting Started</h2>
+<p>This blog sets up a reverse proxy with automatic HTTPS using NGINX for website hosting and Let's Encrypt for SSL certificate. These are guides I've written based on setting up and maintaining my own production-grade Ubuntu server using Docker, NGINX, and shell scripts — fully open source and self-hosted.</p>
+<h4>Check out the required Docker Compose files for the server and sites:</h4>
+<ul>
+<li><a href="./DockerComposeServerSide.html">Docker Compose: Sever Side</a></li>
+<li><a href="./DockerComposeSiteSide.html">Docker Compose: WebSite Side</a></li>
+</ul>
+<h3>Prerequisites</h3>
+<ul>
+<li>Docker</li>
+<li>Docker Compose</li>
+<li>Your DNS <code>A</code> record pointing to your server</li>
+</ul>
+<hr>
+<h3>Setup</h3>
+<p>Clone the repo:</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:Dreblow/DreblowDesignsWebServer.git
+<span class="hljs-built_in">cd</span> DreblowDesignsWebServer
+</code></pre>
+<p>Run the setup script:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x setup.sh &amp;&amp; ./setup.sh
+</code></pre>
+<p>This will:</p>
+<ul>
+<li>Create required directories (data/certs, data/html, data/vhost.d)</li>
+<li>Create the shared Docker network webproxy</li>
+<li>Start the NGINX proxy + SSL companion stack</li>
+</ul>
+<p>Push the update over SSH:</p>
+<pre><code class="hljs bash">ssh dreblow@&lt;your_ip&gt; <span class="hljs-string">&#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;</span>
+</code></pre>
+<h4>Take it one stop further and add as an alias on the Mac:</h4>
+<p>Add this to your <code>nano ~/.zshrc</code> or <code>nano /.bash_profile</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">alias</span> deployserver=<span class="hljs-string">&quot;ssh dreblow@&lt;your_ip&gt; &#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;&quot;</span>
+</code></pre>
+<p>Then run:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc   <span class="hljs-comment"># or ~/.bash_profile</span>
+</code></pre>
+<p>Now anytime you want to deploy from terminal:</p>
+<pre><code class="hljs bash">deployserver
+</code></pre>
+<p>Done!!</p>
+<p>Here is mine in real life:</p>
+<pre><code class="hljs bash"><span class="hljs-comment"># Alias to invoke script on server</span>
+<span class="hljs-built_in">alias</span> localdeploy=<span class="hljs-string">&#x27;ssh dre@192.168.1.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;&#x27;</span>           <span class="hljs-comment"># Local IP</span>
+<span class="hljs-built_in">alias</span> remotedeploy=<span class="hljs-string">&#x27;ssh -p 6## dre@##.##.###.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;&#x27;</span>   <span class="hljs-comment"># Public IP </span>
+
+<span class="hljs-comment"># Optional: enable tab-completion for aliases</span>
+<span class="hljs-built_in">setopt</span> complete_aliases                                                                           <span class="hljs-comment"># Have to have tab auto complete</span>
+</code></pre>
+<hr>
+<h3>Setup.sh</h3>
+<p>This script automates the entire web server deployment:</p>
+<ul>
+<li>Clones the website repos</li>
+<li>Copies them to /srv/sites/[domain]</li>
+<li>Starts a Docker reverse proxy with HTTPS</li>
+<li>Makes sure the server is the only one responsible for deployment — not the websites themselves</li>
+</ul>
+<h4>Step-by-Step Breakdown</h4>
+<ol>
+<li>Shebang + Error Handling</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">set</span> -e
+</code></pre>
+<ul>
+<li><code>#!/bin/bash</code> ensures the script runs with Bash.</li>
+<li><code>set -e</code> means the script will stop immediately if any command fails — good for fail-fast behavior</li>
+</ul>
+<pre><code class="hljs bash"><span class="hljs-comment"># Prevent running as root (with sudo)</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$EUID</span>&quot;</span> -eq 0 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;❌ Do not run this script with sudo. Exiting..&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<ul>
+<li>Exit the script if running in sudo. We SSH into Git, and we need to be using user credentials and not root.</li>
+</ul>
+<ol start="2">
+<li>Introduction Output</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🚀 Launching Dreblow Designs Web Server setup...&quot;</span>
+</code></pre>
+<ul>
+<li>Just a friendly launch message.</li>
+</ul>
+<ol start="3">
+<li>Settings Block</li>
+</ol>
+<pre><code class="hljs bash">GIT_ROOT=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/git&quot;</span>
+DEPLOY_ROOT=<span class="hljs-string">&quot;/srv/sites&quot;</span>
+REPOS=(
+    <span class="hljs-comment"># Add more repos here, no commas needed</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;</span>
+)
+</code></pre>
+<ul>
+<li>GIT_ROOT: where your cloned repos will live on the server.</li>
+<li>DEPLOY_ROOT: where live web files are served from.</li>
+<li>REPOS: list of Git repos to deploy.</li>
+</ul>
+<ol start="4">
+<li>Directory Setup</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+</code></pre>
+<ul>
+<li>creates /git and /srv/sites if they don’t exist.</li>
+<li>Changes ownership to your current user so you don’t need sudo later.</li>
+</ul>
+<ol start="5">
+<li>Repo Cloning &amp; Deployment Loop</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-keyword">for</span> REPO <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">${REPOS[@]}</span>&quot;</span>; <span class="hljs-keyword">do</span>
+  NAME=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> .git)
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
+
+  LOCAL_REPO=<span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing old repository at <span class="hljs-variable">$LOCAL_REPO</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing deployed site at <span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/.git&quot;</span> ]; <span class="hljs-keyword">then</span>
+    git -C <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span> pull
+  <span class="hljs-keyword">else</span>
+    git <span class="hljs-built_in">clone</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  rsync -av --delete <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>/&quot;</span> \
+    --exclude <span class="hljs-string">&quot;.git&quot;</span> --exclude <span class="hljs-string">&quot;resources/dev&quot;</span> --exclude <span class="hljs-string">&quot;node_modules&quot;</span>
+<span class="hljs-keyword">done</span>
+</code></pre>
+<ul>
+<li>For each repo:
+<ul>
+<li>NAME gets the repo folder name.</li>
+<li>DOMAIN transforms that name into a lowercase .com domain (e.g., WebSite_MyBlog → myblog.com).</li>
+<li>LOCAL_REPO see if folder/files currently exists, if so delete it.</li>
+<li>Removes the deployed site folder in /srv/sites if it exists.</li>
+<li>If repo already exists: pull the latest.</li>
+<li>If not: clone it.</li>
+<li>Syncs the repo into /srv/sites/[domain]/, excluding development junk (.git, dev scripts, node modules).</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>Docker Network Setup</li>
+</ol>
+<pre><code class="hljs bash">docker network inspect webproxy &gt;/dev/null 2&gt;&amp;1 || \ docker network create webproxy
+</code></pre>
+<ul>
+<li>Ensures the shared Docker network webproxy exists for your NGINX and SSL containers.</li>
+</ul>
+<ol start="7">
+<li>Start Reverse Proxy Stack</li>
+</ol>
+<pre><code class="hljs bash">SCRIPT_DIR=<span class="hljs-string">&quot;<span class="hljs-subst">$(cd <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">${BASH_SOURCE[0]}</span>&quot;</span>)</span>&quot;</span> &amp;&amp; pwd)</span>&quot;</span>
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/server/docker-compose.yml&quot;</span> up -d
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/sites/docker-compose.yml&quot;</span> up -d
+</code></pre>
+<ul>
+<li>Boots up your NGINX and acme-companion containers using the docker-compose files inside the docker/server and docker/sites directories.</li>
+<li>This approach centralizes and dynamically manages the proxy and site containers.</li>
+<li>Provides HTTPS and reverse proxying for all deployed sites.</li>
+</ul>
+<ol start="8">
+<li>Wrap-up</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ All websites are deployed and live with HTTPS support.&quot;</span>
+</code></pre>
+<ul>
+<li>Done! All sites are deployed under your single management umbrella.</li>
+</ul>
+<hr>
+<ol start="9">
+<li>The entire script</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
+
+<span class="hljs-comment"># Super clean, Super Bias, Dreblow Designs Server Setup Script</span>
+<span class="hljs-comment"># This script owns all deployments. Websites are dumb. Server is smart.</span>
+
+<span class="hljs-built_in">set</span> -e
+
+<span class="hljs-comment"># Prevent running as root (with sudo)</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$EUID</span>&quot;</span> -eq 0 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;❌ Do not run this script with sudo. Exiting..&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🚀 Launching Dreblow Designs Web Server setup...&quot;</span>
+
+<span class="hljs-comment"># === SETTINGS ===</span>
+GIT_ROOT=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/git&quot;</span>
+DEPLOY_ROOT=<span class="hljs-string">&quot;/srv/sites&quot;</span>
+REPOS=(
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;</span>
+  <span class="hljs-comment"># Add more repos here</span>
+)
+
+<span class="hljs-comment"># === PREP DIRECTORIES ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Ensuring base directories exist...&quot;</span>
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Creating git directory at <span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ Git directory exists at <span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Creating deploy directory at <span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ Deploy directory exists at <span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+
+<span class="hljs-comment"># === CLONE &amp; DEPLOY ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📦 Cloning and copying website files...&quot;</span>
+<span class="hljs-keyword">for</span> REPO <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">${REPOS[@]}</span>&quot;</span>; <span class="hljs-keyword">do</span>
+  NAME=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> .git)
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
+  
+  LOCAL_REPO=<span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing old repository at <span class="hljs-variable">$LOCAL_REPO</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
+
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
+
+  <span class="hljs-comment"># Clone or pull</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/.git&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🔄 Updating <span class="hljs-variable">$NAME</span>...&quot;</span>
+    git -C <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span> pull
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📥 Cloning <span class="hljs-variable">$NAME</span>...&quot;</span>
+    git <span class="hljs-built_in">clone</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-comment"># Copy static content</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📤 Deploying to <span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>...&quot;</span>
+  <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  rsync -av --delete <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>/&quot;</span> \
+    --exclude <span class="hljs-string">&quot;.git&quot;</span> --exclude <span class="hljs-string">&quot;resources/dev&quot;</span> --exclude <span class="hljs-string">&quot;node_modules&quot;</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-comment"># === NETWORK SETUP ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🌐 Ensuring shared Docker network exists...&quot;</span>
+docker network inspect webproxy &gt;/dev/null 2&gt;&amp;1 || \
+  docker network create webproxy
+
+<span class="hljs-comment"># === START REVERSE PROXY ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🧰 Starting NGINX + SSL reverse proxy...&quot;</span>
+SCRIPT_DIR=<span class="hljs-string">&quot;<span class="hljs-subst">$(cd <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">${BASH_SOURCE[0]}</span>&quot;</span>)</span>&quot;</span> &amp;&amp; pwd)</span>&quot;</span>
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/server/docker-compose.yml&quot;</span> up -d
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/sites/docker-compose.yml&quot;</span> up -d
+
+<span class="hljs-comment"># === DONE ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ All websites are deployed and live with HTTPS support.&quot;</span>
+</code></pre>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://leetcode.com/u/dreblow/" target="_blank">
+                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+</body>
+</html>

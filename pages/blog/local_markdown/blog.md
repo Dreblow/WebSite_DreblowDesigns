@@ -3,7 +3,7 @@ title: Hello Blog!
 description: Welcome to Derek Dreblow's blog, inspired by project notes and step-by-step solutions for engineering, software development, and server management.
 keywords: Derek Dreblow, blog, engineering, project notes, tutorials, Ubuntu, WireGuard, FTP Server
 author: Derek Dreblow
-version: 2025-05-09
+version: 2025-06-03
 categories:
   - Introduction
 tags:
@@ -42,3 +42,8 @@ This blog was inspired by all the note taking I have done over all my projects. 
 
 #### Windows Application Scripting 
 * [AutoHotKey Windows PowerPoint](./Windows_App_Scripting/AutoHotKey.html)
+
+#### Creating your own webserver using Docker
+* [Docker Compose: Sever Side](./CreateYourServerWithDocker/DockerComposeServerSide.html)
+* [Docker Compose: WebSite Side](./CreateYourServerWithDocker/DockerComposeSiteSide.html)
+* [Deployment Script: setup.sh](./CreateYourServerWithDocker/setup.html)
