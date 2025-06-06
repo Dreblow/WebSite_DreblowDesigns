@@ -1,0 +1,13 @@
+{
+  "siteUrl": "https://www.dreblowdesigns.com",
+  "includeExtensions": [".html"],
+  "exclude": [
+    "resources/dev/",
+    "resources/js/",
+    "resources/css/",
+    "resources/images/",
+    "drafts/",
+    "404.html"
+  ],
+  "changefreq": "monthly"
+}
