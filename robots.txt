@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /pages/contact/
 Sitemap: https://dreblowdesigns.com/sitemap.xml
