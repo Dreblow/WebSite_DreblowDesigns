@@ -107,8 +107,8 @@ function processDirectory(inputPath, outputPath) {
             const description = frontMatter.description || 'Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.';
             const author = frontMatter.author || "Derek Dreblow"
             const keyword = frontMatter.keyword || "Dreblow Design's Blog"
-            const image = frontMatter.image || "https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png"
-            const url = `https://dreblowdesigns.com${relativeUrl}`;
+            const image = frontMatter.image || "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png"
+            const url = `https://www.dreblowdesigns.com${relativeUrl}`;
 
             // Generate HTML content
             const htmlContent = `
@@ -216,22 +216,4 @@ function processDirectory(inputPath, outputPath) {
 
 // Start processing from the root directory
 processDirectory(inputDir, outputDir);
-
-
-// Kick sitemap generator
-const { exec } = require('child_process');
-
-console.log("✅ Markdown-to-HTML conversion complete. Waiting for disk write...");
-
-setTimeout(() => {
-    exec('python3 ./resources/dev/generate-sitemap.py', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`❌ Sitemap generation failed: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.error(`⚠️ Sitemap stderr: ${stderr}`);
-        }
-        console.log(`✅ Kicking off Sitemap generator:\n`);
-    });
-}, 100);
+console.log(`✅ Completed generating blog\n`);
