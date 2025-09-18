@@ -1,40 +1,68 @@
+// convert.js
 const fs = require('fs');
 const path = require('path');
-const MarkdownIt = require('markdown-it');
 const matter = require('gray-matter');
-const hljs = require('highlight.js'); 
 const ROOT_DIR = "../../../"
 const ROOT_BLOG_DIR = "../"
+const { renderGitWikiStyle } = require('./convertToGitWikiStyle.js');
+const { renderCommandCard } = require('./convertToCommandCardStyle.js');
 
-// Initialize Markdown-it with highlight.js
-const md = new MarkdownIt({
-    highlight: (str, lang) => {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return `<pre><code class="hljs ${lang}">` +
-                    hljs.highlight(str, { language: lang }).value +
-                    `</code></pre>`;
-            } catch (_) {}
-        }
+const inputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_markdown');
+const outputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_html');
 
-        return `<pre><code class="hljs">` + md.utils.escapeHtml(str) + `</code></pre>`;
-    }
-});
-
-// Define input/output directories
-const inputDir = path.join(__dirname, '../local_markdown'); // Input directory for Markdown files
-const outputDir = path.join(__dirname, '../local_html');   // Output directory for HTML files
-
-// Ensure output directory exists
 if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+  fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Function to calculate relative path depth
-function calculateRelativePath(filePath, basePath) {
-    const relativeDepth = path.relative(filePath, basePath).split(path.sep).length - 1;
-    return '../'.repeat(relativeDepth);
+function processDirectory(inputPath, outputPath) {
+  if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath, { recursive: true });
+  }
+
+  const items = fs.readdirSync(inputPath);
+
+  items.forEach(item => {
+    const itemPath = path.join(inputPath, item);
+    const outputItemPath = path.join(outputPath, item);
+
+    if (fs.lstatSync(itemPath).isDirectory()) {
+      processDirectory(itemPath, outputItemPath);
+    } else if (path.extname(item) === '.md') {
+      const fileContent = fs.readFileSync(itemPath, 'utf-8');
+      const { data: frontMatter, content } = matter(fileContent);
+
+      const htmlFileName = `${path.basename(item, '.md')}.html`;
+      const outputFilePath = path.join(outputPath, htmlFileName);
+      const relativePath = calculateRelativePath(outputItemPath, outputDir);
+      const relativeUrl = path.join(outputPath, htmlFileName)
+        .replace(path.join(__dirname, '..', '..', '..'), '') // Trim to site root
+        .replace(/\\/g, '/');  
+
+      const head = formatHead(frontMatter, relativePath, relativeUrl, ROOT_DIR, ROOT_BLOG_DIR);
+      const header = formatHeader(relativePath, ROOT_DIR);
+      const footer = formatFooter(relativePath, ROOT_DIR);
+
+      const formattedVersion = formatVersionDate(frontMatter.version);
+
+      // Pick renderer
+      let htmlContent;
+      if (frontMatter.machine === "command-card") {
+        //htmlContent = renderCommandCard(frontMatter, content, ROOT_DIR, ROOT_BLOG_DIR);
+        htmlContent= "";
+      } else {
+        htmlContent = renderGitWikiStyle(head, header, footer, formattedVersion, content);
+      }
+
+      fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
+      console.log(`Converted: ${itemPath} -> ${outputFilePath}`);
+    }
+  });
 }
+
+processDirectory(inputDir, outputDir);
+console.log("✅ Completed generating blog");
+
+// ********** Supporting Functions ********** //
 
 // Format the version date
 function formatVersionDate(dateString) {
@@ -43,7 +71,7 @@ function formatVersionDate(dateString) {
 
     // Try ISO 8601 format first
     if (!isNaN(Date.parse(dateString))) {
-        date = new Date(dateString);
+        date = new Date(dateString); 
     } else {
         // Fallback to manual parsing if standard parsing fails
         const dateParts = dateString.match(
@@ -72,55 +100,28 @@ function formatVersionDate(dateString) {
     return date.toLocaleDateString('en-US', options);
 }
 
-// Recursively process directories
-function processDirectory(inputPath, outputPath) {
-    // Ensure the output directory exists
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath, { recursive: true });
-    }
+function calculateRelativePath(filePath, basePath) {
+  const relativeDepth = path.relative(filePath, basePath).split(path.sep).length - 1;
+  return ROOT_BLOG_DIR.repeat(relativeDepth);
+}
 
-    // Read all files and directories
-    const items = fs.readdirSync(inputPath);
+function formatHead(meta, relativePath, relativeUrl, ROOT_DIR, ROOT_BLOG_DIR){
 
-    items.forEach(item => {
-        const itemPath = path.join(inputPath, item);
-        const outputItemPath = path.join(outputPath, item);
+    const frontMatter = meta || {};
+    const title = frontMatter.title || 'Dreblow Designs Blog';
+    const description = frontMatter.description || 'Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.';
+    const author = frontMatter.author || "Derek Dreblow";
+    const keywords = frontMatter.keywords || "Dreblow Design's Blog";
+    const image = frontMatter.image || "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png";
+    const url = `https://www.dreblowdesigns.com${relativeUrl}`;
 
-        // Check if item is a directory
-        if (fs.lstatSync(itemPath).isDirectory()) {
-            processDirectory(itemPath, outputItemPath); // Recurse into subdirectory
-        } else if (path.extname(item) === '.md') {
-            // Correctly construct relative URL based on actual .html file location
-            const htmlFileName = `${path.basename(item, '.md')}.html`;
-            const relativeUrl = path.join(outputPath, htmlFileName)
-                    .replace(path.join(__dirname, '..', '..', '..'), '') // Trim to site root
-                    .replace(/\\/g, '/');                                // Normalize slashes
-            
-            // Process Markdown files
-            const fileContent = fs.readFileSync(itemPath, 'utf-8');
-            const { data: frontMatter, content } = matter(fileContent);
-
-            // Calculate the relative path from the output file to the root
-            const relativePath = calculateRelativePath(outputItemPath, outputDir);
-            const version = formatVersionDate(frontMatter.version); // Default if no version is provided
-            const title = frontMatter.title || 'Dreblow Designs Blog';
-            const description = frontMatter.description || 'Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.';
-            const author = frontMatter.author || "Derek Dreblow"
-            const keyword = frontMatter.keyword || "Dreblow Design's Blog"
-            const image = frontMatter.image || "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png"
-            const url = `https://www.dreblowdesigns.com${relativeUrl}`;
-
-            // Generate HTML content
-            const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
+  return `<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="${description}">
     <meta name="author" content="${author}">
     <title>Dreblow Design - ${title} blog</title>
-    <meta name="keywords" content="${frontMatter.keywords || keyword}">
+    <meta name="keywords" content="${keywords}">
     <link rel="canonical" href="${url}">
     
     <!-- Open Graph Metadata -->
@@ -164,9 +165,11 @@ function processDirectory(inputPath, outputPath) {
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <header>
+</head>`;
+}
+
+function formatHeader(relativePath, ROOT_DIR){
+  return `<header>
         <nav>
             <ul>
                 <li><a href="/" aria-label="Home">Home</a></li>
@@ -176,14 +179,11 @@ function processDirectory(inputPath, outputPath) {
                 <li><a href="${ROOT_DIR}${relativePath}pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
             </ul>
         </nav>
-    </header>
-    <main class="markdown-body">
-        <article>
-            <p><em class="blogVersion">Version: ${version}</em></p>
-            ${md.render(content)}
-        </article>
-    </main>
-    <footer>
+    </header>`;
+}
+
+function formatFooter(relativePath, ROOT_DIR){
+  return `<footer>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
                 <i class="fab fa-linkedin"></i> LinkedIn
@@ -202,18 +202,5 @@ function processDirectory(inputPath, outputPath) {
         <script>
             document.getElementById("copyright-year").textContent = new Date().getFullYear();
         </script>
-    </footer>
-</body>
-</html>`;
-
-            // Write the converted file to the output directory
-            const outputFilePath = path.join(outputPath, `${path.basename(item, '.md')}.html`);
-            fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
-            console.log(`Converted: ${itemPath} -> ${outputFilePath}`);
-        }
-    });
+    </footer>`;
 }
-
-// Start processing from the root directory
-processDirectory(inputDir, outputDir);
-console.log(`✅ Completed generating blog\n`);
