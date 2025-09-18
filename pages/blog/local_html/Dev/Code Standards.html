@@ -1,26 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn the recommended ordering for class members in C# using StyleCop rules for cleaner, maintainable, and readable code.">
+    <meta name="description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Coding Standards for Class Member Ordering in C# blog</title>
-    <meta name="keywords" content="C#, StyleCop, coding standards, class ordering, member organization">
+    <title>Dreblow Design - Coding Standards Across Languages blog</title>
+    <meta name="keywords" content="C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code">
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html">
     
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Coding Standards for Class Member Ordering in C#">
-    <meta property="og:description" content="Learn the recommended ordering for class members in C# using StyleCop rules for cleaner, maintainable, and readable code.">
+    <meta property="og:title" content="Coding Standards Across Languages">
+    <meta property="og:description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
     <meta property="og:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Coding Standards for Class Member Ordering in C#">
-    <meta name="twitter:description" content="Learn the recommended ordering for class members in C# using StyleCop rules for cleaner, maintainable, and readable code.">
+    <meta name="twitter:title" content="Coding Standards Across Languages">
+    <meta name="twitter:description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
     <!-- Default favicon -->
@@ -66,10 +65,41 @@
     </header>
     <main class="markdown-body">
         <article>
-            <p><em class="blogVersion">Version: May 21, 2025</em></p>
-            <h1>Coding Standards for Class Member Ordering in C#</h1>
-<p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
+            <p><em class="blogVersion">Version: Sep 17, 2025</em></p>
+            <h1>Coding Standards</h1>
+<p>Organizing code in a consistent and predictable way improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. Follow these general best practices across all programming languages:</p>
+<ul>
+<li>Use clear and descriptive naming conventions for variables, methods, and classes.</li>
+<li>Write meaningful comments to explain complex logic or important decisions.</li>
+<li>Handle errors gracefully with appropriate error handling and logging.</li>
+<li>Keep functions and methods focused on a single responsibility.</li>
+<li>Maintain consistent indentation and formatting throughout the codebase.</li>
+</ul>
+<p>Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.</p>
 <hr>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#c-coding-standards">C# Coding Standards</a></li>
+<li><a href="#swift-coding-standards">Swift Coding Standards</a></li>
+<li><a href="#vbnet-coding-standards">VB.NET Coding Standards</a></li>
+</ul>
+<hr>
+<hr>
+<h1>C# Coding Standards</h1>
+<p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
+<h2>Class design</h2>
+<ul>
+<li>Use abstract when you need a contract + shared implementation.</li>
+<li>Use virtual only when overriding is optional.</li>
+<li>Keep override members together at the top of the class.</li>
+<li>Concrete implementations go below abstract/virtual overrides.</li>
+</ul>
+<p>Within a class, struct, or interface, use this order:</p>
+<ol>
+<li><code>abstract</code></li>
+<li><code>virtual</code></li>
+<li>concrete</li>
+</ol>
 <h2>Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
 <p>Within a class, struct, or interface, use this order:</p>
 <ol>
@@ -131,6 +161,21 @@
 <li><code>private</code> methods</li>
 </ol>
 <hr>
+<h2>LINQ usage</h2>
+<ul>
+<li>Use query syntax for readability in complex queries.</li>
+<li>Use method syntax (.Select, .Where) for short inline logic.</li>
+<li>Async/await</li>
+<li>Always use Async suffix in method names.</li>
+<li>Avoid async void except for event handlers.</li>
+</ul>
+<hr>
+<h2>Async/await</h2>
+<ul>
+<li>Always use Async suffix in method names.</li>
+<li>Avoid async void except for event handlers.</li>
+</ul>
+<hr>
 <h2>Handling Exceptions to the Rule</h2>
 <p>Sometimes you’ll want to <strong>group related members</strong> (like interface implementations) together, even if it breaks the standard order.</p>
 <p><strong>Best practice:</strong> use <strong>partial classes</strong> to separate those concerns cleanly.</p>
@@ -142,7 +187,143 @@
 <span class="hljs-comment">// File: MyClass.Interfaces.cs</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> : <span class="hljs-title">IMyInterface</span> {
     <span class="hljs-comment">// Grouped interface methods</span>
-}</code></pre>
+}
+</code></pre>
+<hr>
+<h2>Example Class Layout</h2>
+<pre><code class="hljs csharp"><span class="hljs-comment">// Abstract base class demonstrating abstract and virtual members</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span>
+{
+    <span class="hljs-comment">// Abstract method (must be overridden in derived classes)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AbstractOperation</span>()</span>;
+
+    <span class="hljs-comment">// Virtual method (can optionally be overridden)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">VirtualOperation</span>()</span>
+    {
+        Console.WriteLine(<span class="hljs-string">&quot;BaseClass: Default virtual operation&quot;</span>);
+    }
+}
+
+<span class="hljs-comment">// Concrete class inheriting from BaseClass and demonstrating overrides</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SampleClass</span> : <span class="hljs-title">BaseClass</span>
+{
+    <span class="hljs-comment">// 1. Constant Fields</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> APP_NAME = <span class="hljs-string">&quot;MyApp&quot;</span>;
+
+    <span class="hljs-comment">// 2. Fields</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-built_in">int</span> _id;
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">string</span> _name;
+
+    <span class="hljs-comment">// 3. Constructor</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SampleClass</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> id, <span class="hljs-built_in">string</span> name</span>)</span>
+    {
+        _id = id;
+        _name = name;
+    }
+
+    <span class="hljs-comment">// 9. Properties</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Id =&gt; _id;
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name
+    {
+        <span class="hljs-keyword">get</span> =&gt; _name;
+        <span class="hljs-keyword">set</span> =&gt; _name = <span class="hljs-keyword">value</span>;
+    }
+
+    <span class="hljs-comment">// 11. Methods</span>
+
+    <span class="hljs-comment">// Override abstract method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AbstractOperation</span>()</span>
+    {
+        Console.WriteLine(<span class="hljs-string">&quot;SampleClass: Implementation of abstract operation&quot;</span>);
+    }
+
+    <span class="hljs-comment">// Optionally override virtual method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">VirtualOperation</span>()</span>
+    {
+        Console.WriteLine(<span class="hljs-string">&quot;SampleClass: Overridden virtual operation&quot;</span>);
+    }
+
+    <span class="hljs-comment">// Public method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DisplayInfo</span>()</span>
+    {
+        Console.WriteLine(<span class="hljs-string">$&quot;ID: <span class="hljs-subst">{_id}</span>, Name: <span class="hljs-subst">{_name}</span>&quot;</span>);
+    }
+
+    <span class="hljs-comment">// Protected method</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ResetName</span>()</span>
+    {
+        _name = <span class="hljs-built_in">string</span>.Empty;
+    }
+
+    <span class="hljs-comment">// Private method</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LogChange</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> oldName, <span class="hljs-built_in">string</span> newName</span>)</span>
+    {
+        Console.WriteLine(<span class="hljs-string">$&quot;Name changed from <span class="hljs-subst">{oldName}</span> to <span class="hljs-subst">{newName}</span>&quot;</span>);
+    }
+}
+</code></pre>
+<hr>
+<hr>
+<h1>Swift Coding Standards</h1>
+<p>Swift-specific coding standards and best practices will be added here to guide clean and maintainable Swift code development.</p>
+<h2>Naming Conventions</h2>
+<ul>
+<li>Use PascalCase for types (classes, structs, enums, protocols).</li>
+<li>Use camelCase for properties, variables, and functions.</li>
+</ul>
+<h2>Optionals Handling</h2>
+<ul>
+<li>Prefer <code>guard let</code> or <code>if let</code> to safely unwrap optionals.</li>
+<li>Avoid force unwrapping (<code>!</code>) unless absolutely sure the value is non-nil.</li>
+</ul>
+<h2>File Organization Order</h2>
+<ul>
+<li>Imports</li>
+<li>Typealiases</li>
+<li>Structs and Classes</li>
+<li>Extensions</li>
+</ul>
+<h3>Example Swift Code</h3>
+<pre><code class="hljs swift"><span class="hljs-keyword">import</span> Foundation
+
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">CompletionHandler</span> <span class="hljs-operator">=</span> (<span class="hljs-type">Bool</span>) -&gt; <span class="hljs-type">Void</span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">User</span> {
+    <span class="hljs-keyword">let</span> id: <span class="hljs-type">Int</span>
+    <span class="hljs-keyword">var</span> name: <span class="hljs-type">String</span>?
+
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">displayName</span>() {
+        <span class="hljs-keyword">guard</span> <span class="hljs-keyword">let</span> name <span class="hljs-operator">=</span> name <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Name is not set&quot;</span>)
+            <span class="hljs-keyword">return</span>
+        }
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;User name: <span class="hljs-subst">\(name)</span>&quot;</span>)
+    }
+}
+
+<span class="hljs-keyword">extension</span> <span class="hljs-title class_">User</span> {
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">isValid</span>() -&gt; <span class="hljs-type">Bool</span> {
+        <span class="hljs-keyword">return</span> name <span class="hljs-operator">!=</span> <span class="hljs-literal">nil</span> <span class="hljs-operator">&amp;&amp;</span> <span class="hljs-operator">!</span>name<span class="hljs-operator">!</span>.isEmpty
+    }
+}
+</code></pre>
+<hr>
+<hr>
+<h1>VB.NET Coding Standards</h1>
+<h2>Naming</h2>
+<ul>
+<li>Keep PascalCase for methods, camelCase for locals.</li>
+</ul>
+<hr>
+<h2>Class order</h2>
+<ul>
+<li>Fields → Properties → Constructors → Methods → Events.</li>
+</ul>
+<hr>
+<h2>Interop</h2>
+<ul>
+<li>Keep all P/Invoke declarations in a dedicated module.</li>
+</ul>
 
         </article>
     </main>
