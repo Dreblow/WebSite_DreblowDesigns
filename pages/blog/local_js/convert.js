@@ -38,7 +38,9 @@ function processDirectory(inputPath, outputPath) {
         .replace(path.join(__dirname, '..', '..', '..'), '') // Trim to site root
         .replace(/\\/g, '/');  
 
-      const head = formatHead(frontMatter, relativePath, relativeUrl, ROOT_DIR, ROOT_BLOG_DIR);
+      const jasonLD = formatJasonLD(frontMatter, relativeUrl);
+
+      const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR);
       const header = formatHeader(relativePath, ROOT_DIR);
       const footer = formatFooter(relativePath, ROOT_DIR);
 
@@ -105,7 +107,7 @@ function calculateRelativePath(filePath, basePath) {
   return ROOT_BLOG_DIR.repeat(relativeDepth);
 }
 
-function formatHead(meta, relativePath, relativeUrl, ROOT_DIR, ROOT_BLOG_DIR){
+function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR){
 
     const frontMatter = meta || {};
     const title = frontMatter.title || 'Dreblow Designs Blog';
@@ -130,6 +132,9 @@ function formatHead(meta, relativePath, relativeUrl, ROOT_DIR, ROOT_BLOG_DIR){
     <meta property="og:image" content="${image}">
     <meta property="og:url" content="${url}">
     <meta property="og:type" content="website">
+
+    <!-- Jason LD -->
+    ${jasonLD}
     
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
@@ -203,4 +208,50 @@ function formatFooter(relativePath, ROOT_DIR){
             document.getElementById("copyright-year").textContent = new Date().getFullYear();
         </script>
     </footer>`;
+}
+
+function formatJasonLD(meta, relativeUrl) {
+  const frontMatter = meta || {};
+  const title = frontMatter.title || "Dreblow Designs Blog";
+  const description = frontMatter.description || "Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.";
+  const author = frontMatter.author || "Derek Dreblow";
+  const keywords = frontMatter.tags || [];  // use tags array from front matter
+  const categories = frontMatter.categories || [];
+  const image = frontMatter.image || "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png";
+  const datePublished = frontMatter.version || new Date().toISOString().split("T")[0];
+  const url = `https://www.dreblowdesigns.com${relativeUrl}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "author": {
+      "@type": "Person",
+      "name": author
+    },
+    "keywords": keywords,
+    "articleSection": categories,
+    "datePublished": datePublished,
+    "image": image,
+    "url": url,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dreblow Designs",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png"
+      }
+    }
+  };
+
+  // Indent each line of the JSON-LD block with 4 spaces
+  const jsonString = JSON.stringify(jsonLd, null, 2)
+    .split('\n')
+    .map(line => '    ' + line)
+    .join('\n');
+
+  return `<script type="application/ld+json">
+${jsonString}
+    </script>`;
 }
