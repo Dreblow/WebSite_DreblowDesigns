@@ -1,12 +1,17 @@
 // convert.js
-const fs = require('fs');
-const path = require('path');
-const matter = require('gray-matter');
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import { renderCommandCard } from "./convertToCommandCardStyle.js";
+import { renderGitWikiStyle } from "./convertToGitWikiStyle.js";
+
 const ROOT_DIR = "../../../"
 const ROOT_BLOG_DIR = "../"
-const { renderGitWikiStyle } = require('./convertToGitWikiStyle.js');
-const { renderCommandCard } = require('./convertToCommandCardStyle.js');
-
 const inputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_markdown');
 const outputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_html');
 
@@ -40,7 +45,6 @@ function processDirectory(inputPath, outputPath) {
 
       const jasonLD = formatJasonLD(frontMatter, relativeUrl);
 
-      const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR);
       const header = formatHeader(relativePath, ROOT_DIR);
       const footer = formatFooter(relativePath, ROOT_DIR);
 
@@ -49,9 +53,10 @@ function processDirectory(inputPath, outputPath) {
       // Pick renderer
       let htmlContent;
       if (frontMatter.machine === "command-card") {
-        //htmlContent = renderCommandCard(frontMatter, content, ROOT_DIR, ROOT_BLOG_DIR);
-        htmlContent= "";
+        const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, "command-card-blog");
+        htmlContent = renderCommandCard(head, header, footer, formattedVersion, content);
       } else {
+        const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, "git-wiki-style-blog");
         htmlContent = renderGitWikiStyle(head, header, footer, formattedVersion, content);
       }
 
@@ -107,7 +112,7 @@ function calculateRelativePath(filePath, basePath) {
   return ROOT_BLOG_DIR.repeat(relativeDepth);
 }
 
-function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR){
+function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, css){
 
     const frontMatter = meta || {};
     const title = frontMatter.title || 'Dreblow Designs Blog';
@@ -167,8 +172,11 @@ function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLO
     </script>
 
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css">
+    ${css === "git-wiki-style-blog"
+      ? `<link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">`
+      : ""}
+    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/${css}.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>`;
 }

@@ -33,6 +33,7 @@ This blog was inspired by all the note taking I have done over all my projects. 
 
 #### Linux
 
+* [Linux Shortcuts](./Linux/linux.html)
 * [Setting IP to Static](./Linux/Setting%20IP%20to%20Static.html)
 * [All that is SSH](./Linux/AllThatIsSSH.html)
 * [Nginx Web Server Setup Guide](./Linux/NginxWebServer.html)
