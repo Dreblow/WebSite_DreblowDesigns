@@ -1,3 +1,6 @@
+/* ===========================
+   General
+   =========================== */
 body {
   background-color: rgb(9, 11, 15);;
   color: #d4d4d4;
@@ -7,17 +10,99 @@ body {
   padding: 0;
 }
 
-.command-card {
-  background-color: #2d2d2d;
-  color: #f3f3f3;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+/* ===========================
+   Cards Wrapper
+   =========================== */
+.cards-flex-container {
+  display: flex;
+  justify-content: center;
 }
 
-.command-card code {
-  font-family: "Courier New", Courier, monospace;
-  white-space: pre-wrap;
-  color: #ffffff;
+.cards-container {
+  column-count: 3;
+  column-gap: 16px;
+  max-width: calc(3 * 28.125rem + 2 * 16px); /* 3 cards + gaps */
+}
+
+@media (max-width: 1400px) {
+  .cards-container {
+    column-count: 2;
+    max-width: calc(2 * 28.125rem + 1 * 16px);
+  }
+}
+
+@media (max-width: 800px) {
+  .cards-container {
+    column-count: 1;
+    max-width: 28.125rem;
+  }
+}
+
+/* ===========================
+   Single Card
+   =========================== */
+.card-container {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+  max-width: 28.125rem;
+  box-sizing: border-box;
+}
+
+.title-container h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #f3f3f3;
+}
+
+/* ===========================
+   Info in Card
+   =========================== */
+.info-container {
+  background-color: #151b23;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+/* ===========================
+   Table in Card
+   =========================== */
+.command-table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  table-layout: fixed; /* enforce fixed column widths */
+}
+
+.command-table tr:nth-child(even) {
+  background-color: #1e242e;
+}
+
+.command-table tr:nth-child(odd) {
+  background-color: #151b23;
+}
+
+.command-table td {
+  padding: 6px 10px;
+}
+
+.command-table td.desc {
+  width: 50%;
+  max-width: 50%;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
+.command-table td.cmd {
+  width: 50%;
+  max-width: 50%;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  vertical-align: top;
 }
