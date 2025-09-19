@@ -3,7 +3,7 @@ title: Linux Cheat Sheet
 description: Tips and tricks for Linux
 keywords: Linux, Guide, How-to
 author: Derek Dreblow
-version: 2025-09-18
+version: 2025-09-19
 machine: command-card
 categories:
   - Linux
@@ -12,6 +12,45 @@ tags:
   - Guide
   - Cheat Sheet
 ---
+
+## ⌨️ Keyboard Shortcuts
+```bash
+# Kill process running in the terminal
+Ctrl + C  
+
+# Stop the current process (resume with fg or bg)
+Ctrl + Z  
+
+# Cut one word before the cursor and add it to the clipboard
+Ctrl + W  
+
+# Cut part of the line before the cursor and add it to the clipboard
+Ctrl + U  
+
+# Cut part of the line after the cursor and add it to the clipboard
+Ctrl + K  
+
+# Paste from clipboard
+Ctrl + Y  
+
+# Recall the last command that matches the provided characters
+Ctrl + R  
+
+# Run the previously recalled command
+Ctrl + O  
+
+# Exit command history without running a command
+Ctrl + G  
+
+# Clear the terminal screen
+clear  
+
+# Run the last command again
+!!  
+
+# Log out of the current session
+exit  
+```
 
 ## 🔑 User & Permissions
 ```bash
