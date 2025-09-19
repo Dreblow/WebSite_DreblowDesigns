@@ -21,7 +21,7 @@ export function renderCommandCard(head, header, footer, formattedVersion, conten
                 desc = '';
                 cmd = lines[i];
             }
-            rows.push(`<tr><td class="desc">${desc}</td><td class="cmd">${cmd}</td></tr>`);
+            rows.push(`<tr><td class="desc"><code class="language-bash">${desc}</code></td><td class="cmd"><code class="language-bash">${cmd}</code></td></tr>`);
         }
         return `
 <div class="card-container">
