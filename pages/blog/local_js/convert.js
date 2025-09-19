@@ -172,7 +172,7 @@ function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLO
     </script>
 
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=2">
     ${css === "git-wiki-style-blog"
       ? `<link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">`
       : ""}
