@@ -1,3 +1,4 @@
+import hljs from "highlight.js";
 import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt();
@@ -21,7 +22,9 @@ export function renderCommandCard(head, header, footer, formattedVersion, conten
                 desc = '';
                 cmd = lines[i];
             }
-            rows.push(`<tr><td class="desc">${desc}</td><td class="cmd">${cmd}</td></tr>`);
+            const highlightedDesc = desc ? hljs.highlight(desc, { language: "bash" }).value : "";
+            const highlightedCmd = cmd ? hljs.highlight(cmd, { language: "bash" }).value : "";
+            rows.push(`<tr><td class="desc"><code class="hljs language-bash">${highlightedDesc}</code></td><td class="cmd"><code class="hljs language-bash">${highlightedCmd}</code></td></tr>`);
         }
         return `
 <div class="card-container">
