@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
+import markdownItAnchor from 'markdown-it-anchor';
 
 // Initialize Markdown-it with highlight.js
 const md = new MarkdownIt({
@@ -14,6 +15,10 @@ const md = new MarkdownIt({
 
         return `<pre><code class="hljs">` + md.utils.escapeHtml(str) + `</code></pre>`;
     }
+});
+
+md.use(markdownItAnchor, { 
+  slugify: s => s.trim().toLowerCase().replace(/\./g, '').replace(/[^\w]+/g, '-')
 });
 
 

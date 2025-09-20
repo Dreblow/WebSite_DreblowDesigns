@@ -107,8 +107,8 @@
 <li>Running on <code>MacOS</code>, getting <code>Python 3</code> on <code>Homebrew</code>, then creating a script to launch a local server that doesn't cache.</li>
 <li>If you have Python up, and want a quick generic server, type <code>python3 -m http.server 8000</code></li>
 </ul>
-<h1>Setting up a local server</h1>
-<h2>1. Get Homebrew</h2>
+<h1 id="setting-up-a-local-server" tabindex="-1">Setting up a local server</h1>
+<h2 id="1-get-homebrew" tabindex="-1">1. Get Homebrew</h2>
 <ul>
 <li>If you don't already a package manager for MacOS, <a href="https://brew.sh">Homebrew</a> is a great choice! even for the M series chips. The provided link goes over how to get that going.If you're not sure if you have <code>Homebrew</code>, try<pre><code class="hljs bash">brew --version
 </code></pre>
@@ -117,14 +117,14 @@
 </code></pre>
 </li>
 </ul>
-<h2>2. Get Python 3</h2>
+<h2 id="2-get-python-3" tabindex="-1">2. Get Python 3</h2>
 <ul>
 <li>Use the following command to install Python 3:<pre><code class="hljs bash">brew install python
 </code></pre>
 </li>
 <li>This will install the latest version of Python 3 and set up symbolic links.</li>
 </ul>
-<h3>1. Verify Python Installation</h3>
+<h3 id="1-verify-python-installation" tabindex="-1">1. Verify Python Installation</h3>
 <ul>
 <li>Check the installed Python 3 version:<pre><code class="hljs bash">python 3 --version
 </code></pre>
@@ -136,7 +136,7 @@
 </code></pre>
 </li>
 </ul>
-<h3>2. Update PATH (Optional)</h3>
+<h3 id="2-update-path-optional-" tabindex="-1">2. Update PATH (Optional)</h3>
 <p>If Python 3 is not recognized after installation, ensure Homebrew’s Python path is added to your PATH variable.</p>
 <ul>
 <li>Open your shell configuration file (~/.zshrc for zsh):<pre><code class="hljs bash">nano ~/.zshrc
@@ -150,7 +150,7 @@
 </code></pre>
 </li>
 </ul>
-<h3>3. Install Pip (Optional)</h3>
+<h3 id="3-install-pip-optional-" tabindex="-1">3. Install Pip (Optional)</h3>
 <ul>
 <li>pip (Python's package manager) is typically installed with Python 3. Verify its installation:<pre><code class="hljs bash">pip3 --version
 </code></pre>
@@ -159,7 +159,7 @@
 </code></pre>
 </li>
 </ul>
-<h3>4. Test Python Installation</h3>
+<h3 id="4-test-python-installation" tabindex="-1">4. Test Python Installation</h3>
 <ul>
 <li>Run Python interactively to confirm<pre><code class="hljs bash">python3
 </code></pre>
@@ -172,7 +172,7 @@ Type <span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string
 </li>
 <li>Type exit() to leave.</li>
 </ul>
-<h2>3. Creating the server script</h2>
+<h2 id="3-creating-the-server-script" tabindex="-1">3. Creating the server script</h2>
 <ul>
 <li>Create a new .py file, and fill in the following:</li>
 </ul>

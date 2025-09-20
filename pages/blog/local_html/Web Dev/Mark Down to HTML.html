@@ -104,7 +104,7 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Feb 22, 2025</em></p>
-            <h1><strong>Converting Markdown to HTML with Node.js</strong></h1>
+            <h1 id="converting-markdown-to-html-with-nodejs" tabindex="-1"><strong>Converting Markdown to HTML with Node.js</strong></h1>
 <p>Converting Markdown (<code>.md</code>) files into HTML is a common task when generating static web pages, documentation, or blogs. This guide explains how to build a Markdown-to-HTML converter using <strong>Node.js</strong>, <strong>Markdown-It</strong>, and <strong>Highlight.js</strong> for syntax highlighting. The
 blow js file is what I use on my own sites.</p>
 <p>Some of the key features:</p>
@@ -115,23 +115,23 @@ blow js file is what I use on my own sites.</p>
 <li>Recursive Directory Processing: Converts all Markdown files, even inside subdirectories.</li>
 </ul>
 <hr>
-<h2><strong>Prerequisites</strong></h2>
+<h2 id="prerequisites" tabindex="-1"><strong>Prerequisites</strong></h2>
 <p>Before running the script, ensure you have the necessary dependencies installed.</p>
-<h3><strong>Install Required Packages</strong></h3>
+<h3 id="install-required-packages" tabindex="-1"><strong>Install Required Packages</strong></h3>
 <p>Run the following command:</p>
 <pre><code class="hljs sh">npm install fs path markdown-it gray-matter highlight.js
 </code></pre>
 <hr>
 <p>At the very end, I'll provide the js script I use, but I wanted to take a minute and break down the script. I usually don't like
 to add mindless filler text, so its just the code. It should be self explanatory.</p>
-<h2>Import Required Modules</h2>
+<h2 id="import-required-modules" tabindex="-1">Import Required Modules</h2>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">MarkdownIt</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;markdown-it&#x27;</span>);
 <span class="hljs-keyword">const</span> matter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gray-matter&#x27;</span>);
 <span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;highlight.js&#x27;</span>);
 </code></pre>
-<h2>Define Input and Output Directories</h2>
+<h2 id="define-input-and-output-directories" tabindex="-1">Define Input and Output Directories</h2>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> inputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_markdown&#x27;</span>);
 <span class="hljs-keyword">const</span> outputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_html&#x27;</span>);
 
@@ -139,7 +139,7 @@ to add mindless filler text, so its just the code. It should be self explanatory
     fs.<span class="hljs-title function_">mkdirSync</span>(outputDir, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
 }
 </code></pre>
-<h2>Initialize Markdown Parser with Syntax Highlighting</h2>
+<h2 id="initialize-markdown-parser-with-syntax-highlighting" tabindex="-1">Initialize Markdown Parser with Syntax Highlighting</h2>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> md = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MarkdownIt</span>({
     <span class="hljs-attr">highlight</span>: <span class="hljs-function">(<span class="hljs-params">str, lang</span>) =&gt;</span> {
         <span class="hljs-keyword">if</span> (lang &amp;&amp; hljs.<span class="hljs-title function_">getLanguage</span>(lang)) {
@@ -153,7 +153,7 @@ to add mindless filler text, so its just the code. It should be self explanatory
     }
 });
 </code></pre>
-<h2>Convert Markdown Files to HTML</h2>
+<h2 id="convert-markdown-files-to-html" tabindex="-1">Convert Markdown Files to HTML</h2>
 <pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">processDirectory</span>(<span class="hljs-params">inputPath, outputPath</span>) {
     <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(outputPath)) {
         fs.<span class="hljs-title function_">mkdirSync</span>(outputPath, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
@@ -198,15 +198,15 @@ to add mindless filler text, so its just the code. It should be self explanatory
     });
 }
 </code></pre>
-<h2>Start the Conversion Process</h2>
+<h2 id="start-the-conversion-process" tabindex="-1">Start the Conversion Process</h2>
 <p>Throw this at the end of the script.</p>
 <pre><code class="hljs js"><span class="hljs-title function_">processDirectory</span>(inputDir, outputDir);
 </code></pre>
-<h2>Run the Script</h2>
+<h2 id="run-the-script" tabindex="-1">Run the Script</h2>
 <pre><code class="hljs sh">node convert.js
 </code></pre>
 <hr>
-<h2>Personal Code - edited</h2>
+<h2 id="personal-code-edited" tabindex="-1">Personal Code - edited</h2>
 <p>Below is my personal code, I use it still to this day.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);

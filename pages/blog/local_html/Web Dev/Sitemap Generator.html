@@ -102,7 +102,7 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: May 4, 2025</em></p>
-            <h1>Creating your own Sitemap Generator</h1>
+            <h1 id="creating-your-own-sitemap-generator" tabindex="-1">Creating your own Sitemap Generator</h1>
 <p>Creating your own sitemap generator may sound intense — but it’s actually super fun and helps you deeply understand how websites get indexed by search engines like Google and Bing.</p>
 <p>This post will walk you through building a Python script that:</p>
 <ul>
@@ -115,14 +115,14 @@
 <p>🔥 Bonus: We explain <strong>why</strong> each step exists so you’re not just copy-pasting blindly.</p>
 </blockquote>
 <hr>
-<h2>Why Build It Yourself?</h2>
+<h2 id="why-build-it-yourself-" tabindex="-1">Why Build It Yourself?</h2>
 <p>Sure, there are online sitemap generators. But when you’re hosting your own site (like I do at <a href="https://dreblowdesigns.com">dreblowdesigns.com</a>), it gives you an opportunity to automate your web development. It has been countless time where I published new pages and forgot to change the sitemap!</p>
 <p>Plus, you get complete control.</p>
 <hr>
-<h2>Step-by-Step: The Script</h2>
+<h2 id="step-by-step-the-script" tabindex="-1">Step-by-Step: The Script</h2>
 <p>Let’s go through the Python script in stages, with explanations.</p>
 <hr>
-<h3>1. Define Your Setup</h3>
+<h3 id="1-define-your-setup" tabindex="-1">1. Define Your Setup</h3>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urljoin, quote
 <span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timezone
@@ -132,7 +132,7 @@
 <li><code>urljoin</code> and quote to safely construct URLs</li>
 <li><code>datetime</code> for timestamps</li>
 </ul>
-<h3>2. Configurable Constants</h3>
+<h3 id="2-configurable-constants" tabindex="-1">2. Configurable Constants</h3>
 <pre><code class="hljs python">BASE_URL = <span class="hljs-string">&quot;https://dreblowdesigns.com/&quot;</span>
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, <span class="hljs-string">&quot;../../&quot;</span>))
@@ -145,7 +145,7 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <li><code>SITEMAP_FILE</code> is the full path where we’ll write the output.</li>
 </ul>
 <p>This avoids issues where <code>../</code> might resolve incorrectly depending on where you run the script from.</p>
-<h3>3. Exclude Unwanted Paths</h3>
+<h3 id="3-exclude-unwanted-paths" tabindex="-1">3. Exclude Unwanted Paths</h3>
 <pre><code class="hljs python">EXCLUDE_PATHS = [
     <span class="hljs-string">&quot;resources/&quot;</span>,
     <span class="hljs-string">&quot;local_markdown/&quot;</span>,
@@ -161,7 +161,7 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <ul>
 <li>This keeps the sitemap clean — no CSS, scripts, dev stuff, or redundant entries.</li>
 </ul>
-<h3>4. Crawl Files and Build URLs</h3>
+<h3 id="4-crawl-files-and-build-urls" tabindex="-1">4. Crawl Files and Build URLs</h3>
 <pre><code class="hljs python">urls = []
 
 <span class="hljs-keyword">for</span> root, _, files <span class="hljs-keyword">in</span> os.walk(ROOT_DIR):
@@ -180,7 +180,7 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <li>Escapes URLs (e.g. spaces → %20)</li>
 <li>Constructs full URLs based on your domain</li>
 </ul>
-<h3>5. Generate the XML Output</h3>
+<h3 id="5-generate-the-xml-output" tabindex="-1">5. Generate the XML Output</h3>
 <pre><code class="hljs python">sitemap = [<span class="hljs-string">&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x27;</span>]
 sitemap.append(<span class="hljs-string">&#x27;&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&#x27;</span>)
 sitemap.append(<span class="hljs-string">&#x27;        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&#x27;</span>)
@@ -191,7 +191,7 @@ sitemap.append(<span class="hljs-string">&#x27;&lt;!-- generated with Dreblow De
 <ul>
 <li>This creates the root <code>&lt;urlset&gt;</code> block using proper schema attributes that Google recognizes.</li>
 </ul>
-<h3>6. Populate Entries with Metadata</h3>
+<h3 id="6-populate-entries-with-metadata" tabindex="-1">6. Populate Entries with Metadata</h3>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> url, path <span class="hljs-keyword">in</span> urls:
     <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;index.html&quot;</span> <span class="hljs-keyword">in</span> path:
         priority = <span class="hljs-string">&quot;1.00&quot;</span>
@@ -212,7 +212,7 @@ sitemap.append(<span class="hljs-string">&#x27;&lt;!-- generated with Dreblow De
 <li><code>priority</code> tells search engines how important each page is.</li>
 <li><code>lastmod</code> uses UTC ISO format: 2025-05-05T20:30:00+00:00</li>
 </ul>
-<h3>7. Save the File</h3>
+<h3 id="7-save-the-file" tabindex="-1">7. Save the File</h3>
 <pre><code class="hljs python">os.makedirs(os.path.dirname(SITEMAP_FILE), exist_ok=<span class="hljs-literal">True</span>)
 <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(SITEMAP_FILE, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
     f.write(<span class="hljs-string">&quot;\n&quot;</span>.join(sitemap))
@@ -222,7 +222,7 @@ sitemap.append(<span class="hljs-string">&#x27;&lt;!-- generated with Dreblow De
 <ul>
 <li>It creates the directory if needed, writes the full XML, and confirms success.</li>
 </ul>
-<h3>Bonus: Automation!</h3>
+<h3 id="bonus-automation-" tabindex="-1">Bonus: Automation!</h3>
 <pre><code class="hljs python">const { <span class="hljs-built_in">exec</span> } = require(<span class="hljs-string">&#x27;child_process&#x27;</span>);
 
 setTimeout(() =&gt; {
@@ -236,7 +236,7 @@ setTimeout(() =&gt; {
 <li>The whole reason I did this, so when my static site generator <a href="./Web%20Dev/Mark%20Down%20to%20HTML.html">Mark Down to HTML js converter</a> is done creating my blogs, the sitemap is done!</li>
 </ul>
 <hr>
-<h2>The Complete Python Script</h2>
+<h2 id="the-complete-python-script" tabindex="-1">The Complete Python Script</h2>
 <ul>
 <li>Before diving in, look for <code>YOUR SITE</code> in two different spots.</li>
 </ul>

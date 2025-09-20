@@ -103,23 +103,23 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Jun 2, 2025</em></p>
-            <h1>DreblowDesignsWebServer</h1>
+            <h1 id="dreblowdesignswebserver" tabindex="-1">DreblowDesignsWebServer</h1>
 <p>Dreblow Designs server</p>
-<h2>Getting Started</h2>
+<h2 id="getting-started" tabindex="-1">Getting Started</h2>
 <p>This blog sets up a reverse proxy with automatic HTTPS using NGINX for website hosting and Let's Encrypt for SSL certificate. These are guides I've written based on setting up and maintaining my own production-grade Ubuntu server using Docker, NGINX, and shell scripts — fully open source and self-hosted.</p>
-<h4>Check out the required Docker Compose files for the server and sites:</h4>
+<h4 id="check-out-the-required-docker-compose-files-for-the-server-and-sites-" tabindex="-1">Check out the required Docker Compose files for the server and sites:</h4>
 <ul>
 <li><a href="./DockerComposeServerSide.html">Docker Compose: Sever Side</a></li>
 <li><a href="./DockerComposeSiteSide.html">Docker Compose: WebSite Side</a></li>
 </ul>
-<h3>Prerequisites</h3>
+<h3 id="prerequisites" tabindex="-1">Prerequisites</h3>
 <ul>
 <li>Docker</li>
 <li>Docker Compose</li>
 <li>Your DNS <code>A</code> record pointing to your server</li>
 </ul>
 <hr>
-<h3>Setup</h3>
+<h3 id="setup" tabindex="-1">Setup</h3>
 <p>Clone the repo:</p>
 <pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:Dreblow/DreblowDesignsWebServer.git
 <span class="hljs-built_in">cd</span> DreblowDesignsWebServer
@@ -136,7 +136,7 @@
 <p>Push the update over SSH:</p>
 <pre><code class="hljs bash">ssh dreblow@&lt;your_ip&gt; <span class="hljs-string">&#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;</span>
 </code></pre>
-<h4>Take it one stop further and add as an alias on the Mac:</h4>
+<h4 id="take-it-one-stop-further-and-add-as-an-alias-on-the-mac-" tabindex="-1">Take it one stop further and add as an alias on the Mac:</h4>
 <p>Add this to your <code>nano ~/.zshrc</code> or <code>nano /.bash_profile</code>:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">alias</span> deployserver=<span class="hljs-string">&quot;ssh dreblow@&lt;your_ip&gt; &#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;&quot;</span>
 </code></pre>
@@ -156,7 +156,7 @@
 <span class="hljs-built_in">setopt</span> complete_aliases                                                                           <span class="hljs-comment"># Have to have tab auto complete</span>
 </code></pre>
 <hr>
-<h3>Setup.sh</h3>
+<h3 id="setupsh" tabindex="-1">Setup.sh</h3>
 <p>This script automates the entire web server deployment:</p>
 <ul>
 <li>Clones the website repos</li>
@@ -164,7 +164,7 @@
 <li>Starts a Docker reverse proxy with HTTPS</li>
 <li>Makes sure the server is the only one responsible for deployment — not the websites themselves</li>
 </ul>
-<h4>Step-by-Step Breakdown</h4>
+<h4 id="step-by-step-breakdown" tabindex="-1">Step-by-Step Breakdown</h4>
 <ol>
 <li>Shebang + Error Handling</li>
 </ol>

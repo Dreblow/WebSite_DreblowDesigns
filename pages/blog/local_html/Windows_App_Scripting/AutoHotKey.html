@@ -109,17 +109,17 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Dec 30, 2024</em></p>
-            <h1>AutoHotKey Windows PowerPoint</h1>
-<h2>Overview</h2>
+            <h1 id="autohotkey-windows-powerpoint" tabindex="-1">AutoHotKey Windows PowerPoint</h1>
+<h2 id="overview" tabindex="-1">Overview</h2>
 <p>I have a client, <a href="https://www.dreblowandassociates.com">Dreblow and Associates</a>, a company owned and operated by my family. My father, <a href="https://www.linkedin.com/in/daniel-dreblow-36047824?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BaPKSL6e%2BToCTeq6fUWYwyg%3D%3D">Daniel Dreblow</a>, is the Founder and President. As the head of IT, I manage the organization’s entire technical infrastructure, which includes developing and maintaining email addresses, websites, webinars, and a plethora of technical tools.</p>
 <p>In today’s challenge, we faced an issue while using GoToWebinar to broadcast a PowerPoint presentation while speaking to potential prospects, but they encountered an issue: whenever the GoToWebinar app was in focus, the PowerPoint slideshow lost focus, making it impossible to cycle through the slides during the presentation. To solve this, I used AutoHotKey (AHK) to create global keyboard shortcuts that worked across all windows, in Widnows 11. This allowed the client to control the PowerPoint slideshow seamlessly, even while GoToWebinar was the active application. The AHK script enabled smooth transitions between slides without disrupting the webinar, ensuring a professional and hassle-free presentation experience.</p>
 <p>This guide hopes to help those get AHK running with the provided script. The provided script interacts with Microsoft PowerPoint via PowerPoint API. When things are up and running, One will be able to control the slides via  <code>ctrl-left</code> for a previous slide and <code>ctrl-right</code> for the next slide.</p>
 <hr>
-<h4>1. Download AHK</h4>
+<h4 id="1-download-ahk" tabindex="-1">1. Download AHK</h4>
 <ul>
 <li>Its recommended that one download the AutoHotKey from the <a href="https://apps.microsoft.com/store/detail/autohotkey/9NBLGGH4NHSW">Microsoft Store - AutoHotkey</a></li>
 </ul>
-<h4>2. Creating AHK Script</h4>
+<h4 id="2-creating-ahk-script" tabindex="-1">2. Creating AHK Script</h4>
 <p>Using the <strong>PowerPoint COM API</strong> is the most robust solution when other methods fail. Here’s a script leveraging the COM object model to control the slideshow programmatically. This will work even when PowerPoint is not the active window.</p>
 <ul>
 <li>Create a <code>txt</code> file, take the below script and paste it in the text file.</li>
@@ -164,7 +164,7 @@ GetSlideShow() {
 </code></pre>
 </li>
 </ul>
-<h4>3. Launching Script</h4>
+<h4 id="3-launching-script" tabindex="-1">3. Launching Script</h4>
 <p>With AutoHotKey (AHK) installed and running, double-click on the .ahk file to start the script. Open a PowerPoint presentation of your choice and put it in slideshow mode. Then, open another application, such as Windows Explorer or a web browser, and position it in the foreground so that the PowerPoint presentation is visible in the background but not focused. This setup simulates the scenario where GoToWebinar (or another app) is in focus during a presentation.</p>
 <p>Now, test the global keyboard shortcuts you set in the AHK script. Press the assigned keys to cycle through the PowerPoint slides (e.g., next or previous), ensuring the commands work seamlessly even when the PowerPoint application is not the active window. Verify that the slides transition correctly without disrupting the application in the foreground. If everything functions as expected, your script is successfully enabling smooth slide control during presentations.</p>
 

@@ -104,11 +104,11 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Jun 2, 2025</em></p>
-            <h1>Docker Composer Site Side</h1>
-<h2>Breakdown of the File</h2>
+            <h1 id="docker-composer-site-side" tabindex="-1">Docker Composer Site Side</h1>
+<h2 id="breakdown-of-the-file" tabindex="-1">Breakdown of the File</h2>
 <p>Services:</p>
 <p>This section defines individual <strong>services</strong> (containers) you want Docker to run. Each service corresponds to a website.</p>
-<h3>WebSites: dreblowdesigns, mathsheetgen, dreblowandassociates</h3>
+<h3 id="websites-dreblowdesigns-mathsheetgen-dreblowandassociates" tabindex="-1">WebSites: dreblowdesigns, mathsheetgen, dreblowandassociates</h3>
 <p>Each block under <code>services:</code> defines one site. Let's use one as an example:</p>
 <pre><code class="hljs yml"><span class="hljs-attr">dreblowdesigns:</span>
     <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>
@@ -120,7 +120,7 @@ Tells Docker to use the official NGINX image (web server software) from Docker H
 <li><code>restart: always</code>
 Ensures the container restarts if it crashes, or when Docker starts on reboot.</li>
 </ul>
-<h2>Volumes</h2>
+<h2 id="volumes" tabindex="-1">Volumes</h2>
 <pre><code class="hljs yml"><span class="hljs-attr">volumes:</span>
     <span class="hljs-bullet">-</span> <span class="hljs-string">/srv/sites/dreblowdesigns.com:/usr/share/nginx/html:ro</span>
 </code></pre>
@@ -128,7 +128,7 @@ Ensures the container restarts if it crashes, or when Docker starts on reboot.</
 <li>This maps a folder from your host system <code>(/srv/sites/dreblowdesigns.com)</code> into the container’s web root <code>(/usr/share/nginx/html)</code> in read-only mode <code>(:ro)</code>.</li>
 <li>That’s how your actual HTML/CSS/JS content is served inside the container.</li>
 </ul>
-<h2>Environment Variables</h2>
+<h2 id="environment-variables" tabindex="-1">Environment Variables</h2>
 <pre><code class="hljs yml"><span class="hljs-attr">environment:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">VIRTUAL_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
@@ -140,7 +140,7 @@ Ensures the container restarts if it crashes, or when Docker starts on reboot.</
 <li><code>LETSENCRYPT_HOST:</code> Tells acme-companion to request HTTPS certificates for these domains.</li>
 <li><code>LETSENCRYPT_EMAIL:</code> Email to register with Let’s Encrypt in case of urgent SSL certificate notifications (masked here in the blog for privacy).</li>
 </ul>
-<h2>Networks</h2>
+<h2 id="networks" tabindex="-1">Networks</h2>
 <pre><code class="hljs yml"><span class="hljs-attr">networks:</span>
     <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
 </code></pre>
@@ -152,14 +152,14 @@ Ensures the container restarts if it crashes, or when Docker starts on reboot.</
   <span class="hljs-attr">webproxy:</span>
     <span class="hljs-attr">external:</span> <span class="hljs-literal">true</span>
 </code></pre>
-<h2>Why This Works</h2>
+<h2 id="why-this-works" tabindex="-1">Why This Works</h2>
 <ul>
 <li>Automatic HTTPS with Let’s Encrypt</li>
 <li>Smart domain-to-container mapping</li>
 <li>One unified network with clean separation between infrastructure and content</li>
 <li>Easy to scale: just add more blocks like this!</li>
 </ul>
-<h2>The entire file</h2>
+<h2 id="the-entire-file" tabindex="-1">The entire file</h2>
 <pre><code class="hljs yml"><span class="hljs-attr">services:</span>
   <span class="hljs-attr">dreblowdesigns:</span>
     <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>

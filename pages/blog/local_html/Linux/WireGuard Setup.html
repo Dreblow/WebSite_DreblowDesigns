@@ -102,12 +102,12 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Dec 11, 2024</em></p>
-            <h1>WireGuard Self-Hosting Setup Instructions</h1>
-<h2>Overview</h2>
+            <h1 id="wireguard-self-hosting-setup-instructions" tabindex="-1">WireGuard Self-Hosting Setup Instructions</h1>
+<h2 id="overview" tabindex="-1">Overview</h2>
 <p>This guide walks you through setting up a self-hosted WireGuard server for secure remote access, restricting access to only your Linux server on Hyper-V while keeping the rest of your network hidden.</p>
 <p>As of now this guide is WIP, which only supports IPv4 communications. I hope to explain IPv6 in the near future.</p>
 <hr>
-<h2>1. Install WireGuard on the Server</h2>
+<h2 id="1-install-wireguard-on-the-server" tabindex="-1">1. Install WireGuard on the Server</h2>
 <ul>
 <li>Ensure you have root access to the Linux server.</li>
 <li>Run the following commands:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y
@@ -117,7 +117,7 @@
 <li>Alternatively, you can use Docker if preferred.</li>
 </ul>
 <hr>
-<h2>2. Generate Keys</h2>
+<h2 id="2-generate-keys" tabindex="-1">2. Generate Keys</h2>
 <ul>
 <li>Create private and public keys for the server. This example goes over how to setup the server and, MacBook Pro and iPhone as clients.<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> server_privatekey | wg pubkey &gt; server_publickey
 </code></pre>
@@ -136,7 +136,7 @@
 <li>To exit out of root, type <code>exit</code> in terminal and hit enter.</li>
 </ul>
 <hr>
-<h2>3. Set Up the WireGuard Configuration</h2>
+<h2 id="3-set-up-the-wireguard-configuration" tabindex="-1">3. Set Up the WireGuard Configuration</h2>
 <ul>
 <li>Create a configuration file with:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/wireguard/wg0.conf
 </code></pre>
@@ -160,7 +160,7 @@
 <li>Replace <code>ServerPrivateKey</code> and a <code>machinePublicKey</code> via the cat command back in section 2.</li>
 </ul>
 <hr>
-<h2>4. Enable port forwarding (WIP)</h2>
+<h2 id="4-enable-port-forwarding-wip-" tabindex="-1">4. Enable port forwarding (WIP)</h2>
 <ul>
 <li>
 <p>Enabled IP forwarding to allow routing between the VPN subnet <code>10.0.0.0/24</code> and the specific network address <code>192.168.1.186</code></p>
@@ -203,7 +203,7 @@
 </li>
 </ul>
 <hr>
-<h2>5. Enable and Start the WireGuard Interface</h2>
+<h2 id="5-enable-and-start-the-wireguard-interface" tabindex="-1">5. Enable and Start the WireGuard Interface</h2>
 <ul>
 <li>Start the service<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start wg-quick@wg0
 </code></pre>
@@ -217,7 +217,7 @@
 </li>
 </ul>
 <hr>
-<h2>5. Firewall Configuration</h2>
+<h2 id="5-firewall-configuration" tabindex="-1">5. Firewall Configuration</h2>
 <ul>
 <li>
 <p>Use <code>ufw</code> or <code>iptables</code> to allow traffic on port 51564:</p>
@@ -234,12 +234,12 @@
 </li>
 </ul>
 <hr>
-<h2>6. Router Configuration</h2>
+<h2 id="6-router-configuration" tabindex="-1">6. Router Configuration</h2>
 <ul>
 <li>There is where you need to hop on the your web browser and put in the ip address of your router. Go find where port forwarding is handled. Since I setup the port to be <code>51564</code>. Mu router allowed for external and internal ports, internal ip address of the server, and the connection type <code>UDP</code></li>
 </ul>
 <hr>
-<h2>7. Client Configuration</h2>
+<h2 id="7-client-configuration" tabindex="-1">7. Client Configuration</h2>
 <ul>
 <li>Install WireGuard on your remote device (e.g., laptop or phone).</li>
 <li>Create a configuration file for the client, here is one for maclappy.conf:<pre><code class="hljs ini"><span class="hljs-section">[Interface]</span>
@@ -256,7 +256,7 @@
 <li>Then in the GUI app, upload the file to it, and let her rip!</li>
 </ul>
 <hr>
-<h2>8. Test the Connection</h2>
+<h2 id="8-test-the-connection" tabindex="-1">8. Test the Connection</h2>
 <ul>
 <li>Start the client interface and verify connectivity on laptop:<pre><code class="hljs bash">wg-quick up wg0
 ping 10.0.0.1
@@ -265,20 +265,20 @@ ping 10.0.0.1
 <li>From the phone, I used <a href="https://whatismyipaddress.com">whatismyipaddress</a> to confirm my home's outside IP address.</li>
 </ul>
 <hr>
-<h2>Optional Enhancements</h2>
+<h2 id="optional-enhancements" tabindex="-1">Optional Enhancements</h2>
 <ul>
 <li><strong>NAT Traversal</strong>: Use <code>Tailscale</code> if your setup requires it.</li>
 <li><strong>DNS Configuration</strong>: Set up DNS for hostname resolution.</li>
 <li><strong>Firewall Setup</strong>: Ensure your router only exposes port 42465 to the server.</li>
 </ul>
 <hr>
-<h2>Notes</h2>
+<h2 id="notes" tabindex="-1">Notes</h2>
 <ul>
 <li>Use secure methods to store and transfer keys.</li>
 <li>Regularly update WireGuard and monitor the configuration for any unauthorized changes.</li>
 </ul>
 <hr>
-<h3>Additional Resources</h3>
+<h3 id="additional-resources" tabindex="-1">Additional Resources</h3>
 <ul>
 <li><a href="https://www.wireguard.com/">WireGuard Documentation</a></li>
 <li><a href="https://tailscale.com/kb/">Tailscale Documentation</a></li>

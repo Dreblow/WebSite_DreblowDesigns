@@ -103,24 +103,24 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Jun 2, 2025</em></p>
-            <h1>Docker Composer Server Side</h1>
-<h2>Why this setup?</h2>
+            <h1 id="docker-composer-server-side" tabindex="-1">Docker Composer Server Side</h1>
+<h2 id="why-this-setup-" tabindex="-1">Why this setup?</h2>
 <p>This <code>docker-compose.yml</code> config is the heart of your self-hosted reverse proxy system. It launches two core services:</p>
-<h3><code>nginx-proxy</code></h3>
+<h3 id="nginx-proxy" tabindex="-1"><code>nginx-proxy</code></h3>
 <p>This is the automated reverse proxy. It watches for other Docker containers with <code>VIRTUAL_HOST</code> environment variables and automatically routes requests to them. It handles:</p>
 <ul>
 <li>HTTP routing</li>
 <li>HTTPS redirection (via config from companion)</li>
 <li>Dynamic configuration based on running containers</li>
 </ul>
-<h3><code>acme-companion</code></h3>
+<h3 id="acme-companion" tabindex="-1"><code>acme-companion</code></h3>
 <p>This container works alongside <code>nginx-proxy</code> to generate and renew Let's Encrypt SSL certificates on the fly. When you define <code>LETSENCRYPT_HOST</code> and <code>LETSENCRYPT_EMAIL</code>, it:</p>
 <ul>
 <li>Automatically fetches a certificate the first time the container is created</li>
 <li>Renews the certificate before expiration</li>
 <li>Stores everything in the shared <code>./data/certs</code> directory</li>
 </ul>
-<h2>Folder structure expectations</h2>
+<h2 id="folder-structure-expectations" tabindex="-1">Folder structure expectations</h2>
 <p>Your working directory should look like this:</p>
 <pre><code class="hljs">docker/
 ├── data/
@@ -132,16 +132,16 @@
 └── server/
     └── docker-compose.yml  &lt;-- This file (nginx-proxy + acme-companion)
 </code></pre>
-<h2>Prerequisites</h2>
+<h2 id="prerequisites" tabindex="-1">Prerequisites</h2>
 <ul>
 <li>Docker and Docker Compose installed</li>
 <li>Port 80 and 443 exposed on your public IP</li>
 <li>Your domain(s) pointed to the public IP via DNS</li>
 <li>A shared Docker network called <code>webproxy</code> (<code>docker network create webproxy</code>)</li>
 </ul>
-<h2>Final thoughts</h2>
+<h2 id="final-thoughts" tabindex="-1">Final thoughts</h2>
 <p>This setup gives you a centralized, scalable, and fully automated reverse proxy with free HTTPS support. Add or remove sites by just spinning up a new container with the correct environment variables. No more manually editing NGINX configs or renewing certs!</p>
-<h2>This file is live</h2>
+<h2 id="this-file-is-live" tabindex="-1">This file is live</h2>
 <pre><code class="hljs yml"><span class="hljs-attr">services:</span>
   <span class="hljs-attr">nginx-proxy:</span>
     <span class="hljs-attr">image:</span> <span class="hljs-string">nginxproxy/nginx-proxy</span>

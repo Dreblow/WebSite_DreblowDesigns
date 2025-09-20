@@ -103,17 +103,17 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: May 3, 2025</em></p>
-            <h1><strong>Setting Up a PHP Local Server for Web Development</strong></h1>
+            <h1 id="setting-up-a-php-local-server-for-web-development" tabindex="-1"><strong>Setting Up a PHP Local Server for Web Development</strong></h1>
 <p>PHP includes a built-in web server that's perfect for local testing and development — no extra software needed.</p>
 <hr>
-<h2><strong>When to Use It</strong></h2>
+<h2 id="when-to-use-it" tabindex="-1"><strong>When to Use It</strong></h2>
 <ul>
 <li>You're working with <code>.php</code> files and want a simple way to preview them locally.</li>
 <li>You don’t want to install XAMPP, MAMP, or LAMP stacks.</li>
 <li>You just need a lightweight, no-database preview.</li>
 </ul>
 <hr>
-<h2><strong>Requirements</strong></h2>
+<h2 id="requirements" tabindex="-1"><strong>Requirements</strong></h2>
 <ul>
 <li>PHP installed (comes preinstalled on macOS and Linux).</li>
 <li>Command line access (Terminal or PowerShell).</li>
@@ -124,7 +124,7 @@
 <ul>
 <li>If you see your version of PHP, you are ready to move on.</li>
 </ul>
-<h2>1. Starting the Server</h2>
+<h2 id="1-starting-the-server" tabindex="-1">1. Starting the Server</h2>
 <p>Navigate to the folder where your PHP files live:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /path/to/your/php/project
 </code></pre>
@@ -135,13 +135,13 @@
 <pre><code class="hljs">http://localhost:8000
 </code></pre>
 <p>The above will open your index.html and function as a regular site.</p>
-<h2>2. (Optional) Serving a Specific Entry File</h2>
+<h2 id="2-optional-serving-a-specific-entry-file" tabindex="-1">2. (Optional) Serving a Specific Entry File</h2>
 <p>If your entry point is not index.php, you can specify a router file like this:</p>
 <pre><code class="hljs bash">php -S localhost:8000 router.php
 </code></pre>
-<h2>3. Stopping the Server</h2>
+<h2 id="3-stopping-the-server" tabindex="-1">3. Stopping the Server</h2>
 <p>Just press <code>CTRL + C</code> in your terminal to stop the server.</p>
-<h2>Security Note</h2>
+<h2 id="security-note" tabindex="-1">Security Note</h2>
 <p>This PHP server is intended only for development. Do not expose it to the internet — it’s not secure for production use.</p>
 
         </article>

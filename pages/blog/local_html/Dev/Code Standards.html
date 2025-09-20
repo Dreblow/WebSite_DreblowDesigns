@@ -107,7 +107,7 @@
     <main class="markdown-body">
         <article>
             <p><em class="blogVersion">Version: Sep 17, 2025</em></p>
-            <h1>Coding Standards</h1>
+            <h1 id="coding-standards" tabindex="-1">Coding Standards</h1>
 <p>Organizing code in a consistent and predictable way improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. Follow these general best practices across all programming languages:</p>
 <ul>
 <li>Use clear and descriptive naming conventions for variables, methods, and classes.</li>
@@ -118,7 +118,7 @@
 </ul>
 <p>Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.</p>
 <hr>
-<h2>Table of Contents</h2>
+<h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
 <ul>
 <li><a href="#c-coding-standards">C# Coding Standards</a></li>
 <li><a href="#swift-coding-standards">Swift Coding Standards</a></li>
@@ -126,9 +126,9 @@
 </ul>
 <hr>
 <hr>
-<h1>C# Coding Standards</h1>
+<h1 id="c-coding-standards" tabindex="-1">C# Coding Standards</h1>
 <p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
-<h2>Class design</h2>
+<h2 id="class-design" tabindex="-1">Class design</h2>
 <ul>
 <li>Use abstract when you need a contract + shared implementation.</li>
 <li>Use virtual only when overriding is optional.</li>
@@ -141,7 +141,7 @@
 <li><code>virtual</code></li>
 <li>concrete</li>
 </ol>
-<h2>Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
+<h2 id="top-level-member-ordering-sa1201-sa1203-" tabindex="-1">Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
 <p>Within a class, struct, or interface, use this order:</p>
 <ol>
 <li>Constant Fields</li>
@@ -162,7 +162,7 @@
 <p>This helps separate state, behavior, and nested types clearly.</p>
 </blockquote>
 <hr>
-<h2>Access Modifier Ordering (SA1202)</h2>
+<h2 id="access-modifier-ordering-sa1202-" tabindex="-1">Access Modifier Ordering (SA1202)</h2>
 <p>Within each group above (e.g., methods or properties), order by access:</p>
 <ol>
 <li><code>public</code></li>
@@ -172,14 +172,14 @@
 <li><code>private</code></li>
 </ol>
 <hr>
-<h2>Static vs Instance (SA1204)</h2>
+<h2 id="static-vs-instance-sa1204-" tabindex="-1">Static vs Instance (SA1204)</h2>
 <p>Inside each access level, place static members first:</p>
 <ul>
 <li>Static</li>
 <li>Non-static</li>
 </ul>
 <hr>
-<h2>Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
+<h2 id="readonly-vs-non-readonly-fields-sa1214-sa1215-" tabindex="-1">Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
 <p>When declaring fields, order them as:</p>
 <ol>
 <li><code>readonly</code></li>
@@ -187,7 +187,7 @@
 </ol>
 <p>This rule helps you distinguish between immutable and mutable state.</p>
 <hr>
-<h2>Unrolled Method Example</h2>
+<h2 id="unrolled-method-example" tabindex="-1">Unrolled Method Example</h2>
 <p>Here’s how the <strong>methods</strong> section would look when fully expanded:</p>
 <ol>
 <li><code>public static</code> methods</li>
@@ -202,7 +202,7 @@
 <li><code>private</code> methods</li>
 </ol>
 <hr>
-<h2>LINQ usage</h2>
+<h2 id="linq-usage" tabindex="-1">LINQ usage</h2>
 <ul>
 <li>Use query syntax for readability in complex queries.</li>
 <li>Use method syntax (.Select, .Where) for short inline logic.</li>
@@ -211,13 +211,13 @@
 <li>Avoid async void except for event handlers.</li>
 </ul>
 <hr>
-<h2>Async/await</h2>
+<h2 id="async-await" tabindex="-1">Async/await</h2>
 <ul>
 <li>Always use Async suffix in method names.</li>
 <li>Avoid async void except for event handlers.</li>
 </ul>
 <hr>
-<h2>Handling Exceptions to the Rule</h2>
+<h2 id="handling-exceptions-to-the-rule" tabindex="-1">Handling Exceptions to the Rule</h2>
 <p>Sometimes you’ll want to <strong>group related members</strong> (like interface implementations) together, even if it breaks the standard order.</p>
 <p><strong>Best practice:</strong> use <strong>partial classes</strong> to separate those concerns cleanly.</p>
 <pre><code class="hljs csharp"><span class="hljs-comment">// File: MyClass.cs</span>
@@ -231,7 +231,7 @@
 }
 </code></pre>
 <hr>
-<h2>Example Class Layout</h2>
+<h2 id="example-class-layout" tabindex="-1">Example Class Layout</h2>
 <pre><code class="hljs csharp"><span class="hljs-comment">// Abstract base class demonstrating abstract and virtual members</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span>
 {
@@ -305,26 +305,26 @@
 </code></pre>
 <hr>
 <hr>
-<h1>Swift Coding Standards</h1>
+<h1 id="swift-coding-standards" tabindex="-1">Swift Coding Standards</h1>
 <p>Swift-specific coding standards and best practices will be added here to guide clean and maintainable Swift code development.</p>
-<h2>Naming Conventions</h2>
+<h2 id="naming-conventions" tabindex="-1">Naming Conventions</h2>
 <ul>
 <li>Use PascalCase for types (classes, structs, enums, protocols).</li>
 <li>Use camelCase for properties, variables, and functions.</li>
 </ul>
-<h2>Optionals Handling</h2>
+<h2 id="optionals-handling" tabindex="-1">Optionals Handling</h2>
 <ul>
 <li>Prefer <code>guard let</code> or <code>if let</code> to safely unwrap optionals.</li>
 <li>Avoid force unwrapping (<code>!</code>) unless absolutely sure the value is non-nil.</li>
 </ul>
-<h2>File Organization Order</h2>
+<h2 id="file-organization-order" tabindex="-1">File Organization Order</h2>
 <ul>
 <li>Imports</li>
 <li>Typealiases</li>
 <li>Structs and Classes</li>
 <li>Extensions</li>
 </ul>
-<h3>Example Swift Code</h3>
+<h3 id="example-swift-code" tabindex="-1">Example Swift Code</h3>
 <pre><code class="hljs swift"><span class="hljs-keyword">import</span> Foundation
 
 <span class="hljs-keyword">typealias</span> <span class="hljs-type">CompletionHandler</span> <span class="hljs-operator">=</span> (<span class="hljs-type">Bool</span>) -&gt; <span class="hljs-type">Void</span>
@@ -350,18 +350,18 @@
 </code></pre>
 <hr>
 <hr>
-<h1>VB.NET Coding Standards</h1>
-<h2>Naming</h2>
+<h1 id="vbnet-coding-standards" tabindex="-1">VB.NET Coding Standards</h1>
+<h2 id="naming" tabindex="-1">Naming</h2>
 <ul>
 <li>Keep PascalCase for methods, camelCase for locals.</li>
 </ul>
 <hr>
-<h2>Class order</h2>
+<h2 id="class-order" tabindex="-1">Class order</h2>
 <ul>
 <li>Fields → Properties → Constructors → Methods → Events.</li>
 </ul>
 <hr>
-<h2>Interop</h2>
+<h2 id="interop" tabindex="-1">Interop</h2>
 <ul>
 <li>Keep all P/Invoke declarations in a dedicated module.</li>
 </ul>
