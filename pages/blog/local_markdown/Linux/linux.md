@@ -72,8 +72,20 @@ chown user:group file.txt
 
 ## 📂 File & Directory Management
 ```bash
-# List files (long format, hidden files)
+# List all files and directories in the current directory (long format, hidden files)
 ls -la  
+
+# List all files and directories in the current directory (shows hidden files).
+ls -a
+
+# Show the directory you are currently working in.
+pwd
+
+# Move back one directory
+cd ..
+
+# Change to the previous Directory
+cd -
 
 # Change directory
 cd /path/to/dir  
