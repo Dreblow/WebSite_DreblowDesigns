@@ -191,6 +191,28 @@ The graphic below summarizes the most common multiplicity options you’ll see o
 > UML also supports custom cardinalities, like 3..5 or 0..10, if you want to define a more specific range.
 
 ## Aggregation
+Aggregation is a **special kind of association** that represents a **“has-a”** or **“part-of”** relationship, but with a twist. It tells us that one class is made up of other classes, but the parts can still live on their own.
+
+Here’s how to think about it:
+* `Class2` is a part of `Class1`.
+* You can have **many** instances of `Class2` connected to `Class1`.
+* But here’s the key: if `Class1` is destroyed, `Class2` doesn’t necessarily go down with it - **they each have their own lifecycles**.
+
+### In Plain English
+Let’s say a Team has many `Players`:
+```csharp
+Team 1 ----- * Player
+```
+* The Player can exist even if the Team is deleted.
+* A player could switch to another team, or exist without being on any team at all.
+
+In UML diagrams, aggregation is drawn as a **solid line** with a **hollow diamond** on the end **closest to the “whole” or “container” class**.
+
+So in this case, the diamond would be on the `Team` side, pointing toward `Player`:
+
+![UML Goodness picture](support/image12.png)
+
+## Composition
 
 
 # Diverging from UML Class diagram
