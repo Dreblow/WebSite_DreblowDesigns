@@ -125,3 +125,89 @@ Here are the main types of class relationships you’ll see in UML:
 
 ![UML Goodness picture](support/image7.png)
 
+## Inheritance (or Generalization):
+Inheritance (or generalization) is all about creating a relationship where one class **builds on top of another**. It defines an **“is-a"** relationship meaning the child class *is a type of* the parent class.
+
+Each subclass (or child class) **inherits** the properties and methods of its superclass (or parent class), but can also define its own specific behavior. So if you’ve got a Vehicle superclass, a Car subclass would inherit its core structure, but also add features like `openTrunk()` or `convertibleTop`.
+
+In UML:
+* The superclass is at the top, and subclasses branch from it.
+* Abstract class names are shown in *italics*.
+* The relationship is drawn as a **solid line** with a **hollow triangle arrowhead** pointing **upward to the parent class**.
+
+So in the example below:
+* `PowerController` and `Suspension` inherit from `Car`.
+* That means they automatically have all of SuperClass’s attributes and methods (unless they override them).
+
+![UML Goodness picture](support/image9.png)
+
+## Association
+An association in UML is a basic relationship between two classes. It shows that they’re connected in some way. You can think of it as a structural link between two objects that need to talk to each other or share data.
+
+In diagrams, associations are drawn as a solid line between two classes. The line often has a verb or short phrase on it (like “manages” or “uses”) to describe what kind of relationship it is, ideally something that makes sense in the real-world domain you’re modeling.
+
+A simple association is just a straight-up connection between two peer classes. One class may control or depend on the other, but they aren’t part of each other, they’re just related.
+
+For example:
+* `Class1` and `Class2` are connected.
+* `Class1` might be a `<<control>> class` (like a controller or manager).
+* `Class2` could be a `<<boundary>> class` (like a UI or API wrapper).
+* The association is shown as a solid line with no arrow, just a clean link between the two.
+
+This kind of relationship doesn’t imply ownership or hierarchy, it just means the two classes interact.
+
+![UML Goodness picture](support/image10.png)
+
+## Cardinality
+Cardinality — also called **multiplicity** — defines **how many instances** of one class can be associated with another. It’s a key part of association lines in UML, and it answers questions like:
+* Can one object be linked to just one other object?
+* Can it be linked to many?
+* Can many link to many?
+
+### Common Cardinality Types
+| **Type**  | **Notation**       | **What it Means** |
+|---------- |--------------      |-------------------|
+|One-to-One |1 to 1              |One instance of a class is connected to exactly one instance of another class.|
+|One-to-Many|1 to 0..* or 1 to * |One instance connects to multiple instances of another class.|
+|Many-to-Many|* to *             |Multiple instances of both classes can be connected to each other.|
+
+### In Plain English
+> * A one-to-one relationship might be:
+> <Br>Each **User** has exactly one **Profile**
+> <Br>(User 1 ----- 1 Profile)
+
+> * A **one-to-many** relationship could be:
+> <Br>One **Author** can write many **Books**
+> <Br>(Author 1 ----- * Books)
+
+> * A **many-to-many** relationship might be:
+> <BR>Students enroll in many **Courses**, and each **Course** has many Students
+> <Br>(Student * ----- * Course)
+
+The graphic below summarizes the most common multiplicity options you’ll see on association lines.
+
+![UML Goodness picture](support/image11.png)
+
+> UML also supports custom cardinalities, like 3..5 or 0..10, if you want to define a more specific range.
+
+## Aggregation
+
+
+# Diverging from UML Class diagram
+There are some items that are heavily used in development but don't show up in UMLs, such a enums (enumerations). Like any good tool, they are there to help us. This section, we free hand UML a bit to make it work for our needs.
+
+## Enumerations
+
+### UML Enum in Class Diagram Context
+
+You can also show a class that uses the enum like this:
+
+![UML Goodness picture](support/image8.png)
+
+* This shows PowerController has an attribute state that uses the PowerState enum.
+* The upward triangle ▲ is optional and can just represent dependency/use.
+
+Since you’re building your own visual sheet, feel free to:
+* Use a different background color (e.g. light yellow or green) for enums.
+* Use italics or bold to style the enum values.
+* Add a tiny icon or tag like E in the corner of the box if you want even faster visual scanning.
