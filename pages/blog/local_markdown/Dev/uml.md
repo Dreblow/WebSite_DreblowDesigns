@@ -213,7 +213,102 @@ So in this case, the diamond would be on the `Team` side, pointing toward `Playe
 ![UML Goodness picture](support/image12.png)
 
 ## Composition
+Composition is like **aggregation’s more intense sibling**, it also represents a “part-of” relationship, but with a much tighter bond.
 
+The key difference?
+If the whole is destroyed, the parts go down with it.
+
+So:
+* `Class2` is part of `Class1`, but it can’t exist on its own.
+* If you delete an object of `Class1`, its `Class2` parts are also destroyed.
+* The lifetimes of the objects are completely tied together.
+
+In a UML class diagram:
+* Composition is shown with a **solid line**
+* And a **filled (black) diamond** at the end **connected to the “whole” class**
+
+Meaning:
+
+> An Order contains one or more OrderItems, and if the Order is deleted, all OrderItems go with it.
+
+![UML Goodness picture](support/image13.png)
+
+## Dependency
+A **dependency** means that one class *uses* another, but only temporarily, like a one-off interaction inside a method. The dependent class doesn’t own or store the other one, it just calls on it when needed.
+
+So:
+* `Class1` depends on `Class2` if it calls a method from it, uses it as a parameter, or creates a temporary instance.
+* This isn’t a long-term relationship, it’s more like borrowing a tool rather than owning it.
+
+### When Does It Show Up?
+
+If `Class1` uses `Class2` inside a method, but doesn’t store it in a field or return it. That’s a **dependency**.
+```csharp
+func void doSomething(service: Logger) {
+    service.log("Just using this temporarily")
+}
+```
+Here, `Logger` isn’t stored. `doSomething()` just uses it briefly, that’s dependency.
+
+### Impact on Change
+
+You also have a **dependency** if:
+* A change in `Class2`’s interface (e.g. method name or signature) would force a change in `Class1`.
+* But not the other way around, the relationship is one-directional.
+
+![UML Goodness picture](support/image14.png)
+
+## Realization
+A **realization** is a relationship between an **interface** and the class that implements it. It’s like saying:
+
+> “Here’s what I promise to do…”
+> <Br>“…and here’s the class that actually does it.”
+
+You can think of it as the link between a blueprint and the concrete implementation.
+
+> Side note, concrete is the actual method being used, as opposed to `abstract` and/or `virtual` methods (depending on the language)
+
+### Real World Example
+Let’s say you have an interface called `Drivable`, which defines:
+* `turnOnAC()`
+* `driveTo(location: String)`
+
+Now imagine you have two classes:
+* `ElectricCar`
+* `GasolineCar`
+
+They both need to implement those methods, but they’ll do it in their own way. That’s a realization: both `ElectricCar` and `GasolineCar` realize the `Drivable` interface. Both `ElectricCar` and `GasolineCar` will at least implement `turnOnAC()` and `driveTo(location: String)`.
+
+In UML:
+* A realization is shown as a dashed line with a hollow triangle arrowhead.
+* The arrow points from the implementing class to the interface.
+
+This tells us:
+> “Both `ElectricCar` and `GasolineCar` realizes `Drivable` — it promises to implement everything defined by the interface.”
+
+![UML Goodness picture](support/image15.png)
+
+--- 
+
+# 🚗 UML Class Diagram Example: Car System
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
 
 # Diverging from UML Class diagram
 There are some items that are heavily used in development but don't show up in UMLs, such a enums (enumerations). Like any good tool, they are there to help us. This section, we free hand UML a bit to make it work for our needs.
