@@ -276,7 +276,8 @@ function scanForImagePaths(folders, content, inputPath, outputPath) {
     const ext = path.extname(imgPath).toLowerCase();
     const parts = imgPath.split('/');
 
-    if (parts.length > 1 && ext === '.png') {
+    const allowedExts = ['.png', '.webp'];
+    if (parts.length > 1 && allowedExts.includes(ext)) {
       const sourceDir = path.join(inputPath, parts[0]);
       const destDir = path.join(outputPath, parts[0]);
 
@@ -299,7 +300,8 @@ function copyImageFolders(folders) {
     }
     const files = fs.readdirSync(sourceDir);
     files.forEach(file => {
-      if (path.extname(file).toLowerCase() !== '.png') return;
+      const allowedExtensions = ['.png', '.webp'];
+      if (!allowedExtensions.includes(path.extname(file).toLowerCase())) return;
 
       const sourceFile = path.join(sourceDir, file);
       const destFile = path.join(destDir, file);

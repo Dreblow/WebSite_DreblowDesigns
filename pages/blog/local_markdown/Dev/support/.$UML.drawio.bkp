@@ -1322,7 +1322,7 @@
         <mxCell id="ZGvF1KiB2zJMt_TCO1bl-11" value="Rotary" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#E5ECF6;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="828" y="-172" width="186" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="ZGvF1KiB2zJMt_TCO1bl-12" value="+ isTurboRotor: bool" style="text;strokeColor=#9673a6;fillColor=#E5ECF6;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ZGvF1KiB2zJMt_TCO1bl-11">
+        <mxCell id="ZGvF1KiB2zJMt_TCO1bl-12" value="+ isTurboRotor: bool&lt;div&gt;+ isBillet: bool&lt;/div&gt;" style="text;strokeColor=#9673a6;fillColor=#E5ECF6;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ZGvF1KiB2zJMt_TCO1bl-11">
           <mxGeometry y="26" width="186" height="54" as="geometry" />
         </mxCell>
         <mxCell id="ZGvF1KiB2zJMt_TCO1bl-13" value="" style="text;strokeColor=#9673a6;fillColor=#E5ECF6;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ZGvF1KiB2zJMt_TCO1bl-11">

@@ -113,10 +113,10 @@
 <h2 id="example" tabindex="-1">Example</h2>
 <p>Let’s take a car as an example. A class might define a generic ‘Car’ with a set of attributes and behaviors. When we create a specific car say, a blue electric compact car, that’s an object: a concrete instance of the Car class.</p>
 <p>A car has properties which describe the car - size, color, Engine Type, Power as well as behaviors - TurnOn, Add Energy, and status. An object is an instance of a class.</p>
-<p><img src="support/image1.png" alt="UML Goodness picture"></p>
+<p><img src="support/image1.webp" alt="UML Goodness picture"></p>
 <h2 id="uml-class-notation" tabindex="-1">UML Class Notation</h2>
 <p>In UML, a class represents an idea or concept that bundles together both <strong>data (attributes)</strong> and <strong>functionality (methods or operations)</strong>. Each attribute has a specific data type (like <code>String</code>, <code>Int</code>, <code>Double</code>, etc.), and each method has a defined signature.  Meaning its name, parameters, and return type. The only thing that’s truly required is the class name, but adding attributes and methods gives the full picture.</p>
-<p><img src="support/image2.png" alt="UML Goodness picture"></p>
+<p><img src="support/image2.webp" alt="UML Goodness picture"></p>
 <h3 id="class-name-" tabindex="-1">Class Name:</h3>
 <ul>
 <li>The class name goes in the top section of the UML box.</li>
@@ -135,10 +135,10 @@
 <li>If a method takes parameters, their types are listed too (like setColor(color: String): void).</li>
 <li>These map directly to your class’s public functions or internal logic.</li>
 </ul>
-<p><img src="support/image3.png" alt="UML Goodness picture"></p>
+<p><img src="support/image3.webp" alt="UML Goodness picture"></p>
 <h2 id="class-visibility" tabindex="-1">Class Visibility</h2>
 <p>The +, - and # symbols before an attribute and operation name in a class denote the visibility of the attribute and operation.</p>
-<p><img src="support/image4.png" alt="UML Goodness picture"></p>
+<p><img src="support/image4.webp" alt="UML Goodness picture"></p>
 <ul>
 <li><code>+</code> denotes public attributes or operations</li>
 <li><code>-</code> denotes private attributes or operations</li>
@@ -146,7 +146,7 @@
 </ul>
 <h1 id="parameter-directionality" tabindex="-1">Parameter Directionality</h1>
 <p>Each parameter in an operation (method) may be denoted as <strong>in</strong>, <strong>out</strong> or <strong>inout</strong> which specifies its direction with respect to the caller. This directionality is shown before the parameter name.</p>
-<p><img src="support/image5.png" alt="UML Goodness picture"></p>
+<p><img src="support/image5.webp" alt="UML Goodness picture"></p>
 <table>
 <thead>
 <tr>
@@ -204,13 +204,13 @@
 <li><strong>Implementation</strong> – Gets into the actual class design, data structures, and logic.</li>
 </ul>
 <p>The deeper you go, the more detail your diagram shows. But at the end of the day, the only thing you have to include is the class name, everything else depends on how much you want to communicate at that stage.</p>
-<p><img src="support/image6.png" alt="UML Goodness picture"></p>
+<p><img src="support/image6.webp" alt="UML Goodness picture"></p>
 <h2 id="relationships-between-classes" tabindex="-1">Relationships between classes</h2>
 <p>A well-defined UML diagram can be directly mapped to actual code, making it easier to maintain the original design intent throughout implementation.</p>
 <p>In this section, we’ll look at the different types of relationships that can exist between classes. If you’re not familiar with them yet, no worries. That’s exactly what this part is for.</p>
 <p>Each class in your diagram can be connected to other classes through one or more relationships. These relationships represent how objects interact, depend on, or use each other — and they often translate directly into patterns in your programming language.</p>
 <p>Here are the main types of class relationships you’ll see in UML:</p>
-<p><img src="support/image7.png" alt="UML Goodness picture"></p>
+<p><img src="support/image7.webp" alt="UML Goodness picture"></p>
 <h2 id="inheritance-or-generalization-" tabindex="-1">Inheritance (or Generalization):</h2>
 <p>Inheritance (or generalization) is all about creating a relationship where one class <strong>builds on top of another</strong>. It defines an <strong>“is-a&quot;</strong> relationship meaning the child class <em>is a type of</em> the parent class.</p>
 <p>Each subclass (or child class) <strong>inherits</strong> the properties and methods of its superclass (or parent class), but can also define its own specific behavior. So if you’ve got a Vehicle superclass, a Car subclass would inherit its core structure, but also add features like <code>openTrunk()</code> or <code>convertibleTop</code>.</p>
@@ -225,7 +225,7 @@
 <li><code>PowerController</code> and <code>Suspension</code> inherit from <code>Car</code>.</li>
 <li>That means they automatically have all of SuperClass’s attributes and methods (unless they override them).</li>
 </ul>
-<p><img src="support/image9.png" alt="UML Goodness picture"></p>
+<p><img src="support/image9.webp" alt="UML Goodness picture"></p>
 <h2 id="association" tabindex="-1">Association</h2>
 <p>An association in UML is a basic relationship between two classes. It shows that they’re connected in some way. You can think of it as a structural link between two objects that need to talk to each other or share data.</p>
 <p>In diagrams, associations are drawn as a solid line between two classes. The line often has a verb or short phrase on it (like “manages” or “uses”) to describe what kind of relationship it is, ideally something that makes sense in the real-world domain you’re modeling.</p>
@@ -238,7 +238,7 @@
 <li>The association is shown as a solid line with no arrow, just a clean link between the two.</li>
 </ul>
 <p>This kind of relationship doesn’t imply ownership or hierarchy, it just means the two classes interact.</p>
-<p><img src="support/image10.png" alt="UML Goodness picture"></p>
+<p><img src="support/image10.webp" alt="UML Goodness picture"></p>
 <h2 id="cardinality" tabindex="-1">Cardinality</h2>
 <p>Cardinality — also called <strong>multiplicity</strong> — defines <strong>how many instances</strong> of one class can be associated with another. It’s a key part of association lines in UML, and it answers questions like:</p>
 <ul>
@@ -296,7 +296,7 @@
 </ul>
 </blockquote>
 <p>The graphic below summarizes the most common multiplicity options you’ll see on association lines.</p>
-<p><img src="support/image11.png" alt="UML Goodness picture"></p>
+<p><img src="support/image11.webp" alt="UML Goodness picture"></p>
 <blockquote>
 <p>UML also supports custom cardinalities, like 3..5 or 0..10, if you want to define a more specific range.</p>
 </blockquote>
@@ -318,7 +318,7 @@
 </ul>
 <p>In UML diagrams, aggregation is drawn as a <strong>solid line</strong> with a <strong>hollow diamond</strong> on the end <strong>closest to the “whole” or “container” class</strong>.</p>
 <p>So in this case, the diamond would be on the <code>Team</code> side, pointing toward <code>Player</code>:</p>
-<p><img src="support/image12.png" alt="UML Goodness picture"></p>
+<p><img src="support/image12.webp" alt="UML Goodness picture"></p>
 <h2 id="composition" tabindex="-1">Composition</h2>
 <p>Composition is like <strong>aggregation’s more intense sibling</strong>, it also represents a “part-of” relationship, but with a much tighter bond.</p>
 <p>The key difference?
@@ -338,7 +338,7 @@ If the whole is destroyed, the parts go down with it.</p>
 <blockquote>
 <p>An Order contains one or more OrderItems, and if the Order is deleted, all OrderItems go with it.</p>
 </blockquote>
-<p><img src="support/image13.png" alt="UML Goodness picture"></p>
+<p><img src="support/image13.webp" alt="UML Goodness picture"></p>
 <h2 id="dependency" tabindex="-1">Dependency</h2>
 <p>A <strong>dependency</strong> means that one class <em>uses</em> another, but only temporarily, like a one-off interaction inside a method. The dependent class doesn’t own or store the other one, it just calls on it when needed.</p>
 <p>So:</p>
@@ -359,7 +359,7 @@ If the whole is destroyed, the parts go down with it.</p>
 <li>A change in <code>Class2</code>’s interface (e.g. method name or signature) would force a change in <code>Class1</code>.</li>
 <li>But not the other way around, the relationship is one-directional.</li>
 </ul>
-<p><img src="support/image14.png" alt="UML Goodness picture"></p>
+<p><img src="support/image14.webp" alt="UML Goodness picture"></p>
 <h2 id="realization" tabindex="-1">Realization</h2>
 <p>A <strong>realization</strong> is a relationship between an <strong>interface</strong> and the class that implements it. It’s like saying:</p>
 <blockquote>
@@ -391,17 +391,17 @@ If the whole is destroyed, the parts go down with it.</p>
 <blockquote>
 <p>“Both <code>ElectricCar</code> and <code>GasolineCar</code> realizes <code>Drivable</code> — it promises to implement everything defined by the interface.”</p>
 </blockquote>
-<p><img src="support/image15.png" alt="UML Goodness picture"></p>
+<p><img src="support/image15.webp" alt="UML Goodness picture"></p>
 <hr>
 <h1 id="-uml-class-diagram-example-car-system" tabindex="-1">🚗 UML Class Diagram Example: Car System</h1>
-<p><img src="support/image16.png" alt="UML Goodness picture"></p>
+<p><img src="support/image16.webp" alt="UML Goodness picture"></p>
 <hr>
 <h1 id="diverging-from-uml-class-diagram" tabindex="-1">Diverging from UML Class diagram</h1>
 <p>There are some items that are heavily used in development but don't show up in UMLs, such a enums (enumerations). Like any good tool, they are there to help us. This section, we free hand UML a bit to make it work for our needs.</p>
 <h2 id="enumerations" tabindex="-1">Enumerations</h2>
 <h3 id="uml-enum-in-class-diagram-context" tabindex="-1">UML Enum in Class Diagram Context</h3>
 <p>You can also show a class that uses the enum like this:</p>
-<p><img src="support/image8.png" alt="UML Goodness picture"></p>
+<p><img src="support/image8.webp" alt="UML Goodness picture"></p>
 <ul>
 <li>This shows PowerController has an attribute state that uses the PowerState enum.</li>
 <li>The upward triangle ▲ is optional and can just represent dependency/use.</li>

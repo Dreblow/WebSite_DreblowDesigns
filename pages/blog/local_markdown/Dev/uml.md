@@ -30,12 +30,12 @@ Let’s take a car as an example. A class might define a generic ‘Car’ with 
 
 A car has properties which describe the car - size, color, Engine Type, Power as well as behaviors - TurnOn, Add Energy, and status. An object is an instance of a class.
 
-![UML Goodness picture](support/image1.png)
+![UML Goodness picture](support/image1.webp)
 
 ## UML Class Notation
 In UML, a class represents an idea or concept that bundles together both **data (attributes)** and **functionality (methods or operations)**. Each attribute has a specific data type (like `String`, `Int`, `Double`, etc.), and each method has a defined signature.  Meaning its name, parameters, and return type. The only thing that’s truly required is the class name, but adding attributes and methods gives the full picture.
 
-![UML Goodness picture](support/image2.png)
+![UML Goodness picture](support/image2.webp)
 
 ### Class Name:
 * The class name goes in the top section of the UML box.
@@ -52,12 +52,12 @@ In UML, a class represents an idea or concept that bundles together both **data 
 * If a method takes parameters, their types are listed too (like setColor(color: String): void).
 * These map directly to your class’s public functions or internal logic.
 
-![UML Goodness picture](support/image3.png)
+![UML Goodness picture](support/image3.webp)
 
 ## Class Visibility
 The +, - and # symbols before an attribute and operation name in a class denote the visibility of the attribute and operation.
 
-![UML Goodness picture](support/image4.png)
+![UML Goodness picture](support/image4.webp)
 
 * `+` denotes public attributes or operations
 * `-` denotes private attributes or operations
@@ -66,7 +66,7 @@ The +, - and # symbols before an attribute and operation name in a class denote 
 # Parameter Directionality
 Each parameter in an operation (method) may be denoted as **in**, **out** or **inout** which specifies its direction with respect to the caller. This directionality is shown before the parameter name.
 
-![UML Goodness picture](support/image5.png)
+![UML Goodness picture](support/image5.webp)
 
 |  **Keyword**  | **Direction** | **What it Means** |
 |:----------:   |:----------:   |----------         |
@@ -111,7 +111,7 @@ As you shift into actual software design, your focus moves toward the implementa
 
 The deeper you go, the more detail your diagram shows. But at the end of the day, the only thing you have to include is the class name, everything else depends on how much you want to communicate at that stage.
 
-![UML Goodness picture](support/image6.png)
+![UML Goodness picture](support/image6.webp)
 
 ## Relationships between classes
 A well-defined UML diagram can be directly mapped to actual code, making it easier to maintain the original design intent throughout implementation.
@@ -122,7 +122,7 @@ Each class in your diagram can be connected to other classes through one or more
 
 Here are the main types of class relationships you’ll see in UML:
 
-![UML Goodness picture](support/image7.png)
+![UML Goodness picture](support/image7.webp)
 
 ## Inheritance (or Generalization):
 Inheritance (or generalization) is all about creating a relationship where one class **builds on top of another**. It defines an **“is-a"** relationship meaning the child class *is a type of* the parent class.
@@ -138,7 +138,7 @@ So in the example below:
 * `PowerController` and `Suspension` inherit from `Car`.
 * That means they automatically have all of SuperClass’s attributes and methods (unless they override them).
 
-![UML Goodness picture](support/image9.png)
+![UML Goodness picture](support/image9.webp)
 
 ## Association
 An association in UML is a basic relationship between two classes. It shows that they’re connected in some way. You can think of it as a structural link between two objects that need to talk to each other or share data.
@@ -155,7 +155,7 @@ For example:
 
 This kind of relationship doesn’t imply ownership or hierarchy, it just means the two classes interact.
 
-![UML Goodness picture](support/image10.png)
+![UML Goodness picture](support/image10.webp)
 
 ## Cardinality
 Cardinality — also called **multiplicity** — defines **how many instances** of one class can be associated with another. It’s a key part of association lines in UML, and it answers questions like:
@@ -185,7 +185,7 @@ Cardinality — also called **multiplicity** — defines **how many instances** 
 
 The graphic below summarizes the most common multiplicity options you’ll see on association lines.
 
-![UML Goodness picture](support/image11.png)
+![UML Goodness picture](support/image11.webp)
 
 > UML also supports custom cardinalities, like 3..5 or 0..10, if you want to define a more specific range.
 
@@ -209,7 +209,7 @@ In UML diagrams, aggregation is drawn as a **solid line** with a **hollow diamon
 
 So in this case, the diamond would be on the `Team` side, pointing toward `Player`:
 
-![UML Goodness picture](support/image12.png)
+![UML Goodness picture](support/image12.webp)
 
 ## Composition
 Composition is like **aggregation’s more intense sibling**, it also represents a “part-of” relationship, but with a much tighter bond.
@@ -230,7 +230,7 @@ Meaning:
 
 > An Order contains one or more OrderItems, and if the Order is deleted, all OrderItems go with it.
 
-![UML Goodness picture](support/image13.png)
+![UML Goodness picture](support/image13.webp)
 
 ## Dependency
 A **dependency** means that one class *uses* another, but only temporarily, like a one-off interaction inside a method. The dependent class doesn’t own or store the other one, it just calls on it when needed.
@@ -255,7 +255,7 @@ You also have a **dependency** if:
 * A change in `Class2`’s interface (e.g. method name or signature) would force a change in `Class1`.
 * But not the other way around, the relationship is one-directional.
 
-![UML Goodness picture](support/image14.png)
+![UML Goodness picture](support/image14.webp)
 
 ## Realization
 A **realization** is a relationship between an **interface** and the class that implements it. It’s like saying:
@@ -285,13 +285,13 @@ In UML:
 This tells us:
 > “Both `ElectricCar` and `GasolineCar` realizes `Drivable` — it promises to implement everything defined by the interface.”
 
-![UML Goodness picture](support/image15.png)
+![UML Goodness picture](support/image15.webp)
 
 --- 
 
 # 🚗 UML Class Diagram Example: Car System
 
-![UML Goodness picture](support/image16.png)
+![UML Goodness picture](support/image16.webp)
 
 ---
 
@@ -304,7 +304,7 @@ There are some items that are heavily used in development but don't show up in U
 
 You can also show a class that uses the enum like this:
 
-![UML Goodness picture](support/image8.png)
+![UML Goodness picture](support/image8.webp)
 
 * This shows PowerController has an attribute state that uses the PowerState enum.
 * The upward triangle ▲ is optional and can just represent dependency/use.
