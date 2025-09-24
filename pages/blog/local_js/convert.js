@@ -274,12 +274,12 @@ function scanForImagePaths(folders, content, inputPath, outputPath) {
   while ((match = imagePathRegex.exec(content)) !== null) {
     const imgPath = match[1];
     const ext = path.extname(imgPath).toLowerCase();
-    const parts = imgPath.split('/');
 
     const allowedExts = ['.png', '.webp'];
-    if (parts.length > 1 && allowedExts.includes(ext)) {
-      const sourceDir = path.join(inputPath, parts[0]);
-      const destDir = path.join(outputPath, parts[0]);
+    if (allowedExts.includes(ext) && imgPath.includes('/')) {
+      const subfolder = path.dirname(imgPath);  // everything before the filename
+      const sourceDir = path.join(inputPath, subfolder);
+      const destDir = path.join(outputPath, subfolder);
 
       if (!folders.some(folder => folder.sourceDir === sourceDir && folder.destDir === destDir)) {
         console.log(`📁 Adding folder to copy list: ${sourceDir} -> ${destDir}`);
@@ -295,20 +295,23 @@ function copyImageFolders(folders) {
       console.warn(`Source directory does not exist: ${sourceDir}`);
       return;
     }
-    if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true });
-    }
-    const files = fs.readdirSync(sourceDir);
-    files.forEach(file => {
-      const allowedExtensions = ['.png', '.webp'];
-      if (!allowedExtensions.includes(path.extname(file).toLowerCase())) return;
 
-      const sourceFile = path.join(sourceDir, file);
-      const destFile = path.join(destDir, file);
+    fs.mkdirSync(destDir, { recursive: true });
 
-      if (fs.lstatSync(sourceFile).isFile()) {
-        fs.copyFileSync(sourceFile, destFile);
-        console.log(`Copied image: ${sourceFile} -> ${destFile}`);
+    const items = fs.readdirSync(sourceDir);
+    items.forEach(item => {
+      const srcPath = path.join(sourceDir, item);
+      const destPath = path.join(destDir, item);
+      const stat = fs.statSync(srcPath);
+
+      if (stat.isDirectory()) {
+        copyImageFolders([{ sourceDir: srcPath, destDir: destPath }]); // recurse
+      } else {
+        const ext = path.extname(item).toLowerCase();
+        if (['.png', '.webp'].includes(ext)) {
+          fs.copyFileSync(srcPath, destPath);
+          console.log(`Copied image: ${srcPath} -> ${destPath}`);
+        }
       }
     });
   });
