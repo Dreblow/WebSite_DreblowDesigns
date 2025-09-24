@@ -91,3 +91,21 @@ pre, code {
     border-radius: 6px;              /* pill shape */
     white-space: nowrap;             /* prevent wrapping */
   }
+
+/* Block Quote */
+blockquote {
+    border-left: 4px solid rgb(62, 68, 76);
+    padding: 0.1em 0.3em;
+    margin: 1em 0;
+    line-height: 1.3;
+    color: rgb(146, 152, 160);
+    border-radius: 4px;
+}
+
+blockquote p {
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 1em; /* Add this line for indentation */
+}
