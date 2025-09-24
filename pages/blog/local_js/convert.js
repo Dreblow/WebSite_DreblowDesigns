@@ -177,7 +177,7 @@ function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLO
     </script>
 
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css?v=3">
+    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css?v=4">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/${css}.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
