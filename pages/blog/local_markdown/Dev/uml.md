@@ -1,22 +1,21 @@
 ---
 title: UML - Unified Modeling Language
-description: A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.
-keywords: C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code
+description: A comprehensive guide to UML class diagrams and object-oriented design, covering relationships like inheritance, composition, aggregation, and more — with real-world code and car system examples.
+keywords: UML, Unified Modeling Language, class diagrams, inheritance, composition, aggregation, association, realization, dependency, polymorphism, object-oriented design, factory pattern
 author: Derek Dreblow
-version: 2025-09-21
+version: 2025-09-23
 categories:
-  - Software Development
-  - C#
-  - Swift
-  - VB.NET
+  - Software Architecture
+  - Object-Oriented Design
+  - UML
 tags:
-  - C#
-  - Swift
-  - VB.NET
-  - StyleCop
-  - Code Style
-  - Clean Code
-  - Best Practices
+  - UML
+  - Class Diagrams
+  - Software Design
+  - Object-Oriented Programming
+  - Clean Architecture
+  - Code Documentation
+  - Software Modeling
 ---
 
 # UML - Unified Modeling Language
@@ -292,21 +291,7 @@ This tells us:
 
 # 🚗 UML Class Diagram Example: Car System
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![UML Goodness picture](support/image16.png)
 
 ---
 

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive guide to UML class diagrams and object-oriented design, covering relationships like inheritance, composition, aggregation, and more — with real-world code and car system examples.">
+    <meta name="author" content="Derek Dreblow">
+    <title>Dreblow Design - UML - Unified Modeling Language blog</title>
+    <meta name="keywords" content="UML, Unified Modeling Language, class diagrams, inheritance, composition, aggregation, association, realization, dependency, polymorphism, object-oriented design, factory pattern">
+    <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/uml.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="UML - Unified Modeling Language">
+    <meta property="og:description" content="A comprehensive guide to UML class diagrams and object-oriented design, covering relationships like inheritance, composition, aggregation, and more — with real-world code and car system examples.">
+    <meta property="og:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/uml.html">
+    <meta property="og:type" content="website">
+
+    <!-- Jason LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "UML - Unified Modeling Language",
+      "description": "A comprehensive guide to UML class diagrams and object-oriented design, covering relationships like inheritance, composition, aggregation, and more — with real-world code and car system examples.",
+      "author": {
+        "@type": "Person",
+        "name": "Derek Dreblow"
+      },
+      "keywords": [
+        "UML",
+        "Class Diagrams",
+        "Software Design",
+        "Object-Oriented Programming",
+        "Clean Architecture",
+        "Code Documentation",
+        "Software Modeling"
+      ],
+      "articleSection": [
+        "Software Architecture",
+        "Object-Oriented Design",
+        "UML"
+      ],
+      "datePublished": "2025-09-23T00:00:00.000Z",
+      "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
+      "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Dev/uml.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dreblow Designs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UML - Unified Modeling Language">
+    <meta name="twitter:description" content="A comprehensive guide to UML class diagrams and object-oriented design, covering relationships like inheritance, composition, aggregation, and more — with real-world code and car system examples.">
+    <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+
+    <!-- Default favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
+    <link rel="shortcut icon" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon.ico" />
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" type="image/png" href="https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css?v=2">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Sep 22, 2025</em></p>
+            <h1 id="uml-unified-modeling-language" tabindex="-1">UML - Unified Modeling Language</h1>
+<h2 id="what-is-a-class-" tabindex="-1">What is a Class?</h2>
+<p>A class is like a set of blueprints. It defines the structure and behavior of something, but it isn’t the actual thing itself. In object-oriented programming, we use classes to create objects. The object is the thing that lives and operates in your program. It holds data and performs actions but it’s the class that defines what kind of object it is, and what it’s capable of doing.</p>
+<p>You can think of a class as a design, and objects as real-world instances of that design. Every object built from the same class has the same components: properties (state) and methods (behavior). This relationship is at the heart of object-oriented design. It’s not really about the objects themselves, but about the structure (the class) that makes those objects possible.</p>
+<h2 id="example" tabindex="-1">Example</h2>
+<p>Let’s take a car as an example. A class might define a generic ‘Car’ with a set of attributes and behaviors. When we create a specific car say, a blue electric compact car, that’s an object: a concrete instance of the Car class.</p>
+<p>A car has properties which describe the car - size, color, Engine Type, Power as well as behaviors - TurnOn, Add Energy, and status. An object is an instance of a class.</p>
+<p><img src="support/image1.png" alt="UML Goodness picture"></p>
+<h2 id="uml-class-notation" tabindex="-1">UML Class Notation</h2>
+<p>In UML, a class represents an idea or concept that bundles together both <strong>data (attributes)</strong> and <strong>functionality (methods or operations)</strong>. Each attribute has a specific data type (like <code>String</code>, <code>Int</code>, <code>Double</code>, etc.), and each method has a defined signature.  Meaning its name, parameters, and return type. The only thing that’s truly required is the class name, but adding attributes and methods gives the full picture.</p>
+<p><img src="support/image2.png" alt="UML Goodness picture"></p>
+<h3 id="class-name-" tabindex="-1">Class Name:</h3>
+<ul>
+<li>The class name goes in the top section of the UML box.</li>
+<li>This is the only thing that’s required, it’s the identity of your class.</li>
+</ul>
+<h3 id="class-attributes-" tabindex="-1">Class Attributes:</h3>
+<ul>
+<li>Attributes (also called properties or fields) are listed in the second section.</li>
+<li>Each attribute shows its name followed by a colon and its type (like color: String).</li>
+<li>These represent the member variables you’d see in code.</li>
+</ul>
+<h3 id="class-operations-methods-" tabindex="-1">Class Operations (Methods):</h3>
+<ul>
+<li>Methods go in the third section. This is where the class shows what it can do.</li>
+<li>The return type of each method is listed after the colon at the end of the method.</li>
+<li>If a method takes parameters, their types are listed too (like setColor(color: String): void).</li>
+<li>These map directly to your class’s public functions or internal logic.</li>
+</ul>
+<p><img src="support/image3.png" alt="UML Goodness picture"></p>
+<h2 id="class-visibility" tabindex="-1">Class Visibility</h2>
+<p>The +, - and # symbols before an attribute and operation name in a class denote the visibility of the attribute and operation.</p>
+<p><img src="support/image4.png" alt="UML Goodness picture"></p>
+<ul>
+<li><code>+</code> denotes public attributes or operations</li>
+<li><code>-</code> denotes private attributes or operations</li>
+<li><code>#</code> denotes protected attributes or operations</li>
+</ul>
+<h1 id="parameter-directionality" tabindex="-1">Parameter Directionality</h1>
+<p>Each parameter in an operation (method) may be denoted as <strong>in</strong>, <strong>out</strong> or <strong>inout</strong> which specifies its direction with respect to the caller. This directionality is shown before the parameter name.</p>
+<p><img src="support/image5.png" alt="UML Goodness picture"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Keyword</strong></th>
+<th style="text-align:center"><strong>Direction</strong></th>
+<th><strong>What it Means</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>in</code></td>
+<td style="text-align:center">Input</td>
+<td>The method uses the value passed in, but doesn’t change it.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>out</code></td>
+<td style="text-align:center">Output</td>
+<td>The method doesn’t use the parameter as input, but sets it before returning.</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>inout</code></td>
+<td style="text-align:center">Both</td>
+<td>The method uses the parameter and may modify it before returning</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-1" tabindex="-1">Example</h3>
+<p>Let’s say you have this in a UML diagram:</p>
+<pre><code class="hljs csharp">+calculateDiscount(<span class="hljs-keyword">in</span> price: Double, <span class="hljs-keyword">out</span> discount: Double)
+</code></pre>
+<p>That tells us:</p>
+<ul>
+<li>The method needs a price as input.</li>
+<li>It computes a <code>discount</code>, which gets returned via the <code>discount</code> parameter.</li>
+</ul>
+<p>If it were <code>inout discount: Double</code>, then:</p>
+<ul>
+<li>The method could read and update the value of <code>discount</code>.</li>
+</ul>
+<p>As oppose to:</p>
+<pre><code class="hljs csharp">+calculateDiscount(<span class="hljs-keyword">in</span> price: Double, <span class="hljs-keyword">in</span> discount: Double) : <span class="hljs-built_in">int</span>
+</code></pre>
+<ul>
+<li>Both <code>price</code> and <code>discount</code> do not get changed, and the function returns a new <code>int</code> value.</li>
+</ul>
+<h2 id="perspectives-of-class-diagram" tabindex="-1">Perspectives of Class Diagram</h2>
+<p>How you draw or interpret a class diagram depends on where you are in the development process.</p>
+<p>At the very beginning, like when you’re building a domain model, you’re usually focused on the conceptual side, just identifying key ideas or real-world things your system needs to know about.</p>
+<p>Once you’re deeper into the analysis phase, you might start blending conceptual and specification perspectives. This is where you not only define what things are, but also what kind of behavior or interfaces they expose.</p>
+<p>As you shift into actual software design, your focus moves toward the implementation perspective, where you care about the specifics of how classes work under the hood, how data is stored, and how methods are built out.</p>
+<h3 id="the-three-perspectives-" tabindex="-1">The Three Perspectives:</h3>
+<ul>
+<li><strong>Conceptual</strong> – High-level view of the domain. Focuses on real-world concepts, not code.</li>
+<li><strong>Specification</strong> – Focuses on the software’s interfaces (like what methods a class exposes).</li>
+<li><strong>Implementation</strong> – Gets into the actual class design, data structures, and logic.</li>
+</ul>
+<p>The deeper you go, the more detail your diagram shows. But at the end of the day, the only thing you have to include is the class name, everything else depends on how much you want to communicate at that stage.</p>
+<p><img src="support/image6.png" alt="UML Goodness picture"></p>
+<h2 id="relationships-between-classes" tabindex="-1">Relationships between classes</h2>
+<p>A well-defined UML diagram can be directly mapped to actual code, making it easier to maintain the original design intent throughout implementation.</p>
+<p>In this section, we’ll look at the different types of relationships that can exist between classes. If you’re not familiar with them yet, no worries. That’s exactly what this part is for.</p>
+<p>Each class in your diagram can be connected to other classes through one or more relationships. These relationships represent how objects interact, depend on, or use each other — and they often translate directly into patterns in your programming language.</p>
+<p>Here are the main types of class relationships you’ll see in UML:</p>
+<p><img src="support/image7.png" alt="UML Goodness picture"></p>
+<h2 id="inheritance-or-generalization-" tabindex="-1">Inheritance (or Generalization):</h2>
+<p>Inheritance (or generalization) is all about creating a relationship where one class <strong>builds on top of another</strong>. It defines an <strong>“is-a&quot;</strong> relationship meaning the child class <em>is a type of</em> the parent class.</p>
+<p>Each subclass (or child class) <strong>inherits</strong> the properties and methods of its superclass (or parent class), but can also define its own specific behavior. So if you’ve got a Vehicle superclass, a Car subclass would inherit its core structure, but also add features like <code>openTrunk()</code> or <code>convertibleTop</code>.</p>
+<p>In UML:</p>
+<ul>
+<li>The superclass is at the top, and subclasses branch from it.</li>
+<li>Abstract class names are shown in <em>italics</em>.</li>
+<li>The relationship is drawn as a <strong>solid line</strong> with a <strong>hollow triangle arrowhead</strong> pointing <strong>upward to the parent class</strong>.</li>
+</ul>
+<p>So in the example below:</p>
+<ul>
+<li><code>PowerController</code> and <code>Suspension</code> inherit from <code>Car</code>.</li>
+<li>That means they automatically have all of SuperClass’s attributes and methods (unless they override them).</li>
+</ul>
+<p><img src="support/image9.png" alt="UML Goodness picture"></p>
+<h2 id="association" tabindex="-1">Association</h2>
+<p>An association in UML is a basic relationship between two classes. It shows that they’re connected in some way. You can think of it as a structural link between two objects that need to talk to each other or share data.</p>
+<p>In diagrams, associations are drawn as a solid line between two classes. The line often has a verb or short phrase on it (like “manages” or “uses”) to describe what kind of relationship it is, ideally something that makes sense in the real-world domain you’re modeling.</p>
+<p>A simple association is just a straight-up connection between two peer classes. One class may control or depend on the other, but they aren’t part of each other, they’re just related.</p>
+<p>For example:</p>
+<ul>
+<li><code>Class1</code> and <code>Class2</code> are connected.</li>
+<li><code>Class1</code> might be a <code>&lt;&lt;control&gt;&gt; class</code> (like a controller or manager).</li>
+<li><code>Class2</code> could be a <code>&lt;&lt;boundary&gt;&gt; class</code> (like a UI or API wrapper).</li>
+<li>The association is shown as a solid line with no arrow, just a clean link between the two.</li>
+</ul>
+<p>This kind of relationship doesn’t imply ownership or hierarchy, it just means the two classes interact.</p>
+<p><img src="support/image10.png" alt="UML Goodness picture"></p>
+<h2 id="cardinality" tabindex="-1">Cardinality</h2>
+<p>Cardinality — also called <strong>multiplicity</strong> — defines <strong>how many instances</strong> of one class can be associated with another. It’s a key part of association lines in UML, and it answers questions like:</p>
+<ul>
+<li>Can one object be linked to just one other object?</li>
+<li>Can it be linked to many?</li>
+<li>Can many link to many?</li>
+</ul>
+<h3 id="common-cardinality-types" tabindex="-1">Common Cardinality Types</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Type</strong></th>
+<th><strong>Notation</strong></th>
+<th><strong>What it Means</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-to-One</td>
+<td>1 to 1</td>
+<td>One instance of a class is connected to exactly one instance of another class.</td>
+</tr>
+<tr>
+<td>One-to-Many</td>
+<td>1 to 0..* or 1 to *</td>
+<td>One instance connects to multiple instances of another class.</td>
+</tr>
+<tr>
+<td>Many-to-Many</td>
+<td>* to *</td>
+<td>Multiple instances of both classes can be connected to each other.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="in-plain-english" tabindex="-1">In Plain English</h3>
+<blockquote>
+<ul>
+<li>A one-to-one relationship might be:
+&lt;Br&gt;Each <strong>User</strong> has exactly one <strong>Profile</strong>
+&lt;Br&gt;(User 1 ----- 1 Profile)</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>A <strong>one-to-many</strong> relationship could be:
+&lt;Br&gt;One <strong>Author</strong> can write many <strong>Books</strong>
+&lt;Br&gt;(Author 1 ----- * Books)</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>A <strong>many-to-many</strong> relationship might be:
+&lt;BR&gt;Students enroll in many <strong>Courses</strong>, and each <strong>Course</strong> has many Students
+&lt;Br&gt;(Student * ----- * Course)</li>
+</ul>
+</blockquote>
+<p>The graphic below summarizes the most common multiplicity options you’ll see on association lines.</p>
+<p><img src="support/image11.png" alt="UML Goodness picture"></p>
+<blockquote>
+<p>UML also supports custom cardinalities, like 3..5 or 0..10, if you want to define a more specific range.</p>
+</blockquote>
+<h2 id="aggregation" tabindex="-1">Aggregation</h2>
+<p>Aggregation is a <strong>special kind of association</strong> that represents a <strong>“has-a”</strong> or <strong>“part-of”</strong> relationship, but with a twist. It tells us that one class is made up of other classes, but the parts can still live on their own.</p>
+<p>Here’s how to think about it:</p>
+<ul>
+<li><code>Class2</code> is a part of <code>Class1</code>.</li>
+<li>You can have <strong>many</strong> instances of <code>Class2</code> connected to <code>Class1</code>.</li>
+<li>But here’s the key: if <code>Class1</code> is destroyed, <code>Class2</code> doesn’t necessarily go down with it - <strong>they each have their own lifecycles</strong>.</li>
+</ul>
+<h3 id="in-plain-english-1" tabindex="-1">In Plain English</h3>
+<p>Let’s say a Team has many <code>Players</code>:</p>
+<pre><code class="hljs csharp">Team <span class="hljs-number">1</span> ----- * Player
+</code></pre>
+<ul>
+<li>The Player can exist even if the Team is deleted.</li>
+<li>A player could switch to another team, or exist without being on any team at all.</li>
+</ul>
+<p>In UML diagrams, aggregation is drawn as a <strong>solid line</strong> with a <strong>hollow diamond</strong> on the end <strong>closest to the “whole” or “container” class</strong>.</p>
+<p>So in this case, the diamond would be on the <code>Team</code> side, pointing toward <code>Player</code>:</p>
+<p><img src="support/image12.png" alt="UML Goodness picture"></p>
+<h2 id="composition" tabindex="-1">Composition</h2>
+<p>Composition is like <strong>aggregation’s more intense sibling</strong>, it also represents a “part-of” relationship, but with a much tighter bond.</p>
+<p>The key difference?
+If the whole is destroyed, the parts go down with it.</p>
+<p>So:</p>
+<ul>
+<li><code>Class2</code> is part of <code>Class1</code>, but it can’t exist on its own.</li>
+<li>If you delete an object of <code>Class1</code>, its <code>Class2</code> parts are also destroyed.</li>
+<li>The lifetimes of the objects are completely tied together.</li>
+</ul>
+<p>In a UML class diagram:</p>
+<ul>
+<li>Composition is shown with a <strong>solid line</strong></li>
+<li>And a <strong>filled (black) diamond</strong> at the end <strong>connected to the “whole” class</strong></li>
+</ul>
+<p>Meaning:</p>
+<blockquote>
+<p>An Order contains one or more OrderItems, and if the Order is deleted, all OrderItems go with it.</p>
+</blockquote>
+<p><img src="support/image13.png" alt="UML Goodness picture"></p>
+<h2 id="dependency" tabindex="-1">Dependency</h2>
+<p>A <strong>dependency</strong> means that one class <em>uses</em> another, but only temporarily, like a one-off interaction inside a method. The dependent class doesn’t own or store the other one, it just calls on it when needed.</p>
+<p>So:</p>
+<ul>
+<li><code>Class1</code> depends on <code>Class2</code> if it calls a method from it, uses it as a parameter, or creates a temporary instance.</li>
+<li>This isn’t a long-term relationship, it’s more like borrowing a tool rather than owning it.</li>
+</ul>
+<h3 id="when-does-it-show-up-" tabindex="-1">When Does It Show Up?</h3>
+<p>If <code>Class1</code> uses <code>Class2</code> inside a method, but doesn’t store it in a field or return it. That’s a <strong>dependency</strong>.</p>
+<pre><code class="hljs csharp"><span class="hljs-function">func <span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params">service: Logger</span>)</span> {
+    service.log(<span class="hljs-string">&quot;Just using this temporarily&quot;</span>)
+}
+</code></pre>
+<p>Here, <code>Logger</code> isn’t stored. <code>doSomething()</code> just uses it briefly, that’s dependency.</p>
+<h3 id="impact-on-change" tabindex="-1">Impact on Change</h3>
+<p>You also have a <strong>dependency</strong> if:</p>
+<ul>
+<li>A change in <code>Class2</code>’s interface (e.g. method name or signature) would force a change in <code>Class1</code>.</li>
+<li>But not the other way around, the relationship is one-directional.</li>
+</ul>
+<p><img src="support/image14.png" alt="UML Goodness picture"></p>
+<h2 id="realization" tabindex="-1">Realization</h2>
+<p>A <strong>realization</strong> is a relationship between an <strong>interface</strong> and the class that implements it. It’s like saying:</p>
+<blockquote>
+<p>“Here’s what I promise to do…”
+&lt;Br&gt;“…and here’s the class that actually does it.”</p>
+</blockquote>
+<p>You can think of it as the link between a blueprint and the concrete implementation.</p>
+<blockquote>
+<p>Side note, concrete is the actual method being used, as opposed to <code>abstract</code> and/or <code>virtual</code> methods (depending on the language)</p>
+</blockquote>
+<h3 id="real-world-example" tabindex="-1">Real World Example</h3>
+<p>Let’s say you have an interface called <code>Drivable</code>, which defines:</p>
+<ul>
+<li><code>turnOnAC()</code></li>
+<li><code>driveTo(location: String)</code></li>
+</ul>
+<p>Now imagine you have two classes:</p>
+<ul>
+<li><code>ElectricCar</code></li>
+<li><code>GasolineCar</code></li>
+</ul>
+<p>They both need to implement those methods, but they’ll do it in their own way. That’s a realization: both <code>ElectricCar</code> and <code>GasolineCar</code> realize the <code>Drivable</code> interface. Both <code>ElectricCar</code> and <code>GasolineCar</code> will at least implement <code>turnOnAC()</code> and <code>driveTo(location: String)</code>.</p>
+<p>In UML:</p>
+<ul>
+<li>A realization is shown as a dashed line with a hollow triangle arrowhead.</li>
+<li>The arrow points from the implementing class to the interface.</li>
+</ul>
+<p>This tells us:</p>
+<blockquote>
+<p>“Both <code>ElectricCar</code> and <code>GasolineCar</code> realizes <code>Drivable</code> — it promises to implement everything defined by the interface.”</p>
+</blockquote>
+<p><img src="support/image15.png" alt="UML Goodness picture"></p>
+<hr>
+<h1 id="-uml-class-diagram-example-car-system" tabindex="-1">🚗 UML Class Diagram Example: Car System</h1>
+<p><img src="support/image16.png" alt="UML Goodness picture"></p>
+<hr>
+<h1 id="diverging-from-uml-class-diagram" tabindex="-1">Diverging from UML Class diagram</h1>
+<p>There are some items that are heavily used in development but don't show up in UMLs, such a enums (enumerations). Like any good tool, they are there to help us. This section, we free hand UML a bit to make it work for our needs.</p>
+<h2 id="enumerations" tabindex="-1">Enumerations</h2>
+<h3 id="uml-enum-in-class-diagram-context" tabindex="-1">UML Enum in Class Diagram Context</h3>
+<p>You can also show a class that uses the enum like this:</p>
+<p><img src="support/image8.png" alt="UML Goodness picture"></p>
+<ul>
+<li>This shows PowerController has an attribute state that uses the PowerState enum.</li>
+<li>The upward triangle ▲ is optional and can just represent dependency/use.</li>
+</ul>
+<p>Since you’re building your own visual sheet, feel free to:</p>
+<ul>
+<li>Use a different background color (e.g. light yellow or green) for enums.</li>
+<li>Use italics or bold to style the enum values.</li>
+<li>Add a tiny icon or tag like E in the corner of the box if you want even faster visual scanning.</li>
+</ul>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://leetcode.com/u/dreblow/" target="_blank">
+                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+</body>
+</html>

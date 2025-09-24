@@ -15,6 +15,8 @@ const ROOT_BLOG_DIR = "../"
 const inputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_markdown');
 const outputDir = path.join(__dirname, ROOT_BLOG_DIR + 'local_html');
 
+const imageFoldersToCopy = [];
+
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
@@ -35,6 +37,8 @@ function processDirectory(inputPath, outputPath) {
     } else if (path.extname(item) === '.md') {
       const fileContent = fs.readFileSync(itemPath, 'utf-8');
       const { data: frontMatter, content } = matter(fileContent);
+
+      scanForImagePaths(imageFoldersToCopy, content, inputPath, outputPath);
 
       const htmlFileName = `${path.basename(item, '.md')}.html`;
       const outputFilePath = path.join(outputPath, htmlFileName);
@@ -67,6 +71,7 @@ function processDirectory(inputPath, outputPath) {
 }
 
 processDirectory(inputDir, outputDir);
+copyImageFolders(imageFoldersToCopy);
 console.log("✅ Completed generating blog");
 
 // ********** Supporting Functions ********** //
@@ -260,4 +265,49 @@ function formatJasonLD(meta, relativeUrl) {
   return `<script type="application/ld+json">
 ${jsonString}
     </script>`;
+}
+
+function scanForImagePaths(folders, content, inputPath, outputPath) {
+  const imagePathRegex = /!\[.*?\]\((.*?)\)/g;
+  let match;
+
+  while ((match = imagePathRegex.exec(content)) !== null) {
+    const imgPath = match[1];
+    const ext = path.extname(imgPath).toLowerCase();
+    const parts = imgPath.split('/');
+
+    if (parts.length > 1 && ext === '.png') {
+      const sourceDir = path.join(inputPath, parts[0]);
+      const destDir = path.join(outputPath, parts[0]);
+
+      if (!folders.some(folder => folder.sourceDir === sourceDir && folder.destDir === destDir)) {
+        console.log(`📁 Adding folder to copy list: ${sourceDir} -> ${destDir}`);
+        folders.push({ sourceDir, destDir });
+      }
+    }
+  }
+}
+
+function copyImageFolders(folders) {
+  folders.forEach(({ sourceDir, destDir }) => {
+    if (!fs.existsSync(sourceDir)) {
+      console.warn(`Source directory does not exist: ${sourceDir}`);
+      return;
+    }
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir, { recursive: true });
+    }
+    const files = fs.readdirSync(sourceDir);
+    files.forEach(file => {
+      if (path.extname(file).toLowerCase() !== '.png') return;
+
+      const sourceFile = path.join(sourceDir, file);
+      const destFile = path.join(destDir, file);
+
+      if (fs.lstatSync(sourceFile).isFile()) {
+        fs.copyFileSync(sourceFile, destFile);
+        console.log(`Copied image: ${sourceFile} -> ${destFile}`);
+      }
+    });
+  });
 }
