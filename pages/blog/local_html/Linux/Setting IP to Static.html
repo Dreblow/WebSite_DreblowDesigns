@@ -37,7 +37,7 @@
         "Ubuntu Server",
         "Networking"
       ],
-      "datePublished": "2024-12-14T00:00:00.000Z",
+      "datePublished": "2025-09-30T00:00:00.000Z",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/Setting IP to Static.html",
       "publisher": {
@@ -101,7 +101,7 @@
     </header>
     <main class="markdown-body">
         <article>
-            <p><em class="blogVersion">Version: Dec 13, 2024</em></p>
+            <p><em class="blogVersion">Version: Sep 29, 2025</em></p>
             <h1 id="setting-a-static-ip-address-on-ubuntu-server" tabindex="-1">Setting a Static IP Address on Ubuntu Server</h1>
 <h2 id="1-identify-network-interface-details" tabindex="-1">1. Identify Network Interface Details</h2>
 <ul>
@@ -136,15 +136,21 @@
   <span class="hljs-attr">version:</span> <span class="hljs-number">2</span>
   <span class="hljs-attr">ethernets:</span>
     <span class="hljs-attr">eth0:</span>                   <span class="hljs-comment"># Replace with your interface name</span>
+      <span class="hljs-attr">dhcp4:</span> <span class="hljs-literal">false</span>
       <span class="hljs-attr">addresses:</span>
         <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">/24</span>   <span class="hljs-comment"># Replace with your desired IP and subnet mask</span>
       <span class="hljs-attr">routes:</span>
-        <span class="hljs-bullet">-</span> <span class="hljs-attr">to:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">/0</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">to:</span> <span class="hljs-string">default</span>
           <span class="hljs-attr">via:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>   <span class="hljs-comment"># Replace with your gateway</span>
       <span class="hljs-attr">nameservers:</span>
         <span class="hljs-attr">addresses:</span>
           <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.8</span><span class="hljs-number">.8</span>          <span class="hljs-comment"># Google DNS</span>
           <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.4</span><span class="hljs-number">.4</span>
+
+    <span class="hljs-attr">eth1:</span>
+      <span class="hljs-attr">dhcp4:</span> <span class="hljs-literal">false</span>
+      <span class="hljs-attr">addresses:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-number">10.10</span><span class="hljs-number">.10</span><span class="hljs-number">.1</span><span class="hljs-string">/24</span>       <span class="hljs-comment"># second NIC, this example is a private network</span>
 </code></pre>
 </li>
 </ul>
@@ -179,20 +185,63 @@
 </ul>
 </li>
 </ul>
-<h2 id="8-optional-disable-dhcp-if-needed-" tabindex="-1">8. Optional: Disable DHCP (if needed)</h2>
-<ul>
-<li>
-<p>If your network was using DHCP and you're switching to a static IP, ensure that DHCP is disabled for the interface.</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">dhcp4:</span> <span class="hljs-literal">false</span>
-</code></pre>
-</li>
-</ul>
-<h2 id="9-restart-network-services" tabindex="-1">9. Restart Network Services</h2>
+<h2 id="8-restart-network-services" tabindex="-1">8. Restart Network Services</h2>
 <ul>
 <li>If issues persist, restart the network service:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart systemd-networkd
 </code></pre>
 </li>
 </ul>
+<h2 id="9-optional-enable-forwarding" tabindex="-1">9. Optional: Enable forwarding</h2>
+<ul>
+<li>
+<p>When you enable IP forwarding, Linux begins routing traffic between interfaces (e.g., from your <code>192.168.1.0/24</code> network to your <code>10.10.10.0/24</code> network).
+This is required if Node 1 is acting as a gateway or bridge between your LAN and your direct private network link.</p>
+</li>
+<li>
+<p>For example, lets say <code>node 1</code> is your webserver, and <code>node 2</code> is a NAS, and you decide to private and direct connect <code>node 1</code> and <code>node 2</code> together. This private connection is <code>10.10.10.0</code> and your other network your workstation is on <code>192.168.1.0</code>. How to get access <code>10.10.10.0</code>? We can use <code>node 1</code> to forward packets instead of an all out gateway, but your workstation needs to know this.</p>
+</li>
+</ul>
+<p>On node 1</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;net.ipv4.ip_forward=1&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/sysctl.conf
+<span class="hljs-built_in">sudo</span> sysctl -p
+</code></pre>
+<h5 id="on-macos-workstation-temporary" tabindex="-1">On MacOS workstation - temporary</h5>
+<ul>
+<li><code>node 1</code> ip address example is <code>192.168.1.50</code></li>
+</ul>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> route -n add 10.10.10.0/24 192.168.1.50
+</code></pre>
+<h5 id="on-macos-workstation-permanent" tabindex="-1">On MacOS workstation - permanent</h5>
+<p>Create a file</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /Library/LaunchDaemons/com.local.staticroutes.plist
+</code></pre>
+<p>Add:</p>
+<pre><code class="hljs plist"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">plist</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
+  <span class="hljs-string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.0&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>com.local.staticroutes<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>ProgramArguments<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>/sbin/route<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>-n<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>add<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>10.10.10.0/24<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>192.168.2.50<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>RunAtLoad<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">true</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span>
+</code></pre>
+<p>Then load it:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> launchctl load /Library/LaunchDaemons/com.local.staticroutes.plist
+</code></pre>
+<p>Now it’ll reapply at every boot.</p>
+<h5 id="test-it" tabindex="-1">Test it</h5>
+<p>You should be able to ping the private network, assuming we made <code>node 1</code> second NIC <code>10.10.10.1</code> and <code>node 2</code> <code>10.10.10.2</code></p>
+<pre><code class="hljs bash">ping 10.10.10.2
+</code></pre>
 
         </article>
     </main>
