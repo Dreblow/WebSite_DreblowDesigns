@@ -35,7 +35,7 @@ try {
 
     // Set email fields
     $mail->setFrom($_POST['email'], $_POST['name']);
-    $mail->addAddress('Derek.Dreblow@gmail.com');  // Add a recipient
+    $mail->addAddress('derek.dreblow@dreblowdesigns.com');   // Add a recipient
 
     // Content
     $mail->isHTML(true);  // Set email format to HTML

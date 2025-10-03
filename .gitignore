@@ -6,3 +6,6 @@ resources/config.php
 
 #ignore all MacOS .DS_Store
 **/.DS_Store
+
+#ignore NAS directory
+resources/media
