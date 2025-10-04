@@ -95,6 +95,9 @@ chmod 755 file.sh
 
 # Change ownership
 chown user:group file.txt  
+
+# How to enter into root shell
+sudo -i
 ```
 
 ## 👥 Users & Groups
