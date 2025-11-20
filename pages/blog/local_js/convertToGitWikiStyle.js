@@ -1,6 +1,6 @@
-import MarkdownIt from 'markdown-it';
-import hljs from 'highlight.js';
-import markdownItAnchor from 'markdown-it-anchor';
+const MarkdownIt = require('markdown-it');
+const hljs = require('highlight.js');
+const markdownItAnchor = require('markdown-it-anchor');
 
 // Initialize Markdown-it with highlight.js
 const md = new MarkdownIt({
@@ -17,12 +17,26 @@ const md = new MarkdownIt({
     }
 });
 
+// Open external links in new tab
+md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    const href = token.attrGet('href');
+
+    // Only external links (http or https)
+    if (href && /^https?:\/\//.test(href)) {
+        token.attrSet('target', '_blank');
+        token.attrSet('rel', 'noopener noreferrer');
+    }
+
+    return self.renderToken(tokens, idx, options);
+};
+
 md.use(markdownItAnchor, { 
   slugify: s => s.trim().toLowerCase().replace(/\./g, '').replace(/[^\w]+/g, '-')
 });
 
 
-export function renderGitWikiStyle(head, header, footer, formattedVersion, content){
+function renderGitWikiStyle(head, header, footer, formattedVersion, content){
     return `<!DOCTYPE html>
 <html lang="en">
 ${head}
@@ -38,3 +52,5 @@ ${head}
 </body>
 </html>`;
 }
+
+module.exports = { renderGitWikiStyle };

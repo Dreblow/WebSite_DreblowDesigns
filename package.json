@@ -1,0 +1,41 @@
+{
+  "name": "website_dreblowdesigns",
+  "version": "1.0.0",
+  "description": "Dreblow Designs Portfolio Website and Blog",
+  "author": "Derek Dreblow",
+  "license": "ISC",
+
+  "type": "commonjs",
+
+  "scripts": {
+    "serve": "php -S localhost:8000",
+    "watch:css": "node resources/dev/watch-css.js",
+    "sync": "browser-sync start --proxy 'localhost:8000' --files 'resources/css/*.css, **/*.html, **/*.php' --no-ui",
+    "dev": "concurrently \"npm run serve\" \"npm run sync\"",
+    "convert-blog": "node pages/blog/local_js/convert.js"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dreblow/WebSite_DreblowDesigns.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/Dreblow/WebSite_DreblowDesigns/issues"
+  },
+
+  "homepage": "https://github.com/Dreblow/WebSite_DreblowDesigns#readme",
+
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^8.6.7",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0"
+  },
+
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "sharp": "^0.33.2"
+  }
+}
