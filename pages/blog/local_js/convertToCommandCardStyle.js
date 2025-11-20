@@ -1,9 +1,9 @@
-import hljs from "highlight.js";
-import MarkdownIt from "markdown-it";
+const hljs = require("highlight.js");
+const MarkdownIt = require("markdown-it");
 
 const md = new MarkdownIt();
 
-export function renderCommandCard(head, header, footer, formattedVersion, content){
+function renderCommandCard(head, header, footer, formattedVersion, content){
     let renderedContent = md.render(content);
 
     // Replace <h2>...</h2><pre><code class="language-bash">...</code></pre> blocks with .cards-container divs containing the h2 and a command-card div with a table for commands and descriptions
@@ -60,3 +60,5 @@ ${head}
 </body>
 </html>`;
 }
+
+module.exports = { renderCommandCard };

@@ -1,14 +1,11 @@
 // convert.js
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { fileURLToPath } from "url";
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+const MarkdownIt = require("markdown-it");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-import { renderCommandCard } from "./convertToCommandCardStyle.js";
-import { renderGitWikiStyle } from "./convertToGitWikiStyle.js";
+const { renderCommandCard } = require("./convertToCommandCardStyle.js");
+const { renderGitWikiStyle } = require("./convertToGitWikiStyle.js");
 
 const ROOT_DIR = "../../../"
 const ROOT_BLOG_DIR = "../"
