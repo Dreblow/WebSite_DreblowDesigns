@@ -3,7 +3,7 @@ title: Git Essentials Cheat Sheet
 description: A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.
 keywords: git, git cheat sheet, git ignore, git commands, linux git, github, version control
 author: Derek Dreblow
-version: 2025-09-20
+version: 2025-11-19
 machine:
 categories:
   - Git
