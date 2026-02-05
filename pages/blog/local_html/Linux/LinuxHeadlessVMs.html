@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How-to to get a headless VMs going in your headless Linux system">
+    <meta name="author" content="Derek Dreblow">
+    <title>Dreblow Design - Linux Headless VMs blog</title>
+    <meta name="keywords" content="Linux, Guide, How-to">
+    <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/LinuxHeadlessVMs.html">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Linux Headless VMs">
+    <meta property="og:description" content="How-to to get a headless VMs going in your headless Linux system">
+    <meta property="og:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/LinuxHeadlessVMs.html">
+    <meta property="og:type" content="website">
+
+    <!-- Jason LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Linux Headless VMs",
+      "description": "How-to to get a headless VMs going in your headless Linux system",
+      "author": {
+        "@type": "Person",
+        "name": "Derek Dreblow"
+      },
+      "keywords": [
+        "Linux",
+        "Guide",
+        "Cheat Sheet"
+      ],
+      "articleSection": [
+        "Linux",
+        "VM",
+        "Headless"
+      ],
+      "datePublished": "2027-01-24T00:00:00.000Z",
+      "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
+      "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/LinuxHeadlessVMs.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dreblow Designs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linux Headless VMs">
+    <meta name="twitter:description" content="How-to to get a headless VMs going in your headless Linux system">
+    <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+
+    <!-- Default favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
+
+    <!-- PNG favicon for high-resolution displays -->
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    
+    <!-- Site Manifest-->
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RT1T06DM1');
+    </script>
+
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="stylesheet" href="../../local_css/blog.css?v=4">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" aria-label="Home">Home</a></li>
+                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
+                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
+                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="markdown-body">
+        <article>
+            <p><em class="blogVersion">Version: Jan 23, 2027</em></p>
+            <h1 id="linux-headless-vm-setup" tabindex="-1">Linux Headless VM Setup</h1>
+<p>Some info here</p>
+<h2 id="creating-vms" tabindex="-1">Creating VMs</h2>
+<h2 id="backing-up-vm" tabindex="-1">Backing up VM</h2>
+<p>Before doing any kind of backing up, shutdown your VM. Get the list of running VMs:</p>
+<pre><code class="hljs bash">virsh list --all
+</code></pre>
+<h3 id="shutdown" tabindex="-1">Shutdown</h3>
+<p>Shutdown it fully via:</p>
+<pre><code class="hljs bash">virsh shutdown &lt;name of your VM&gt;
+virsh domstate &lt;name of your VM&gt;
+</code></pre>
+<p>And wait until you see</p>
+<pre><code class="hljs bash">shut off
+</code></pre>
+<p>Confirm things with</p>
+<pre><code class="hljs bash">virsh list --all
+</code></pre>
+<p>And the VM should no longer be listed.</p>
+<h3 id="determine-current-disk-size" tabindex="-1">Determine current disk size</h3>
+<p>You'll probably want to jump right to the transfer, but its good to see how sparse the qcow2 or img file is. Personally, my 3-2-1 backup system involved a thumb drive that is in exFat. That means it can't handle empty space and will fill with zeros. That means my 1tb allocated fake space will try to turn into an actual 1tb file.</p>
+<p>See what the size is set for:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -lh /location/of/your/VM/nameOfVm.qcow2
+</code></pre>
+<p>Note that <code>qcow2</code> could be <code>img</code></p>
+<p>But if you are like me and created a huge disk, you'll see something like</p>
+<pre><code class="hljs bash">virtual size: 1.0T
+</code></pre>
+<p>To see the actual space consumed:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">du</span> -h /location/of/your/VM/nameOfVm.qcow2
+</code></pre>
+<p>With a response like</p>
+<pre><code class="hljs bash">disk size:    2.7G
+</code></pre>
+<p>Point being is that we are going to want to compact this file for our thumb drive/simpler file systems.</p>
+<p>You could use <code>gzip</code>, but I prefer `qemu-img convert. Below is a nice little verbose command to compact.</p>
+<pre><code class="hljs bash">qemu-img convert \
+  -p \
+  -c \
+  -O qcow2 \
+  nameOfVm.qcow2 \
+  nameOfVm.compact.qcow2
+</code></pre>
+<p><strong>What each flag does</strong></p>
+<ul>
+<li>-p → progress bar</li>
+<li>-c → compress clusters</li>
+<li>-O qcow2 → output format</li>
+<li>source → destination</li>
+</ul>
+<p>You’ll see something like:</p>
+<pre><code class="hljs bash">(45.67/100%)
+</code></pre>
+
+        </article>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Dreblow" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://leetcode.com/u/dreblow/" target="_blank">
+                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
+            </a>
+            <a href="https://www.threads.net/@derek_dre" target="_blank">
+                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
+            </a>
+        </div>
+        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+</body>
+</html>

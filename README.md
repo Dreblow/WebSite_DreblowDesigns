@@ -35,9 +35,3 @@ For PHP based local server,  type
 ``` bash
 php -S localhost:8000
 ```
-
-
-### Blog
-* Blog is about converting MD files to HTML/CSS to share with the world. After the completion of every MD file, run `convert.js`, and the output files will be in the corresponding folder structure.
-* The structure being `local_markdown` -> `local_html`.
-* The terminal call is `node convert.js`
