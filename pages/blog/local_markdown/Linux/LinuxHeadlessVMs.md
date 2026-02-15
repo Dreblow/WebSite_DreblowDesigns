@@ -43,6 +43,12 @@ virsh list --all
 ```
 And the VM should no longer be listed.
 
+
+### Reboot
+```bash
+virsh reboot <name of your VM>
+```
+
 ### Determine current disk size
 You'll probably want to jump right to the transfer, but its good to see how sparse the qcow2 or img file is. Personally, my 3-2-1 backup system involved a thumb drive that is in exFat. That means it can't handle empty space and will fill with zeros. That means my 1tb allocated fake space will try to turn into an actual 1tb file.
 
