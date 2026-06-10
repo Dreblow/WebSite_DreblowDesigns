@@ -15,7 +15,11 @@ tags:
   - Cheat Sheet
 ---
 # Linux Headless VM Setup
-Some info here
+When I was first experimenting with VMs on Linux, it didnt go so well. After some trial and error, I successfully had one running. Next thing you know I had a couple. 
+
+One of the things that was intersting is when I first starting install Ubuntu, it wasn't headless. I had to use a VLC to stream monitor output to a client application on MacOS. Made it a little annoying. SSH into my server from my mac to kick off the install just to stream the installer GUI to an application to my Mac. It killed me I needed two separate programs to do this. 
+
+Below is everything I learned and hopefully it'll benefit you. 
 
 ## Creating VMs
 
