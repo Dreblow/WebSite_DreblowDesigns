@@ -17,7 +17,7 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
 };
 
-function renderCommandCard(head, header, footer, formattedVersion, content){
+function renderCommandCard(formattedVersion, content){
     let renderedContent = md.render(content);
 
     // Replace <h2>...</h2><pre><code class="language-bash">...</code></pre> blocks with .cards-container divs containing the h2 and a command-card div with a table for commands and descriptions
@@ -28,6 +28,7 @@ function renderCommandCard(head, header, footer, formattedVersion, content){
         for (let i = 0; i < lines.length; i++) {
             let desc = '';
             let cmd = '';
+
             if (lines[i].startsWith('#')) {
                 desc = lines[i];
                 cmd = lines[i+1] || '';
@@ -36,10 +37,13 @@ function renderCommandCard(head, header, footer, formattedVersion, content){
                 desc = '';
                 cmd = lines[i];
             }
+
             const highlightedDesc = desc ? hljs.highlight(desc, { language: "bash" }).value : "";
             const highlightedCmd = cmd ? hljs.highlight(cmd, { language: "bash" }).value : "";
+
             rows.push(`<tr><td class="desc"><code class="hljs language-bash">${highlightedDesc}</code></td><td class="cmd"><code class="hljs language-bash">${highlightedCmd}</code></td></tr>`);
         }
+
         return `
 <div class="card-container">
   <div class="title-container">
@@ -54,25 +58,18 @@ function renderCommandCard(head, header, footer, formattedVersion, content){
 `;
     });
 
-    return `<!DOCTYPE html>
-<html lang="en">
-${head}
-<body>
-    ${header}
-    <main class="markdown-body">
-        <article>
-            <p><em class="blogVersion">Version: ${formattedVersion}</em></p>
+    return `
+<main class="markdown-body command-card-section">
+    <article>
+        ${formattedVersion ? `<p><em class="blogVersion">Version: ${formattedVersion}</em></p>` : ""}
 
-            <div class="cards-flex-container">
-                <div class="cards-container">
+        <div class="cards-flex-container">
+            <div class="cards-container">
                 ${renderedContent}
-                </div>
             </div>
-        </article>
-    </main>
-    ${footer}
-</body>
-</html>`;
+        </div>
+    </article>
+</main>`;
 }
 
 module.exports = { renderCommandCard };

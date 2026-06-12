@@ -3,7 +3,7 @@ title: Hello Blog!
 description: Welcome to Derek Dreblow's blog, inspired by project notes and step-by-step solutions for engineering, software development, and server management.
 keywords: Derek Dreblow, blog, engineering, project notes, tutorials, Ubuntu, WireGuard, FTP Server
 author: Derek Dreblow
-version: 2025-11-19
+version: 2026-06-11
 categories:
   - Introduction
 tags:
