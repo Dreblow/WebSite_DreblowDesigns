@@ -38,7 +38,7 @@
         "Git",
         "Software Development"
       ],
-      "datePublished": "2025-11-19T00:00:00.000Z",
+      "datePublished": "2026-06-11T00:00:00.000Z",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Dev/git.html",
       "publisher": {
@@ -85,7 +85,8 @@
     <link rel="stylesheet" href="../../../../resources/css/styles.css">
     <link rel="stylesheet" href="../../local_css/blog.css?v=4">
     <link rel="stylesheet" href="../../local_css/github-dark.min.css">
-    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="../../local_css/command-card-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -100,54 +101,60 @@
             </ul>
         </nav>
     </header>
-    <main class="markdown-body">
-        <article>
-            <p><em class="blogVersion">Version: Nov 18, 2025</em></p>
-            <h1 id="git-maybe-a-cheat-sheet" tabindex="-1">Git - Maybe a cheat sheet</h1>
+    
+<main class="markdown-body git-wiki-section">
+    <article>
+        <p><em class="blogVersion">Version: Jun 10, 2026</em></p>
+        <h1 id="git-maybe-a-cheat-sheet" tabindex="-1">Git - Maybe a cheat sheet</h1>
 <p>TLDR:
 Lets talk about Git commands for linux terminal and git ignore file.</p>
 <p>I think like most people, we all end up using GUI applications (like <a href="https://www.smartgit.dev" target="_blank" rel="noopener noreferrer">SmartGit</a> or <a href="https://git-fork.com" target="_blank" rel="noopener noreferrer">Git-Fork</a>) to do our git actions. In this blog post, I want to provide some stragiht forward commands to let you move on to the next thing in your jou Journey.</p>
 <p>Also some nice to knows about the .gitignore file that beginners may like to know quickly.</p>
 <hr>
-<h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
-<ul>
-<li><a href="#cheat-sheet">Cheat Sheet</a></li>
-<li><a href="#single-liner">Single Liner</a></li>
-<li><a href="#gitignore">.gitignore</a></li>
-</ul>
-<hr>
-<h2 id="-cheat-sheet" tabindex="-1">📄 Cheat Sheet</h2>
-<h4 id="check-current-status" tabindex="-1">Check current status</h4>
-<pre><code class="hljs bash">git status
-</code></pre>
-<h4 id="check-what-branch-you-re-on" tabindex="-1">Check what branch you're on</h4>
-<pre><code class="hljs bash">git branch
-</code></pre>
-<h4 id="always-pull-the-newest-changes-from-origin-fast-forward-only-" tabindex="-1">Always pull the newest changes from origin (fast-forward only)</h4>
-<pre><code class="hljs bash">git pull --ff-only
-</code></pre>
-<h4 id="if-you-prefer-forcing-your-local-branch-to-match-origin-" tabindex="-1">If you prefer forcing your local branch to match origin:</h4>
-<pre><code class="hljs bash">git fetch origin
-git reset --hard origin/main     <span class="hljs-comment"># Replace &#x27;main&#x27; with your branch</span>
-</code></pre>
-<h4 id="add-all-changes" tabindex="-1">Add all changes</h4>
-<pre><code class="hljs bash">git add .
-</code></pre>
-<h4 id="commit-with-a-message" tabindex="-1">Commit with a message</h4>
-<pre><code class="hljs bash">git commit -m <span class="hljs-string">&quot;Your commit message here&quot;</span>
-</code></pre>
-<h4 id="push-to-origin" tabindex="-1">Push to origin</h4>
-<pre><code class="hljs bash">git push origin HEAD
-</code></pre>
-<hr>
-<h2 id="single-liner" tabindex="-1">Single Liner</h2>
-<p>Maybe for the future, single line deployment:</p>
-<pre><code class="hljs bash">git pull --ff-only &amp;&amp; git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;update&quot;</span> &amp;&amp; git push
-</code></pre>
-<p>Or, if you want the force-sync first:</p>
-<pre><code class="hljs bash">git fetch origin &amp;&amp; git reset --hard origin/main &amp;&amp; git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;update&quot;</span> &amp;&amp; git push
-</code></pre>
-<hr>
+
+    </article>
+</main>
+
+<main class="markdown-body command-card-section">
+    <article>
+        
+
+        <div class="cards-flex-container">
+            <div class="cards-container">
+                
+<div class="card-container">
+  <div class="title-container">
+    <h2>🌿 Move Back to Main</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the current branch</span></code></td><td class="cmd"><code class="hljs language-bash">git branch --show-current</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show local changes before switching branches</span></code></td><td class="cmd"><code class="hljs language-bash">git status</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Fetch latest remote branch info and prune deleted remote branches</span></code></td><td class="cmd"><code class="hljs language-bash">git fetch --prune origin</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch to main</span></code></td><td class="cmd"><code class="hljs language-bash">git switch main</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Older syntax for switching to main</span></code></td><td class="cmd"><code class="hljs language-bash">git checkout main</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Pull latest main from origin</span></code></td><td class="cmd"><code class="hljs language-bash">git pull origin main</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create local main if it does not exist yet</span></code></td><td class="cmd"><code class="hljs language-bash">git switch -c main --track origin/main</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Confirm the working tree is clean</span></code></td><td class="cmd"><code class="hljs language-bash">git status</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the latest commits</span></code></td><td class="cmd"><code class="hljs language-bash">git <span class="hljs-built_in">log</span> --oneline -5</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>🌱 Move to Another Branch</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the current branch</span></code></td><td class="cmd"><code class="hljs language-bash">git branch --show-current</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show local changes before switching branches</span></code></td><td class="cmd"><code class="hljs language-bash">git status</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Fetch latest remote branch info and prune deleted remote branches</span></code></td><td class="cmd"><code class="hljs language-bash">git fetch --prune origin</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch to an existing branch</span></code></td><td class="cmd"><code class="hljs language-bash">git switch branch-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Older syntax for switching to an existing branch</span></code></td><td class="cmd"><code class="hljs language-bash">git checkout branch-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Pull latest branch from origin</span></code></td><td class="cmd"><code class="hljs language-bash">git pull origin branch-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a local branch tracking a remote branch</span></code></td><td class="cmd"><code class="hljs language-bash">git switch -c branch-name --track origin/branch-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show all local branches</span></code></td><td class="cmd"><code class="hljs language-bash">git branch</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show local and remote branches</span></code></td><td class="cmd"><code class="hljs language-bash">git branch -a</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Confirm the working tree is clean</span></code></td><td class="cmd"><code class="hljs language-bash">git status</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the latest commits</span></code></td><td class="cmd"><code class="hljs language-bash">git <span class="hljs-built_in">log</span> --oneline -5</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+            </div>
+        </div>
+    </article>
+</main>
+
+<main class="markdown-body git-wiki-section">
+    <article>
+        
+        <hr>
 <h2 id="-gitignore" tabindex="-1">📁 .gitignore</h2>
 <h4 id="ignore-everything-in-a-folder-except-one-file" tabindex="-1">Ignore everything in a folder except one file</h4>
 <pre><code class="hljs bash">/folder/*
@@ -161,8 +168,8 @@ git reset --hard origin/main     <span class="hljs-comment"># Replace &#x27;main
 <p>Lots of projects and sites usually give you a .gitignore ready to go to easily kick off your project, even by language type. Eg, starting a Rust project versus C# project, different things are ignored. How and where? When creating a project in GitHub, you'll see your repo being kicked off with a chance to select a pre-made gitignore file for you.</p>
 <p>Anyways! Below is a taste just in case you don't run into this. This really serves beginners, but you beginner, I recommend heading to <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> and start playing around with your first repo.</p>
 
-        </article>
-    </main>
+    </article>
+</main>
     <footer>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
