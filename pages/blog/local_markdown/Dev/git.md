@@ -3,8 +3,8 @@ title: Git Essentials Cheat Sheet
 description: A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.
 keywords: git, git cheat sheet, git ignore, git commands, linux git, github, version control
 author: Derek Dreblow
-version: 2025-11-19
-machine:
+version: 2026-06-11
+machine: mixed
 categories:
   - Git
   - Software Development
@@ -15,7 +15,7 @@ tags:
   - CLI
   - Cheat Sheet
 ---
-
+<!-- render: git-wiki-style-blog -->
 # Git - Maybe a cheat sheet
 TLDR:
 Lets talk about Git commands for linux terminal and git ignore file.
@@ -26,107 +26,76 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 
 ---
 
-<!-- render: git-wiki-style-blog -->
-
-# Moving a Server Checkout Back to `main`
-
-If a server is still checked out on an old feature branch after the PR was merged, the goal is usually to switch the working copy back to `main`, update it, and verify the branch state before redeploying.
-
 <!-- render: command-card -->
-
-## Check Current Branch
-
+<!-- render: command-card -->
+## 🌿 Move Back to Main
 ```bash
 # Show the current branch
 git branch --show-current
 
-# Show branch status and local changes
-git status
-```
-
-## Save or Inspect Local Changes First
-
-```bash
-# Show modified files
+# Show local changes before switching branches
 git status
 
-# Show exact local changes
-git diff
-
-# Temporarily save local changes if needed
-git stash push -m "server local changes before switching branches"
-```
-
-## Fetch Latest Remote Branches
-
-```bash
-# Fetch latest branches and prune deleted remote branches
+# Fetch latest remote branch info and prune deleted remote branches
 git fetch --prune origin
 
-# Show all local and remote branches
-git branch -a
-```
-
-## Switch Back to Main
-
-```bash
-# Switch to local main branch
+# Switch to main
 git switch main
 
-# Older syntax
+# Older syntax for switching to main
 git checkout main
-```
 
-## Pull Latest Main
-
-```bash
 # Pull latest main from origin
 git pull origin main
 
-# Alternative: fetch then fast-forward only
-git fetch origin
-git merge --ff-only origin/main
-```
-
-## If Local Main Does Not Exist
-
-```bash
-# Create local main tracking origin/main
+# Create local main if it does not exist yet
 git switch -c main --track origin/main
 
-# Older syntax
-git checkout -b main origin/main
-```
-
-## If Server Branch Was Deleted Remotely
-
-```bash
-# Fetch and remove stale remote-tracking branches
-git fetch --prune origin
-
-# Delete old local branch after switching away from it
-git branch -d old-branch-name
-
-# Force delete only if you are sure
-git branch -D old-branch-name
-```
-
-## Verify Final State
-
-```bash
-# Confirm current branch
-git branch --show-current
-
-# Confirm clean working tree
+# Confirm the working tree is clean
 git status
 
-# Confirm latest commit
+# Show the latest commits
 git log --oneline -5
 ```
 
----
+## 🌱 Move to Another Branch
+```bash
+# Show the current branch
+git branch --show-current
+
+# Show local changes before switching branches
+git status
+
+# Fetch latest remote branch info and prune deleted remote branches
+git fetch --prune origin
+
+# Switch to an existing branch
+git switch branch-name
+
+# Older syntax for switching to an existing branch
+git checkout branch-name
+
+# Pull latest branch from origin
+git pull origin branch-name
+
+# Create a local branch tracking a remote branch
+git switch -c branch-name --track origin/branch-name
+
+# Show all local branches
+git branch
+
+# Show local and remote branches
+git branch -a
+
+# Confirm the working tree is clean
+git status
+
+# Show the latest commits
+git log --oneline -5
+```
 
 <!-- render: git-wiki-style-blog -->
+---
 
 ## 📁 .gitignore
 #### Ignore everything in a folder except one file

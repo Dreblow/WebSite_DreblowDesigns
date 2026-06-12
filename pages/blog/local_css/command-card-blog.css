@@ -151,3 +151,28 @@ body {
 .cards-container .command-table td code.hljs .hljs-comment {
   font-style: italic;
 }
+
+/* ===========================
+   Center partial card rows
+   =========================== */
+.cards-container {
+  width: 100%;
+}
+
+/* One card: use one-card width and let flex center it */
+.cards-container:not(:has(.card-container:nth-child(2))) {
+  column-count: 1;
+  max-width: 39.125rem;
+}
+
+/* Two cards: use two-card width and let flex center it */
+.cards-container:has(.card-container:nth-child(2)):not(:has(.card-container:nth-child(3))) {
+  column-count: 2;
+  max-width: calc(2 * 39.125rem + 1 * 16px);
+}
+
+/* Three or more cards: normal three-column layout */
+.cards-container:has(.card-container:nth-child(3)) {
+  column-count: 3;
+  max-width: calc(3 * 39.125rem + 2 * 16px);
+}
