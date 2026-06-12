@@ -1,12 +1,12 @@
 @media (max-width: 768px) {
-    .markdown-body {
+    .git-wiki-section {
         max-width: 100%; /* Take up the full screen width */
         padding: 0.5em; /* Reduce padding for smaller screens */
     }
 }
 
 @media (min-width: 768px) {
-    .markdown-body {
+    .git-wiki-section {
         width: auto;
         max-width: 900px;
         margin: 0 auto;

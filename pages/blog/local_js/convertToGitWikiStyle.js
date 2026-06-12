@@ -36,21 +36,14 @@ md.use(markdownItAnchor, {
 });
 
 
-function renderGitWikiStyle(head, header, footer, formattedVersion, content){
-    return `<!DOCTYPE html>
-<html lang="en">
-${head}
-<body>
-    ${header}
-    <main class="markdown-body">
-        <article>
-            <p><em class="blogVersion">Version: ${formattedVersion}</em></p>
-            ${md.render(content)}
-        </article>
-    </main>
-    ${footer}
-</body>
-</html>`;
+function renderGitWikiStyle(formattedVersion, content){
+    return `
+<main class="markdown-body git-wiki-section">
+    <article>
+        ${formattedVersion ? `<p><em class="blogVersion">Version: ${formattedVersion}</em></p>` : ""}
+        ${md.render(content)}
+    </article>
+</main>`;
 }
 
 module.exports = { renderGitWikiStyle };

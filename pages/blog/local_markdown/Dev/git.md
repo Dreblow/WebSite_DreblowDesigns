@@ -26,64 +26,107 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 
 ---
 
-## Table of Contents
-- [Cheat Sheet](#cheat-sheet)
-- [Single Liner](#single-liner)
-- [.gitignore](#gitignore)
+<!-- render: git-wiki-style-blog -->
 
----
+# Moving a Server Checkout Back to `main`
 
-## 📄 Cheat Sheet
-#### Check current status
+If a server is still checked out on an old feature branch after the PR was merged, the goal is usually to switch the working copy back to `main`, update it, and verify the branch state before redeploying.
+
+<!-- render: command-card -->
+
+## Check Current Branch
+
 ```bash
+# Show the current branch
+git branch --show-current
+
+# Show branch status and local changes
 git status
 ```
 
-#### Check what branch you're on
+## Save or Inspect Local Changes First
+
 ```bash
-git branch
+# Show modified files
+git status
+
+# Show exact local changes
+git diff
+
+# Temporarily save local changes if needed
+git stash push -m "server local changes before switching branches"
 ```
 
-#### Always pull the newest changes from origin (fast-forward only)
+## Fetch Latest Remote Branches
+
 ```bash
-git pull --ff-only
+# Fetch latest branches and prune deleted remote branches
+git fetch --prune origin
+
+# Show all local and remote branches
+git branch -a
 ```
 
-#### If you prefer forcing your local branch to match origin:
+## Switch Back to Main
+
 ```bash
+# Switch to local main branch
+git switch main
+
+# Older syntax
+git checkout main
+```
+
+## Pull Latest Main
+
+```bash
+# Pull latest main from origin
+git pull origin main
+
+# Alternative: fetch then fast-forward only
 git fetch origin
-git reset --hard origin/main     # Replace 'main' with your branch
+git merge --ff-only origin/main
 ```
 
-#### Add all changes
+## If Local Main Does Not Exist
+
 ```bash
-git add .
+# Create local main tracking origin/main
+git switch -c main --track origin/main
+
+# Older syntax
+git checkout -b main origin/main
 ```
 
-#### Commit with a message
+## If Server Branch Was Deleted Remotely
+
 ```bash
-git commit -m "Your commit message here"
+# Fetch and remove stale remote-tracking branches
+git fetch --prune origin
+
+# Delete old local branch after switching away from it
+git branch -d old-branch-name
+
+# Force delete only if you are sure
+git branch -D old-branch-name
 ```
 
-#### Push to origin
+## Verify Final State
+
 ```bash
-git push origin HEAD
+# Confirm current branch
+git branch --show-current
+
+# Confirm clean working tree
+git status
+
+# Confirm latest commit
+git log --oneline -5
 ```
 
 ---
 
-## Single Liner
-Maybe for the future, single line deployment:
-```bash
-git pull --ff-only && git add . && git commit -m "update" && git push
-```
-
-Or, if you want the force-sync first:
-```bash
-git fetch origin && git reset --hard origin/main && git add . && git commit -m "update" && git push
-```
-
----
+<!-- render: git-wiki-style-blog -->
 
 ## 📁 .gitignore
 #### Ignore everything in a folder except one file
