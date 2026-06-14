@@ -51,15 +51,34 @@ function processDirectory(inputPath, outputPath) {
 
       const formattedVersion = formatVersionDate(frontMatter.version);
 
+      const css = frontMatter.machine === "mixed" ? ["git-wiki-style-blog", "command-card-blog"]
+                : frontMatter.machine === "command-card" ? "command-card-blog" : "git-wiki-style-blog";
+      const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, css);
+
       // Pick renderer
-      let htmlContent;
-      if (frontMatter.machine === "command-card") {
-        const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, "command-card-blog");
-        htmlContent = renderCommandCard(head, header, footer, formattedVersion, content);
+      let bodyContent;
+
+      if (frontMatter.machine === "mixed") {
+        const sections = splitIntoRenderSections(content, "git-wiki-style-blog");
+
+        bodyContent = sections.map((section, index) => {
+          const versionForSection = index === 0 ? formattedVersion : "";
+
+          if (section.machine === "command-card") {
+            return renderCommandCard(versionForSection, section.content);
+          }
+
+          return renderGitWikiStyle(versionForSection, section.content);
+        }).join("\n");
+
+      } else if (frontMatter.machine === "command-card") {
+        bodyContent = renderCommandCard(formattedVersion, content);
+
       } else {
-        const head = formatHead(frontMatter, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLOG_DIR, "git-wiki-style-blog");
-        htmlContent = renderGitWikiStyle(head, header, footer, formattedVersion, content);
+        bodyContent = renderGitWikiStyle(formattedVersion, content);
       }
+
+      const htmlContent = renderBlogPage(head, header, footer, bodyContent);
 
       fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
       console.log(`Converted: ${itemPath} -> ${outputFilePath}`);
@@ -72,6 +91,18 @@ copyImageFolders(imageFoldersToCopy);
 console.log("✅ Completed generating blog");
 
 // ********** Supporting Functions ********** //
+
+function renderBlogPage(head, header, footer, bodyContent) {
+  return `<!DOCTYPE html>
+<html lang="en">
+${head}
+<body>
+    ${header}
+    ${bodyContent}
+    ${footer}
+</body>
+</html>`;
+}
 
 // Format the version date
 function formatVersionDate(dateString) {
@@ -176,7 +207,7 @@ function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLO
     <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css?v=4">
     <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/${css}.css?v=3">
+    ${formatBlogCssLinks(css, ROOT_BLOG_DIR, relativePath)}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>`;
 }
@@ -313,3 +344,45 @@ function copyImageFolders(folders) {
     });
   });
 }
+
+  function splitIntoRenderSections(content, defaultMachine) {
+    const sentinelRegex = /^<!--\s*render:\s*(command-card|git-wiki-style-blog)\s*-->\s*$/gmi;
+
+    const sections = [];
+    let currentMachine = defaultMachine || "git-wiki-style-blog";
+    let lastIndex = 0;
+    let match;
+
+    while ((match = sentinelRegex.exec(content)) !== null) {
+      const sectionContent = content.slice(lastIndex, match.index).trim();
+
+      if (sectionContent.length > 0) {
+        sections.push({
+          machine: currentMachine,
+          content: sectionContent
+        });
+      }
+
+      currentMachine = match[1];
+      lastIndex = sentinelRegex.lastIndex;
+    }
+
+    const finalContent = content.slice(lastIndex).trim();
+
+    if (finalContent.length > 0) {
+      sections.push({
+        machine: currentMachine,
+        content: finalContent
+      });
+    }
+
+    return sections;
+  }
+
+  function formatBlogCssLinks(css, ROOT_BLOG_DIR, relativePath) {
+    const cssFiles = Array.isArray(css) ? css : [css];
+
+    return cssFiles
+      .map(file => `    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/${file}.css?v=3">`)
+      .join("\n");
+  }

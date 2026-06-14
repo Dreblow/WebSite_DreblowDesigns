@@ -3,8 +3,8 @@ title: Git Essentials Cheat Sheet
 description: A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.
 keywords: git, git cheat sheet, git ignore, git commands, linux git, github, version control
 author: Derek Dreblow
-version: 2025-11-19
-machine:
+version: 2026-06-11
+machine: mixed
 categories:
   - Git
   - Software Development
@@ -15,7 +15,7 @@ tags:
   - CLI
   - Cheat Sheet
 ---
-
+<!-- render: git-wiki-style-blog -->
 # Git - Maybe a cheat sheet
 TLDR:
 Lets talk about Git commands for linux terminal and git ignore file.
@@ -26,63 +26,75 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 
 ---
 
-## Table of Contents
-- [Cheat Sheet](#cheat-sheet)
-- [Single Liner](#single-liner)
-- [.gitignore](#gitignore)
-
----
-
-## 📄 Cheat Sheet
-#### Check current status
+<!-- render: command-card -->
+<!-- render: command-card -->
+## 🌿 Move Back to Main
 ```bash
+# Show the current branch
+git branch --show-current
+
+# Show local changes before switching branches
 git status
+
+# Fetch latest remote branch info and prune deleted remote branches
+git fetch --prune origin
+
+# Switch to main
+git switch main
+
+# Older syntax for switching to main
+git checkout main
+
+# Pull latest main from origin
+git pull origin main
+
+# Create local main if it does not exist yet
+git switch -c main --track origin/main
+
+# Confirm the working tree is clean
+git status
+
+# Show the latest commits
+git log --oneline -5
 ```
 
-#### Check what branch you're on
+## 🌱 Move to Another Branch
 ```bash
+# Show the current branch
+git branch --show-current
+
+# Show local changes before switching branches
+git status
+
+# Fetch latest remote branch info and prune deleted remote branches
+git fetch --prune origin
+
+# Switch to an existing branch
+git switch branch-name
+
+# Older syntax for switching to an existing branch
+git checkout branch-name
+
+# Pull latest branch from origin
+git pull origin branch-name
+
+# Create a local branch tracking a remote branch
+git switch -c branch-name --track origin/branch-name
+
+# Show all local branches
 git branch
+
+# Show local and remote branches
+git branch -a
+
+# Confirm the working tree is clean
+git status
+
+# Show the latest commits
+git log --oneline -5
 ```
 
-#### Always pull the newest changes from origin (fast-forward only)
-```bash
-git pull --ff-only
-```
-
-#### If you prefer forcing your local branch to match origin:
-```bash
-git fetch origin
-git reset --hard origin/main     # Replace 'main' with your branch
-```
-
-#### Add all changes
-```bash
-git add .
-```
-
-#### Commit with a message
-```bash
-git commit -m "Your commit message here"
-```
-
-#### Push to origin
-```bash
-git push origin HEAD
-```
-
----
-
-## Single Liner
-Maybe for the future, single line deployment:
-```bash
-git pull --ff-only && git add . && git commit -m "update" && git push
-```
-
-Or, if you want the force-sync first:
-```bash
-git fetch origin && git reset --hard origin/main && git add . && git commit -m "update" && git push
-```
-
+<!-- render: git-wiki-style-blog -->
 ---
 
 ## 📁 .gitignore

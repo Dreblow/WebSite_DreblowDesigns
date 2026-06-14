@@ -3,8 +3,8 @@ title: Linux Cheat Sheet
 description: Tips and tricks for Linux
 keywords: Linux, Guide, How-to
 author: Derek Dreblow
-version: 2025-09-19
-machine: command-card
+version: 2026-06-11
+machine: mixed
 categories:
   - Linux
 tags:
@@ -12,7 +12,11 @@ tags:
   - Guide
   - Cheat Sheet
 ---
+<!-- render: git-wiki-style-blog -->
+# Linux Cheat Sheet
+Below is a cheat sheet typical linux commands, uselly useful for most distros. I hope this cheat sheet servers you as it servers me!
 
+<!-- render: command-card -->
 ## ⌨️ Keyboard Shortcuts
 ```bash
 # Kill process running in the terminal
@@ -188,6 +192,15 @@ mv oldname.txt newname.txt
 
 # Remove file
 rm file.txt  
+
+# Remove folder with files in it, with recursive -r
+rm -r folder_name
+
+# Remove recursive and force delete, use the -f (force) flag to bypass all prompts and delete everything instantly:
+rm -rf folder_name
+
+# Interactive deletion if you want to safely verify each file before it is permanently deleted, use the -i flag instead:
+rm -ri folder_name
 
 # Find files by name
 find /path -name "*.log"  
