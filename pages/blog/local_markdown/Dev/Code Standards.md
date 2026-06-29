@@ -1,9 +1,11 @@
+````markdown
 ---
 title: Coding Standards Across Languages
 description: A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.
 keywords: C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code
 author: Derek Dreblow
 version: 2025-09-18
+machine: mixed
 categories:
   - Software Development
   - C#
@@ -18,132 +20,139 @@ tags:
   - Clean Code
   - Best Practices
 ---
-
+<!-- render: git-wiki-style-blog -->
 # Coding Standards
 
-Organizing code in a consistent and predictable way improves **code readability, maintainability,** and reduces **merge conflicts**. Follow these general best practices across all programming languages:
+<!-- render: command-card -->
+## 📋 General Best Practices
+```bash
+# Use clear and descriptive naming conventions for variables, methods, and classes.
 
-- Use clear and descriptive naming conventions for variables, methods, and classes.  
-- Write meaningful comments to explain complex logic or important decisions.  
-- Handle errors gracefully with appropriate error handling and logging.  
-- Keep functions and methods focused on a single responsibility.  
-- Maintain consistent indentation and formatting throughout the codebase.  
+# Write meaningful comments to explain complex logic or important decisions.
 
-Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.
+# Handle errors gracefully with appropriate error handling and logging.
 
----
+# Keep functions and methods focused on a single responsibility.
 
-## Table of Contents
+# Maintain consistent indentation and formatting throughout the codebase.
+````
 
-- [C# Coding Standards](#c-coding-standards)
-- [Swift Coding Standards](#swift-coding-standards)
-- [VB.NET Coding Standards](#vbnet-coding-standards)
+## 📚 Table of Contents
 
----
----
+```bash
+# C# Coding Standards
+# Swift Coding Standards
+# VB.NET Coding Standards
+```
 
 # C# Coding Standards
 
-Organizing class members in a consistent and predictable order improves **code readability, maintainability,** and reduces **merge conflicts**. According to [StyleCop's official rules](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md), here's the recommended ordering for elements inside a class, struct, or interface.
+## 🏗️ Class Design
 
-## Class design
-* Use abstract when you need a contract + shared implementation.
-* Use virtual only when overriding is optional.
-* Keep override members together at the top of the class.
-* Concrete implementations go below abstract/virtual overrides.
+```bash
+# Use abstract when you need a contract + shared implementation.
 
-Within a class, struct, or interface, use this order:
+# Use virtual only when overriding is optional.
 
-1. `abstract`
-2. `virtual`
+# Keep override members together at the top of the class.
+
+# Concrete implementations go below abstract/virtual overrides.
+
+# Within a class, struct, or interface, use this order:
+1. abstract
+2. virtual
 3. concrete
+```
 
-## Top-Level Member Ordering (SA1201 & SA1203)
+## 📑 Top-Level Member Ordering (SA1201 & SA1203)
 
-Within a class, struct, or interface, use this order:
+```bash
+# Within a class, struct, or interface, use this order:
+1. Constant Fields
+2. Fields
+3. Constructors
+4. Finalizers (Destructors)
+5. Delegates
+6. Events
+7. Enums
+8. Interfaces (interface implementations)
+9. Properties
+10. Indexers
+11. Methods
+12. Structs
+13. Classes
 
-1. Constant Fields  
-2. Fields  
-3. Constructors  
-4. Finalizers (Destructors)  
-5. Delegates  
-6. Events  
-7. Enums  
-8. Interfaces (interface implementations)  
-9. Properties  
-10. Indexers  
-11. Methods  
-12. Structs  
-13. Classes  
+# This helps separate state, behavior, and nested types clearly.
+```
 
-> This helps separate state, behavior, and nested types clearly.
+## 🔐 Access Modifier Ordering (SA1202)
 
----
+```bash
+# Within each group above, such as methods or properties, order by access:
+1. public
+2. internal
+3. protected internal
+4. protected
+5. private
+```
 
-## Access Modifier Ordering (SA1202)
+## ⚙️ Static vs Instance (SA1204)
 
-Within each group above (e.g., methods or properties), order by access:
+```bash
+# Inside each access level, place static members first:
+1. Static
+2. Non-static
+```
 
-1. `public`  
-2. `internal`  
-3. `protected internal`  
-4. `protected`  
-5. `private`
+## 🔒 Readonly vs Non-Readonly Fields (SA1214 & SA1215)
 
----
+```bash
+# When declaring fields, order them as:
+1. readonly
+2. Non-readonly
 
-## Static vs Instance (SA1204)
+# This rule helps you distinguish between immutable and mutable state.
+```
 
-Inside each access level, place static members first:
+## 📖 Unrolled Method Example
 
-- Static  
-- Non-static
+```bash
+# Here’s how the methods section would look when fully expanded:
+1. public static methods
+2. public methods
+3. internal static methods
+4. internal methods
+5. protected internal static methods
+6. protected internal methods
+7. protected static methods
+8. protected methods
+9. private static methods
+10. private methods
+```
 
----
+## 🔎 LINQ Usage
 
-## Readonly vs Non-Readonly Fields (SA1214 & SA1215)
+```bash
+# Use query syntax for readability in complex queries.
 
-When declaring fields, order them as:
+# Use method syntax (.Select, .Where) for short inline logic.
 
-1. `readonly`  
-2. `Non-readonly`
+# Async/await
 
-This rule helps you distinguish between immutable and mutable state.
+# Always use Async suffix in method names.
 
----
+# Avoid async void except for event handlers.
+```
 
-## Unrolled Method Example
+## ⏳ Async/Await
 
-Here’s how the **methods** section would look when fully expanded:
+```bash
+# Always use Async suffix in method names.
 
-1. `public static` methods  
-2. `public` methods  
-3. `internal static` methods  
-4. `internal` methods  
-5. `protected internal static` methods  
-6. `protected internal` methods  
-7. `protected static` methods  
-8. `protected` methods  
-9. `private static` methods  
-10. `private` methods
+# Avoid async void except for event handlers.
+```
 
----
-
-## LINQ usage
-* Use query syntax for readability in complex queries.
-* Use method syntax (.Select, .Where) for short inline logic.
-* Async/await
-* Always use Async suffix in method names.
-* Avoid async void except for event handlers.
-
----
-
-## Async/await
-* Always use Async suffix in method names.
-* Avoid async void except for event handlers.
-
----
-
+<!-- render: git-wiki-style-blog -->
 ## Handling Exceptions to the Rule
 
 Sometimes you’ll want to **group related members** (like interface implementations) together, even if it breaks the standard order.
