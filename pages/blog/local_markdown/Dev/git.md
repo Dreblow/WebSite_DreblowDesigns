@@ -27,7 +27,6 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 ---
 
 <!-- render: command-card -->
-<!-- render: command-card -->
 ## 🌿 Move Back to Main
 ```bash
 # Show the current branch
@@ -68,6 +67,12 @@ git status
 
 # Fetch latest remote branch info and prune deleted remote branches
 git fetch --prune origin
+
+# Take a look at all the branches currently locally on your system. Anything marked with '[gone]' means its locally exists only.
+git branch -vv
+
+# Good old force delete of local branches (only if your 100% sure)
+git branch -D NameOfBranch
 
 # Switch to an existing branch
 git switch branch-name
