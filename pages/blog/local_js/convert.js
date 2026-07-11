@@ -4,7 +4,7 @@ const path = require("path");
 const matter = require("gray-matter");
 const MarkdownIt = require("markdown-it");
 
-const { renderCommandCard } = require("./convertToCommandCardStyle.js");
+const { renderCommandCard } = require("./convertToCommandCardStyleTwoRow.js");
 const { renderGitWikiStyle } = require("./convertToGitWikiStyle.js");
 
 const ROOT_DIR = "../../../"
