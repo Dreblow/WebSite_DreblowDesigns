@@ -204,9 +204,9 @@ function formatHead(meta, relativePath, relativeUrl, jasonLD, ROOT_DIR, ROOT_BLO
     gtag('config', 'G-9RT1T06DM1');
     </script>
 
-    <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css?v=4">
-    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css">
+    <link rel="stylesheet" href="${ROOT_DIR}${relativePath}resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
     ${formatBlogCssLinks(css, ROOT_BLOG_DIR, relativePath)}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>`;
