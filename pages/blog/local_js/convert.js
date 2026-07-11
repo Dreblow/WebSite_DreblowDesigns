@@ -418,7 +418,8 @@ function formatVersionDate(dateString, sourceFile = "") {
   const options = {
     year: "numeric",
     month: "short",
-    day: "numeric"
+    day: "numeric",
+    timeZone: "UTC"
   };
 
   return date.toLocaleDateString("en-US", options);
