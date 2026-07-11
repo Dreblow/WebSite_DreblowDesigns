@@ -26,7 +26,7 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 
 ---
 
-<!-- render: command-card -->
+<!-- render: command-card-two-row -->
 ## 🌿 Move Back to Main
 ```bash
 # Show the current branch

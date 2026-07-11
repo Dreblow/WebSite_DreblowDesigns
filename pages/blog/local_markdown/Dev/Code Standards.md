@@ -3,7 +3,8 @@ title: Coding Standards Across Languages
 description: A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.
 keywords: C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code
 author: Derek Dreblow
-version: 2025-09-18
+version: 2026-07-10
+machine: mixed
 categories:
   - Software Development
   - C#
@@ -20,7 +21,6 @@ tags:
 ---
 
 # Coding Standards
-
 Organizing code in a consistent and predictable way improves **code readability, maintainability,** and reduces **merge conflicts**. Follow these general best practices across all programming languages:
 
 - Use clear and descriptive naming conventions for variables, methods, and classes.  
@@ -30,6 +30,8 @@ Organizing code in a consistent and predictable way improves **code readability,
 - Maintain consistent indentation and formatting throughout the codebase.  
 
 Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.
+
+Take a look at the bottom of the page to see a 'live' example.
 
 ---
 
@@ -46,21 +48,24 @@ Adhering to these principles lays a solid foundation for writing clean, maintain
 
 Organizing class members in a consistent and predictable order improves **code readability, maintainability,** and reduces **merge conflicts**. According to [StyleCop's official rules](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md), here's the recommended ordering for elements inside a class, struct, or interface.
 
+<!-- render: command-card-one-row -->
 ## Class design
-* Use abstract when you need a contract + shared implementation.
-* Use virtual only when overriding is optional.
-* Keep override members together at the top of the class.
-* Concrete implementations go below abstract/virtual overrides.
+```bash
+# Use abstract when you need a contract + shared implementation.
+# Use virtual only when overriding is optional.
+# Keep override members together at the top of the class.
+# Concrete implementations go below abstract/virtual overrides.
 
 Within a class, struct, or interface, use this order:
 
-1. `abstract`
-2. `virtual`
+1. abstract
+2. virtual
 3. concrete
+```
 
 ## Top-Level Member Ordering (SA1201 & SA1203)
-
-Within a class, struct, or interface, use this order:
+```bash
+# Within a class, struct, or interface, use this order:
 
 1. Constant Fields  
 2. Fields  
@@ -77,56 +82,53 @@ Within a class, struct, or interface, use this order:
 13. Classes  
 
 > This helps separate state, behavior, and nested types clearly.
-
----
+```
 
 ## Access Modifier Ordering (SA1202)
-
+```bash
 Within each group above (e.g., methods or properties), order by access:
 
-1. `public`  
-2. `internal`  
-3. `protected internal`  
-4. `protected`  
-5. `private`
-
----
+1. public  
+2. internal  
+3. protected internal
+4. protected
+5. private
+```
 
 ## Static vs Instance (SA1204)
-
+```bash
 Inside each access level, place static members first:
 
 - Static  
 - Non-static
-
----
+```
 
 ## Readonly vs Non-Readonly Fields (SA1214 & SA1215)
-
+```bash
 When declaring fields, order them as:
 
-1. `readonly`  
-2. `Non-readonly`
+1. readonly
+2. Non-readonly
 
-This rule helps you distinguish between immutable and mutable state.
-
----
+> This rule helps you distinguish between immutable and mutable state.
+```
 
 ## Unrolled Method Example
-
+```bash
 Here’s how the **methods** section would look when fully expanded:
 
-1. `public static` methods  
-2. `public` methods  
-3. `internal static` methods  
-4. `internal` methods  
-5. `protected internal static` methods  
-6. `protected internal` methods  
-7. `protected static` methods  
-8. `protected` methods  
-9. `private static` methods  
+1. `public static` methods
+2. `public` methods
+3. `internal static` methods
+4. `internal` methods
+5. `protected internal static` methods
+6. `protected internal` methods
+7. `protected static` methods
+8. `protected` methods
+9. `private static` methods
 10. `private` methods
-
+```
+<!-- render: git-wiki-style-blog --> 
 ---
 
 ## LINQ usage
