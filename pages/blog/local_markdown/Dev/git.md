@@ -3,7 +3,7 @@ title: Git Essentials Cheat Sheet
 description: A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.
 keywords: git, git cheat sheet, git ignore, git commands, linux git, github, version control
 author: Derek Dreblow
-version: 2026-06-11
+version: 2026-06-29
 machine: mixed
 categories:
   - Git
@@ -26,7 +26,6 @@ Also some nice to knows about the .gitignore file that beginners may like to kno
 
 ---
 
-<!-- render: command-card -->
 <!-- render: command-card -->
 ## 🌿 Move Back to Main
 ```bash
@@ -69,8 +68,23 @@ git status
 # Fetch latest remote branch info and prune deleted remote branches
 git fetch --prune origin
 
-# Switch to an existing branch
+# Local Branches. Anything marked with '[gone]' means its locally exists only.
+git branch -vv
+
+# Remote Branches.
+git branch -r
+
+# Both Local and Remote Branches
+git branch -a
+
+# Good old force delete of local branches (only if your 100% sure)
+git branch -D NameOfBranch
+
+# Switch to an existing branch, only if it already exists on your system
 git switch branch-name
+
+# pulling a new branch from origin
+git switch -c NameOfYourBranch --track origin/NameOfYourBranch
 
 # Older syntax for switching to an existing branch
 git checkout branch-name
