@@ -19,7 +19,7 @@ tags:
   - Clean Code
   - Best Practices
 ---
-<!-- render: command-card --> <!-- render: git-wiki-style-blog -->  
+<!-- render: command-card-one-row --> <!-- render: git-wiki-style-blog -->  
 # Coding Standards
 Organizing code in a consistent and predictable way improves **code readability, maintainability,** and reduces **merge conflicts**. Follow these general best practices across all programming languages:
 
@@ -48,7 +48,7 @@ Take a look at the bottom of the page to see a 'live' example.
 
 Organizing class members in a consistent and predictable order improves **code readability, maintainability,** and reduces **merge conflicts**. According to [StyleCop's official rules](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md), here's the recommended ordering for elements inside a class, struct, or interface.
 
-<!-- render: command-card -->
+<!-- render: command-card-one-row -->
 ## Class design
 ```bash
 * Use abstract when you need a contract + shared implementation.
