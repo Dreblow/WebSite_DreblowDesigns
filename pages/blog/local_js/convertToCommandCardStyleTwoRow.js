@@ -17,7 +17,7 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options);
 };
 
-function renderCommandCard(formattedVersion, content){
+function renderCommandCardTwoRow(formattedVersion, content){
     let renderedContent = md.render(content);
 
     // Replace <h2>...</h2><pre><code class="language-bash">...</code></pre> blocks with .cards-container divs containing the h2 and a command-card div with a table for commands and descriptions
@@ -72,4 +72,4 @@ function renderCommandCard(formattedVersion, content){
 </main>`;
 }
 
-module.exports = { renderCommandCard };
+module.exports = { renderCommandCardTwoRow };

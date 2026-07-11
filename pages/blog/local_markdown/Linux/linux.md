@@ -16,7 +16,7 @@ tags:
 # Linux Cheat Sheet
 Below is a cheat sheet typical linux commands, uselly useful for most distros. I hope this cheat sheet servers you as it servers me!
 
-<!-- render: command-card -->
+<!-- render: command-card-two-row -->
 ## ⌨️ Keyboard Shortcuts
 ```bash
 # Kill process running in the terminal
