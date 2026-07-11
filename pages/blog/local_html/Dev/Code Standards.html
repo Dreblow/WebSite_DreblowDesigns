@@ -42,7 +42,7 @@
         "Swift",
         "VB.NET"
       ],
-      "datePublished": "2025-09-18T00:00:00.000Z",
+      "datePublished": "2026-06-29T00:00:00.000Z",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html",
       "publisher": {
@@ -86,9 +86,9 @@
     gtag('config', 'G-9RT1T06DM1');
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=4">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css">
+    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
         <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="../../local_css/command-card-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -108,118 +108,149 @@
     
 <main class="markdown-body git-wiki-section">
     <article>
-        <p><em class="blogVersion">Version: Sep 17, 2025</em></p>
+        <p><em class="blogVersion">Version: Jun 28, 2026</em></p>
         <h1 id="coding-standards" tabindex="-1">Coding Standards</h1>
-<p>Organizing code in a consistent and predictable way improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. Follow these general best practices across all programming languages:</p>
-<ul>
-<li>Use clear and descriptive naming conventions for variables, methods, and classes.</li>
-<li>Write meaningful comments to explain complex logic or important decisions.</li>
-<li>Handle errors gracefully with appropriate error handling and logging.</li>
-<li>Keep functions and methods focused on a single responsibility.</li>
-<li>Maintain consistent indentation and formatting throughout the codebase.</li>
-</ul>
-<p>Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.</p>
-<hr>
-<h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
-<ul>
-<li><a href="#c-coding-standards">C# Coding Standards</a></li>
-<li><a href="#swift-coding-standards">Swift Coding Standards</a></li>
-<li><a href="#vbnet-coding-standards">VB.NET Coding Standards</a></li>
-</ul>
-<hr>
-<hr>
-<h1 id="c-coding-standards" tabindex="-1">C# Coding Standards</h1>
-<p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md" target="_blank" rel="noopener noreferrer">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
-<h2 id="class-design" tabindex="-1">Class design</h2>
-<ul>
-<li>Use abstract when you need a contract + shared implementation.</li>
-<li>Use virtual only when overriding is optional.</li>
-<li>Keep override members together at the top of the class.</li>
-<li>Concrete implementations go below abstract/virtual overrides.</li>
-</ul>
-<p>Within a class, struct, or interface, use this order:</p>
-<ol>
-<li><code>abstract</code></li>
-<li><code>virtual</code></li>
-<li>concrete</li>
-</ol>
-<h2 id="top-level-member-ordering-sa1201-sa1203-" tabindex="-1">Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
-<p>Within a class, struct, or interface, use this order:</p>
-<ol>
-<li>Constant Fields</li>
-<li>Fields</li>
-<li>Constructors</li>
-<li>Finalizers (Destructors)</li>
-<li>Delegates</li>
-<li>Events</li>
-<li>Enums</li>
-<li>Interfaces (interface implementations)</li>
-<li>Properties</li>
-<li>Indexers</li>
-<li>Methods</li>
-<li>Structs</li>
-<li>Classes</li>
-</ol>
-<blockquote>
-<p>This helps separate state, behavior, and nested types clearly.</p>
-</blockquote>
-<hr>
-<h2 id="access-modifier-ordering-sa1202-" tabindex="-1">Access Modifier Ordering (SA1202)</h2>
-<p>Within each group above (e.g., methods or properties), order by access:</p>
-<ol>
-<li><code>public</code></li>
-<li><code>internal</code></li>
-<li><code>protected internal</code></li>
-<li><code>protected</code></li>
-<li><code>private</code></li>
-</ol>
-<hr>
-<h2 id="static-vs-instance-sa1204-" tabindex="-1">Static vs Instance (SA1204)</h2>
-<p>Inside each access level, place static members first:</p>
-<ul>
-<li>Static</li>
-<li>Non-static</li>
-</ul>
-<hr>
-<h2 id="readonly-vs-non-readonly-fields-sa1214-sa1215-" tabindex="-1">Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
-<p>When declaring fields, order them as:</p>
-<ol>
-<li><code>readonly</code></li>
-<li><code>Non-readonly</code></li>
-</ol>
-<p>This rule helps you distinguish between immutable and mutable state.</p>
-<hr>
-<h2 id="unrolled-method-example" tabindex="-1">Unrolled Method Example</h2>
-<p>Here’s how the <strong>methods</strong> section would look when fully expanded:</p>
-<ol>
-<li><code>public static</code> methods</li>
-<li><code>public</code> methods</li>
-<li><code>internal static</code> methods</li>
-<li><code>internal</code> methods</li>
-<li><code>protected internal static</code> methods</li>
-<li><code>protected internal</code> methods</li>
-<li><code>protected static</code> methods</li>
-<li><code>protected</code> methods</li>
-<li><code>private static</code> methods</li>
-<li><code>private</code> methods</li>
-</ol>
-<hr>
-<h2 id="linq-usage" tabindex="-1">LINQ usage</h2>
-<ul>
-<li>Use query syntax for readability in complex queries.</li>
-<li>Use method syntax (.Select, .Where) for short inline logic.</li>
-<li>Async/await</li>
-<li>Always use Async suffix in method names.</li>
-<li>Avoid async void except for event handlers.</li>
-</ul>
-<hr>
-<h2 id="async-await" tabindex="-1">Async/await</h2>
-<ul>
-<li>Always use Async suffix in method names.</li>
-<li>Avoid async void except for event handlers.</li>
-</ul>
-<hr>
-<h2 id="handling-exceptions-to-the-rule" tabindex="-1">Handling Exceptions to the Rule</h2>
+
+    </article>
+</main>
+
+<main class="markdown-body command-card-section">
+    <article>
+        
+
+        <div class="cards-flex-container">
+            <div class="cards-container">
+                
+<div class="card-container">
+  <div class="title-container">
+    <h2>📋 General Best Practices</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Use clear and descriptive naming conventions for variables, methods, and classes.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Write meaningful comments to explain complex logic or important decisions.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Handle errors gracefully with appropriate error handling and logging.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Keep functions and methods focused on a single responsibility.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Maintain consistent indentation and formatting throughout the codebase.</span></code></td><td class="cmd"><code class="hljs language-bash"></code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>📚 Table of Contents</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># C# Coding Standards</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Swift Coding Standards</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># VB.NET Coding Standards</span></code></td><td class="cmd"><code class="hljs language-bash"></code></td></tr>
+    </table>
+  </div>
+</div>
+
+<h1>C# Coding Standards</h1>
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>🏗️ Class Design</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Use abstract when you need a contract + shared implementation.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Use virtual only when overriding is optional.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Keep override members together at the top of the class.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Concrete implementations go below abstract/virtual overrides.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Within a class, struct, or interface, use this order:</span></code></td><td class="cmd"><code class="hljs language-bash">1. abstract</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. virtual</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">3. concrete</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>📑 Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Within a class, struct, or interface, use this order:</span></code></td><td class="cmd"><code class="hljs language-bash">1. Constant Fields</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. Fields</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">3. Constructors</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">4. Finalizers (Destructors)</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">5. Delegates</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">6. Events</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">7. Enums</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">8. Interfaces (interface implementations)</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">9. Properties</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">10. Indexers</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">11. Methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">12. Structs</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">13. Classes</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># This helps separate state, behavior, and nested types clearly.</span></code></td><td class="cmd"><code class="hljs language-bash"></code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>🔐 Access Modifier Ordering (SA1202)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Within each group above, such as methods or properties, order by access:</span></code></td><td class="cmd"><code class="hljs language-bash">1. public</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. internal</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">3. protected internal</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">4. protected</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">5. private</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>⚙️ Static vs Instance (SA1204)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Inside each access level, place static members first:</span></code></td><td class="cmd"><code class="hljs language-bash">1. Static</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. Non-static</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>🔒 Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># When declaring fields, order them as:</span></code></td><td class="cmd"><code class="hljs language-bash">1. <span class="hljs-built_in">readonly</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. Non-<span class="hljs-built_in">readonly</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># This rule helps you distinguish between immutable and mutable state.</span></code></td><td class="cmd"><code class="hljs language-bash"></code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>📖 Unrolled Method Example</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Here’s how the methods section would look when fully expanded:</span></code></td><td class="cmd"><code class="hljs language-bash">1. public static methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">2. public methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">3. internal static methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">4. internal methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">5. protected internal static methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">6. protected internal methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">7. protected static methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">8. protected methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">9. private static methods</code></td></tr><tr><td class="desc"><code class="hljs language-bash"></code></td><td class="cmd"><code class="hljs language-bash">10. private methods</code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>🔎 LINQ Usage</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Use query syntax for readability in complex queries.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Use method syntax (.Select, .Where) for short inline logic.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Async/await</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Always use Async suffix in method names.</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Avoid async void except for event handlers.</span></code></td><td class="cmd"><code class="hljs language-bash"></code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="card-container">
+  <div class="title-container">
+    <h2>⏳ Async/Await</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table">
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Always use Async suffix in method names.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-comment"># Avoid async void except for event handlers.</span></code></td></tr>
+    </table>
+  </div>
+</div>
+
+
+            </div>
+        </div>
+    </article>
+</main>
+
+<main class="markdown-body git-wiki-section">
+    <article>
+        
+        <h2 id="handling-exceptions-to-the-rule" tabindex="-1">Handling Exceptions to the Rule</h2>
 <p>Sometimes you’ll want to <strong>group related members</strong> (like interface implementations) together, even if it breaks the standard order.</p>
 <p><strong>Best practice:</strong> use <strong>partial classes</strong> to separate those concerns cleanly.</p>
 <pre><code class="hljs csharp"><span class="hljs-comment">// File: MyClass.cs</span>

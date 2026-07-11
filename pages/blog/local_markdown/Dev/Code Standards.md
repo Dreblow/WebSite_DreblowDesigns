@@ -1,10 +1,9 @@
-````markdown
 ---
 title: Coding Standards Across Languages
 description: A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.
 keywords: C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code
 author: Derek Dreblow
-version: 2025-09-18
+version: 2026-06-29
 machine: mixed
 categories:
   - Software Development

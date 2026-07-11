@@ -49,7 +49,7 @@ function processDirectory(inputPath, outputPath) {
       const header = formatHeader(relativePath, ROOT_DIR);
       const footer = formatFooter(relativePath, ROOT_DIR);
 
-      const formattedVersion = formatVersionDate(frontMatter.version);
+      const formattedVersion = formatVersionDate(frontMatter.version, itemPath);
 
       const css = frontMatter.machine === "mixed" ? ["git-wiki-style-blog", "command-card-blog"]
                 : frontMatter.machine === "command-card" ? "command-card-blog" : "git-wiki-style-blog";
@@ -105,17 +105,24 @@ ${head}
 }
 
 // Format the version date
-function formatVersionDate(dateString) {
-    // Attempt to parse the date string
+function formatVersionDate(dateString, sourceFile = "") {
+    if (dateString === undefined || dateString === null || dateString === "") {
+        throw new Error(
+            `Missing version date${sourceFile ? ` in: ${sourceFile}` : ""}\n` +
+            `Add a version field to the markdown front matter, for example:\n\n` +
+            `version: 2025-09-18`
+        );
+    }
+
     let date;
 
-    // Try ISO 8601 format first
-    if (!isNaN(Date.parse(dateString))) {
-        date = new Date(dateString); 
+    if (dateString instanceof Date && !isNaN(dateString)) {
+        date = dateString;
+    } else if (!isNaN(Date.parse(dateString))) {
+        date = new Date(dateString);
     } else {
-        // Fallback to manual parsing if standard parsing fails
-        const dateParts = dateString.match(
-            /(\w{3}) (\w{3}) (\d{1,2}) (\d{4}) (\d{2}:\d{2}:\d{2})/ // Fri Nov 29 2024 16:00:00
+        const dateParts = String(dateString).match(
+            /(\w{3}) (\w{3}) (\d{1,2}) (\d{4}) (\d{2}:\d{2}:\d{2})/
         );
 
         if (dateParts) {
@@ -124,19 +131,23 @@ function formatVersionDate(dateString) {
                 Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
                 Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
             };
+
             date = new Date(year, months[month], day);
         } else {
-            console.warn(`Invalid date provided: ${dateString}`);
-            return "Unknown Date"; // Fallback for invalid dates
+            throw new Error(
+                `Invalid version date${sourceFile ? ` in: ${sourceFile}` : ""}: ${dateString}\n` +
+                `Use a markdown front matter version like:\n\n` +
+                `version: 2025-09-18`
+            );
         }
     }
 
-    // Format the date to "Nov 29, 2024"
-    const options = { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
     };
+
     return date.toLocaleDateString('en-US', options);
 }
 
