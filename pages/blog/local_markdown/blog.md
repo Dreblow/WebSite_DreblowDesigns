@@ -3,7 +3,7 @@ title: Hello Blog!
 description: Welcome to Derek Dreblow's blog, inspired by project notes and step-by-step solutions for engineering, software development, and server management.
 keywords: Derek Dreblow, blog, engineering, project notes, tutorials, Ubuntu, WireGuard, FTP Server
 author: Derek Dreblow
-version: 2026-06-11
+version: 2026-07-11
 categories:
   - Introduction
 tags:
@@ -35,6 +35,7 @@ This blog was inspired by all the note taking I have done over all my projects. 
 
 #### Linux
 
+* [Linux & Unix CLI Toolbox](./Linux/Linux&UnixTerminalToolbox.html)
 * [Linux Shortcuts](./Linux/linux.html)
 * [Setting IP to Static](./Linux/Setting%20IP%20to%20Static.html)
 * [All that is SSH](./Linux/AllThatIsSSH.html)
