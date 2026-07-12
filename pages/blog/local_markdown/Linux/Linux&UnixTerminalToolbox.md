@@ -1,5 +1,5 @@
 ---
-title: Linux & Unix CLI Terminal Toolbox
+title: Linux &amp; Unix CLI Terminal Toolbox
 description: A collection of terminal tools, install commands, and quick notes for Linux and macOS.
 keywords: Linux, Unix, macOS, Terminal, CLI, Homebrew, Ubuntu, Guide, Cheat Sheet
 author: Derek Dreblow
@@ -32,7 +32,7 @@ Every command on this page has been tested by me. Where applicable, I’ll note 
 
 **Tested with: Homebrew on macOS**
 
-The `tree` utility displays directories as a hierarchical tree, making it much easier to visualize folder structures from the terminal. I mainly use this for my READMEs. It really is the way to go for creating CLI folder path representations. Now with AI, its a must. Imagine having a README, with a full tree of your project. Talk about getting you Ai project up to speed with all that context.
+The `tree` utility displays directories as a hierarchical tree, making it much easier to visualize folder structures from the terminal. I mainly use this for my READMEs. It really is the way to go for creating CLI folder path representations. Now with AI, its a must. Imagine having a README, with a full tree of your project. Talk about getting your AI project up to speed with all that context.
 
 ### Install
 ```bash
@@ -110,14 +110,11 @@ Or create a named session:
 tmux new -s my-session-name
 ```
 
-When you want to disconnect:
-```bash
-Ctrl+b
-d
-```
+ When you want to disconnect, press `Ctrl+b`, then `d`.
+
 ### SSH back in later:
 ```bash
 tmux attach -t my-session-name
 ```
 
-That's it! because if you leave your shell, what ever process you have running will stop. What's a good example? How about migrating 5TB of data from one drive to and another and use `rsync`. Use `tmux` to *set it and forget it*. But you should come back to see how things are going periodically 😃
+That's it! Because if you leave your shell, whatever process you have running will stop. What's a good example? How about migrating 5TB of data from one drive to and another and use `rsync`, use `tmux` to *set it and forget it*. But you should come back to see how things are going periodically 😃
