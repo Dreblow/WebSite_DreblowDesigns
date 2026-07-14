@@ -117,4 +117,9 @@ tmux new -s my-session-name
 tmux attach -t my-session-name
 ```
 
+And of course if you forget, look it up:
+```bash
+tmux ls
+```
+
 That's it! Because if you leave your shell, whatever process you have running will stop. What's a good example? How about migrating 5TB of data from one drive to and another and use `rsync`, use `tmux` to *set it and forget it*. But you should come back to see how things are going periodically 😃
