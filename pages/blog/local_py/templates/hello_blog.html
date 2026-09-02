@@ -1,0 +1,114 @@
+<!-- DDS:HEAD:START -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ author }}">
+    <meta name="keywords" content="{{ keywords }}">
+
+    <title>Dreblow Design - {{ title }} blog</title>
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ image }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:type" content="website">
+
+    <!-- JSON-LD -->
+    {{ json_ld }}
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ image }}">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ root_path }}resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="{{ blog_path }}local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="{{ blog_path }}local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    {{ renderer_css }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="{{ root_path }}pages/about.html" aria-label="About"> About</a></li>
+            <li><a href="{{ root_path }}pages/contact/contact.html" aria-label="Contact"> Contact</a></li>
+            <li><a href="{{ root_path }}pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+{{ render_sections }}
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="{{ root_path }}resources/images/brands/LeetCode/leetcode.png" 
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="{{ root_path }}resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
+</body>
+</html>
+<!-- DDS:FOOTER:END -->
