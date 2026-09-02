@@ -9,3 +9,6 @@ resources/config.php
 
 #ignore NAS directory
 resources/media
+
+#ignore zip files
+**/*.zip

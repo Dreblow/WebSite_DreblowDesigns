@@ -41,3 +41,21 @@ php -S localhost:8000
 * Blog is about converting MD files to HTML/CSS to share with the world. After the completion of every MD file, run `convert.js`, and the output files will be in the corresponding folder structure.
 * The structure being `local_markdown` -> `local_html`.
 * The terminal call is `node convert.js`
+
+---
+
+### Creating Blogs
+Wiki Style static generator 
+```markdown
+<!-- render: git-wiki-style-blog -->
+```
+
+Command Card Style static generator
+```markdown
+<!-- render: command-card-two-row -->
+```
+
+Template area for manual creation
+```markdown
+<!-- render: blank-template -->
+```
