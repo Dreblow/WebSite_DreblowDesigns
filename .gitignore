@@ -1,6 +1,9 @@
 #Website keys
 resources/config.php
 
+#ignore py environment modules
+**/.venv/
+
 #ignore node modules
 **/node_modules/
 
