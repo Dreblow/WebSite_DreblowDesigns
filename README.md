@@ -1,61 +1,140 @@
 # Web_Portfolio
 
-Derek Dreblow's personal web portfolio
+Derek Dreblow's personal web portfolio.
 
-Enjoy some simple HTML and CSS, with a minimist approach to the site. This repo hopes to help others get going a personal web portfolio, as well.
-
-## Dependencies
-### npm packages
-1) `markdown-it` - MD to HTML converter
-2) `Gray-Matter` - MD meta data to HTML meta data
-3) `Highlight`   - MD to CSS converter, mainly for code
-
-### npm package download
-In the root of your project folder (same directory as your package.json):
-``` bash
-npm install
-```
-
-___
-
-## Development
-### npm commands 
-kick off a local server and browser
-``` bash
-npm run dev
-```
-
-When converting blogs
-``` bash
-npm run convert-blog 
-```
-
-### Local Server
-For PHP based local server,  type 
-``` bash
-php -S localhost:8000
-```
-
-
-### Blog
-* Blog is about converting MD files to HTML/CSS to share with the world. After the completion of every MD file, run `convert.js`, and the output files will be in the corresponding folder structure.
-* The structure being `local_markdown` -> `local_html`.
-* The terminal call is `node convert.js`
+Enjoy some simple HTML and CSS with a minimalist approach to the site. This repo also hopes to help others get started with a personal web portfolio of their own.
 
 ---
 
-### Creating Blogs
-Wiki Style static generator 
+## Development Setup
+
+Development tooling is stored in:
+
+```text
+local_dev/
+```
+
+Before running npm or Python development commands:
+
+```bash
+cd local_dev
+```
+
+---
+
+## Dependencies
+
+### Node.js / npm
+
+Node.js is used for local development tooling such as the PHP development server, BrowserSync, and CSS watching.
+
+Install npm dependencies:
+
+```bash
+cd local_dev
+npm install
+```
+
+### Python
+
+Python is used for static blog generation.
+
+Create a virtual environment:
+
+```bash
+cd local_dev
+python3 -m venv .venv
+```
+
+Activate it:
+
+```bash
+source .venv/bin/activate
+```
+
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+When finished working in the virtual environment:
+
+```bash
+deactivate
+```
+
+---
+
+## Development
+
+### Start Local Development Environment
+
+From `local_dev`:
+
+```bash
+npm run dev
+```
+
+This starts the local development server and BrowserSync environment.
+
+### Local PHP Server
+
+The PHP development server can also be started manually:
+
+```bash
+php -S localhost:8000 -t
+```
+
+---
+
+## Blog Generation
+
+Blog posts are written as Markdown files and converted into HTML while preserving the corresponding directory structure.
+
+The general structure is:
+
+```text
+local_markdown/
+    ⬇️
+local_html/
+```
+
+Activate the Python virtual environment before generating blog content:
+
+```bash
+cd local_dev
+source .venv/bin/activate
+```
+
+Run the blog generator:
+
+```bash
+python python/main.py
+```
+
+---
+
+## Creating Blogs
+
+Blog content can use multiple render styles within the same Markdown file.
+
+### Wiki Style
+
 ```markdown
 <!-- render: git-wiki-style-blog -->
 ```
 
-Command Card Style static generator
+### Command Card Style
+
 ```markdown
 <!-- render: command-card-two-row -->
 ```
 
-Template area for manual creation
+### Manual Template Area
+
 ```markdown
 <!-- render: blank-template -->
 ```
+
+The `blank-template` renderer reserves an HTML section for manually created content while allowing the static generator to continue updating the surrounding generated sections.
