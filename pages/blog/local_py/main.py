@@ -1,5 +1,9 @@
 from pathlib import Path
+
 import frontmatter
+
+from support.css import build_renderer_css
+from support.paths import get_path_prefixes
 
 
 # ---------------------------------------------------------
@@ -70,6 +74,55 @@ def process_markdown_file(markdown_file: Path):
 
     sections = split_render_sections(markdown_content)
 
+    root_path, blog_path = get_path_prefixes(
+        output_file,
+        OUTPUT_DIR,
+    )
+
+    renderer_css = build_renderer_css(
+        sections,
+        blog_path,
+    )
+
+    template = load_template()
+
+    template_values = {
+        "title": metadata.get(
+            "title",
+            "Dreblow Designs Blog",
+        ),
+        "description": metadata.get(
+            "description",
+            "",
+        ),
+        "author": metadata.get(
+            "author",
+            "Derek Dreblow",
+        ),
+        "keywords": metadata.get(
+            "keywords",
+            "",
+        ),
+        "canonical_url": "TODO",
+        "root_path": root_path,
+        "blog_path": blog_path,
+        "json_ld": "<!-- JSON-LD TODO -->",
+        "renderer_css": renderer_css,
+        "render_sections": "<!-- render sections TODO -->",
+    }
+
+    generated_html = fill_template(
+        template,
+        template_values,
+    )
+
+    print()
+    print("=" * 80)
+    print(f"GENERATED PAGE: {markdown_file.name}")
+    print("=" * 80)
+    print(generated_html)
+    print("=" * 80)
+
     for section in sections:
         print(f"   ↳ renderer: {section['renderer']}")
 
@@ -80,6 +133,26 @@ def process_markdown_file(markdown_file: Path):
     # 3. Preserve blank-template sections
     # 4. Generate header/footer
     # 5. Write reconstructed HTML
+
+
+# ---------------------------------------------------------
+# Template Rendering
+# ---------------------------------------------------------
+
+def load_template():
+    return TEMPLATE_FILE.read_text(encoding="utf-8")
+
+
+def fill_template(template: str, values: dict[str, str]) -> str:
+    html = template
+
+    for key, value in values.items():
+        html = html.replace(
+            f"{{{{ {key} }}}}",
+            str(value),
+        )
+
+    return html
 
 
 # ---------------------------------------------------------
