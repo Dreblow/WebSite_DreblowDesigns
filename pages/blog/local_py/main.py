@@ -147,10 +147,27 @@ def fill_template(template: str, values: dict[str, str]) -> str:
     html = template
 
     for key, value in values.items():
-        html = html.replace(
-            f"{{{{ {key} }}}}",
-            str(value),
-        )
+        placeholder = f"{{{{ {key} }}}}"
+
+        lines = html.splitlines()
+
+        for index, line in enumerate(lines):
+            if placeholder not in line:
+                continue
+
+            indent = line[:len(line) - len(line.lstrip())]
+
+            replacement = str(value).replace(
+                "\n",
+                f"\n{indent}"
+            )
+
+            lines[index] = line.replace(
+                placeholder,
+                replacement,
+            )
+
+        html = "\n".join(lines)
 
     return html
 
