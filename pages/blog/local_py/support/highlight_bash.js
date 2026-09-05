@@ -12,11 +12,29 @@ const hljs = require(
     )
 );
 
-const input = process.argv[2] || "";
+let input = "";
 
-const result = hljs.highlight(
-    input,
-    { language: "bash" }
-);
+process.stdin.setEncoding("utf8");
 
-process.stdout.write(result.value);
+process.stdin.on("data", chunk => {
+    input += chunk;
+});
+
+process.stdin.on("end", () => {
+    const values = JSON.parse(input);
+
+    const highlighted = values.map(value => {
+        if (!value) {
+            return "";
+        }
+
+        return hljs.highlight(
+            value,
+            { language: "bash" }
+        ).value;
+    });
+
+    process.stdout.write(
+        JSON.stringify(highlighted)
+    );
+});

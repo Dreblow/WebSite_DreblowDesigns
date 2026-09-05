@@ -1,5 +1,7 @@
 import html
 import re
+import json
+import subprocess
 
 import markdown
 import subprocess
@@ -72,7 +74,9 @@ def convert_command_cards(content: str) -> str:
         r'</code></pre>'
     )
 
-    def replace_card(match):
+    cards = []
+
+    for match in pattern.finditer(content):
         heading = match.group(1)
 
         code_content = html.unescape(
@@ -86,7 +90,6 @@ def convert_command_cards(content: str) -> str:
         ]
 
         rows = []
-
         index = 0
 
         while index < len(lines):
@@ -106,40 +109,98 @@ def convert_command_cards(content: str) -> str:
                 index += 1
 
             rows.append(
+                {
+                    "description": description,
+                    "command": command,
+                }
+            )
+
+        cards.append(
+            {
+                "match": match,
+                "heading": heading,
+                "rows": rows,
+            }
+        )
+
+    values_to_highlight = []
+
+    for card in cards:
+        for row in card["rows"]:
+            values_to_highlight.append(
+                row["description"]
+            )
+            values_to_highlight.append(
+                row["command"]
+            )
+
+    highlighted_values = highlight_bash_batch(
+        values_to_highlight
+    )
+
+    highlight_index = 0
+
+    replacements = []
+
+    for card in cards:
+        rendered_rows = []
+
+        for row in card["rows"]:
+            highlighted_description = (
+                highlighted_values[
+                    highlight_index
+                ]
+            )
+
+            highlighted_command = (
+                highlighted_values[
+                    highlight_index + 1
+                ]
+            )
+
+            highlight_index += 2
+
+            rendered_rows.append(
                 build_row(
-                    description,
-                    command,
+                    highlighted_description,
+                    highlighted_command,
                 )
             )
 
-        return (
+        card_html = (
             '<div class="card-container">\n'
             '  <div class="title-container">\n'
-            f'    {heading}\n'
+            f'    {card["heading"]}\n'
             '  </div>\n'
             '  <div class="info-container">\n'
             '    <table class="command-table">\n'
-            f'      {"".join(rows)}\n'
+            f'      {"".join(rendered_rows)}\n'
             '    </table>\n'
             '  </div>\n'
             '</div>'
         )
 
-    return pattern.sub(
-        replace_card,
-        content,
-    )
+        replacements.append(
+            (
+                card["match"].start(),
+                card["match"].end(),
+                card_html,
+            )
+        )
+
+    for start, end, replacement in reversed(
+        replacements
+    ):
+        content = (
+            content[:start]
+            + replacement
+            + content[end:]
+        )
+
+    return content
 
 
-def build_row(description: str, command: str) -> str:
-    highlighted_description = highlight_bash(
-        description
-    )
-
-    highlighted_command = highlight_bash(
-        command
-    )
-
+def build_row(highlighted_description: str, highlighted_command: str) -> str:
     return (
         '<tr>'
         '<td class="desc">'
@@ -156,16 +217,18 @@ def build_row(description: str, command: str) -> str:
     )
 
 
-def highlight_bash(text: str) -> str:
-    if not text:
-        return ""
+def highlight_bash_batch(
+    values: list[str],
+) -> list[str]:
+    if not values:
+        return []
 
     result = subprocess.run(
         [
             "node",
             str(HIGHLIGHT_SCRIPT),
-            text,
         ],
+        input=json.dumps(values),
         capture_output=True,
         text=True,
     )
@@ -176,7 +239,9 @@ def highlight_bash(text: str) -> str:
             f"{result.stderr}"
         )
 
-    return result.stdout
+    return json.loads(
+        result.stdout
+    )
 
 
 def get_highlight_class(
