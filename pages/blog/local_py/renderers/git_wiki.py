@@ -7,9 +7,14 @@ from markdown.extensions.toc import TocExtension
 def slugify(value: str, separator: str) -> str:
     value = value.strip().lower()
     value = value.replace(".", "")
-    value = re.sub(r"[^\w]+", "-", value)
 
-    return value.strip("-")
+    value = re.sub(
+        r"[^\w]+",
+        separator,
+        value,
+    )
+
+    return value.rstrip(separator)
 
 
 def render(content: str, formatted_version: str = "") -> str:
@@ -26,6 +31,7 @@ def render(content: str, formatted_version: str = "") -> str:
 
     html = convert_code_classes(html)
     html = open_external_links_in_new_tab(html)
+    html = add_heading_tabindex(html)
 
     version_html = ""
 
@@ -75,5 +81,13 @@ def open_external_links_in_new_tab(html: str) -> str:
 
     return pattern.sub(
         replace_link,
+        html,
+    )
+
+
+def add_heading_tabindex(html: str) -> str:
+    return re.sub(
+        r'<(h[1-6]) id="([^"]+)">',
+        r'<\1 id="\2" tabindex="-1">',
         html,
     )

@@ -1,8 +1,12 @@
 #Website keys
 resources/config.php
 
-#ignore py environment modules
-**/.venv/
+# Python
+__pycache__/
+*.py[cod]
+
+# Local Python environment
+local_dev/.venv/
 
 #ignore node modules
 **/node_modules/
