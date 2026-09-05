@@ -80,3 +80,127 @@
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ===========================
+   DDS-Mirror
+   =========================== */
+
+.dds-editor {
+    position: relative;
+    width: 100%;
+    height: 600px;
+
+    background-color: #151b23;
+
+    border: 1px solid #30363d;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+/* Both layers must stay visually identical */
+.dds-mirror,
+.dds-input {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 16px;
+
+    border: 0;
+    outline: 0;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 1rem;
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    overflow: auto;
+}
+
+
+/* Visible syntax-colored mirror */
+.dds-mirror {
+    z-index: 1;
+
+    color: #f0f0f0;
+    background: transparent;
+
+    pointer-events: none;
+}
+
+
+/* Real textarea handles typing + native spellcheck */
+.dds-input {
+    z-index: 2;
+
+    resize: none;
+
+    background: transparent;
+
+    color: transparent;
+    caret-color: #ffffff;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ===========================
+   DDS-Mirror Markdown Colors
+   =========================== */
+
+.dds-heading {
+    color: #58a6ff;
+    font-weight: 600;
+}
+
+.dds-comment {
+    color: #8b949e;
+}
+
+.dds-bold {
+    color: #d2a8ff;
+    font-weight: 600;
+}
+
+.dds-inline-code {
+    color: #ffa657;
+}
+
+.dds-link {
+    color: #79c0ff;
+}
+
+.dds-quote {
+    color: #8b949e;
+}
+
+.dds-list {
+    color: #c9d1d9;
+}
+
+.dds-code-fence {
+    color: #8b949e;
+}
+
+.dds-code {
+    color: #c9d1d9;
+}
