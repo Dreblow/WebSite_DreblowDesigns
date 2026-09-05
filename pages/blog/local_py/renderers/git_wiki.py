@@ -17,20 +17,14 @@ def render(content: str, formatted_version: str = "") -> str:
         content,
         extensions=[
             "fenced_code",
-            "codehilite",
             "tables",
             TocExtension(
                 slugify=slugify,
             ),
-        ],
-        extension_configs={
-            "codehilite": {
-                "guess_lang": False,
-                "css_class": "highlight",
-            },
-        },
+        ]
     )
 
+    html = convert_code_classes(html)
     html = open_external_links_in_new_tab(html)
 
     version_html = ""
@@ -49,6 +43,14 @@ def render(content: str, formatted_version: str = "") -> str:
         f'{html}\n'
         '    </article>\n'
         '</main>'
+    )
+
+
+def convert_code_classes(html: str) -> str:
+    return re.sub(
+        r'class="language-([^"]+)"',
+        r'class="hljs \1"',
+        html,
     )
 
 

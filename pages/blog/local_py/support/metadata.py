@@ -96,3 +96,14 @@ def build_json_ld(metadata: dict, canonical_url: str, image: str) -> str:
         f'{json_text}\n'
         '</script>'
     )
+
+
+def format_version_date(version) -> str:
+    if isinstance(version, (date, datetime)):
+        return (
+            f"{version.strftime('%b')} "
+            f"{version.day}, "
+            f"{version.year}"
+        )
+
+    return str(version)

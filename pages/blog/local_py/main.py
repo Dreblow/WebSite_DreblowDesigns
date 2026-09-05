@@ -7,6 +7,7 @@ from support.paths import get_path_prefixes
 from support.metadata import (
     build_canonical_url,
     build_json_ld,
+    format_version_date,
     get_image,
 )
 
@@ -93,7 +94,7 @@ def process_markdown_file(markdown_file: Path):
             f"{markdown_file.name} is missing required metadata: version"
         )
 
-    formatted_version = str(version)
+    formatted_version = format_version_date(version)
 
     print()
     print(f"📄 Source: {markdown_file}")
