@@ -31,6 +31,10 @@ def slugify(value: str, separator: str) -> str:
 
 
 def render(content: str, formatted_version: str = "") -> str:
+    content = normalize_horizontal_rules(
+        content
+    )
+    
     html = markdown.markdown(
         content,
         extensions=[
@@ -176,3 +180,22 @@ def highlight_code_blocks(content: str) -> str:
         )
 
     return content
+
+
+def normalize_horizontal_rules(content: str) -> str:
+    lines = content.splitlines()
+    normalized = []
+
+    previous_was_rule = False
+
+    for line in lines:
+        is_rule = line.strip() == "---"
+
+        if is_rule and previous_was_rule:
+            normalized.append("")
+
+        normalized.append(line)
+
+        previous_was_rule = is_rule
+
+    return "\n".join(normalized)
