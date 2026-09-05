@@ -109,3 +109,35 @@ blockquote p {
     margin-bottom: 0;
     padding-left: 1em; /* Add this line for indentation */
 }
+
+/* Tables */
+.git-wiki-section table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 1em 0;
+    display: block;
+    overflow-x: auto;
+}
+
+.git-wiki-section th,
+.git-wiki-section td {
+    padding: 6px 13px;
+    border: 1px solid #30363d;
+    text-align: left;
+    vertical-align: top;
+}
+
+.git-wiki-section th {
+    font-weight: 600;
+    background-color: #161b22;
+}
+
+.git-wiki-section tr {
+    background-color: #0d1117;
+    border-top: 1px solid #21262d;
+}
+
+.git-wiki-section tr:nth-child(2n) {
+    background-color: #161b22;
+}
