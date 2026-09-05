@@ -208,10 +208,25 @@ def build_row(highlighted_description: str, highlighted_command: str) -> str:
         f'{highlighted_description}'
         '</code>'
         '</td>'
+
         '<td class="cmd">'
         '<code class="hljs language-bash">'
         f'{highlighted_command}'
         '</code>'
+
+        '<button '
+        'class="copy-button" '
+        'type="button" '
+        'aria-label="Copy command" '
+        'onclick="'
+        'const code = this.parentElement.querySelector(\'code\');'
+        'navigator.clipboard.writeText(code.textContent);'
+        'this.textContent = \'Copied!\';'
+        'setTimeout(() => this.textContent = \'Copy\', 1200);'
+        '">'
+        'Copy'
+        '</button>'
+
         '</td>'
         '</tr>'
     )
