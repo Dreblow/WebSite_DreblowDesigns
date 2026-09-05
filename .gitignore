@@ -3,7 +3,7 @@ resources/config.php
 
 # Python
 __pycache__/
-*.py[cod]
+*.pyc
 
 # Local Python environment
 local_dev/.venv/
