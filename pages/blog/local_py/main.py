@@ -98,14 +98,8 @@ def process_markdown_file(markdown_file: Path):
 
     sections = split_render_sections(markdown_content)
 
-    root_path, blog_path = get_path_prefixes(
-        output_file,
-        OUTPUT_DIR,
-    )
-
     renderer_css = build_renderer_css(
-        sections,
-        blog_path,
+        sections
     )
 
     canonical_url = build_canonical_url(
@@ -173,8 +167,6 @@ def process_markdown_file(markdown_file: Path):
         ),
         "canonical_url": canonical_url,
         "image": image,
-        "root_path": root_path,
-        "blog_path": blog_path,
         "json_ld": json_ld,
         "renderer_css": renderer_css,
         "render_sections": render_sections,

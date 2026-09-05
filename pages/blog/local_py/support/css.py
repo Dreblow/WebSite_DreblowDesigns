@@ -28,10 +28,15 @@ def get_required_css_files(sections) -> list[str]:
     return css_files
 
 
-def build_renderer_css(sections, blog_path: str,) -> str:
-    css_files = get_required_css_files(sections)
+def build_renderer_css(sections) -> str:
+    css_files = get_required_css_files(
+        sections
+    )
 
     return "\n".join(
-        f'<link rel="stylesheet" href="{blog_path}local_css/{css_file}.css?v=3">'
+        (
+            '<link rel="stylesheet" '
+            f'href="/pages/blog/local_css/{css_file}.css?v=3">'
+        )
         for css_file in css_files
     )
