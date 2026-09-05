@@ -4,6 +4,11 @@ import frontmatter
 
 from support.css import build_renderer_css
 from support.paths import get_path_prefixes
+from support.metadata import (
+    build_canonical_url,
+    build_json_ld,
+    get_image,
+)
 
 
 # ---------------------------------------------------------
@@ -84,6 +89,19 @@ def process_markdown_file(markdown_file: Path):
         blog_path,
     )
 
+    canonical_url = build_canonical_url(
+        output_file,
+        BLOG_DIR,
+    )
+
+    image = get_image(metadata)
+
+    json_ld = build_json_ld(
+        metadata,
+        canonical_url,
+        image,
+    )
+
     template = load_template()
 
     template_values = {
@@ -103,10 +121,11 @@ def process_markdown_file(markdown_file: Path):
             "keywords",
             "",
         ),
-        "canonical_url": "TODO",
+        "canonical_url": canonical_url,
+        "image": image,
         "root_path": root_path,
         "blog_path": blog_path,
-        "json_ld": "<!-- JSON-LD TODO -->",
+        "json_ld": json_ld,
         "renderer_css": renderer_css,
         "render_sections": "<!-- render sections TODO -->",
     }
