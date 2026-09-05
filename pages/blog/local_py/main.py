@@ -51,7 +51,7 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     for markdown_file in INPUT_DIR.rglob("*.md"):
-        if markdown_file.name != "Code Standards.md":
+        if markdown_file.name != "git.md":
             continue
 
         process_markdown_file(markdown_file)
