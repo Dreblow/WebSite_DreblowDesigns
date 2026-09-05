@@ -1,0 +1,82 @@
+.markdown-editor {
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.markdown-editor-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+}
+
+.markdown-editor-toolbar button {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.markdown-editor-toolbar button:hover {
+    background-color: #30363d;
+}
+
+.markdown-editor-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.markdown-editor-panel {
+    min-width: 0;
+}
+
+.markdown-editor-panel h2 {
+    margin-top: 0;
+}
+
+#markdown-input,
+#markdown-preview {
+    width: 100%;
+    min-height: 600px;
+
+    box-sizing: border-box;
+
+    background-color: #151b23;
+    color: #c9d1d9;
+
+    border: 1px solid #30363d;
+    border-radius: 10px;
+
+    padding: 16px;
+}
+
+#markdown-input {
+    resize: vertical;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+#markdown-preview {
+    overflow: auto;
+}
+
+@media (max-width: 900px) {
+    .markdown-editor-panels {
+        grid-template-columns: 1fr;
+    }
+}
