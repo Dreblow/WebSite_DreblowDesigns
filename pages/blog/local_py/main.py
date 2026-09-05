@@ -10,8 +10,9 @@ from support.metadata import (
     format_version_date,
     get_image,
 )
-
+from support.html_merge import merge_render_sections
 from renderers import render_section
+from support.assets import copy_support_files
 
 
 # ---------------------------------------------------------
@@ -51,17 +52,6 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     for markdown_file in INPUT_DIR.rglob("*.md"):
-        if markdown_file.name != "git.md":
-            continue
-
-        process_markdown_file(markdown_file)
-
-    print("✅ Completed generating blog")
-
-def mainWhenTestingIsDone():
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    for markdown_file in INPUT_DIR.rglob("*.md"):
         process_markdown_file(markdown_file)
 
     print("✅ Completed generating blog")
@@ -78,6 +68,12 @@ def process_markdown_file(markdown_file: Path):
         OUTPUT_DIR
         / relative_path.parent
         / f"{markdown_file.stem}.html"
+    )
+
+    copy_support_files(
+        markdown_file,
+        INPUT_DIR,
+        OUTPUT_DIR,
     )
 
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -141,8 +137,19 @@ def process_markdown_file(markdown_file: Path):
             )
         )
 
-    rendered_sections = "\n\n".join(
-        rendered_sections
+    if output_file.exists():
+        existing_html = output_file.read_text(
+            encoding="utf-8"
+        )
+
+        render_sections = merge_render_sections(
+            sections,
+            rendered_sections,
+            existing_html,
+        )
+    else:
+        render_sections = "\n\n".join(
+            rendered_sections
     )
 
     template = load_template()
@@ -170,7 +177,7 @@ def process_markdown_file(markdown_file: Path):
         "blog_path": blog_path,
         "json_ld": json_ld,
         "renderer_css": renderer_css,
-        "render_sections": rendered_sections,
+        "render_sections": render_sections,
     }
 
     generated_html = fill_template(
@@ -178,23 +185,12 @@ def process_markdown_file(markdown_file: Path):
         template_values,
     )
 
-    print()
-    print("=" * 80)
-    print(f"GENERATED PAGE: {markdown_file.name}")
-    print("=" * 80)
-    print(generated_html)
-    print("=" * 80)
+    output_file.write_text(
+        generated_html,
+        encoding="utf-8",
+    )
 
-    for section in sections:
-        print(f"   ↳ renderer: {section['renderer']}")
-
-    # Next step:
-    #
-    # 1. Load existing HTML if present
-    # 2. Render each section
-    # 3. Preserve blank-template sections
-    # 4. Generate header/footer
-    # 5. Write reconstructed HTML
+    print(f"✅ Wrote: {output_file}")
 
 
 # ---------------------------------------------------------

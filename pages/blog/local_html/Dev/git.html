@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Git Essentials Cheat Sheet blog</title>
     <meta name="keywords" content="git, git cheat sheet, git ignore, git commands, linux git, github, version control">
+
+    <title>Dreblow Design - Git Essentials Cheat Sheet blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/git.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Git Essentials Cheat Sheet">
     <meta property="og:description" content="A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/git.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,7 +42,7 @@
         "Git",
         "Software Development"
       ],
-      "datePublished": "2026-06-29T00:00:00.000Z",
+      "datePublished": "2026-06-29",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Dev/git.html",
       "publisher": {
@@ -51,78 +55,77 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Git Essentials Cheat Sheet">
     <meta name="twitter:description" content="A clean, practical Git cheat sheet covering daily terminal workflows and essential .gitignore patterns.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="../../local_css/command-card-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="../../../../pages/about.html" aria-label="About"> About</a></li>
+            <li><a href="../../../../pages/contact/contact.html" aria-label="Contact"> Contact</a></li>
+            <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Jun 29, 2026</em></p>
-        <h1 id="git-maybe-a-cheat-sheet" tabindex="-1">Git - Maybe a cheat sheet</h1>
+<h1 id="git-maybe-a-cheat-sheet" tabindex="-1">Git - Maybe a cheat sheet</h1>
 <p>TLDR:
 Lets talk about Git commands for linux terminal and git ignore file.</p>
-<p>I think like most people, we all end up using GUI applications (like <a href="https://www.smartgit.dev" target="_blank" rel="noopener noreferrer">SmartGit</a> or <a href="https://git-fork.com" target="_blank" rel="noopener noreferrer">Git-Fork</a>) to do our git actions. In this blog post, I want to provide some stragiht forward commands to let you move on to the next thing in your jou Journey.</p>
+<p>I think like most people, we all end up using GUI applications (like <a href="https://www.smartgit.dev" target="_blank" rel="noopener noreferrer">SmartGit</a> or <a href="https://git-fork.com" target="_blank" rel="noopener noreferrer">Git-Fork</a>) to do our git actions. In this blog post, I want to provide some stragiht forward commands to let you move on to the next thing in your jou Journey. </p>
 <p>Also some nice to knows about the .gitignore file that beginners may like to know quickly.</p>
-<hr>
-
+<hr />
     </article>
 </main>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
 
+<!-- DDS:RENDER:command-card-two-row:START -->
 <main class="markdown-body command-card-section">
     <article>
         
 
         <div class="cards-flex-container">
             <div class="cards-container">
-                
-<div class="card-container">
+                <div class="card-container">
   <div class="title-container">
     <h2>🌿 Move Back to Main</h2>
   </div>
@@ -132,8 +135,6 @@ Lets talk about Git commands for linux terminal and git ignore file.</p>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🌱 Move to Another Branch</h2>
@@ -144,17 +145,16 @@ Lets talk about Git commands for linux terminal and git ignore file.</p>
     </table>
   </div>
 </div>
-
-
             </div>
         </div>
     </article>
 </main>
+<!-- DDS:RENDER:command-card-two-row:END -->
 
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
-        
-        <hr>
+        <hr />
 <h2 id="-gitignore" tabindex="-1">📁 .gitignore</h2>
 <h4 id="ignore-everything-in-a-folder-except-one-file" tabindex="-1">Ignore everything in a folder except one file</h4>
 <pre><code class="hljs bash">/folder/*
@@ -165,30 +165,49 @@ Lets talk about Git commands for linux terminal and git ignore file.</p>
 </code></pre>
 <p>Without the <code>/*</code> at the end, it'll ignore everything regardless if you ass to negate ignore with the <code>!</code></p>
 <h4 id="general-ignores" tabindex="-1">General ignores</h4>
-<p>Lots of projects and sites usually give you a .gitignore ready to go to easily kick off your project, even by language type. Eg, starting a Rust project versus C# project, different things are ignored. How and where? When creating a project in GitHub, you'll see your repo being kicked off with a chance to select a pre-made gitignore file for you.</p>
+<p>Lots of projects and sites usually give you a .gitignore ready to go to easily kick off your project, even by language type. Eg, starting a Rust project versus C# project, different things are ignored. How and where? When creating a project in GitHub, you'll see your repo being kicked off with a chance to select a pre-made gitignore file for you. </p>
 <p>Anyways! Below is a taste just in case you don't run into this. This really serves beginners, but you beginner, I recommend heading to <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> and start playing around with your first repo.</p>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/LeetCode/leetcode.png" 
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

@@ -13,17 +13,14 @@
   },
   "homepage": "https://github.com/Dreblow/WebSite_DreblowDesigns#readme",
   "scripts": {
-    "serve": "php -S localhost:8000",
-    "watch:css": "node resources/dev/watch-css.js",
-    "sync": "browser-sync start --proxy 'localhost:8000' --files 'resources/css/*.css, **/*.html, **/*.php' --no-ui",
+    "serve": "php -S localhost:8000 -t ..",
+    "sync": "browser-sync start --proxy 'localhost:8000' --files '../resources/css/*.css, ../**/*.html, ../**/*.php' --no-ui",
     "dev": "concurrently \"npm run serve\" \"npm run sync\"",
-    "build:blog": "python3 pages/blog/local_py/main.py"
+    "build:blog": "python3 ../pages/blog/local_py/main.py"
   },
   "devDependencies": {
     "browser-sync": "^3.0.4",
-    "concurrently": "^10.0.3"
-  },
-  "dependencies": {
+    "concurrently": "^10.0.3",
     "highlight.js": "^11.12.0"
   }
 }

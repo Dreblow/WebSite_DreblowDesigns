@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Tips and tricks for Linux">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Linux Cheat Sheet blog</title>
     <meta name="keywords" content="Linux, Guide, How-to">
+
+    <title>Dreblow Design - Linux Cheat Sheet blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/linux.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Linux Cheat Sheet">
     <meta property="og:description" content="Tips and tricks for Linux">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/linux.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,7 +39,7 @@
       "articleSection": [
         "Linux"
       ],
-      "datePublished": "2026-06-11T00:00:00.000Z",
+      "datePublished": "2026-06-11",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/linux.html",
       "publisher": {
@@ -48,169 +52,152 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Linux Cheat Sheet">
     <meta name="twitter:description" content="Tips and tricks for Linux">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="../../local_css/command-card-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="../../../../pages/about.html" aria-label="About"> About</a></li>
+            <li><a href="../../../../pages/contact/contact.html" aria-label="Contact"> Contact</a></li>
+            <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Jun 11, 2026</em></p>
-        <h1 id="linux-cheat-sheet" tabindex="-1">Linux Cheat Sheet</h1>
+<h1 id="linux-cheat-sheet" tabindex="-1">Linux Cheat Sheet</h1>
 <p>Below is a cheat sheet typical linux commands, uselly useful for most distros. I hope this cheat sheet servers you as it servers me!</p>
-
     </article>
 </main>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
 
+<!-- DDS:RENDER:command-card-two-row:START -->
 <main class="markdown-body command-card-section">
     <article>
         
 
         <div class="cards-flex-container">
             <div class="cards-container">
-                
-<div class="card-container">
+                <div class="card-container">
   <div class="title-container">
     <h2>⌨️ Keyboard Shortcuts</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process running in the terminal</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + C  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Stop the current process (resume with fg or bg)</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + Z  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut one word before the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + W  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut part of the line before the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + U  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut part of the line after the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + K  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Paste from clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + Y  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Recall the last command that matches the provided characters</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + R  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run the previously recalled command</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + O  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Exit command history without running a command</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + G  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Clear the terminal screen</span></code></td><td class="cmd"><code class="hljs language-bash">clear  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run the last command again</span></code></td><td class="cmd"><code class="hljs language-bash">!!  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Log out of the current session</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">exit</span></code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process running in the terminal</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + C</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Stop the current process (resume with fg or bg)</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + Z</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut one word before the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + W</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut part of the line before the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + U</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut part of the line after the cursor and add it to the clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + K</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Paste from clipboard</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + Y</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Recall the last command that matches the provided characters</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + R</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run the previously recalled command</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + O</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Exit command history without running a command</span></code></td><td class="cmd"><code class="hljs language-bash">Ctrl + G</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Clear the terminal screen</span></code></td><td class="cmd"><code class="hljs language-bash">clear</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run the last command again</span></code></td><td class="cmd"><code class="hljs language-bash">!!</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Log out of the current session</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">exit</span></code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>💾 Disk Usage</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Check available and used disk space on all mounted file systems (human-readable format).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -h  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show free and used inodes on mounted file systems.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -i  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all disk partitions, sizes, and types.</span></code></td><td class="cmd"><code class="hljs language-bash">fdisk -l  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show disk usage for every file and folder (recursively).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">du</span> -ah  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show total disk usage of the current directory.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">du</span> -sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all currently mounted file systems.</span></code></td><td class="cmd"><code class="hljs language-bash">mount  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display all file systems with their mount points in a tree view.</span></code></td><td class="cmd"><code class="hljs language-bash">findmnt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Mount a device to a directory (mount point).</span></code></td><td class="cmd"><code class="hljs language-bash">mount device_path mount_point</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Check available and used disk space on all mounted file systems (human-readable format).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -h</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show free and used inodes on mounted file systems.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -i</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all disk partitions, sizes, and types.</span></code></td><td class="cmd"><code class="hljs language-bash">fdisk -l</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show disk usage for every file and folder (recursively).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">du</span> -ah</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show total disk usage of the current directory.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">du</span> -sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all currently mounted file systems.</span></code></td><td class="cmd"><code class="hljs language-bash">mount</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display all file systems with their mount points in a tree view.</span></code></td><td class="cmd"><code class="hljs language-bash">findmnt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Mount a device to a directory (mount point).</span></code></td><td class="cmd"><code class="hljs language-bash">mount device_path mount_point</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🔑 User &amp; Permissions</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch user</span></code></td><td class="cmd"><code class="hljs language-bash">su - username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add new user</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> adduser newuser  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add user to sudoers</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> usermod -aG <span class="hljs-built_in">sudo</span> newuser  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change permissions</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 755 file.sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change ownership</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user:group file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># How to enter into root shell</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> -i</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch user</span></code></td><td class="cmd"><code class="hljs language-bash">su - username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add new user</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> adduser newuser</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add user to sudoers</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> usermod -aG <span class="hljs-built_in">sudo</span> newuser</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change permissions</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 755 file.sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change ownership</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user:group file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># How to enter into root shell</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> -i</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>👥 Users &amp; Groups</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show details about the current user and groups</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">id</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the last system logins</span></code></td><td class="cmd"><code class="hljs language-bash">last  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display who is currently logged in</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">who</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show users logged in and their activity</span></code></td><td class="cmd"><code class="hljs language-bash">w  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show information about a specific user</span></code></td><td class="cmd"><code class="hljs language-bash">finger username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new user account</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> useradd username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Alternative: add user via interactive script</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> adduser username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Delete a user account</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> userdel username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add user to a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> usermod -aG groupname username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change the current user&#x27;s password</span></code></td><td class="cmd"><code class="hljs language-bash">passwd  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change another user&#x27;s password</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> passwd username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupadd groupname  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Delete a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupdel groupname  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Rename a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupmod -n newname oldname  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Temporarily run a command as superuser</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">command</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch to another user (or root if none specified)</span></code></td><td class="cmd"><code class="hljs language-bash">su - username  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file or directory group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chgrp</span> groupname file_or_directory</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show details about the current user and groups</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">id</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the last system logins</span></code></td><td class="cmd"><code class="hljs language-bash">last</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display who is currently logged in</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">who</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show users logged in and their activity</span></code></td><td class="cmd"><code class="hljs language-bash">w</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show information about a specific user</span></code></td><td class="cmd"><code class="hljs language-bash">finger username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new user account</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> useradd username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Alternative: add user via interactive script</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> adduser username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Delete a user account</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> userdel username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add user to a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> usermod -aG groupname username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change the current user&#x27;s password</span></code></td><td class="cmd"><code class="hljs language-bash">passwd</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change another user&#x27;s password</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> passwd username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupadd groupname</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Delete a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupdel groupname</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Rename a group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> groupmod -n newname oldname</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Temporarily run a command as superuser</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">command</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Switch to another user (or root if none specified)</span></code></td><td class="cmd"><code class="hljs language-bash">su - username</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file or directory group</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chgrp</span> groupname file_or_directory</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📂 File &amp; Directory Management</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all files and directories in the current directory (long format, hidden files)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> -la  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all files and directories in the current directory (shows hidden files).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> -a</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the directory you are currently working in.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">pwd</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Move back one directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> ..</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change to the previous Directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> -</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> /path/to/dir  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Make a new directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> new_folder  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove directory (empty)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rmdir</span> old_folder  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cp</span> file1.txt /path/to/dir/  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Move or rename file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">mv</span> oldname.txt newname.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove folder with files in it, with recursive -r</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -r folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove recursive and force delete, use the -f (force) flag to bypass all prompts and delete everything instantly:</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -rf folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Interactive deletion if you want to safely verify each file before it is permanently deleted, use the -i flag instead:</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -ri folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files by name</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -name &amp;quot;*.<span class="hljs-built_in">log</span>&amp;quot;</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all files and directories in the current directory (long format, hidden files)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> -la</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List all files and directories in the current directory (shows hidden files).</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> -a</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the directory you are currently working in.</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">pwd</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Move back one directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> ..</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change to the previous Directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> -</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cd</span> /path/to/dir</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Make a new directory</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> new_folder</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove directory (empty)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rmdir</span> old_folder</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cp</span> file1.txt /path/to/dir/</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Move or rename file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">mv</span> oldname.txt newname.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove folder with files in it, with recursive -r</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -r folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove recursive and force delete, use the -f (force) flag to bypass all prompts and delete everything instantly:</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -rf folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Interactive deletion if you want to safely verify each file before it is permanently deleted, use the -i flag instead:</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">rm</span> -ri folder_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files by name</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -name <span class="hljs-string">&quot;*.log&quot;</span></code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🔄 Permissions &amp; Ownership</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Give read, write and execute permission to owner and give read and execute permission to group and others (rwxr-xr-x)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 755 file.sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Give read, write and execute permission to owner and read/write permission to group and others (rwxrw-rw-)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 766 file.sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Allow read, write and execute file permission to everyone (rwxrwxrwx)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 777 file.sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add execute permission</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> +x script.sh  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file owner</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file owner and group owner</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user:group file.txt</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Give read, write and execute permission to owner and give read and execute permission to group and others (rwxr-xr-x)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 755 file.sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Give read, write and execute permission to owner and read/write permission to group and others (rwxrw-rw-)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 766 file.sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Allow read, write and execute file permission to everyone (rwxrwxrwx)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> 777 file.sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Add execute permission</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chmod</span> +x script.sh</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file owner</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Change file owner and group owner</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">chown</span> user:group file.txt</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📝 File Viewing &amp; Editing</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># View file contents</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cat</span> file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># View with pagination</span></code></td><td class="cmd"><code class="hljs language-bash">less file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Edit with nano</span></code></td><td class="cmd"><code class="hljs language-bash">nano file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Edit with vim</span></code></td><td class="cmd"><code class="hljs language-bash">vim file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show first 10 lines</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">head</span> file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show last 10 lines</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Follow file updates</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> -f logfile.log</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># View file contents</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cat</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># View with pagination</span></code></td><td class="cmd"><code class="hljs language-bash">less file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Edit with nano</span></code></td><td class="cmd"><code class="hljs language-bash">nano file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Edit with vim</span></code></td><td class="cmd"><code class="hljs language-bash">vim file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show first 10 lines</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">head</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show last 10 lines</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Follow file updates</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> -f logfile.log</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📄 File Operations</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">touch</span> filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a symbolic link</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ln</span> -s /path/to/file linkname  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Append contents of one file to another</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cat</span> source_file &amp;gt;&amp;gt; destination_file  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the first 10 lines of a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">head</span> filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the last 10 lines of a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display contents page by page</span></code></td><td class="cmd"><code class="hljs language-bash">more filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display contents with navigation</span></code></td><td class="cmd"><code class="hljs language-bash">less filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Count words, lines, and bytes in a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">wc</span> -w filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Count lines/words/chars in multiple files</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> | xargs <span class="hljs-built_in">wc</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut sections of a file using a delimiter</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cut</span> -d: -f1 filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut sections from piped data</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">echo</span> &amp;quot;one:two:three&amp;quot; | <span class="hljs-built_in">cut</span> -d: -f2  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Overwrite a file to securely delete it</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">shred</span> -u filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Compare two files and show differences</span></code></td><td class="cmd"><code class="hljs language-bash">diff file1 file2  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Execute file content in the current shell</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">source</span> filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Store command output in a file (and still show in terminal)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">command</span> | <span class="hljs-built_in">tee</span> output.txt</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a new file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">touch</span> filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Create a symbolic link</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ln</span> -s /path/to/file linkname</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Append contents of one file to another</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cat</span> source_file &gt;&gt; destination_file</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the first 10 lines of a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">head</span> filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the last 10 lines of a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">tail</span> filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display contents page by page</span></code></td><td class="cmd"><code class="hljs language-bash">more filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Display contents with navigation</span></code></td><td class="cmd"><code class="hljs language-bash">less filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Count words, lines, and bytes in a file</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">wc</span> -w filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Count lines/words/chars in multiple files</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">ls</span> | xargs <span class="hljs-built_in">wc</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut sections of a file using a delimiter</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">cut</span> -d: -f1 filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Cut sections from piped data</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;one:two:three&quot;</span> | <span class="hljs-built_in">cut</span> -d: -f2</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Overwrite a file to securely delete it</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">shred</span> -u filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Compare two files and show differences</span></code></td><td class="cmd"><code class="hljs language-bash">diff file1 file2</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Execute file content in the current shell</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">source</span> filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Store command output in a file (and still show in terminal)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">command</span> | <span class="hljs-built_in">tee</span> output.txt</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (General)</h2>
@@ -221,20 +208,16 @@
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (Ubuntu/Debian)</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Update package lists</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Upgrade installed packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt upgrade  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt install package-name  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt remove package-name  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a package</span></code></td><td class="cmd"><code class="hljs language-bash">apt search package-name</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Update package lists</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Upgrade installed packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt upgrade</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt install package-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt remove package-name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a package</span></code></td><td class="cmd"><code class="hljs language-bash">apt search package-name</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (Red Hat / CentOS / Fedora)</h2>
@@ -245,127 +228,129 @@
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (Arch with Pacman)</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Update package database and upgrade all packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -Syu  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -S [package_name]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -R [package_name]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a package</span></code></td><td class="cmd"><code class="hljs language-bash">pacman -Ss [keyword]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed packages</span></code></td><td class="cmd"><code class="hljs language-bash">pacman -Qe</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Update package database and upgrade all packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -Syu</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -S [package_name]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Remove a package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> pacman -R [package_name]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a package</span></code></td><td class="cmd"><code class="hljs language-bash">pacman -Ss [keyword]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed packages</span></code></td><td class="cmd"><code class="hljs language-bash">pacman -Qe</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (Snap)</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a Snap package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap install [package_name]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a Snap package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap find [keyword]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed Snap packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap list</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a Snap package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap install [package_name]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a Snap package</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap find [keyword]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed Snap packages</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> snap list</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>📦 Package Management (Flatpak)</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a Flatpak package</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak install [package_name]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a Flatpak application</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak search [keyword]  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed Flatpak packages</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak list</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Install a Flatpak package</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak install [package_name]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a Flatpak application</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak search [keyword]</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List installed Flatpak packages</span></code></td><td class="cmd"><code class="hljs language-bash">flatpak list</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>⚙️ System Information</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show current user</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">whoami</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show system info</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">uname</span> -a  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show disk usage</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -h  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show memory usage</span></code></td><td class="cmd"><code class="hljs language-bash">free -h  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show running processes</span></code></td><td class="cmd"><code class="hljs language-bash">ps aux  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show real-time processes</span></code></td><td class="cmd"><code class="hljs language-bash">top</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show current user</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">whoami</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show system info</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">uname</span> -a</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show disk usage</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">df</span> -h</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show memory usage</span></code></td><td class="cmd"><code class="hljs language-bash">free -h</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show running processes</span></code></td><td class="cmd"><code class="hljs language-bash">ps aux</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show real-time processes</span></code></td><td class="cmd"><code class="hljs language-bash">top</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🌐 Networking</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show IP address</span></code></td><td class="cmd"><code class="hljs language-bash">ip addr show  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Ping a host</span></code></td><td class="cmd"><code class="hljs language-bash">ping -c 4 google.com  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show listening ports</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> netstat -tuln  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Test open port (e.g., port 22)</span></code></td><td class="cmd"><code class="hljs language-bash">nc -zv localhost 22  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Download file with wget</span></code></td><td class="cmd"><code class="hljs language-bash">wget http://example.com/file.zip</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show IP address</span></code></td><td class="cmd"><code class="hljs language-bash">ip addr show</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Ping a host</span></code></td><td class="cmd"><code class="hljs language-bash">ping -c 4 google.com</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show listening ports</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> netstat -tuln</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Test open port (e.g., port 22)</span></code></td><td class="cmd"><code class="hljs language-bash">nc -zv localhost 22</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Download file with wget</span></code></td><td class="cmd"><code class="hljs language-bash">wget http://example.com/file.zip</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🔐 SSH</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Connect to a remote system</span></code></td><td class="cmd"><code class="hljs language-bash">ssh user@host  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Use a specific private key for login</span></code></td><td class="cmd"><code class="hljs language-bash">ssh -i ~/.ssh/id_rsa user@host  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Connect using a custom port (default is 22)</span></code></td><td class="cmd"><code class="hljs language-bash">ssh -p 2222 user@host  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Generate a new SSH key pair</span></code></td><td class="cmd"><code class="hljs language-bash">ssh-keygen  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Start the SSH server (on systems with systemd)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> systemctl start sshd  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy a file from local to remote</span></code></td><td class="cmd"><code class="hljs language-bash">scp file.txt user@host:/remote/path/  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy a file from remote to local</span></code></td><td class="cmd"><code class="hljs language-bash">scp user@host:/remote/path/file.txt ./  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Securely transfer files interactively with SFTP</span></code></td><td class="cmd"><code class="hljs language-bash">sftp user@host  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># (Legacy) Connect via Telnet on port 23</span></code></td><td class="cmd"><code class="hljs language-bash">telnet host</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Connect to a remote system</span></code></td><td class="cmd"><code class="hljs language-bash">ssh user@host</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Use a specific private key for login</span></code></td><td class="cmd"><code class="hljs language-bash">ssh -i ~/.ssh/id_rsa user@host</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Connect using a custom port (default is 22)</span></code></td><td class="cmd"><code class="hljs language-bash">ssh -p 2222 user@host</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Generate a new SSH key pair</span></code></td><td class="cmd"><code class="hljs language-bash">ssh-keygen</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Start the SSH server (on systems with systemd)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> systemctl start sshd</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy a file from local to remote</span></code></td><td class="cmd"><code class="hljs language-bash">scp file.txt user@host:/remote/path/</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Copy a file from remote to local</span></code></td><td class="cmd"><code class="hljs language-bash">scp user@host:/remote/path/file.txt ./</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Securely transfer files interactively with SFTP</span></code></td><td class="cmd"><code class="hljs language-bash">sftp user@host</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># (Legacy) Connect via Telnet on port 23</span></code></td><td class="cmd"><code class="hljs language-bash">telnet host</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🖥️ Process Management</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List running jobs</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">jobs</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process by PID</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">kill</span> -9 1234  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process by name</span></code></td><td class="cmd"><code class="hljs language-bash">pkill -f process_name  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run in background</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">command</span> &amp;amp;  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Bring job to foreground</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">fg</span> %1</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># List running jobs</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">jobs</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process by PID</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">kill</span> -9 1234</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Kill process by name</span></code></td><td class="cmd"><code class="hljs language-bash">pkill -f process_name</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Run in background</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">command</span> &amp;</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Bring job to foreground</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">fg</span> %1</code></td></tr>
     </table>
   </div>
 </div>
-
-
 <div class="card-container">
   <div class="title-container">
     <h2>🔍 Searching</h2>
   </div>
   <div class="info-container">
     <table class="command-table">
-      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files and directories by name</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -name &amp;quot;pattern&amp;quot;  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files larger than a specified size (e.g., 100MB)</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -size +100M  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a text pattern inside a file</span></code></td><td class="cmd"><code class="hljs language-bash">grep &amp;quot;pattern&amp;quot; file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Recursively search for a pattern inside a directory</span></code></td><td class="cmd"><code class="hljs language-bash">grep -r &amp;quot;pattern&amp;quot; /path/to/dir  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Locate files in the system’s database (faster than find)</span></code></td><td class="cmd"><code class="hljs language-bash">locate filename  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the full path of a command (from $PATH)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">which</span> <span class="hljs-built_in">command</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show source, binary, and man page for a command</span></code></td><td class="cmd"><code class="hljs language-bash">whereis <span class="hljs-built_in">command</span>  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Print all lines in a file matching a pattern (awk)</span></code></td><td class="cmd"><code class="hljs language-bash">awk <span class="hljs-string">&#x27;/pattern/ {print $0}&#x27;</span> file.txt  </code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find and replace text in a file</span></code></td><td class="cmd"><code class="hljs language-bash">sed <span class="hljs-string">&#x27;s/old/new/&#x27;</span> file.txt</code></td></tr>
+      <tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files and directories by name</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -name <span class="hljs-string">&quot;pattern&quot;</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find files larger than a specified size (e.g., 100MB)</span></code></td><td class="cmd"><code class="hljs language-bash">find /path -size +100M</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Search for a text pattern inside a file</span></code></td><td class="cmd"><code class="hljs language-bash">grep <span class="hljs-string">&quot;pattern&quot;</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Recursively search for a pattern inside a directory</span></code></td><td class="cmd"><code class="hljs language-bash">grep -r <span class="hljs-string">&quot;pattern&quot;</span> /path/to/dir</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Locate files in the system’s database (faster than find)</span></code></td><td class="cmd"><code class="hljs language-bash">locate filename</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show the full path of a command (from $PATH)</span></code></td><td class="cmd"><code class="hljs language-bash"><span class="hljs-built_in">which</span> <span class="hljs-built_in">command</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Show source, binary, and man page for a command</span></code></td><td class="cmd"><code class="hljs language-bash">whereis <span class="hljs-built_in">command</span></code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Print all lines in a file matching a pattern (awk)</span></code></td><td class="cmd"><code class="hljs language-bash">awk <span class="hljs-string">&#x27;/pattern/ {print $0}&#x27;</span> file.txt</code></td></tr><tr><td class="desc"><code class="hljs language-bash"><span class="hljs-comment"># Find and replace text in a file</span></code></td><td class="cmd"><code class="hljs language-bash">sed <span class="hljs-string">&#x27;s/old/new/&#x27;</span> file.txt</code></td></tr>
     </table>
   </div>
 </div>
-
-
             </div>
         </div>
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:command-card-two-row:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/LeetCode/leetcode.png" 
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

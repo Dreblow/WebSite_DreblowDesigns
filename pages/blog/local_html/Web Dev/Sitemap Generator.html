@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Learn how to create a custom Python script that scans your website and automatically generates a Google-friendly sitemap.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Build Your Own Sitemap Generator with Python blog</title>
     <meta name="keywords" content="Python, SEO, Web Development, Sitemap, Automation">
+
+    <title>Dreblow Design - Build Your Own Sitemap Generator with Python blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Sitemap Generator.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Build Your Own Sitemap Generator with Python">
     <meta property="og:description" content="Learn how to create a custom Python script that scans your website and automatically generates a Google-friendly sitemap.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Sitemap Generator.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -37,7 +41,7 @@
         "Web Development",
         "Python"
       ],
-      "datePublished": "2025-05-05T00:00:00.000Z",
+      "datePublished": "2025-05-05",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Sitemap Generator.html",
       "publisher": {
@@ -50,83 +54,80 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Build Your Own Sitemap Generator with Python">
     <meta name="twitter:description" content="Learn how to create a custom Python script that scans your website and automatically generates a Google-friendly sitemap.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="../../../../pages/about.html" aria-label="About"> About</a></li>
+            <li><a href="../../../../pages/contact/contact.html" aria-label="Contact"> Contact</a></li>
+            <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: May 5, 2025</em></p>
-        <h1 id="creating-your-own-sitemap-generator" tabindex="-1">Creating your own Sitemap Generator</h1>
+<h1 id="creating-your-own-sitemap-generator" tabindex="-1">Creating your own Sitemap Generator</h1>
 <p>Creating your own sitemap generator may sound intense — but it’s actually super fun and helps you deeply understand how websites get indexed by search engines like Google and Bing.</p>
-<p>This post will walk you through building a Python script that:</p>
-<ul>
-<li>Scans your project directory for all <code>.html</code> files</li>
-<li>Skips irrelevant files like stylesheets or dev scripts</li>
-<li>Automatically generates a valid <code>sitemap.xml</code> file</li>
-<li>Formats everything using current best practices (ISO date, percent-encoded URLs, and schema metadata)</li>
-</ul>
+<p>This post will walk you through building a Python script that:
+- Scans your project directory for all <code>.html</code> files
+- Skips irrelevant files like stylesheets or dev scripts
+- Automatically generates a valid <code>sitemap.xml</code> file
+- Formats everything using current best practices (ISO date, percent-encoded URLs, and schema metadata)</p>
 <blockquote>
 <p>🔥 Bonus: We explain <strong>why</strong> each step exists so you’re not just copy-pasting blindly.</p>
 </blockquote>
-<hr>
-<h2 id="why-build-it-yourself-" tabindex="-1">Why Build It Yourself?</h2>
-<p>Sure, there are online sitemap generators. But when you’re hosting your own site (like I do at <a href="https://dreblowdesigns.com" target="_blank" rel="noopener noreferrer">dreblowdesigns.com</a>), it gives you an opportunity to automate your web development. It has been countless time where I published new pages and forgot to change the sitemap!</p>
+<hr />
+<h2 id="why-build-it-yourself" tabindex="-1">Why Build It Yourself?</h2>
+<p>Sure, there are online sitemap generators. But when you’re hosting your own site (like I do at <a href="https://dreblowdesigns.com" target="_blank" rel="noopener noreferrer">dreblowdesigns.com</a>), it gives you an opportunity to automate your web development. It has been countless time where I published new pages and forgot to change the sitemap! </p>
 <p>Plus, you get complete control.</p>
-<hr>
+<hr />
 <h2 id="step-by-step-the-script" tabindex="-1">Step-by-Step: The Script</h2>
 <p>Let’s go through the Python script in stages, with explanations.</p>
-<hr>
+<hr />
 <h3 id="1-define-your-setup" tabindex="-1">1. Define Your Setup</h3>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urljoin, quote
-<span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timezone
+<pre><code class="hljs python">import os
+from urllib.parse import urljoin, quote
+from datetime import datetime, timezone
 </code></pre>
 <ul>
 <li><code>os</code> to walk through folders</li>
@@ -134,10 +135,10 @@
 <li><code>datetime</code> for timestamps</li>
 </ul>
 <h3 id="2-configurable-constants" tabindex="-1">2. Configurable Constants</h3>
-<pre><code class="hljs python">BASE_URL = <span class="hljs-string">&quot;https://dreblowdesigns.com/&quot;</span>
+<pre><code class="hljs python">BASE_URL = &quot;https://dreblowdesigns.com/&quot;
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, <span class="hljs-string">&quot;../../&quot;</span>))
-SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xml&quot;</span>)
+ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, &quot;../../&quot;))
+SITEMAP_FILE = os.path.join(ROOT_DIR, &quot;sitemap.xml&quot;)
 </code></pre>
 <ul>
 <li><code>BASE_URL</code> is your actual website URL.</li>
@@ -148,16 +149,16 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <p>This avoids issues where <code>../</code> might resolve incorrectly depending on where you run the script from.</p>
 <h3 id="3-exclude-unwanted-paths" tabindex="-1">3. Exclude Unwanted Paths</h3>
 <pre><code class="hljs python">EXCLUDE_PATHS = [
-    <span class="hljs-string">&quot;resources/&quot;</span>,
-    <span class="hljs-string">&quot;local_markdown/&quot;</span>,
-    <span class="hljs-string">&quot;local_js/node_modules/&quot;</span>,
-    <span class="hljs-string">&quot;dev/&quot;</span>,
-    <span class="hljs-string">&quot;server/&quot;</span>,
-    <span class="hljs-string">&quot;sitemap.xml&quot;</span>
+    &quot;resources/&quot;,
+    &quot;local_markdown/&quot;,
+    &quot;local_js/node_modules/&quot;,
+    &quot;dev/&quot;,
+    &quot;server/&quot;,
+    &quot;sitemap.xml&quot;
 ]
 
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">is_excluded</span>(<span class="hljs-params">path</span>):
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">any</span>(excluded <span class="hljs-keyword">in</span> path <span class="hljs-keyword">for</span> excluded <span class="hljs-keyword">in</span> EXCLUDE_PATHS)
+def is_excluded(path):
+    return any(excluded in path for excluded in EXCLUDE_PATHS)
 </code></pre>
 <ul>
 <li>This keeps the sitemap clean — no CSS, scripts, dev stuff, or redundant entries.</li>
@@ -165,12 +166,12 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <h3 id="4-crawl-files-and-build-urls" tabindex="-1">4. Crawl Files and Build URLs</h3>
 <pre><code class="hljs python">urls = []
 
-<span class="hljs-keyword">for</span> root, _, files <span class="hljs-keyword">in</span> os.walk(ROOT_DIR):
-    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> files:
-        <span class="hljs-keyword">if</span> file.endswith(<span class="hljs-string">&quot;.html&quot;</span>):
+for root, _, files in os.walk(ROOT_DIR):
+    for file in files:
+        if file.endswith(&quot;.html&quot;):
             rel_path = os.path.relpath(os.path.join(root, file), ROOT_DIR)
-            rel_path = rel_path.replace(os.sep, <span class="hljs-string">&#x27;/&#x27;</span>)
-            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_excluded(rel_path):
+            rel_path = rel_path.replace(os.sep, '/')
+            if not is_excluded(rel_path):
                 escaped_path = quote(rel_path)
                 full_url = urljoin(BASE_URL, escaped_path)
                 urls.append((full_url, rel_path))
@@ -182,157 +183,176 @@ SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xm
 <li>Constructs full URLs based on your domain</li>
 </ul>
 <h3 id="5-generate-the-xml-output" tabindex="-1">5. Generate the XML Output</h3>
-<pre><code class="hljs python">sitemap = [<span class="hljs-string">&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x27;</span>]
-sitemap.append(<span class="hljs-string">&#x27;&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot;&gt;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;&lt;!-- generated with Dreblow Designs Python Sitemap Generator --&gt;\n&#x27;</span>)
+<pre><code class="hljs python">sitemap = ['&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;']
+sitemap.append('&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;')
+sitemap.append('        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;')
+sitemap.append('        xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9')
+sitemap.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot;&gt;')
+sitemap.append('&lt;!-- generated with Dreblow Designs Python Sitemap Generator --&gt;\n')
 </code></pre>
 <ul>
 <li>This creates the root <code>&lt;urlset&gt;</code> block using proper schema attributes that Google recognizes.</li>
 </ul>
 <h3 id="6-populate-entries-with-metadata" tabindex="-1">6. Populate Entries with Metadata</h3>
-<pre><code class="hljs python"><span class="hljs-keyword">for</span> url, path <span class="hljs-keyword">in</span> urls:
-    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;index.html&quot;</span> <span class="hljs-keyword">in</span> path:
-        priority = <span class="hljs-string">&quot;1.00&quot;</span>
-    <span class="hljs-keyword">elif</span> <span class="hljs-string">&quot;about&quot;</span> <span class="hljs-keyword">in</span> path <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;contact&quot;</span> <span class="hljs-keyword">in</span> path <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;blog.html&quot;</span> <span class="hljs-keyword">in</span> path:
-        priority = <span class="hljs-string">&quot;0.80&quot;</span>
-    <span class="hljs-keyword">else</span>:
-        priority = <span class="hljs-string">&quot;0.64&quot;</span>
+<pre><code class="hljs python">for url, path in urls:
+    if &quot;index.html&quot; in path:
+        priority = &quot;1.00&quot;
+    elif &quot;about&quot; in path or &quot;contact&quot; in path or &quot;blog.html&quot; in path:
+        priority = &quot;0.80&quot;
+    else:
+        priority = &quot;0.64&quot;
 
     lastmod = datetime.now(timezone.utc).isoformat()
 
-    sitemap.append(<span class="hljs-string">&quot;  &lt;url&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;loc&gt;<span class="hljs-subst">{url}</span>&lt;/loc&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;lastmod&gt;<span class="hljs-subst">{lastmod}</span>&lt;/lastmod&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;priority&gt;<span class="hljs-subst">{priority}</span>&lt;/priority&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">&quot;  &lt;/url&gt;&quot;</span>)
+    sitemap.append(&quot;  &lt;url&gt;&quot;)
+    sitemap.append(f&quot;    &lt;loc&gt;{url}&lt;/loc&gt;&quot;)
+    sitemap.append(f&quot;    &lt;lastmod&gt;{lastmod}&lt;/lastmod&gt;&quot;)
+    sitemap.append(f&quot;    &lt;priority&gt;{priority}&lt;/priority&gt;&quot;)
+    sitemap.append(&quot;  &lt;/url&gt;&quot;)
 </code></pre>
 <ul>
 <li><code>priority</code> tells search engines how important each page is.</li>
 <li><code>lastmod</code> uses UTC ISO format: 2025-05-05T20:30:00+00:00</li>
 </ul>
 <h3 id="7-save-the-file" tabindex="-1">7. Save the File</h3>
-<pre><code class="hljs python">os.makedirs(os.path.dirname(SITEMAP_FILE), exist_ok=<span class="hljs-literal">True</span>)
-<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(SITEMAP_FILE, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
-    f.write(<span class="hljs-string">&quot;\n&quot;</span>.join(sitemap))
+<pre><code class="hljs python">os.makedirs(os.path.dirname(SITEMAP_FILE), exist_ok=True)
+with open(SITEMAP_FILE, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(&quot;\n&quot;.join(sitemap))
 
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;✅ Sitemap generated at <span class="hljs-subst">{SITEMAP_FILE}</span> with <span class="hljs-subst">{<span class="hljs-built_in">len</span>(urls)}</span> URLs.&quot;</span>)
+print(f&quot;✅ Sitemap generated at {SITEMAP_FILE} with {len(urls)} URLs.&quot;)
 </code></pre>
 <ul>
 <li>It creates the directory if needed, writes the full XML, and confirms success.</li>
 </ul>
-<h3 id="bonus-automation-" tabindex="-1">Bonus: Automation!</h3>
-<pre><code class="hljs python">const { <span class="hljs-built_in">exec</span> } = require(<span class="hljs-string">&#x27;child_process&#x27;</span>);
+<h3 id="bonus-automation" tabindex="-1">Bonus: Automation!</h3>
+<pre><code class="hljs python">const { exec } = require('child_process');
 
 setTimeout(() =&gt; {
-  <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;python3 ./resources/dev/generate-sitemap.py&#x27;</span>, (error, stdout, stderr) =&gt; {
-    <span class="hljs-keyword">if</span> (error) console.error(`Sitemap error: ${error.message}`);
-    <span class="hljs-keyword">else</span> console.log(stdout);
+  exec('python3 ./resources/dev/generate-sitemap.py', (error, stdout, stderr) =&gt; {
+    if (error) console.error(`Sitemap error: ${error.message}`);
+    else console.log(stdout);
   });
-}, <span class="hljs-number">100</span>); // wait 100ms to ensure <span class="hljs-built_in">all</span> files are written
+}, 100); // wait 100ms to ensure all files are written
 </code></pre>
 <ul>
 <li>The whole reason I did this, so when my static site generator <a href="./Web%20Dev/Mark%20Down%20to%20HTML.html">Mark Down to HTML js converter</a> is done creating my blogs, the sitemap is done!</li>
 </ul>
-<hr>
+<hr />
 <h2 id="the-complete-python-script" tabindex="-1">The Complete Python Script</h2>
 <ul>
-<li>Before diving in, look for <code>YOUR SITE</code> in two different spots.</li>
+<li>Before diving in, look for <code>YOUR SITE</code> in two different spots. </li>
 </ul>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urljoin, quote
-<span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timezone
+<pre><code class="hljs python">import os
+from urllib.parse import urljoin, quote
+from datetime import datetime, timezone
 
-<span class="hljs-comment"># === Config ===</span>
-BASE_URL = <span class="hljs-string">&quot;https://YOUR SITE.com/&quot;</span> <span class="hljs-comment"># &lt;-- UPDATE TO YOUR SITE</span>
+# === Config ===
+BASE_URL = &quot;https://YOUR SITE.com/&quot; # &lt;-- UPDATE TO YOUR SITE
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, <span class="hljs-string">&quot;../../&quot;</span>))  <span class="hljs-comment"># project root</span>
-SITEMAP_FILE = os.path.join(ROOT_DIR, <span class="hljs-string">&quot;sitemap.xml&quot;</span>)
+ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, &quot;../../&quot;))  # project root
+SITEMAP_FILE = os.path.join(ROOT_DIR, &quot;sitemap.xml&quot;)
 
-<span class="hljs-comment"># === Exclusions ===</span>
+# === Exclusions ===
 EXCLUDE_PATHS = [
-    <span class="hljs-string">&quot;resources/&quot;</span>,
-    <span class="hljs-string">&quot;local_markdown/&quot;</span>,
-    <span class="hljs-string">&quot;local_js/node_modules/&quot;</span>,
-    <span class="hljs-string">&quot;dev/&quot;</span>,
-    <span class="hljs-string">&quot;server/&quot;</span>,
-    <span class="hljs-string">&quot;sitemap.xml&quot;</span>
+    &quot;resources/&quot;,
+    &quot;local_markdown/&quot;,
+    &quot;local_js/node_modules/&quot;,
+    &quot;dev/&quot;,
+    &quot;server/&quot;,
+    &quot;sitemap.xml&quot;
 ]
 
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">is_excluded</span>(<span class="hljs-params">path</span>):
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">any</span>(excluded <span class="hljs-keyword">in</span> path <span class="hljs-keyword">for</span> excluded <span class="hljs-keyword">in</span> EXCLUDE_PATHS)
+def is_excluded(path):
+    return any(excluded in path for excluded in EXCLUDE_PATHS)
 
-<span class="hljs-comment"># === Collect URLs ===</span>
+# === Collect URLs ===
 urls = []
 
-<span class="hljs-keyword">for</span> root, _, files <span class="hljs-keyword">in</span> os.walk(ROOT_DIR):
-    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> files:
-        <span class="hljs-keyword">if</span> file.endswith(<span class="hljs-string">&quot;.html&quot;</span>):
+for root, _, files in os.walk(ROOT_DIR):
+    for file in files:
+        if file.endswith(&quot;.html&quot;):
             rel_path = os.path.relpath(os.path.join(root, file), ROOT_DIR)
-            rel_path = rel_path.replace(os.sep, <span class="hljs-string">&#x27;/&#x27;</span>)
-            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_excluded(rel_path):
-                escaped_path = quote(rel_path)  <span class="hljs-comment"># encode spaces</span>
+            rel_path = rel_path.replace(os.sep, '/')
+            if not is_excluded(rel_path):
+                escaped_path = quote(rel_path)  # encode spaces
                 full_url = urljoin(BASE_URL, escaped_path)
                 urls.append((full_url, rel_path))
 
-<span class="hljs-comment"># === Build Sitemap XML ===</span>
-sitemap = [<span class="hljs-string">&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x27;</span>]
-sitemap.append(<span class="hljs-string">&#x27;&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot;&gt;&#x27;</span>)
-sitemap.append(<span class="hljs-string">&#x27;&lt;!-- generated with YOUR SITE AGAIN Python Sitemap Generator --&gt;\n&#x27;</span>)
+# === Build Sitemap XML ===
+sitemap = ['&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;']
+sitemap.append('&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;')
+sitemap.append('        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;')
+sitemap.append('        xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9')
+sitemap.append('        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot;&gt;')
+sitemap.append('&lt;!-- generated with YOUR SITE AGAIN Python Sitemap Generator --&gt;\n')
 
-<span class="hljs-keyword">for</span> url, path <span class="hljs-keyword">in</span> urls:
-    <span class="hljs-comment"># Determine priority</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;index.html&quot;</span> <span class="hljs-keyword">in</span> path:
-        priority = <span class="hljs-string">&quot;1.00&quot;</span>
-    <span class="hljs-keyword">elif</span> <span class="hljs-string">&quot;about&quot;</span> <span class="hljs-keyword">in</span> path <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;contact&quot;</span> <span class="hljs-keyword">in</span> path <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;blog.html&quot;</span> <span class="hljs-keyword">in</span> path:
-        priority = <span class="hljs-string">&quot;0.80&quot;</span>
-    <span class="hljs-keyword">else</span>:
-        priority = <span class="hljs-string">&quot;0.64&quot;</span>
+for url, path in urls:
+    # Determine priority
+    if &quot;index.html&quot; in path:
+        priority = &quot;1.00&quot;
+    elif &quot;about&quot; in path or &quot;contact&quot; in path or &quot;blog.html&quot; in path:
+        priority = &quot;0.80&quot;
+    else:
+        priority = &quot;0.64&quot;
 
     lastmod = datetime.now(timezone.utc).isoformat()
 
-    sitemap.append(<span class="hljs-string">&quot;  &lt;url&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;loc&gt;<span class="hljs-subst">{url}</span>&lt;/loc&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;lastmod&gt;<span class="hljs-subst">{lastmod}</span>&lt;/lastmod&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">f&quot;    &lt;priority&gt;<span class="hljs-subst">{priority}</span>&lt;/priority&gt;&quot;</span>)
-    sitemap.append(<span class="hljs-string">&quot;  &lt;/url&gt;&quot;</span>)
+    sitemap.append(&quot;  &lt;url&gt;&quot;)
+    sitemap.append(f&quot;    &lt;loc&gt;{url}&lt;/loc&gt;&quot;)
+    sitemap.append(f&quot;    &lt;lastmod&gt;{lastmod}&lt;/lastmod&gt;&quot;)
+    sitemap.append(f&quot;    &lt;priority&gt;{priority}&lt;/priority&gt;&quot;)
+    sitemap.append(&quot;  &lt;/url&gt;&quot;)
 
-sitemap.append(<span class="hljs-string">&quot;&lt;/urlset&gt;&quot;</span>)
+sitemap.append(&quot;&lt;/urlset&gt;&quot;)
 
-<span class="hljs-comment"># === Save Output ===</span>
-os.makedirs(os.path.dirname(SITEMAP_FILE), exist_ok=<span class="hljs-literal">True</span>)
-<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(SITEMAP_FILE, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
-    f.write(<span class="hljs-string">&quot;\n&quot;</span>.join(sitemap))
+# === Save Output ===
+os.makedirs(os.path.dirname(SITEMAP_FILE), exist_ok=True)
+with open(SITEMAP_FILE, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(&quot;\n&quot;.join(sitemap))
 
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;✅ Sitemap generated at <span class="hljs-subst">{SITEMAP_FILE}</span> with <span class="hljs-subst">{<span class="hljs-built_in">len</span>(urls)}</span> URLs.&quot;</span>)
+print(f&quot;✅ Sitemap generated at {SITEMAP_FILE} with {len(urls)} URLs.&quot;)
 </code></pre>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/LeetCode/leetcode.png" 
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

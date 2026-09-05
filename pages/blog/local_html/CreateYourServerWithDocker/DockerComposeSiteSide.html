@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="This guide explains how to use Docker Compose to deploy multiple static websites behind a secure NGINX reverse proxy with Let's Encrypt SSL certificates. This section covers the site container configuration.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Deploying Static Sites with Docker Compose (Site Side) blog</title>
     <meta name="keywords" content="Docker, NGINX, Let's Encrypt, static site hosting, reverse proxy, Derek Dreblow, Dreblow Designs">
+
+    <title>Dreblow Design - Deploying Static Sites with Docker Compose (Site Side) blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/CreateYourServerWithDocker/DockerComposeSiteSide.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Deploying Static Sites with Docker Compose (Site Side)">
     <meta property="og:description" content="This guide explains how to use Docker Compose to deploy multiple static websites behind a secure NGINX reverse proxy with Let's Encrypt SSL certificates. This section covers the site container configuration.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/CreateYourServerWithDocker/DockerComposeSiteSide.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +43,7 @@
       "articleSection": [
         "Web Hosting"
       ],
-      "datePublished": "2025-06-03T00:00:00.000Z",
+      "datePublished": "2025-06-03",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/CreateYourServerWithDocker/DockerComposeSiteSide.html",
       "publisher": {
@@ -52,68 +56,67 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Deploying Static Sites with Docker Compose (Site Side)">
     <meta name="twitter:description" content="This guide explains how to use Docker Compose to deploy multiple static websites behind a secure NGINX reverse proxy with Let's Encrypt SSL certificates. This section covers the site container configuration.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
+    <!-- Styles -->
     <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="../../../../pages/about.html" aria-label="About"> About</a></li>
+            <li><a href="../../../../pages/contact/contact.html" aria-label="Contact"> Contact</a></li>
+            <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Jun 3, 2025</em></p>
-        <h1 id="docker-composer-site-side" tabindex="-1">Docker Composer Site Side</h1>
+<h1 id="docker-composer-site-side" tabindex="-1">Docker Composer Site Side</h1>
 <h2 id="breakdown-of-the-file" tabindex="-1">Breakdown of the File</h2>
 <p>Services:</p>
 <p>This section defines individual <strong>services</strong> (containers) you want Docker to run. Each service corresponds to a website.</p>
 <h3 id="websites-dreblowdesigns-mathsheetgen-dreblowandassociates" tabindex="-1">WebSites: dreblowdesigns, mathsheetgen, dreblowandassociates</h3>
 <p>Each block under <code>services:</code> defines one site. Let's use one as an example:</p>
-<pre><code class="hljs yml"><span class="hljs-attr">dreblowdesigns:</span>
-    <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>
-    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+<pre><code class="hljs yml">dreblowdesigns:
+    image: nginx:latest
+    restart: always
 </code></pre>
 <ul>
 <li><code>image: nginx:latest</code>
@@ -122,36 +125,34 @@ Tells Docker to use the official NGINX image (web server software) from Docker H
 Ensures the container restarts if it crashes, or when Docker starts on reboot.</li>
 </ul>
 <h2 id="volumes" tabindex="-1">Volumes</h2>
-<pre><code class="hljs yml"><span class="hljs-attr">volumes:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">/srv/sites/dreblowdesigns.com:/usr/share/nginx/html:ro</span>
+<pre><code class="hljs yml">volumes:
+    - /srv/sites/dreblowdesigns.com:/usr/share/nginx/html:ro
 </code></pre>
 <ul>
 <li>This maps a folder from your host system <code>(/srv/sites/dreblowdesigns.com)</code> into the container’s web root <code>(/usr/share/nginx/html)</code> in read-only mode <code>(:ro)</code>.</li>
 <li>That’s how your actual HTML/CSS/JS content is served inside the container.</li>
 </ul>
 <h2 id="environment-variables" tabindex="-1">Environment Variables</h2>
-<pre><code class="hljs yml"><span class="hljs-attr">environment:</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">VIRTUAL_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
-<span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_EMAIL=####.#####@gmail.com</span>
+<pre><code class="hljs yml">environment:
+- VIRTUAL_HOST=dreblowdesigns.com, www.dreblowdesigns.com
+- LETSENCRYPT_HOST=dreblowdesigns.com, www.dreblowdesigns.com
+- LETSENCRYPT_EMAIL=####.#####@gmail.com
 </code></pre>
-<p>These are picked up by the nginx-proxy and acme-companion services you defined in the server-side Compose file:</p>
-<ul>
-<li><code>VIRTUAL_HOST:</code> Tells nginx-proxy which hostnames should route traffic to this container.</li>
-<li><code>LETSENCRYPT_HOST:</code> Tells acme-companion to request HTTPS certificates for these domains.</li>
-<li><code>LETSENCRYPT_EMAIL:</code> Email to register with Let’s Encrypt in case of urgent SSL certificate notifications (masked here in the blog for privacy).</li>
-</ul>
+<p>These are picked up by the nginx-proxy and acme-companion services you defined in the server-side Compose file:
+* <code>VIRTUAL_HOST:</code> Tells nginx-proxy which hostnames should route traffic to this container.
+* <code>LETSENCRYPT_HOST:</code> Tells acme-companion to request HTTPS certificates for these domains.
+* <code>LETSENCRYPT_EMAIL:</code> Email to register with Let’s Encrypt in case of urgent SSL certificate notifications (masked here in the blog for privacy).</p>
 <h2 id="networks" tabindex="-1">Networks</h2>
-<pre><code class="hljs yml"><span class="hljs-attr">networks:</span>
-    <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
+<pre><code class="hljs yml">networks:
+    - webproxy
 </code></pre>
 <ul>
 <li>This connects the service to an external Docker network named webproxy. This shared network lets the site containers communicate with the proxy containers defined in your other docker-compose.yml.</li>
 <li>The bottom section makes this explicit:</li>
 </ul>
-<pre><code class="hljs yml"><span class="hljs-attr">networks:</span>
-  <span class="hljs-attr">webproxy:</span>
-    <span class="hljs-attr">external:</span> <span class="hljs-literal">true</span>
+<pre><code class="hljs yml">networks:
+  webproxy:
+    external: true
 </code></pre>
 <h2 id="why-this-works" tabindex="-1">Why This Works</h2>
 <ul>
@@ -161,69 +162,88 @@ Ensures the container restarts if it crashes, or when Docker starts on reboot.</
 <li>Easy to scale: just add more blocks like this!</li>
 </ul>
 <h2 id="the-entire-file" tabindex="-1">The entire file</h2>
-<pre><code class="hljs yml"><span class="hljs-attr">services:</span>
-  <span class="hljs-attr">dreblowdesigns:</span>
-    <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>
-    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
-    <span class="hljs-attr">volumes:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">/srv/sites/dreblowdesigns.com:/usr/share/nginx/html:ro</span>
-    <span class="hljs-attr">environment:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">VIRTUAL_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_HOST=dreblowdesigns.com,</span> <span class="hljs-string">www.dreblowdesigns.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_EMAIL=####.#####@gmail.com</span>                              <span class="hljs-comment"># Or some email address</span>
-    <span class="hljs-attr">networks:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
+<pre><code class="hljs yml">services:
+  dreblowdesigns:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - /srv/sites/dreblowdesigns.com:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=dreblowdesigns.com, www.dreblowdesigns.com
+      - LETSENCRYPT_HOST=dreblowdesigns.com, www.dreblowdesigns.com
+      - LETSENCRYPT_EMAIL=####.#####@gmail.com                              # Or some email address
+    networks:
+      - webproxy
 
-  <span class="hljs-attr">mathsheetgen:</span>
-    <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>
-    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
-    <span class="hljs-attr">volumes:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">/srv/sites/mathsheetgen.com:/usr/share/nginx/html:ro</span>
-    <span class="hljs-attr">environment:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">VIRTUAL_HOST=mathsheetgen.com,</span> <span class="hljs-string">www.mathsheetgen.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_HOST=mathsheetgen.com,</span> <span class="hljs-string">www.mathsheetgen.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_EMAIL=####.#####@gmail.com</span>                              <span class="hljs-comment"># Or some email address</span>
-    <span class="hljs-attr">networks:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
+  mathsheetgen:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - /srv/sites/mathsheetgen.com:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=mathsheetgen.com, www.mathsheetgen.com
+      - LETSENCRYPT_HOST=mathsheetgen.com, www.mathsheetgen.com
+      - LETSENCRYPT_EMAIL=####.#####@gmail.com                              # Or some email address
+    networks:
+      - webproxy
 
-  <span class="hljs-attr">dreblowandassociates:</span>
-    <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:latest</span>
-    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
-    <span class="hljs-attr">volumes:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">/srv/sites/dreblowandassociates.com:/usr/share/nginx/html:ro</span>
-    <span class="hljs-attr">environment:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">VIRTUAL_HOST=dreblowandassociates.com,</span> <span class="hljs-string">www.dreblowandassociates.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_HOST=dreblowandassociates.com,</span> <span class="hljs-string">www.dreblowandassociates.com</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">LETSENCRYPT_EMAIL=####.#####@gmail.com</span>                              <span class="hljs-comment"># Or some email address</span>
-    <span class="hljs-attr">networks:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
+  dreblowandassociates:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - /srv/sites/dreblowandassociates.com:/usr/share/nginx/html:ro
+    environment:
+      - VIRTUAL_HOST=dreblowandassociates.com, www.dreblowandassociates.com
+      - LETSENCRYPT_HOST=dreblowandassociates.com, www.dreblowandassociates.com
+      - LETSENCRYPT_EMAIL=####.#####@gmail.com                              # Or some email address
+    networks:
+      - webproxy
 
-<span class="hljs-attr">networks:</span>
-  <span class="hljs-attr">webproxy:</span>
-    <span class="hljs-attr">external:</span> <span class="hljs-literal">true</span>
+networks:
+  webproxy:
+    external: true
 </code></pre>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/LeetCode/leetcode.png" 
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="../../../../resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->
