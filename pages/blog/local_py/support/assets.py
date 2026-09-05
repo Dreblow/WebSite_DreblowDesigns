@@ -7,33 +7,27 @@ def copy_support_files(
     input_dir: Path,
     output_dir: Path,
 ):
-    source_dir = markdown_file.parent
-    relative_dir = source_dir.relative_to(
-        input_dir
+    source_support = (
+        markdown_file.parent
+        / "support"
     )
 
-    destination_dir = (
+    if not source_support.exists():
+        return
+
+    relative_dir = (
+        markdown_file.parent
+        .relative_to(input_dir)
+    )
+
+    destination_support = (
         output_dir
         / relative_dir
+        / "support"
     )
 
-    for item in source_dir.iterdir():
-        if item.suffix.lower() == ".md":
-            continue
-
-        destination = (
-            destination_dir
-            / item.name
-        )
-
-        if item.is_dir():
-            shutil.copytree(
-                item,
-                destination,
-                dirs_exist_ok=True,
-            )
-        else:
-            shutil.copy2(
-                item,
-                destination,
-            )
+    shutil.copytree(
+        source_support,
+        destination_support,
+        dirs_exist_ok=True,
+    )

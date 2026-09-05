@@ -3,7 +3,7 @@ title: Markdown Editor
 description: Learn to create your own Markdown editor in a popular language, with spell check!
 keywords: Linux, Guide, How-to, Markdown, Software, Developer, Python, Swift, C#
 author: Derek Dreblow
-version: 2026-09-01
+version: 2026-09-05
 machine: mixed
 categories:
   - Linux
