@@ -10,6 +10,8 @@ from support.metadata import (
     get_image,
 )
 
+from renderers import render_section
+
 
 # ---------------------------------------------------------
 # Paths
@@ -45,6 +47,17 @@ SUPPORTED_RENDERERS = {
 # ---------------------------------------------------------
 
 def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    for markdown_file in INPUT_DIR.rglob("*.md"):
+        if markdown_file.name != "git.md":
+            continue
+
+        process_markdown_file(markdown_file)
+
+    print("✅ Completed generating blog")
+
+def mainWhenTestingIsDone():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     for markdown_file in INPUT_DIR.rglob("*.md"):
@@ -102,6 +115,11 @@ def process_markdown_file(markdown_file: Path):
         image,
     )
 
+    rendered_sections = "\n\n".join(
+        render_section(section)
+        for section in sections
+    )
+
     template = load_template()
 
     template_values = {
@@ -127,7 +145,7 @@ def process_markdown_file(markdown_file: Path):
         "blog_path": blog_path,
         "json_ld": json_ld,
         "renderer_css": renderer_css,
-        "render_sections": "<!-- render sections TODO -->",
+        "render_sections": rendered_sections,
     }
 
     generated_html = fill_template(
