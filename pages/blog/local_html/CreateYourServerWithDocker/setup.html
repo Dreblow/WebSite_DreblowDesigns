@@ -125,37 +125,37 @@
 <hr />
 <h3 id="setup" tabindex="-1">Setup</h3>
 <p>Clone the repo:</p>
-<pre><code class="hljs bash">git clone git@github.com:Dreblow/DreblowDesignsWebServer.git
-cd DreblowDesignsWebServer
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:Dreblow/DreblowDesignsWebServer.git
+<span class="hljs-built_in">cd</span> DreblowDesignsWebServer
 </code></pre>
 <p>Run the setup script:</p>
-<pre><code class="hljs bash">sudo chmod +x setup.sh &amp;&amp; ./setup.sh
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +x setup.sh &amp;&amp; ./setup.sh
 </code></pre>
 <p>This will:
 * Create required directories (data/certs, data/html, data/vhost.d)
 * Create the shared Docker network webproxy
 * Start the NGINX proxy + SSL companion stack</p>
 <p>Push the update over SSH:</p>
-<pre><code class="hljs bash">ssh dreblow@&lt;your_ip&gt; '~/git/DreblowDesignsWebServer/setup.sh'
+<pre><code class="hljs bash">ssh dreblow@&lt;your_ip&gt; <span class="hljs-string">&#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;</span>
 </code></pre>
 <h4 id="take-it-one-stop-further-and-add-as-an-alias-on-the-mac" tabindex="-1">Take it one stop further and add as an alias on the Mac:</h4>
 <p>Add this to your <code>nano ~/.zshrc</code> or <code>nano /.bash_profile</code>:</p>
-<pre><code class="hljs bash">alias deployserver=&quot;ssh dreblow@&lt;your_ip&gt; '~/git/DreblowDesignsWebServer/setup.sh'&quot;
+<pre><code class="hljs bash"><span class="hljs-built_in">alias</span> deployserver=<span class="hljs-string">&quot;ssh dreblow@&lt;your_ip&gt; &#x27;~/git/DreblowDesignsWebServer/setup.sh&#x27;&quot;</span>
 </code></pre>
 <p>Then run:</p>
-<pre><code class="hljs bash">source ~/.zshrc   # or ~/.bash_profile
+<pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc   <span class="hljs-comment"># or ~/.bash_profile</span>
 </code></pre>
 <p>Now anytime you want to deploy from terminal:</p>
 <pre><code class="hljs bash">deployserver
 </code></pre>
 <p>Done!!</p>
 <p>Here is mine in real life:</p>
-<pre><code class="hljs bash"># Alias to invoke script on server
-alias localdeploy='ssh dre@192.168.1.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;'           # Local IP
-alias remotedeploy='ssh -p 6## dre@##.##.###.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;'   # Public IP 
+<pre><code class="hljs bash"><span class="hljs-comment"># Alias to invoke script on server</span>
+<span class="hljs-built_in">alias</span> localdeploy=<span class="hljs-string">&#x27;ssh dre@192.168.1.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;&#x27;</span>           <span class="hljs-comment"># Local IP</span>
+<span class="hljs-built_in">alias</span> remotedeploy=<span class="hljs-string">&#x27;ssh -p 6## dre@##.##.###.### &quot;bash ~/git/DreblowDesignsWebServer/setup.sh&quot;&#x27;</span>   <span class="hljs-comment"># Public IP </span>
 
-# Optional: enable tab-completion for aliases
-setopt complete_aliases                                                                           # Have to have tab auto complete
+<span class="hljs-comment"># Optional: enable tab-completion for aliases</span>
+<span class="hljs-built_in">setopt</span> complete_aliases                                                                           <span class="hljs-comment"># Have to have tab auto complete</span>
 </code></pre>
 <hr />
 <h3 id="setupsh" tabindex="-1">Setup.sh</h3>
@@ -168,18 +168,18 @@ setopt complete_aliases                                                         
 <ol>
 <li>Shebang + Error Handling</li>
 </ol>
-<pre><code class="hljs bash">#!/bin/bash
-set -e
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">set</span> -e
 </code></pre>
 <ul>
 <li><code>#!/bin/bash</code> ensures the script runs with Bash.</li>
 <li><code>set -e</code> means the script will stop immediately if any command fails — good for fail-fast behavior</li>
 </ul>
-<pre><code class="hljs bash"># Prevent running as root (with sudo)
-if [ &quot;$EUID&quot; -eq 0 ]; then
-  echo &quot;❌ Do not run this script with sudo. Exiting..&quot;
-  exit 1
-fi
+<pre><code class="hljs bash"><span class="hljs-comment"># Prevent running as root (with sudo)</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$EUID</span>&quot;</span> -eq 0 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;❌ Do not run this script with sudo. Exiting..&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
 </code></pre>
 <ul>
 <li>
@@ -189,7 +189,7 @@ fi
 <p>Introduction Output</p>
 </li>
 </ul>
-<pre><code class="hljs bash">echo &quot;🚀 Launching Dreblow Designs Web Server setup...&quot;
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🚀 Launching Dreblow Designs Web Server setup...&quot;</span>
 </code></pre>
 <ul>
 <li>
@@ -199,13 +199,13 @@ fi
 <p>Settings Block</p>
 </li>
 </ul>
-<pre><code class="hljs bash">GIT_ROOT=&quot;$HOME/git&quot;
-DEPLOY_ROOT=&quot;/srv/sites&quot;
+<pre><code class="hljs bash">GIT_ROOT=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/git&quot;</span>
+DEPLOY_ROOT=<span class="hljs-string">&quot;/srv/sites&quot;</span>
 REPOS=(
-    # Add more repos here, no commas needed
-  &quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;
-  &quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;
-  &quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;
+    <span class="hljs-comment"># Add more repos here, no commas needed</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;</span>
 )
 </code></pre>
 <ul>
@@ -218,13 +218,13 @@ REPOS=(
 <p>Directory Setup</p>
 </li>
 </ul>
-<pre><code class="hljs bash">if [ ! -d &quot;$GIT_ROOT&quot; ]; then
-  sudo mkdir -p &quot;$GIT_ROOT&quot;
-fi
-if [ ! -d &quot;$DEPLOY_ROOT&quot; ]; then
-  sudo mkdir -p &quot;$DEPLOY_ROOT&quot;
-fi
-sudo chown -R &quot;$USER&quot; &quot;$GIT_ROOT&quot; &quot;$DEPLOY_ROOT&quot;
+<pre><code class="hljs bash"><span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
 </code></pre>
 <ul>
 <li>creates /git and /srv/sites if they don’t exist.</li>
@@ -235,31 +235,31 @@ sudo chown -R &quot;$USER&quot; &quot;$GIT_ROOT&quot; &quot;$DEPLOY_ROOT&quot;
 <p>Repo Cloning &amp; Deployment Loop</p>
 </li>
 </ul>
-<pre><code class="hljs bash">for REPO in &quot;${REPOS[@]}&quot;; do
-  NAME=$(basename &quot;$REPO&quot; .git)
-  DOMAIN=&quot;$(echo &quot;$NAME&quot; | tr '[:upper:]' '[:lower:]' | sed 's/website_//g').com&quot;
+<pre><code class="hljs bash"><span class="hljs-keyword">for</span> REPO <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">${REPOS[@]}</span>&quot;</span>; <span class="hljs-keyword">do</span>
+  NAME=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> .git)
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
 
-  LOCAL_REPO=&quot;$GIT_ROOT/$NAME&quot;
-  if [ -d &quot;$LOCAL_REPO&quot; ]; then
-    echo &quot;🗑️ Removing old repository at $LOCAL_REPO...&quot;
-    rm -rf &quot;$LOCAL_REPO&quot;
-  fi
+  LOCAL_REPO=<span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing old repository at <span class="hljs-variable">$LOCAL_REPO</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
 
-  if [ -d &quot;$DEPLOY_ROOT/$DOMAIN&quot; ]; then
-    echo &quot;🗑️ Removing deployed site at $DEPLOY_ROOT/$DOMAIN...&quot;
-    rm -rf &quot;$DEPLOY_ROOT/$DOMAIN&quot;
-  fi
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing deployed site at <span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
 
-  if [ -d &quot;$GIT_ROOT/$NAME/.git&quot; ]; then
-    git -C &quot;$GIT_ROOT/$NAME&quot; pull
-  else
-    git clone &quot;$REPO&quot; &quot;$GIT_ROOT/$NAME&quot;
-  fi
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/.git&quot;</span> ]; <span class="hljs-keyword">then</span>
+    git -C <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span> pull
+  <span class="hljs-keyword">else</span>
+    git <span class="hljs-built_in">clone</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
 
-  mkdir -p &quot;$DEPLOY_ROOT/$DOMAIN&quot;
-  rsync -av --delete &quot;$GIT_ROOT/$NAME/&quot; &quot;$DEPLOY_ROOT/$DOMAIN/&quot; \
-    --exclude &quot;.git&quot; --exclude &quot;resources/dev&quot; --exclude &quot;node_modules&quot;
-done
+  <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  rsync -av --delete <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>/&quot;</span> \
+    --exclude <span class="hljs-string">&quot;.git&quot;</span> --exclude <span class="hljs-string">&quot;resources/dev&quot;</span> --exclude <span class="hljs-string">&quot;node_modules&quot;</span>
+<span class="hljs-keyword">done</span>
 </code></pre>
 <ul>
 <li>
@@ -288,9 +288,9 @@ done
 <p>Start Reverse Proxy Stack</p>
 </li>
 </ul>
-<pre><code class="hljs bash">SCRIPT_DIR=&quot;$(cd &quot;$(dirname &quot;${BASH_SOURCE[0]}&quot;)&quot; &amp;&amp; pwd)&quot;
-docker compose -f &quot;$SCRIPT_DIR/docker/server/docker-compose.yml&quot; up -d
-docker compose -f &quot;$SCRIPT_DIR/docker/sites/docker-compose.yml&quot; up -d
+<pre><code class="hljs bash">SCRIPT_DIR=<span class="hljs-string">&quot;<span class="hljs-subst">$(cd <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">${BASH_SOURCE[0]}</span>&quot;</span>)</span>&quot;</span> &amp;&amp; pwd)</span>&quot;</span>
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/server/docker-compose.yml&quot;</span> up -d
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/sites/docker-compose.yml&quot;</span> up -d
 </code></pre>
 <ul>
 <li>Boots up your NGINX and acme-companion containers using the docker-compose files inside the docker/server and docker/sites directories.</li>
@@ -302,7 +302,7 @@ docker compose -f &quot;$SCRIPT_DIR/docker/sites/docker-compose.yml&quot; up -d
 <p>Wrap-up</p>
 </li>
 </ul>
-<pre><code class="hljs bash">echo &quot;✅ All websites are deployed and live with HTTPS support.&quot;
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ All websites are deployed and live with HTTPS support.&quot;</span>
 </code></pre>
 <ul>
 <li>Done! All sites are deployed under your single management umbrella.</li>
@@ -311,92 +311,92 @@ docker compose -f &quot;$SCRIPT_DIR/docker/sites/docker-compose.yml&quot; up -d
 <ol>
 <li>The entire script</li>
 </ol>
-<pre><code class="hljs bash">#!/bin/bash
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 
-# Super clean, Super Bias, Dreblow Designs Server Setup Script
-# This script owns all deployments. Websites are dumb. Server is smart.
+<span class="hljs-comment"># Super clean, Super Bias, Dreblow Designs Server Setup Script</span>
+<span class="hljs-comment"># This script owns all deployments. Websites are dumb. Server is smart.</span>
 
-set -e
+<span class="hljs-built_in">set</span> -e
 
-# Prevent running as root (with sudo)
-if [ &quot;$EUID&quot; -eq 0 ]; then
-  echo &quot;❌ Do not run this script with sudo. Exiting..&quot;
-  exit 1
-fi
+<span class="hljs-comment"># Prevent running as root (with sudo)</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$EUID</span>&quot;</span> -eq 0 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;❌ Do not run this script with sudo. Exiting..&quot;</span>
+  <span class="hljs-built_in">exit</span> 1
+<span class="hljs-keyword">fi</span>
 
-echo &quot;🚀 Launching Dreblow Designs Web Server setup...&quot;
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🚀 Launching Dreblow Designs Web Server setup...&quot;</span>
 
-# === SETTINGS ===
-GIT_ROOT=&quot;$HOME/git&quot;
-DEPLOY_ROOT=&quot;/srv/sites&quot;
+<span class="hljs-comment"># === SETTINGS ===</span>
+GIT_ROOT=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/git&quot;</span>
+DEPLOY_ROOT=<span class="hljs-string">&quot;/srv/sites&quot;</span>
 REPOS=(
-  &quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;
-  &quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;
-  &quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;
-  # Add more repos here
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowDesigns.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_MathSheetGen.git&quot;</span>
+  <span class="hljs-string">&quot;git@github.com:Dreblow/WebSite_DreblowandAssociates.git&quot;</span>
+  <span class="hljs-comment"># Add more repos here</span>
 )
 
-# === PREP DIRECTORIES ===
-echo &quot;📁 Ensuring base directories exist...&quot;
-if [ ! -d &quot;$GIT_ROOT&quot; ]; then
-  echo &quot;📁 Creating git directory at $GIT_ROOT&quot;
-  sudo mkdir -p &quot;$GIT_ROOT&quot;
-else
-  echo &quot;✅ Git directory exists at $GIT_ROOT&quot;
-fi
+<span class="hljs-comment"># === PREP DIRECTORIES ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Ensuring base directories exist...&quot;</span>
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Creating git directory at <span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ Git directory exists at <span class="hljs-variable">$GIT_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
 
-if [ ! -d &quot;$DEPLOY_ROOT&quot; ]; then
-  echo &quot;📁 Creating deploy directory at $DEPLOY_ROOT&quot;
-  sudo mkdir -p &quot;$DEPLOY_ROOT&quot;
-else
-  echo &quot;✅ Deploy directory exists at $DEPLOY_ROOT&quot;
-fi
+<span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📁 Creating deploy directory at <span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+  <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ Deploy directory exists at <span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
+<span class="hljs-keyword">fi</span>
 
-sudo chown -R &quot;$USER&quot; &quot;$GIT_ROOT&quot; &quot;$DEPLOY_ROOT&quot;
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>&quot;</span>
 
-# === CLONE &amp; DEPLOY ===
-echo &quot;📦 Cloning and copying website files...&quot;
-for REPO in &quot;${REPOS[@]}&quot;; do
-  NAME=$(basename &quot;$REPO&quot; .git)
-  DOMAIN=&quot;$(echo &quot;$NAME&quot; | tr '[:upper:]' '[:lower:]' | sed 's/website_//g').com&quot;
+<span class="hljs-comment"># === CLONE &amp; DEPLOY ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📦 Cloning and copying website files...&quot;</span>
+<span class="hljs-keyword">for</span> REPO <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">${REPOS[@]}</span>&quot;</span>; <span class="hljs-keyword">do</span>
+  NAME=$(<span class="hljs-built_in">basename</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> .git)
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
 
-  LOCAL_REPO=&quot;$GIT_ROOT/$NAME&quot;
-  if [ -d &quot;$LOCAL_REPO&quot; ]; then
-    echo &quot;🗑️ Removing old repository at $LOCAL_REPO...&quot;
-    rm -rf &quot;$LOCAL_REPO&quot;
-  fi
+  LOCAL_REPO=<span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🗑️ Removing old repository at <span class="hljs-variable">$LOCAL_REPO</span>...&quot;</span>
+    <span class="hljs-built_in">rm</span> -rf <span class="hljs-string">&quot;<span class="hljs-variable">$LOCAL_REPO</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
 
-  DOMAIN=&quot;$(echo &quot;$NAME&quot; | tr '[:upper:]' '[:lower:]' | sed 's/website_//g').com&quot;
+  DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(echo <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span>&quot;</span> | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; | sed &#x27;s/website_//g&#x27;)</span>.com&quot;</span>
 
-  # Clone or pull
-  if [ -d &quot;$GIT_ROOT/$NAME/.git&quot; ]; then
-    echo &quot;🔄 Updating $NAME...&quot;
-    git -C &quot;$GIT_ROOT/$NAME&quot; pull
-  else
-    echo &quot;📥 Cloning $NAME...&quot;
-    git clone &quot;$REPO&quot; &quot;$GIT_ROOT/$NAME&quot;
-  fi
+  <span class="hljs-comment"># Clone or pull</span>
+  <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/.git&quot;</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🔄 Updating <span class="hljs-variable">$NAME</span>...&quot;</span>
+    git -C <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span> pull
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📥 Cloning <span class="hljs-variable">$NAME</span>...&quot;</span>
+    git <span class="hljs-built_in">clone</span> <span class="hljs-string">&quot;<span class="hljs-variable">$REPO</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>&quot;</span>
+  <span class="hljs-keyword">fi</span>
 
-  # Copy static content
-  echo &quot;📤 Deploying to $DEPLOY_ROOT/$DOMAIN...&quot;
-  mkdir -p &quot;$DEPLOY_ROOT/$DOMAIN&quot;
-  rsync -av --delete &quot;$GIT_ROOT/$NAME/&quot; &quot;$DEPLOY_ROOT/$DOMAIN/&quot; \
-    --exclude &quot;.git&quot; --exclude &quot;resources/dev&quot; --exclude &quot;node_modules&quot;
-done
+  <span class="hljs-comment"># Copy static content</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;📤 Deploying to <span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>...&quot;</span>
+  <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>&quot;</span>
+  rsync -av --delete <span class="hljs-string">&quot;<span class="hljs-variable">$GIT_ROOT</span>/<span class="hljs-variable">$NAME</span>/&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DEPLOY_ROOT</span>/<span class="hljs-variable">$DOMAIN</span>/&quot;</span> \
+    --exclude <span class="hljs-string">&quot;.git&quot;</span> --exclude <span class="hljs-string">&quot;resources/dev&quot;</span> --exclude <span class="hljs-string">&quot;node_modules&quot;</span>
+<span class="hljs-keyword">done</span>
 
-# === NETWORK SETUP ===
-echo &quot;🌐 Ensuring shared Docker network exists...&quot;
+<span class="hljs-comment"># === NETWORK SETUP ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🌐 Ensuring shared Docker network exists...&quot;</span>
 docker network inspect webproxy &gt;/dev/null 2&gt;&amp;1 || \
   docker network create webproxy
 
-# === START REVERSE PROXY ===
-echo &quot;🧰 Starting NGINX + SSL reverse proxy...&quot;
-SCRIPT_DIR=&quot;$(cd &quot;$(dirname &quot;${BASH_SOURCE[0]}&quot;)&quot; &amp;&amp; pwd)&quot;
-docker compose -f &quot;$SCRIPT_DIR/docker/server/docker-compose.yml&quot; up -d
-docker compose -f &quot;$SCRIPT_DIR/docker/sites/docker-compose.yml&quot; up -d
+<span class="hljs-comment"># === START REVERSE PROXY ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;🧰 Starting NGINX + SSL reverse proxy...&quot;</span>
+SCRIPT_DIR=<span class="hljs-string">&quot;<span class="hljs-subst">$(cd <span class="hljs-string">&quot;<span class="hljs-subst">$(dirname <span class="hljs-string">&quot;<span class="hljs-variable">${BASH_SOURCE[0]}</span>&quot;</span>)</span>&quot;</span> &amp;&amp; pwd)</span>&quot;</span>
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/server/docker-compose.yml&quot;</span> up -d
+docker compose -f <span class="hljs-string">&quot;<span class="hljs-variable">$SCRIPT_DIR</span>/docker/sites/docker-compose.yml&quot;</span> up -d
 
-# === DONE ===
-echo &quot;✅ All websites are deployed and live with HTTPS support.&quot;
+<span class="hljs-comment"># === DONE ===</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ All websites are deployed and live with HTTPS support.&quot;</span>
 </code></pre>
     </article>
 </main>

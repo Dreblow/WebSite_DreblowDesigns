@@ -146,44 +146,44 @@
 <h2 id="final-thoughts" tabindex="-1">Final thoughts</h2>
 <p>This setup gives you a centralized, scalable, and fully automated reverse proxy with free HTTPS support. Add or remove sites by just spinning up a new container with the correct environment variables. No more manually editing NGINX configs or renewing certs!</p>
 <h2 id="this-file-is-live" tabindex="-1">This file is live</h2>
-<pre><code class="hljs yml">services:
-  nginx-proxy:
-    image: nginxproxy/nginx-proxy
-    container_name: nginx-proxy
-    labels:
-      - com.github.nginx-proxy.nginx
-    restart: always
-    ports:
-      - &quot;80:80&quot;
-      - &quot;443:443&quot;
-    volumes:
-      - ./data/certs:/etc/nginx/certs:ro
-      - ./data/vhost.d:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - webproxy
+<pre><code class="hljs yml"><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">nginx-proxy:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">nginxproxy/nginx-proxy</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">nginx-proxy</span>
+    <span class="hljs-attr">labels:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">com.github.nginx-proxy.nginx</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;80:80&quot;</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;443:443&quot;</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/certs:/etc/nginx/certs:ro</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/vhost.d:/etc/nginx/vhost.d</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/html:/usr/share/nginx/html</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/var/run/docker.sock:/tmp/docker.sock:ro</span>
+    <span class="hljs-attr">networks:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
 
-  acme-companion:
-    image: nginxproxy/acme-companion
-    container_name: nginx-acme
-    restart: always
-    environment:
-      DEFAULT_EMAIL: ####.#####@gmail.com             # Or some email address
-      NGINX_PROXY_CONTAINER: nginx-proxy
-    volumes:
-      - ./data/certs:/etc/nginx/certs
-      - ./data/vhost.d:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    depends_on:
-      - nginx-proxy
-    networks:
-      - webproxy
+  <span class="hljs-attr">acme-companion:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">nginxproxy/acme-companion</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">nginx-acme</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-attr">DEFAULT_EMAIL:</span> <span class="hljs-comment">####.#####@gmail.com             # Or some email address</span>
+      <span class="hljs-attr">NGINX_PROXY_CONTAINER:</span> <span class="hljs-string">nginx-proxy</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/certs:/etc/nginx/certs</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/vhost.d:/etc/nginx/vhost.d</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./data/html:/usr/share/nginx/html</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+    <span class="hljs-attr">depends_on:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">nginx-proxy</span>
+    <span class="hljs-attr">networks:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">webproxy</span>
 
-networks:
-  webproxy:
-    external: true
+<span class="hljs-attr">networks:</span>
+  <span class="hljs-attr">webproxy:</span>
+    <span class="hljs-attr">external:</span> <span class="hljs-literal">true</span>
 </code></pre>
     </article>
 </main>

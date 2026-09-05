@@ -162,8 +162,8 @@
 <p><strong>Tested with: Ubuntu Server 24.04 x86</strong></p>
 <p>tmux is a terminal multiplexer that allows multiple terminal sessions to run inside a single SSH connection. It’s one of my favorite tools for remote Linux administration because sessions continue running even after disconnecting.</p>
 <h3 id="install_1" tabindex="-1">Install</h3>
-<pre><code class="hljs bash">sudo apt update
-sudo apt install tmux
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install tmux
 </code></pre>
 <h3 id="verify-installation_1" tabindex="-1">Verify Installation</h3>
 <pre><code class="hljs bash">tmux -V
@@ -179,7 +179,7 @@ sudo apt install tmux
 <pre><code class="hljs bash">tmux attach -t my-session-name
 </code></pre>
 <p>And of course if you forget, look it up:</p>
-<pre><code class="hljs bash">tmux ls
+<pre><code class="hljs bash">tmux <span class="hljs-built_in">ls</span>
 </code></pre>
 <p>That's it! Because if you leave your shell, whatever process you have running will stop. What's a good example? How about migrating 5TB of data from one drive to and another and use <code>rsync</code>, use <code>tmux</code> to <em>set it and forget it</em>. But you should come back to see how things are going periodically 😃</p>
     </article>

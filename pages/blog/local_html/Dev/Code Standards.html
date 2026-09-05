@@ -108,10 +108,39 @@
 </header>
 <!-- DDS:HEAD:END -->
 
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
+<main class="markdown-body git-wiki-section">
+    <article>
+        <p><em class="blogVersion">Version: Jul 10, 2026</em></p>
+<h1 id="coding-standards" tabindex="-1">Coding Standards</h1>
+<p>Organizing code in a consistent and predictable way improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. Follow these general best practices across all programming languages:</p>
+<ul>
+<li>Use clear and descriptive naming conventions for variables, methods, and classes.  </li>
+<li>Write meaningful comments to explain complex logic or important decisions.  </li>
+<li>Handle errors gracefully with appropriate error handling and logging.  </li>
+<li>Keep functions and methods focused on a single responsibility.  </li>
+<li>Maintain consistent indentation and formatting throughout the codebase.  </li>
+</ul>
+<p>Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.</p>
+<p>Take a look at the bottom of the page to see a 'live' example.</p>
+<hr />
+<h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
+<ul>
+<li><a href="#c-coding-standards">C# Coding Standards</a></li>
+<li><a href="#swift-coding-standards">Swift Coding Standards</a></li>
+<li><a href="#vbnet-coding-standards">VB.NET Coding Standards</a></li>
+</ul>
+<h2 id="_1" tabindex="-1">---</h2>
+<h1 id="c-coding-standards" tabindex="-1">C# Coding Standards</h1>
+<p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md" target="_blank" rel="noopener noreferrer">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
+    </article>
+</main>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
 <!-- DDS:RENDER:command-card-one-row:START -->
 <main class="markdown-body command-card-section command-card-one-row-section">
     <article>
-        <p><em class="blogVersion">Version: Jul 10, 2026</em></p>
+        
 
         <div class="cards-flex-container">
             <div class="cards-container">
@@ -203,86 +232,86 @@
 <h2 id="handling-exceptions-to-the-rule" tabindex="-1">Handling Exceptions to the Rule</h2>
 <p>Sometimes you’ll want to <strong>group related members</strong> (like interface implementations) together, even if it breaks the standard order.</p>
 <p><strong>Best practice:</strong> use <strong>partial classes</strong> to separate those concerns cleanly.</p>
-<pre><code class="hljs csharp">// File: MyClass.cs
-public partial class MyClass {
-    // Primary structure and logic
+<pre><code class="hljs csharp"><span class="hljs-comment">// File: MyClass.cs</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> {
+    <span class="hljs-comment">// Primary structure and logic</span>
 }
 
-// File: MyClass.Interfaces.cs
-public partial class MyClass : IMyInterface {
-    // Grouped interface methods
+<span class="hljs-comment">// File: MyClass.Interfaces.cs</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> : <span class="hljs-title">IMyInterface</span> {
+    <span class="hljs-comment">// Grouped interface methods</span>
 }
 </code></pre>
 <hr />
 <h2 id="example-class-layout" tabindex="-1">Example Class Layout</h2>
-<pre><code class="hljs csharp">// Abstract base class demonstrating abstract and virtual members
-public abstract class BaseClass
+<pre><code class="hljs csharp"><span class="hljs-comment">// Abstract base class demonstrating abstract and virtual members</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span>
 {
-    // Abstract method (must be overridden in derived classes)
-    public abstract void AbstractOperation();
+    <span class="hljs-comment">// Abstract method (must be overridden in derived classes)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AbstractOperation</span>()</span>;
 
-    // Virtual method (can optionally be overridden)
-    public virtual void VirtualOperation()
+    <span class="hljs-comment">// Virtual method (can optionally be overridden)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">VirtualOperation</span>()</span>
     {
-        Console.WriteLine(&quot;BaseClass: Default virtual operation&quot;);
+        Console.WriteLine(<span class="hljs-string">&quot;BaseClass: Default virtual operation&quot;</span>);
     }
 }
 
-// Concrete class inheriting from BaseClass and demonstrating overrides
-public class SampleClass : BaseClass
+<span class="hljs-comment">// Concrete class inheriting from BaseClass and demonstrating overrides</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SampleClass</span> : <span class="hljs-title">BaseClass</span>
 {
-    // 1. Constant Fields
-    public const string APP_NAME = &quot;MyApp&quot;;
+    <span class="hljs-comment">// 1. Constant Fields</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> APP_NAME = <span class="hljs-string">&quot;MyApp&quot;</span>;
 
-    // 2. Fields
-    private readonly int _id;
-    private string _name;
+    <span class="hljs-comment">// 2. Fields</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> <span class="hljs-built_in">int</span> _id;
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">string</span> _name;
 
-    // 3. Constructor
-    public SampleClass(int id, string name)
+    <span class="hljs-comment">// 3. Constructor</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SampleClass</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> id, <span class="hljs-built_in">string</span> name</span>)</span>
     {
         _id = id;
         _name = name;
     }
 
-    // 9. Properties
-    public int Id =&gt; _id;
-    public string Name
+    <span class="hljs-comment">// 9. Properties</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Id =&gt; _id;
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name
     {
-        get =&gt; _name;
-        set =&gt; _name = value;
+        <span class="hljs-keyword">get</span> =&gt; _name;
+        <span class="hljs-keyword">set</span> =&gt; _name = <span class="hljs-keyword">value</span>;
     }
 
-    // 11. Methods
+    <span class="hljs-comment">// 11. Methods</span>
 
-    // Override abstract method
-    public override void AbstractOperation()
+    <span class="hljs-comment">// Override abstract method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AbstractOperation</span>()</span>
     {
-        Console.WriteLine(&quot;SampleClass: Implementation of abstract operation&quot;);
+        Console.WriteLine(<span class="hljs-string">&quot;SampleClass: Implementation of abstract operation&quot;</span>);
     }
 
-    // Optionally override virtual method
-    public override void VirtualOperation()
+    <span class="hljs-comment">// Optionally override virtual method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">VirtualOperation</span>()</span>
     {
-        Console.WriteLine(&quot;SampleClass: Overridden virtual operation&quot;);
+        Console.WriteLine(<span class="hljs-string">&quot;SampleClass: Overridden virtual operation&quot;</span>);
     }
 
-    // Public method
-    public void DisplayInfo()
+    <span class="hljs-comment">// Public method</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DisplayInfo</span>()</span>
     {
-        Console.WriteLine($&quot;ID: {_id}, Name: {_name}&quot;);
+        Console.WriteLine(<span class="hljs-string">$&quot;ID: <span class="hljs-subst">{_id}</span>, Name: <span class="hljs-subst">{_name}</span>&quot;</span>);
     }
 
-    // Protected method
-    protected void ResetName()
+    <span class="hljs-comment">// Protected method</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ResetName</span>()</span>
     {
-        _name = string.Empty;
+        _name = <span class="hljs-built_in">string</span>.Empty;
     }
 
-    // Private method
-    private void LogChange(string oldName, string newName)
+    <span class="hljs-comment">// Private method</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LogChange</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> oldName, <span class="hljs-built_in">string</span> newName</span>)</span>
     {
-        Console.WriteLine($&quot;Name changed from {oldName} to {newName}&quot;);
+        Console.WriteLine(<span class="hljs-string">$&quot;Name changed from <span class="hljs-subst">{oldName}</span> to <span class="hljs-subst">{newName}</span>&quot;</span>);
     }
 }
 </code></pre>
@@ -307,26 +336,26 @@ public class SampleClass : BaseClass
 <li>Extensions</li>
 </ul>
 <h3 id="example-swift-code" tabindex="-1">Example Swift Code</h3>
-<pre><code class="hljs swift">import Foundation
+<pre><code class="hljs swift"><span class="hljs-keyword">import</span> Foundation
 
-typealias CompletionHandler = (Bool) -&gt; Void
+<span class="hljs-keyword">typealias</span> <span class="hljs-type">CompletionHandler</span> <span class="hljs-operator">=</span> (<span class="hljs-type">Bool</span>) -&gt; <span class="hljs-type">Void</span>
 
-struct User {
-    let id: Int
-    var name: String?
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">User</span> {
+    <span class="hljs-keyword">let</span> id: <span class="hljs-type">Int</span>
+    <span class="hljs-keyword">var</span> name: <span class="hljs-type">String</span>?
 
-    func displayName() {
-        guard let name = name else {
-            print(&quot;Name is not set&quot;)
-            return
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">displayName</span>() {
+        <span class="hljs-keyword">guard</span> <span class="hljs-keyword">let</span> name <span class="hljs-operator">=</span> name <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Name is not set&quot;</span>)
+            <span class="hljs-keyword">return</span>
         }
-        print(&quot;User name: \(name)&quot;)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;User name: <span class="hljs-subst">\(name)</span>&quot;</span>)
     }
 }
 
-extension User {
-    func isValid() -&gt; Bool {
-        return name != nil &amp;&amp; !name!.isEmpty
+<span class="hljs-keyword">extension</span> <span class="hljs-title class_">User</span> {
+    <span class="hljs-keyword">func</span> <span class="hljs-title function_">isValid</span>() -&gt; <span class="hljs-type">Bool</span> {
+        <span class="hljs-keyword">return</span> name <span class="hljs-operator">!=</span> <span class="hljs-literal">nil</span> <span class="hljs-operator">&amp;&amp;</span> <span class="hljs-operator">!</span>name<span class="hljs-operator">!</span>.isEmpty
     }
 }
 </code></pre>

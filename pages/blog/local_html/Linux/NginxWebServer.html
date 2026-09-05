@@ -114,83 +114,83 @@
 Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 <hr />
 <h2 id="1-install-nginx" tabindex="-1">1. Install Nginx</h2>
-<pre><code class="hljs bash">sudo apt update &amp;&amp; sudo apt install nginx -y
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt install nginx -y
 </code></pre>
 <h2 id="2-start-enable-nginx" tabindex="-1">2. Start &amp; Enable Nginx</h2>
-<pre><code class="hljs bash">sudo systemctl start nginx
-sudo systemctl enable nginx  # Auto-start on boot
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start nginx
+<span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> nginx  <span class="hljs-comment"># Auto-start on boot</span>
 </code></pre>
 <p>To check status</p>
 <pre><code class="hljs bash">systemctl status nginx
 </code></pre>
 <h2 id="3-configure-firewall-if-needed" tabindex="-1">3. Configure Firewall (if needed)</h2>
 <p><strong>Allow HTTP &amp; HTTPS traffic:</strong></p>
-<pre><code class="hljs bash">sudo ufw allow 'Nginx Full'  # Ubuntu/Debian
-sudo firewall-cmd --permanent --add-service=http
-sudo firewall-cmd --permanent --add-service=https
-sudo firewall-cmd --reload
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ufw allow <span class="hljs-string">&#x27;Nginx Full&#x27;</span>  <span class="hljs-comment"># Ubuntu/Debian</span>
+<span class="hljs-built_in">sudo</span> firewall-cmd --permanent --add-service=http
+<span class="hljs-built_in">sudo</span> firewall-cmd --permanent --add-service=https
+<span class="hljs-built_in">sudo</span> firewall-cmd --reload
 </code></pre>
 <h2 id="4-set-up-website-directory" tabindex="-1">4. Set Up Website Directory</h2>
-<pre><code class="hljs bash">sudo mkdir -p /var/www/mywebsite.com/html
-sudo chown -R $USER:$USER /var/www/mywebsite.com/html
-sudo chmod -R 755 /var/www/mywebsite.com
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /var/www/mywebsite.com/html
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> -R <span class="hljs-variable">$USER</span>:<span class="hljs-variable">$USER</span> /var/www/mywebsite.com/html
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> -R 755 /var/www/mywebsite.com
 </code></pre>
 <p>Create an index.html file:</p>
 <pre><code class="hljs bash">nano /var/www/mywebsite.com/html/index.html
 </code></pre>
 <p>Example content:</p>
 <pre><code class="hljs bash">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;&lt;title&gt;Welcome to My Website&lt;/title&gt;&lt;/head&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;<span class="hljs-built_in">head</span>&gt;&lt;title&gt;Welcome to My Website&lt;/title&gt;&lt;/head&gt;
 &lt;body&gt;&lt;h1&gt;It works!&lt;/h1&gt;&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <h2 id="5-create-nginx-server-block" tabindex="-1">5. Create Nginx Server Block</h2>
 <p>Create a new Nginx config file:</p>
-<pre><code class="hljs bash">sudo nano /etc/nginx/sites-available/mywebsite.com
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/nginx/sites-available/mywebsite.com
 </code></pre>
 <p>Add the following:</p>
-<pre><code class="hljs nginx">server {
-    listen 80;
-    server_name mywebsite.com www.mywebsite.com;
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> mywebsite.com www.mywebsite.com;
 
-    root /var/www/mywebsite.com/html;
-    index index.html index.htm;
+    <span class="hljs-attribute">root</span> /var/www/mywebsite.com/html;
+    <span class="hljs-attribute">index</span> index.html index.htm;
 
-    location / {
-        try_files $uri $uri/ =404;
+    <span class="hljs-section">location</span> / {
+        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ =<span class="hljs-number">404</span>;
     }
 }
 </code></pre>
 <p>Create a symlink to enable the site:</p>
-<pre><code class="hljs bash">sudo ln -s /etc/nginx/sites-available/mywebsite.com /etc/nginx/sites-enabled/
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /etc/nginx/sites-available/mywebsite.com /etc/nginx/sites-enabled/
 </code></pre>
 <p>Test the configuration:</p>
-<pre><code class="hljs bash">sudo nginx -t
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nginx -t
 </code></pre>
 <p>Restart Nginx:</p>
-<pre><code class="hljs bash">sudo systemctl restart nginx
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
 </code></pre>
 <h2 id="6-configure-ssl-with-let-s-encrypt-https" tabindex="-1">6. Configure SSL with Let’s Encrypt (HTTPS)</h2>
 <p>Install Certbot:</p>
-<pre><code class="hljs bash">sudo apt install certbot python3-certbot-nginx -y
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install certbot python3-certbot-nginx -y
 </code></pre>
 <p>Get an SSL certificate:</p>
-<pre><code class="hljs bash">sudo certbot --nginx -d mywebsite.com -d www.mywebsite.com
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> certbot --nginx -d mywebsite.com -d www.mywebsite.com
 </code></pre>
 <p>Auto-renew SSL:</p>
-<pre><code class="hljs bash">sudo certbot renew --dry-run
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> certbot renew --dry-run
 </code></pre>
 <h2 id="7-set-up-automatic-http-to-https-redirect" tabindex="-1">7. Set Up Automatic HTTP to HTTPS Redirect</h2>
 <p>Modify your Nginx configuration:</p>
-<pre><code class="hljs nginx">server {
-    listen 80;
-    server_name mywebsite.com www.mywebsite.com;
-    return 301 https://$server_name$request_uri;
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> mywebsite.com www.mywebsite.com;
+    <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://<span class="hljs-variable">$server_name</span><span class="hljs-variable">$request_uri</span>;
 }
 </code></pre>
 <p>Restart Nginx:</p>
-<pre><code class="hljs bash">sudo systemctl restart nginx
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
 </code></pre>
 <h2 id="8-commands-to-remember-for-nginx" tabindex="-1">8. Commands to remember for Nginx</h2>
 <ul>

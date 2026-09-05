@@ -207,33 +207,33 @@ This is required if Node 1 is acting as a gateway or bridge between your LAN and
 <ul>
 <li><code>node 1</code> ip address example is <code>192.168.1.50</code></li>
 </ul>
-<pre><code class="hljs bash">sudo route -n add 10.10.10.0/24 192.168.1.50
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> route -n add 10.10.10.0/24 192.168.1.50
 </code></pre>
 <h5 id="on-macos-workstation-permanent" tabindex="-1">On MacOS workstation - permanent</h5>
 <p>Create a file</p>
-<pre><code class="hljs bash">sudo nano /Library/LaunchDaemons/com.local.staticroutes.plist
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /Library/LaunchDaemons/com.local.staticroutes.plist
 </code></pre>
 <p>Add:</p>
-<pre><code class="hljs plist">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;
-  &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-  &lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;&lt;string&gt;com.local.staticroutes&lt;/string&gt;
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt;
-      &lt;string&gt;/sbin/route&lt;/string&gt;
-      &lt;string&gt;-n&lt;/string&gt;
-      &lt;string&gt;add&lt;/string&gt;
-      &lt;string&gt;10.10.10.0/24&lt;/string&gt;
-      &lt;string&gt;192.168.2.50&lt;/string&gt;
-    &lt;/array&gt;
-    &lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
-  &lt;/dict&gt;
-&lt;/plist&gt;
+<pre><code class="hljs plist"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">plist</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
+  <span class="hljs-string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.0&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>com.local.staticroutes<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>ProgramArguments<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>/sbin/route<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>-n<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>add<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>10.10.10.0/24<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>192.168.2.50<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>RunAtLoad<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">true</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span>
 </code></pre>
 <p>Then load it:</p>
-<pre><code class="hljs bash">sudo launchctl load /Library/LaunchDaemons/com.local.staticroutes.plist
+<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> launchctl load /Library/LaunchDaemons/com.local.staticroutes.plist
 </code></pre>
 <p>Now it’ll reapply at every boot.</p>
 <h5 id="test-it" tabindex="-1">Test it</h5>

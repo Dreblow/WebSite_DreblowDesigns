@@ -1,7 +1,20 @@
 import re
-
+import html
+import json
+import subprocess
 import markdown
+
+from pathlib import Path
 from markdown.extensions.toc import TocExtension
+
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+HIGHLIGHT_SCRIPT = (
+    SCRIPT_DIR.parent
+    / "support"
+    / "highlight_code.js"
+)
 
 
 def slugify(value: str, separator: str) -> str:
@@ -29,7 +42,7 @@ def render(content: str, formatted_version: str = "") -> str:
         ]
     )
 
-    html = convert_code_classes(html)
+    html = highlight_code_blocks(html)
     html = open_external_links_in_new_tab(html)
     html = add_heading_tabindex(html)
 
@@ -49,14 +62,6 @@ def render(content: str, formatted_version: str = "") -> str:
         f'{html}\n'
         '    </article>\n'
         '</main>'
-    )
-
-
-def convert_code_classes(html: str) -> str:
-    return re.sub(
-        r'class="language-([^"]+)"',
-        r'class="hljs \1"',
-        html,
     )
 
 
@@ -91,3 +96,83 @@ def add_heading_tabindex(html: str) -> str:
         r'<\1 id="\2" tabindex="-1">',
         html,
     )
+
+
+def highlight_code_blocks(content: str) -> str:
+    pattern = re.compile(
+        r'<pre><code class="language-([^"]+)">'
+        r'([\s\S]*?)'
+        r'</code></pre>'
+    )
+
+    matches = list(
+        pattern.finditer(content)
+    )
+
+    if not matches:
+        return content
+
+    blocks = []
+
+    for match in matches:
+        blocks.append(
+            {
+                "language": match.group(1),
+                "code": html.unescape(
+                    match.group(2)
+                ),
+            }
+        )
+
+    result = subprocess.run(
+        [
+            "node",
+            str(HIGHLIGHT_SCRIPT),
+        ],
+        input=json.dumps(blocks),
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            "Highlight.js failed:\n"
+            f"{result.stderr}"
+        )
+
+    highlighted_blocks = json.loads(
+        result.stdout
+    )
+
+    replacements = []
+
+    for match, highlighted in zip(
+        matches,
+        highlighted_blocks,
+    ):
+        language = match.group(1)
+
+        replacement = (
+            f'<pre><code class="hljs {language}">'
+            f'{highlighted}'
+            '</code></pre>'
+        )
+
+        replacements.append(
+            (
+                match.start(),
+                match.end(),
+                replacement,
+            )
+        )
+
+    for start, end, replacement in reversed(
+        replacements
+    ):
+        content = (
+            content[:start]
+            + replacement
+            + content[end:]
+        )
+
+    return content

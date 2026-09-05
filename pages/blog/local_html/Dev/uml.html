@@ -179,7 +179,7 @@
 </table>
 <h3 id="example_1" tabindex="-1">Example</h3>
 <p>Let’s say you have this in a UML diagram:</p>
-<pre><code class="hljs csharp">+calculateDiscount(in price: Double, out discount: Double)
+<pre><code class="hljs csharp">+calculateDiscount(<span class="hljs-keyword">in</span> price: Double, <span class="hljs-keyword">out</span> discount: Double)
 </code></pre>
 <p>That tells us:
 * The method needs a price as input.
@@ -187,7 +187,7 @@
 <p>If it were <code>inout discount: Double</code>, then:
 *  The method could read and update the value of <code>discount</code>.</p>
 <p>As oppose to:</p>
-<pre><code class="hljs csharp">+calculateDiscount(in price: Double, in discount: Double) : int
+<pre><code class="hljs csharp">+calculateDiscount(<span class="hljs-keyword">in</span> price: Double, <span class="hljs-keyword">in</span> discount: Double) : <span class="hljs-built_in">int</span>
 </code></pre>
 <ul>
 <li>Both <code>price</code> and <code>discount</code> do not get changed, and the function returns a new <code>int</code> value. </li>
@@ -298,7 +298,7 @@
 * But here’s the key: if <code>Class1</code> is destroyed, <code>Class2</code> doesn’t necessarily go down with it - <strong>they each have their own lifecycles</strong>.</p>
 <h3 id="in-plain-english_1" tabindex="-1">In Plain English</h3>
 <p>Let’s say a Team has many <code>Players</code>:</p>
-<pre><code class="hljs csharp">Team 1 ----- * Player
+<pre><code class="hljs csharp">Team <span class="hljs-number">1</span> ----- * Player
 </code></pre>
 <ul>
 <li>The Player can exist even if the Team is deleted.</li>
@@ -330,8 +330,8 @@ If the whole is destroyed, the parts go down with it.</p>
 * This isn’t a long-term relationship, it’s more like borrowing a tool rather than owning it.</p>
 <h3 id="when-does-it-show-up" tabindex="-1">When Does It Show Up?</h3>
 <p>If <code>Class1</code> uses <code>Class2</code> inside a method, but doesn’t store it in a field or return it. That’s a <strong>dependency</strong>.</p>
-<pre><code class="hljs csharp">func void doSomething(service: Logger) {
-    service.log(&quot;Just using this temporarily&quot;)
+<pre><code class="hljs csharp"><span class="hljs-function">func <span class="hljs-keyword">void</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params">service: Logger</span>)</span> {
+    service.log(<span class="hljs-string">&quot;Just using this temporarily&quot;</span>)
 }
 </code></pre>
 <p>Here, <code>Logger</code> isn’t stored. <code>doSomething()</code> just uses it briefly, that’s dependency.</p>

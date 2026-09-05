@@ -19,7 +19,7 @@ tags:
   - Clean Code
   - Best Practices
 ---
-
+<!-- render: git-wiki-style-blog -->
 # Coding Standards
 Organizing code in a consistent and predictable way improves **code readability, maintainability,** and reduces **merge conflicts**. Follow these general best practices across all programming languages:
 

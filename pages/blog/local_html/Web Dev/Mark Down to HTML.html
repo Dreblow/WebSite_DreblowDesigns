@@ -129,82 +129,82 @@ blow js file is what I use on my own sites. </p>
 <p>At the very end, I'll provide the js script I use, but I wanted to take a minute and break down the script. I usually don't like
 to add mindless filler text, so its just the code. It should be self explanatory. </p>
 <h2 id="import-required-modules" tabindex="-1">Import Required Modules</h2>
-<pre><code class="hljs js">const fs = require('fs');
-const path = require('path');
-const MarkdownIt = require('markdown-it');
-const matter = require('gray-matter');
-const hljs = require('highlight.js');
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">MarkdownIt</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;markdown-it&#x27;</span>);
+<span class="hljs-keyword">const</span> matter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gray-matter&#x27;</span>);
+<span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;highlight.js&#x27;</span>);
 </code></pre>
 <h2 id="define-input-and-output-directories" tabindex="-1">Define Input and Output Directories</h2>
-<pre><code class="hljs js">const inputDir = path.join(__dirname, '../local_markdown');
-const outputDir = path.join(__dirname, '../local_html');
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> inputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_markdown&#x27;</span>);
+<span class="hljs-keyword">const</span> outputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_html&#x27;</span>);
 
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+<span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(outputDir)) {
+    fs.<span class="hljs-title function_">mkdirSync</span>(outputDir, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
 }
 </code></pre>
 <h2 id="initialize-markdown-parser-with-syntax-highlighting" tabindex="-1">Initialize Markdown Parser with Syntax Highlighting</h2>
-<pre><code class="hljs js">const md = new MarkdownIt({
-    highlight: (str, lang) =&gt; {
-        if (lang &amp;&amp; hljs.getLanguage(lang)) {
-            try {
-                return `&lt;pre&gt;&lt;code class=&quot;hljs ${lang}&quot;&gt;` +
-                    hljs.highlight(str, { language: lang }).value +
-                    `&lt;/code&gt;&lt;/pre&gt;`;
-            } catch (_) {}
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> md = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MarkdownIt</span>({
+    <span class="hljs-attr">highlight</span>: <span class="hljs-function">(<span class="hljs-params">str, lang</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (lang &amp;&amp; hljs.<span class="hljs-title function_">getLanguage</span>(lang)) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class=&quot;hljs <span class="hljs-subst">${lang}</span>&quot;&gt;`</span> +
+                    hljs.<span class="hljs-title function_">highlight</span>(str, { <span class="hljs-attr">language</span>: lang }).<span class="hljs-property">value</span> +
+                    <span class="hljs-string">`&lt;/code&gt;&lt;/pre&gt;`</span>;
+            } <span class="hljs-keyword">catch</span> (_) {}
         }
-        return `&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;` + md.utils.escapeHtml(str) + `&lt;/code&gt;&lt;/pre&gt;`;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;`</span> + md.<span class="hljs-property">utils</span>.<span class="hljs-title function_">escapeHtml</span>(str) + <span class="hljs-string">`&lt;/code&gt;&lt;/pre&gt;`</span>;
     }
 });
 </code></pre>
 <h2 id="convert-markdown-files-to-html" tabindex="-1">Convert Markdown Files to HTML</h2>
-<pre><code class="hljs js">function processDirectory(inputPath, outputPath) {
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath, { recursive: true });
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">processDirectory</span>(<span class="hljs-params">inputPath, outputPath</span>) {
+    <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(outputPath)) {
+        fs.<span class="hljs-title function_">mkdirSync</span>(outputPath, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
     }
 
-    const items = fs.readdirSync(inputPath);
+    <span class="hljs-keyword">const</span> items = fs.<span class="hljs-title function_">readdirSync</span>(inputPath);
 
-    items.forEach(item =&gt; {
-        const itemPath = path.join(inputPath, item);
-        const outputItemPath = path.join(outputPath, item);
+    items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> itemPath = path.<span class="hljs-title function_">join</span>(inputPath, item);
+        <span class="hljs-keyword">const</span> outputItemPath = path.<span class="hljs-title function_">join</span>(outputPath, item);
 
-        if (fs.lstatSync(itemPath).isDirectory()) {
-            processDirectory(itemPath, outputItemPath);
-        } else if (path.extname(item) === '.md') {
-            const fileContent = fs.readFileSync(itemPath, 'utf-8');
-            const { data: frontMatter, content } = matter(fileContent);
+        <span class="hljs-keyword">if</span> (fs.<span class="hljs-title function_">lstatSync</span>(itemPath).<span class="hljs-title function_">isDirectory</span>()) {
+            <span class="hljs-title function_">processDirectory</span>(itemPath, outputItemPath);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">extname</span>(item) === <span class="hljs-string">&#x27;.md&#x27;</span>) {
+            <span class="hljs-keyword">const</span> fileContent = fs.<span class="hljs-title function_">readFileSync</span>(itemPath, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+            <span class="hljs-keyword">const</span> { <span class="hljs-attr">data</span>: frontMatter, content } = <span class="hljs-title function_">matter</span>(fileContent);
 
-            const htmlContent = `
+            <span class="hljs-keyword">const</span> htmlContent = <span class="hljs-string">`
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta name=&quot;description&quot; content=&quot;${frontMatter.description || 'Markdown to HTML Conversion'}&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;<span class="hljs-subst">${frontMatter.description || <span class="hljs-string">&#x27;Markdown to HTML Conversion&#x27;</span>}</span>&quot;&gt;
     &lt;meta name=&quot;author&quot; content=&quot;Derek Dreblow&quot;&gt;
-    &lt;title&gt;${frontMatter.title || 'Markdown to HTML'}&lt;/title&gt;
+    &lt;title&gt;<span class="hljs-subst">${frontMatter.title || <span class="hljs-string">&#x27;Markdown to HTML&#x27;</span>}</span>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;main class=&quot;markdown-body&quot;&gt;
         &lt;article&gt;
-            &lt;p&gt;&lt;em class=&quot;blogVersion&quot;&gt;Version: ${frontMatter.version || 'Unknown'}&lt;/em&gt;&lt;/p&gt;
-            ${md.render(content)}
+            &lt;p&gt;&lt;em class=&quot;blogVersion&quot;&gt;Version: <span class="hljs-subst">${frontMatter.version || <span class="hljs-string">&#x27;Unknown&#x27;</span>}</span>&lt;/em&gt;&lt;/p&gt;
+            <span class="hljs-subst">${md.render(content)}</span>
         &lt;/article&gt;
     &lt;/main&gt;
 &lt;/body&gt;
-&lt;/html&gt;`;
+&lt;/html&gt;`</span>;
 
-            const outputFilePath = path.join(outputPath, `${path.basename(item, '.md')}.html`);
-            fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
-            console.log(`Converted: ${itemPath} -&gt; ${outputFilePath}`);
+            <span class="hljs-keyword">const</span> outputFilePath = path.<span class="hljs-title function_">join</span>(outputPath, <span class="hljs-string">`<span class="hljs-subst">${path.basename(item, <span class="hljs-string">&#x27;.md&#x27;</span>)}</span>.html`</span>);
+            fs.<span class="hljs-title function_">writeFileSync</span>(outputFilePath, htmlContent, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Converted: <span class="hljs-subst">${itemPath}</span> -&gt; <span class="hljs-subst">${outputFilePath}</span>`</span>);
         }
     });
 }
 </code></pre>
 <h2 id="start-the-conversion-process" tabindex="-1">Start the Conversion Process</h2>
 <p>Throw this at the end of the script.</p>
-<pre><code class="hljs js">processDirectory(inputDir, outputDir);
+<pre><code class="hljs js"><span class="hljs-title function_">processDirectory</span>(inputDir, outputDir);
 </code></pre>
 <h2 id="run-the-script" tabindex="-1">Run the Script</h2>
 <pre><code class="hljs sh">node convert.js
@@ -212,136 +212,136 @@ if (!fs.existsSync(outputDir)) {
 <hr />
 <h2 id="personal-code-edited" tabindex="-1">Personal Code - edited</h2>
 <p>Below is my personal code, I use it still to this day.</p>
-<pre><code class="hljs js">const fs = require('fs');
-const path = require('path');
-const MarkdownIt = require('markdown-it');
-const matter = require('gray-matter');
-const hljs = require('highlight.js'); 
-const ROOT_DIR = &quot;../../../&quot;
-const ROOT_BLOG_DIR = &quot;../&quot;
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">MarkdownIt</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;markdown-it&#x27;</span>);
+<span class="hljs-keyword">const</span> matter = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;gray-matter&#x27;</span>);
+<span class="hljs-keyword">const</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;highlight.js&#x27;</span>); 
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ROOT_DIR</span> = <span class="hljs-string">&quot;../../../&quot;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ROOT_BLOG_DIR</span> = <span class="hljs-string">&quot;../&quot;</span>
 
-// Initialize Markdown-it with highlight.js
-const md = new MarkdownIt({
-    highlight: (str, lang) =&gt; {
-        if (lang &amp;&amp; hljs.getLanguage(lang)) {
-            try {
-                return `&lt;pre&gt;&lt;code class=&quot;hljs ${lang}&quot;&gt;` +
-                    hljs.highlight(str, { language: lang }).value +
-                    `&lt;/code&gt;&lt;/pre&gt;`;
-            } catch (_) {}
+<span class="hljs-comment">// Initialize Markdown-it with highlight.js</span>
+<span class="hljs-keyword">const</span> md = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MarkdownIt</span>({
+    <span class="hljs-attr">highlight</span>: <span class="hljs-function">(<span class="hljs-params">str, lang</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (lang &amp;&amp; hljs.<span class="hljs-title function_">getLanguage</span>(lang)) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class=&quot;hljs <span class="hljs-subst">${lang}</span>&quot;&gt;`</span> +
+                    hljs.<span class="hljs-title function_">highlight</span>(str, { <span class="hljs-attr">language</span>: lang }).<span class="hljs-property">value</span> +
+                    <span class="hljs-string">`&lt;/code&gt;&lt;/pre&gt;`</span>;
+            } <span class="hljs-keyword">catch</span> (_) {}
         }
 
-        return `&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;` + md.utils.escapeHtml(str) + `&lt;/code&gt;&lt;/pre&gt;`;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;pre&gt;&lt;code class=&quot;hljs&quot;&gt;`</span> + md.<span class="hljs-property">utils</span>.<span class="hljs-title function_">escapeHtml</span>(str) + <span class="hljs-string">`&lt;/code&gt;&lt;/pre&gt;`</span>;
     }
 });
 
-// Define input/output directories
-const inputDir = path.join(__dirname, '../local_markdown'); // Input directory for Markdown files
-const outputDir = path.join(__dirname, '../local_html');   // Output directory for HTML files
+<span class="hljs-comment">// Define input/output directories</span>
+<span class="hljs-keyword">const</span> inputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_markdown&#x27;</span>); <span class="hljs-comment">// Input directory for Markdown files</span>
+<span class="hljs-keyword">const</span> outputDir = path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;../local_html&#x27;</span>);   <span class="hljs-comment">// Output directory for HTML files</span>
 
-// Ensure output directory exists
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+<span class="hljs-comment">// Ensure output directory exists</span>
+<span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(outputDir)) {
+    fs.<span class="hljs-title function_">mkdirSync</span>(outputDir, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
 }
 
-// Function to calculate relative path depth
-function calculateRelativePath(filePath, basePath) {
-    const relativeDepth = path.relative(filePath, basePath).split(path.sep).length - 1;
-    return '../'.repeat(relativeDepth);
+<span class="hljs-comment">// Function to calculate relative path depth</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">calculateRelativePath</span>(<span class="hljs-params">filePath, basePath</span>) {
+    <span class="hljs-keyword">const</span> relativeDepth = path.<span class="hljs-title function_">relative</span>(filePath, basePath).<span class="hljs-title function_">split</span>(path.<span class="hljs-property">sep</span>).<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;../&#x27;</span>.<span class="hljs-title function_">repeat</span>(relativeDepth);
 }
 
-// Format the version date
-function formatVersionDate(dateString) {
-    // Attempt to parse the date string
-    let date;
+<span class="hljs-comment">// Format the version date</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">formatVersionDate</span>(<span class="hljs-params">dateString</span>) {
+    <span class="hljs-comment">// Attempt to parse the date string</span>
+    <span class="hljs-keyword">let</span> date;
 
-    // Try ISO 8601 format first
-    if (!isNaN(Date.parse(dateString))) {
-        date = new Date(dateString);
-    } else {
-        // Fallback to manual parsing if standard parsing fails
-        const dateParts = dateString.match(
-            /(\w{3}) (\w{3}) (\d{1,2}) (\d{4}) (\d{2}:\d{2}:\d{2})/ // Fri Nov 29 2024 16:00:00
+    <span class="hljs-comment">// Try ISO 8601 format first</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">isNaN</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">parse</span>(dateString))) {
+        date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(dateString);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Fallback to manual parsing if standard parsing fails</span>
+        <span class="hljs-keyword">const</span> dateParts = dateString.<span class="hljs-title function_">match</span>(
+            <span class="hljs-regexp">/(\w{3}) (\w{3}) (\d{1,2}) (\d{4}) (\d{2}:\d{2}:\d{2})/</span> <span class="hljs-comment">// Fri Nov 29 2024 16:00:00</span>
         );
 
-        if (dateParts) {
-            const [, , month, day, year] = dateParts;
-            const months = {
-                Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-                Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+        <span class="hljs-keyword">if</span> (dateParts) {
+            <span class="hljs-keyword">const</span> [, , month, day, year] = dateParts;
+            <span class="hljs-keyword">const</span> months = {
+                <span class="hljs-title class_">Jan</span>: <span class="hljs-number">0</span>, <span class="hljs-title class_">Feb</span>: <span class="hljs-number">1</span>, <span class="hljs-title class_">Mar</span>: <span class="hljs-number">2</span>, <span class="hljs-title class_">Apr</span>: <span class="hljs-number">3</span>, <span class="hljs-title class_">May</span>: <span class="hljs-number">4</span>, <span class="hljs-title class_">Jun</span>: <span class="hljs-number">5</span>,
+                <span class="hljs-title class_">Jul</span>: <span class="hljs-number">6</span>, <span class="hljs-title class_">Aug</span>: <span class="hljs-number">7</span>, <span class="hljs-title class_">Sep</span>: <span class="hljs-number">8</span>, <span class="hljs-title class_">Oct</span>: <span class="hljs-number">9</span>, <span class="hljs-title class_">Nov</span>: <span class="hljs-number">10</span>, <span class="hljs-title class_">Dec</span>: <span class="hljs-number">11</span>,
             };
-            date = new Date(year, months[month], day);
-        } else {
-            console.warn(`Invalid date provided: ${dateString}`);
-            return &quot;Unknown Date&quot;; // Fallback for invalid dates
+            date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(year, months[month], day);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">`Invalid date provided: <span class="hljs-subst">${dateString}</span>`</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Unknown Date&quot;</span>; <span class="hljs-comment">// Fallback for invalid dates</span>
         }
     }
 
-    // Format the date to &quot;Nov 29, 2024&quot;
-    const options = { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+    <span class="hljs-comment">// Format the date to &quot;Nov 29, 2024&quot;</span>
+    <span class="hljs-keyword">const</span> options = { 
+        <span class="hljs-attr">year</span>: <span class="hljs-string">&#x27;numeric&#x27;</span>, 
+        <span class="hljs-attr">month</span>: <span class="hljs-string">&#x27;short&#x27;</span>, 
+        <span class="hljs-attr">day</span>: <span class="hljs-string">&#x27;numeric&#x27;</span> 
     };
-    return date.toLocaleDateString('en-US', options);
+    <span class="hljs-keyword">return</span> date.<span class="hljs-title function_">toLocaleDateString</span>(<span class="hljs-string">&#x27;en-US&#x27;</span>, options);
 }
 
-// Recursively process directories
-function processDirectory(inputPath, outputPath) {
-    // Ensure the output directory exists
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath, { recursive: true });
+<span class="hljs-comment">// Recursively process directories</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">processDirectory</span>(<span class="hljs-params">inputPath, outputPath</span>) {
+    <span class="hljs-comment">// Ensure the output directory exists</span>
+    <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(outputPath)) {
+        fs.<span class="hljs-title function_">mkdirSync</span>(outputPath, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
     }
 
-    // Read all files and directories
-    const items = fs.readdirSync(inputPath);
+    <span class="hljs-comment">// Read all files and directories</span>
+    <span class="hljs-keyword">const</span> items = fs.<span class="hljs-title function_">readdirSync</span>(inputPath);
 
-    items.forEach(item =&gt; {
-        const itemPath = path.join(inputPath, item);
-        const outputItemPath = path.join(outputPath, item);
+    items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> itemPath = path.<span class="hljs-title function_">join</span>(inputPath, item);
+        <span class="hljs-keyword">const</span> outputItemPath = path.<span class="hljs-title function_">join</span>(outputPath, item);
 
-        // Check if item is a directory
-        if (fs.lstatSync(itemPath).isDirectory()) {
-            processDirectory(itemPath, outputItemPath); // Recurse into subdirectory
-        } else if (path.extname(item) === '.md') {
-            // Process Markdown files
-            const fileContent = fs.readFileSync(itemPath, 'utf-8');
-            const { data: frontMatter, content } = matter(fileContent);
+        <span class="hljs-comment">// Check if item is a directory</span>
+        <span class="hljs-keyword">if</span> (fs.<span class="hljs-title function_">lstatSync</span>(itemPath).<span class="hljs-title function_">isDirectory</span>()) {
+            <span class="hljs-title function_">processDirectory</span>(itemPath, outputItemPath); <span class="hljs-comment">// Recurse into subdirectory</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">extname</span>(item) === <span class="hljs-string">&#x27;.md&#x27;</span>) {
+            <span class="hljs-comment">// Process Markdown files</span>
+            <span class="hljs-keyword">const</span> fileContent = fs.<span class="hljs-title function_">readFileSync</span>(itemPath, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+            <span class="hljs-keyword">const</span> { <span class="hljs-attr">data</span>: frontMatter, content } = <span class="hljs-title function_">matter</span>(fileContent);
 
-            // Calculate the relative path from the output file to the root
-            const relativePath = calculateRelativePath(outputItemPath, outputDir);
-            const version = formatVersionDate(frontMatter.version); // Default if no version is provided
-            const title = frontMatter.title || 'Dreblow Designs Blog';
-            const description = frontMatter.description || 'Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.';
-            const author = frontMatter.author || &quot;Derek Dreblow&quot;
-            const keyword = frontMatter.keyword || &quot;Dreblow Design's Blog&quot;
-            const image = frontMatter.image || &quot;https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png&quot;
-            const url = frontMatter.url || &quot;https://dreblowdesigns.com&quot;
+            <span class="hljs-comment">// Calculate the relative path from the output file to the root</span>
+            <span class="hljs-keyword">const</span> relativePath = <span class="hljs-title function_">calculateRelativePath</span>(outputItemPath, outputDir);
+            <span class="hljs-keyword">const</span> version = <span class="hljs-title function_">formatVersionDate</span>(frontMatter.<span class="hljs-property">version</span>); <span class="hljs-comment">// Default if no version is provided</span>
+            <span class="hljs-keyword">const</span> title = frontMatter.<span class="hljs-property">title</span> || <span class="hljs-string">&#x27;Dreblow Designs Blog&#x27;</span>;
+            <span class="hljs-keyword">const</span> description = frontMatter.<span class="hljs-property">description</span> || <span class="hljs-string">&#x27;Discover the latest blog posts from Derek Dreblow, focusing on engineering, software development, and project insights.&#x27;</span>;
+            <span class="hljs-keyword">const</span> author = frontMatter.<span class="hljs-property">author</span> || <span class="hljs-string">&quot;Derek Dreblow&quot;</span>
+            <span class="hljs-keyword">const</span> keyword = frontMatter.<span class="hljs-property">keyword</span> || <span class="hljs-string">&quot;Dreblow Design&#x27;s Blog&quot;</span>
+            <span class="hljs-keyword">const</span> image = frontMatter.<span class="hljs-property">image</span> || <span class="hljs-string">&quot;https://dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png&quot;</span>
+            <span class="hljs-keyword">const</span> url = frontMatter.<span class="hljs-property">url</span> || <span class="hljs-string">&quot;https://dreblowdesigns.com&quot;</span>
 
-            // Generate HTML content
-            const htmlContent = `
+            <span class="hljs-comment">// Generate HTML content</span>
+            <span class="hljs-keyword">const</span> htmlContent = <span class="hljs-string">`
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta name=&quot;description&quot; content=&quot;${description}&quot;&gt;
-    &lt;meta name=&quot;author&quot; content=&quot;${author}&quot;&gt;
-    &lt;meta name=&quot;keywords&quot; content=&quot;${keyword}&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;<span class="hljs-subst">${description}</span>&quot;&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;<span class="hljs-subst">${author}</span>&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;<span class="hljs-subst">${keyword}</span>&quot;&gt;
     &lt;link rel=&quot;canonical&quot; href=&quot;https://dreblowdesigns.com/pages/blog/local_html/blog.html&quot;&gt;
 
     &lt;!-- Open Graph Metadata --&gt;
-    &lt;meta property=&quot;og:title&quot; content=&quot;${title}&quot;&gt;
-    &lt;meta property=&quot;og:description&quot; content=&quot;${description}&quot;&gt;
-    &lt;meta property=&quot;og:image&quot; content=&quot;${image}&quot;&gt;
-    &lt;meta property=&quot;og:url&quot; content=&quot;${url}&quot;&gt;
+    &lt;meta property=&quot;og:title&quot; content=&quot;<span class="hljs-subst">${title}</span>&quot;&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;<span class="hljs-subst">${description}</span>&quot;&gt;
+    &lt;meta property=&quot;og:image&quot; content=&quot;<span class="hljs-subst">${image}</span>&quot;&gt;
+    &lt;meta property=&quot;og:url&quot; content=&quot;<span class="hljs-subst">${url}</span>&quot;&gt;
     &lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
 
     &lt;!-- Twitter Card Metadata --&gt;
     &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
-    &lt;meta name=&quot;twitter:title&quot; content=&quot;${title}&quot;&gt;
-    &lt;meta name=&quot;twitter:description&quot; content=&quot;${description}&quot;&gt;
-    &lt;meta name=&quot;twitter:image&quot; content=&quot;${image}&quot;&gt;
+    &lt;meta name=&quot;twitter:title&quot; content=&quot;<span class="hljs-subst">${title}</span>&quot;&gt;
+    &lt;meta name=&quot;twitter:description&quot; content=&quot;<span class="hljs-subst">${description}</span>&quot;&gt;
+    &lt;meta name=&quot;twitter:image&quot; content=&quot;<span class="hljs-subst">${image}</span>&quot;&gt;
 
     &lt;!-- Default favicon --&gt;
     &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://dreblowdesigns.com/resources/images/favicon_io/favicon.svg&quot; /&gt;
@@ -363,13 +363,13 @@ function processDirectory(inputPath, outputPath) {
     &lt;script&gt;
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '');
+    gtag(&#x27;js&#x27;, new Date());
+    gtag(&#x27;config&#x27;, &#x27;&#x27;);
     &lt;/script&gt;
 
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;${ROOT_DIR}${relativePath}resources/css/styles.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;${ROOT_BLOG_DIR}${relativePath}local_css/blog.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;${ROOT_BLOG_DIR}${relativePath}local_css/github-dark.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>resources/css/styles.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;<span class="hljs-subst">${ROOT_BLOG_DIR}</span><span class="hljs-subst">${relativePath}</span>local_css/blog.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;<span class="hljs-subst">${ROOT_BLOG_DIR}</span><span class="hljs-subst">${relativePath}</span>local_css/github-dark.min.css&quot;&gt;
     &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -377,17 +377,17 @@ function processDirectory(inputPath, outputPath) {
         &lt;nav&gt;
             &lt;ul&gt;
                 &lt;li&gt;&lt;a href=&quot;/&quot; aria-label=&quot;Home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;${ROOT_DIR}${relativePath}pages/about.html&quot; aria-label=&quot;About&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-                &lt;!--&lt;li&gt;&lt;a href=&quot;${ROOT_DIR}${relativePath}pages/portfolio.html&quot;&gt;Portfolio&lt;/a&gt;&lt;/li&gt;--&gt;
-                &lt;li&gt;&lt;a href=&quot;${ROOT_DIR}${relativePath}pages/contact/contact.html&quot; aria-label=&quot;Contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;${ROOT_DIR}${relativePath}pages/blog/local_html/blog.html&quot; aria-label=&quot;Blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>pages/about.html&quot; aria-label=&quot;About&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;!--&lt;li&gt;&lt;a href=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>pages/portfolio.html&quot;&gt;Portfolio&lt;/a&gt;&lt;/li&gt;--&gt;
+                &lt;li&gt;&lt;a href=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>pages/contact/contact.html&quot; aria-label=&quot;Contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>pages/blog/local_html/blog.html&quot; aria-label=&quot;Blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
         &lt;/nav&gt;
     &lt;/header&gt;
     &lt;main class=&quot;markdown-body&quot;&gt;
         &lt;article&gt;
-            &lt;p&gt;&lt;em class=&quot;blogVersion&quot;&gt;Version: ${version}&lt;/em&gt;&lt;/p&gt;
-            ${md.render(content)}
+            &lt;p&gt;&lt;em class=&quot;blogVersion&quot;&gt;Version: <span class="hljs-subst">${version}</span>&lt;/em&gt;&lt;/p&gt;
+            <span class="hljs-subst">${md.render(content)}</span>
         &lt;/article&gt;
     &lt;/main&gt;
     &lt;footer&gt;
@@ -399,10 +399,10 @@ function processDirectory(inputPath, outputPath) {
                 &lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub
             &lt;/a&gt;
             &lt;a href=&quot;https://leetcode.com/u/dreblow/&quot; target=&quot;_blank&quot;&gt;
-                &lt;img src=&quot;${ROOT_DIR}${relativePath}resources/images/brands/LeetCode/leetcode.png&quot; alt=&quot;LeetCode Logo&quot; style=&quot;width: 15px; height: 15px;&quot;&gt; LeetCode
+                &lt;img src=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>resources/images/brands/LeetCode/leetcode.png&quot; alt=&quot;LeetCode Logo&quot; style=&quot;width: 15px; height: 15px;&quot;&gt; LeetCode
             &lt;/a&gt;
             &lt;a href=&quot;https://www.threads.net/@derek_dre&quot; target=&quot;_blank&quot;&gt;
-                &lt;img src=&quot;${ROOT_DIR}${relativePath}resources/images/brands/threads/threads.png&quot; alt=&quot;Threads Logo&quot; style=&quot;width: 15px; height: 15px;&quot;&gt; Threads
+                &lt;img src=&quot;<span class="hljs-subst">${ROOT_DIR}</span><span class="hljs-subst">${relativePath}</span>resources/images/brands/threads/threads.png&quot; alt=&quot;Threads Logo&quot; style=&quot;width: 15px; height: 15px;&quot;&gt; Threads
             &lt;/a&gt;
         &lt;/div&gt;
         &lt;p class=&quot;copy-right&quot;&gt;&amp;copy; 2024 - &lt;span id=&quot;copyright-year&quot;&gt;&lt;/span&gt; Derek Dreblow, Dreblow Designs. All Rights Reserved.&lt;/p&gt;
@@ -411,18 +411,18 @@ function processDirectory(inputPath, outputPath) {
         &lt;/script&gt;
     &lt;/footer&gt;
 &lt;/body&gt;
-&lt;/html&gt;`;
+&lt;/html&gt;`</span>;
 
-            // Write the converted file to the output directory
-            const outputFilePath = path.join(outputPath, `${path.basename(item, '.md')}.html`);
-            fs.writeFileSync(outputFilePath, htmlContent, 'utf-8');
-            console.log(`Converted: ${itemPath} -&gt; ${outputFilePath}`);
+            <span class="hljs-comment">// Write the converted file to the output directory</span>
+            <span class="hljs-keyword">const</span> outputFilePath = path.<span class="hljs-title function_">join</span>(outputPath, <span class="hljs-string">`<span class="hljs-subst">${path.basename(item, <span class="hljs-string">&#x27;.md&#x27;</span>)}</span>.html`</span>);
+            fs.<span class="hljs-title function_">writeFileSync</span>(outputFilePath, htmlContent, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Converted: <span class="hljs-subst">${itemPath}</span> -&gt; <span class="hljs-subst">${outputFilePath}</span>`</span>);
         }
     });
 }
 
-// Start processing from the root directory
-processDirectory(inputDir, outputDir);
+<span class="hljs-comment">// Start processing from the root directory</span>
+<span class="hljs-title function_">processDirectory</span>(inputDir, outputDir);
 </code></pre>
     </article>
 </main>
