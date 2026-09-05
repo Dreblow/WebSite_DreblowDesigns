@@ -31,6 +31,8 @@ def render(content: str, formatted_version: str = "") -> str:
         },
     )
 
+    html = open_external_links_in_new_tab(html)
+
     version_html = ""
 
     if formatted_version:
@@ -47,4 +49,29 @@ def render(content: str, formatted_version: str = "") -> str:
         f'{html}\n'
         '    </article>\n'
         '</main>'
+    )
+
+
+def open_external_links_in_new_tab(html: str) -> str:
+    pattern = re.compile(
+        r'<a href="(https?://[^"]+)"([^>]*)>'
+    )
+
+    def replace_link(match):
+        href = match.group(1)
+        attributes = match.group(2)
+
+        if 'target=' in attributes:
+            return match.group(0)
+
+        return (
+            f'<a href="{href}"'
+            f'{attributes}'
+            f' target="_blank"'
+            f' rel="noopener noreferrer">'
+        )
+
+    return pattern.sub(
+        replace_link,
+        html,
     )

@@ -86,6 +86,15 @@ def process_markdown_file(markdown_file: Path):
     metadata = post.metadata
     markdown_content = post.content
 
+    version = metadata.get("version")
+
+    if version is None:
+        raise ValueError(
+            f"{markdown_file.name} is missing required metadata: version"
+        )
+
+    formatted_version = str(version)
+
     print()
     print(f"📄 Source: {markdown_file}")
     print(f"🎯 Output: {output_file}")
@@ -115,9 +124,24 @@ def process_markdown_file(markdown_file: Path):
         image,
     )
 
+    rendered_sections = []
+
+    for index, section in enumerate(sections):
+        version_for_section = (
+            formatted_version
+            if index == 0
+            else ""
+        )
+
+        rendered_sections.append(
+            render_section(
+                section,
+                version_for_section,
+            )
+        )
+
     rendered_sections = "\n\n".join(
-        render_section(section)
-        for section in sections
+        rendered_sections
     )
 
     template = load_template()
