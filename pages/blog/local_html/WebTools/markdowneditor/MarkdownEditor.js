@@ -94,23 +94,21 @@ async function loadDictionary() {
 
     const dictionaryBase = "https://cdn.jsdelivr.net/npm/dictionary-en@4.0.0";
 
-    const [affResponse, dicResponse] = await Promise.all([
-        fetch(`${dictionaryBase}/index.aff`),
-        fetch(`${dictionaryBase}/index.dic`)
-    ]);
+    const affResponse = await fetch(`${dictionaryBase}/index.aff`);
+    const dicResponse = await fetch(`${dictionaryBase}/index.dic`);
 
     if (!affResponse.ok || !dicResponse.ok) {
-        throw new Error("Failed to load Hunspell dictionary.");
+        throw new Error("Failed to load dictionary files.");
     }
 
-    const [affData, dicData] = await Promise.all([
-        affResponse.text(),
-        dicResponse.text()
-    ]);
+    const affData = await affResponse.text();
+    const dicData = await dicResponse.text();
 
     ddsDictionary = new Typo("en_US", affData, dicData);
 
     console.log("DDS: Dictionary loaded.");
+    console.log("DDS: misspeled =", ddsDictionary.check("misspeled"));
+    console.log("DDS: sentence =", ddsDictionary.check("sentence"));
 
     statusElement.textContent = "Spellcheck ready.";
 }
