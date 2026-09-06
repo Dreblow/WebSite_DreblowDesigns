@@ -8,7 +8,8 @@ let ddsDictionary = null;
 let spellcheckTimer = null;
 
 const statusElement = document.getElementById("dds-status");
-const clearLearnedButton = document.getElementById("dds-clear-learned");
+const downloadButton = document.getElementById("dds-download");
+const clearButton = document.getElementById("dds-clear");
 const previewElement = document.getElementById("dds-preview");
 
 
@@ -397,10 +398,17 @@ class Solution {
             renderPreview();
         });
 
-        if (clearLearnedButton) {
-            clearLearnedButton.addEventListener(
+        if (downloadButton) {
+            downloadButton.addEventListener(
                 "click",
-                clearLearnedWords
+                downloadMarkdown
+            );
+        }
+
+        if (clearButton) {
+            clearButton.addEventListener(
+                "click",
+                clearEditor
             );
         }
 
@@ -416,3 +424,37 @@ class Solution {
         }
     }
 );
+
+
+/* ============================================================
+   Clear and Download Actions
+   ============================================================ */
+
+function clearEditor() {
+    if (!ddsEditor) {
+        return;
+    }
+
+    ddsEditor.setValue("");
+    ddsEditor.focus();
+}
+
+function downloadMarkdown() {
+    if (!ddsEditor) {
+        return;
+    }
+
+    const markdown = ddsEditor.getValue();
+    const blob = new Blob([markdown], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+
+    anchor.href = url;
+    anchor.download = "DDS-Markdown.md";
+
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+
+    URL.revokeObjectURL(url);
+}
