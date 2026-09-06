@@ -120,6 +120,49 @@
 
 <!-- DDS:RENDER:blank-template:START -->
 
+<link rel="stylesheet" href="MarkdownEditor.css">
+
+<section class="markdown-editor">
+    <div class="markdown-editor-toolbar">
+        <div class="markdown-editor-title">
+            DDS Markdown Editor
+        </div>
+
+        <div class="markdown-editor-actions">
+            <button id="dds-clear-learned" type="button">
+                Clear Learned Words
+            </button>
+        </div>
+    </div>
+
+    <div id="dds-status" class="dds-status">
+        Loading editor...
+    </div>
+
+    <div class="markdown-editor-panels">
+        <div class="markdown-editor-panel">
+            <div class="markdown-editor-panel-title">
+                Write
+            </div>
+
+            <div id="dds-monaco"></div>
+        </div>
+
+        <div class="markdown-editor-panel">
+            <div class="markdown-editor-panel-title">
+                Preview
+            </div>
+
+            <div id="dds-preview" class="dds-preview"></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typo-js@1.3.2/typo/typo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
+<script src="MarkdownEditor.js"></script>
 
 <!-- DDS:RENDER:blank-template:END -->
 

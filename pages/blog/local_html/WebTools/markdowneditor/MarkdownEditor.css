@@ -1,0 +1,148 @@
+.markdown-editor {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.markdown-editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.markdown-editor-title {
+    color: #f0f6fc;
+    font-weight: 600;
+}
+
+.markdown-editor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.markdown-editor-actions button {
+    padding: 6px 10px;
+    background-color: #21262d;
+    color: #f0f6fc;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.markdown-editor-actions button:hover {
+    background-color: #30363d;
+}
+
+.dds-status {
+    padding: 6px 12px;
+    background-color: #161b22;
+    color: #8b949e;
+    border-left: 1px solid #30363d;
+    border-right: 1px solid #30363d;
+    font-size: 0.8rem;
+}
+
+.markdown-editor {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.markdown-editor-panels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.markdown-editor-panel {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    background-color: #0d1117;
+}
+
+.markdown-editor-panel-title {
+    padding: 8px 10px;
+    background-color: #161b22;
+    color: #f0f6fc;
+    border-bottom: 1px solid #30363d;
+    font-weight: 600;
+}
+
+#dds-monaco {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+}
+
+.dds-preview {
+    height: 700px;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: #0d1117;
+    color: #f0f6fc;
+}
+
+.dds-preview h1,
+.dds-preview h2,
+.dds-preview h3,
+.dds-preview h4,
+.dds-preview h5,
+.dds-preview h6 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+.dds-preview p {
+    line-height: 1.6;
+}
+
+.dds-preview pre {
+    overflow: auto;
+    padding: 12px;
+    background-color: #161b22;
+    border-radius: 6px;
+}
+
+.dds-preview code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@media (max-width: 1200px) {
+    .markdown-editor-panels {
+        grid-template-columns: 1fr;
+    }
+
+    #dds-monaco,
+    .dds-preview {
+        height: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .markdown-editor-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .markdown-editor-actions {
+        width: 100%;
+    }
+
+    .markdown-editor-actions button {
+        width: 100%;
+    }
+
+    #dds-monaco,
+    .dds-preview {
+        height: 500px;
+    }
+}
