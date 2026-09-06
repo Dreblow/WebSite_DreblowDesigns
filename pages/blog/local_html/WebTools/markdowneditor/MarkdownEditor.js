@@ -12,6 +12,14 @@ const statusElement = document.getElementById("dds-status");
 const downloadButton = document.getElementById("dds-download");
 const clearButton = document.getElementById("dds-clear");
 const previewElement = document.getElementById("dds-preview");
+const fontDecreaseButton = document.getElementById("dds-font-decrease");
+const fontIncreaseButton = document.getElementById("dds-font-increase");
+const fontSizeElement = document.getElementById("dds-font-size");
+
+
+const DDS_FONT_SIZE_KEY = "ddsMarkdownEditor.fontSize";
+
+let ddsFontSize = Number(localStorage.getItem(DDS_FONT_SIZE_KEY)) || 100;
 
 
 
@@ -27,6 +35,10 @@ function renderPreview() {
     const renderedHtml = marked.parse(markdown);
 
     previewElement.innerHTML = DOMPurify.sanitize(renderedHtml);
+
+    previewElement.querySelectorAll("pre code").forEach(codeBlock => {
+        hljs.highlightElement(codeBlock);
+    });
 }
 
 
@@ -526,8 +538,6 @@ class Solution {
             }
         );
 
-        renderPreview();
-
         registerSpellcheckContextMenu();
 
         ddsEditor.onDidChangeModelContent(() => {
@@ -549,6 +559,17 @@ class Solution {
             );
         }
 
+        if (fontDecreaseButton) {
+            fontDecreaseButton.addEventListener("click", decreaseFontSize);
+        }
+
+        if (fontIncreaseButton) {
+            fontIncreaseButton.addEventListener("click", increaseFontSize);
+        }
+
+        applyFontSize();
+        renderPreview();
+
         try {
             await loadDictionary();
             runSpellcheck();
@@ -564,7 +585,7 @@ class Solution {
 
 
 /* ============================================================
-   Clear and Download Actions
+   Font Size, Clear, Download Actions
    ============================================================ */
 
 function clearEditor() {
@@ -594,4 +615,28 @@ function downloadMarkdown() {
     anchor.remove();
 
     URL.revokeObjectURL(url);
+}
+
+function applyFontSize() {
+    const scale = ddsFontSize / 100;
+
+    ddsEditor.updateOptions({
+        fontSize: 14 * scale,
+        lineHeight: 22 * scale
+    });
+
+    previewElement.style.setProperty("--dds-font-scale", scale);
+    fontSizeElement.textContent = `${ddsFontSize}%`;
+
+    localStorage.setItem(DDS_FONT_SIZE_KEY, ddsFontSize);
+}
+
+function decreaseFontSize() {
+    ddsFontSize = Math.max(ddsFontSize - 10, 60);
+    applyFontSize();
+}
+
+function increaseFontSize() {
+    ddsFontSize = Math.min(ddsFontSize + 10, 160);
+    applyFontSize();
 }

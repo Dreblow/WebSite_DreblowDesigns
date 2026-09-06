@@ -108,6 +108,11 @@
 }
 
 .dds-preview {
+    --dds-font-scale: 1;
+    font-size: calc(14px * var(--dds-font-scale));
+}
+
+.dds-preview {
     height: 700px;
     padding: 16px;
     box-sizing: border-box;
@@ -115,15 +120,26 @@
     background-color: #0d1117;
     color: #f0f6fc;
 }
+.dds-preview h1 {
+    font-size: calc(2em * var(--dds-font-scale));
+}
 
-.dds-preview h1,
-.dds-preview h2,
-.dds-preview h3,
+.dds-preview h2 {
+    font-size: calc(1.5em * var(--dds-font-scale));
+}
+
+.dds-preview h3 {
+    font-size: calc(1.25em * var(--dds-font-scale));
+}
+
 .dds-preview h4,
 .dds-preview h5,
 .dds-preview h6 {
-    margin-top: 1.2em;
-    margin-bottom: 0.6em;
+    font-size: calc(1em * var(--dds-font-scale));
+}
+
+.dds-preview pre code {
+    font-size: calc(13px * var(--dds-font-scale));
 }
 
 .dds-preview p {
@@ -241,4 +257,21 @@
     height: 1px;
     margin: 5px 0;
     background-color: #30363d;
+}
+
+.markdown-editor-font-size {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.markdown-editor-font-size button {
+    min-width: 34px;
+}
+
+.markdown-editor-font-size span {
+    min-width: 46px;
+    color: #f0f6fc;
+    text-align: center;
+    font-size: 0.9rem;
 }
