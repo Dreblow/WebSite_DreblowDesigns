@@ -48,20 +48,6 @@ body {
   max-width: calc(3 * 39.125rem + 2 * 16px); /* 3 cards + gaps */
 }
 
-@media (max-width: 1400px) {
-  .cards-container {
-    column-count: 2;
-    max-width: calc(2 * 39.125rem + 1 * 16px);
-  }
-}
-
-@media (max-width: 800px) {
-  .cards-container {
-    column-count: 1;
-    max-width: 39.125rem;
-  }
-}
-
 /* ===========================
    Single Card
    =========================== */
@@ -161,28 +147,95 @@ body {
 }
 
 /* ===========================
-   Center partial card rows
+   Responsive Card Columns
    =========================== */
+
 .cards-container {
   width: 100%;
 }
 
-/* One card: use one-card width and let flex center it */
+/* One card */
 .cards-container:not(:has(.card-container:nth-child(2))) {
   column-count: 1;
   max-width: 39.125rem;
 }
 
-/* Two cards: use two-card width and let flex center it */
+/* Two cards */
 .cards-container:has(.card-container:nth-child(2)):not(:has(.card-container:nth-child(3))) {
   column-count: 2;
-  max-width: calc(2 * 39.125rem + 1 * 16px);
+  max-width: calc(2 * 39.125rem + 16px);
 }
 
-/* Three or more cards: normal three-column layout */
+/* Three or more cards */
 .cards-container:has(.card-container:nth-child(3)) {
   column-count: 3;
   max-width: calc(3 * 39.125rem + 2 * 16px);
+}
+
+/* ===========================
+   Desktop / Wide Screens
+   3 columns
+   =========================== */
+
+@media (min-width: 1601px) {
+
+  .cards-container:not(:has(.card-container:nth-child(2))) {
+    column-count: 1;
+    max-width: 39.125rem;
+  }
+
+  .cards-container:has(.card-container:nth-child(2)):not(:has(.card-container:nth-child(3))) {
+    column-count: 2;
+    max-width: calc(2 * 39.125rem + 16px);
+  }
+
+  .cards-container:has(.card-container:nth-child(3)) {
+    column-count: 3;
+    max-width: calc(3 * 39.125rem + 2 * 16px);
+  }
+
+}
+
+
+/* ===========================
+   Tablet / Medium Screens
+   2 columns
+   =========================== */
+
+@media (min-width: 1001px) and (max-width: 1600px) {
+
+  .cards-container:not(:has(.card-container:nth-child(2))) {
+    column-count: 1;
+    max-width: 39.125rem;
+  }
+
+  .cards-container:has(.card-container:nth-child(2)):not(:has(.card-container:nth-child(3))) {
+    column-count: 2;
+    max-width: calc(2 * 39.125rem + 16px);
+  }
+
+  .cards-container:has(.card-container:nth-child(3)) {
+    column-count: 2;
+    max-width: calc(2 * 39.125rem + 16px);
+  }
+
+}
+
+
+/* ===========================
+   Mobile / Narrow Screens
+   1 column
+   =========================== */
+
+@media (max-width: 1000px) {
+
+  .cards-container:not(:has(.card-container:nth-child(2))),
+  .cards-container:has(.card-container:nth-child(2)):not(:has(.card-container:nth-child(3))),
+  .cards-container:has(.card-container:nth-child(3)) {
+    column-count: 1;
+    max-width: 39.125rem;
+  }
+
 }
 
 /* ===========================
@@ -199,4 +252,43 @@ body {
 
 .command-card-note blockquote p {
   margin: 0;
+}
+
+
+/* ===========================
+   copy button for command cells
+   =========================== */
+.command-table td.cmd {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+
+  font-size: 0.7rem;
+  padding: 2px 6px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  background: rgba(48, 54, 61, 0.75);
+  color: #c9d1d9;
+
+  border: 1px solid rgba(110, 118, 129, 0.35);
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.command-table td.cmd:hover .copy-button {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.copy-button:hover {
+  opacity: 1;
 }

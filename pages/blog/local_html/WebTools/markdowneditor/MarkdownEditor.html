@@ -1,0 +1,223 @@
+<!-- DDS:HEAD:START -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Learn to create your own Markdown editor in a popular language, with spell check!">
+    <meta name="author" content="Derek Dreblow">
+    <meta name="keywords" content="Linux, Guide, How-to, Markdown, Software, Developer, Python, Swift, C#">
+
+    <title>Dreblow Design - Markdown Editor blog</title>
+
+    <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/WebTools/markdowneditor/MarkdownEditor.html">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Markdown Editor">
+    <meta property="og:description" content="Learn to create your own Markdown editor in a popular language, with spell check!">
+    <meta property="og:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/WebTools/markdowneditor/MarkdownEditor.html">
+    <meta property="og:type" content="website">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Markdown Editor",
+      "description": "Learn to create your own Markdown editor in a popular language, with spell check!",
+      "author": {
+        "@type": "Person",
+        "name": "Derek Dreblow"
+      },
+      "keywords": [
+        "Developer",
+        "Python",
+        "Swift",
+        "C#"
+      ],
+      "articleSection": [
+        "Linux",
+        "Markdown",
+        "Software"
+      ],
+      "datePublished": "2026-09-05",
+      "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
+      "url": "https://www.dreblowdesigns.com/pages/blog/local_html/WebTools/markdowneditor/MarkdownEditor.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dreblow Designs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png"
+        }
+      }
+    }
+    </script>
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Markdown Editor">
+    <meta name="twitter:description" content="Learn to create your own Markdown editor in a popular language, with spell check!">
+    <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
+<main class="markdown-body git-wiki-section">
+    <article>
+        <p><em class="blogVersion">Version: Sep 5, 2026</em></p>
+<h1 id="markdown-editor" tabindex="-1">Markdown Editor</h1>
+<p>Welcome to the first Dreblow Designs Web Tool!</p>
+<p>This Markdown editor is a live playground for writing Markdown, checking spelling, and seeing the rendered result in real time.</p>
+<p>The inspiration for this tool came from something I genuinely love doing: writing up my solutions on LeetCode. I enjoy documenting the intuition, approach, complexity, and code almost as much as solving the problem itself.</p>
+<p>There is just one little problem: <strong>no spell checker!</strong></p>
+<p>So I thought, why not build my own Markdown editor? Better yet, make it a tool that I can actually use, share it with anyone else who finds it useful, and show how to create one yourself along the way.</p>
+<p>This editor is built on <strong><a href="https://github.com/microsoft/monaco-editor" target="_blank" rel="noopener noreferrer">Monaco Editor</a></strong>, the open-source code editor that powers Visual Studio Code. I’m using Monaco as the editing foundation, then layering on my own Markdown preview, spell checking via <strong><a href="https://github.com/cfinke/Typo.js" target="_blank" rel="noopener noreferrer">Typo.js</a></strong>, learned-word support (aka local storage), download tools, styling (coming soon), and other Dreblow Designs features around it.</p>
+<p>Use the editor below to try it out!</p>
+    </article>
+</main>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:RENDER:blank-template:START -->
+
+<link rel="stylesheet" href="MarkdownEditor.css">
+
+<section class="markdown-editor">
+    <div class="markdown-editor-header">
+        <div class="markdown-editor-toolbar">
+            <div class="markdown-editor-title">
+                DDS Markdown Editor
+            </div>
+
+            <div class="markdown-editor-actions">
+                <div class="markdown-editor-font-size">
+                    <button id="dds-font-decrease" type="button">−</button>
+                    <span id="dds-font-size">100%</span>
+                    <button id="dds-font-increase" type="button">+</button>
+                </div>
+
+                <button id="dds-download" type="button">
+                    Download .md
+                </button>
+
+                <button id="dds-clear" type="button">
+                    Clear
+                </button>
+            </div>
+        </div>
+
+        <div id="dds-status" class="dds-status">
+            Loading editor...
+        </div>
+    </div>
+
+    <div class="markdown-editor-panels">
+        <div class="markdown-editor-panel">
+            <div class="markdown-editor-panel-title">
+                Write
+            </div>
+
+            <div id="dds-monaco"></div>
+        </div>
+
+        <div class="markdown-editor-panel">
+            <div class="markdown-editor-panel-title">
+                Preview
+            </div>
+
+            <div id="dds-preview" class="dds-preview"></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+<script src="vendor/typo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+<script src="MarkdownEditor.js"></script>
+
+<!-- DDS:RENDER:blank-template:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
+</body>
+</html>
+<!-- DDS:FOOTER:END -->

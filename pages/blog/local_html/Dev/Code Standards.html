@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Coding Standards Across Languages blog</title>
     <meta name="keywords" content="C#, Swift, VB.NET, StyleCop, coding standards, class ordering, member organization, clean code">
+
+    <title>Dreblow Design - Coding Standards Across Languages blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Coding Standards Across Languages">
     <meta property="og:description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,7 +46,7 @@
         "Swift",
         "VB.NET"
       ],
-      "datePublished": "2026-07-10T00:00:00.000Z",
+      "datePublished": "2026-07-10",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Dev/Code Standards.html",
       "publisher": {
@@ -55,184 +59,163 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Coding Standards Across Languages">
     <meta name="twitter:description" content="A guide to coding standards for multiple languages including C#, Swift, and VB.NET, ensuring clean, maintainable, and consistent code.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
-    <link rel="stylesheet" href="../../local_css/command-card-blog.css?v=3">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
+    <link rel="stylesheet" href="/pages/blog/local_css/command-card-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Jul 10, 2026</em></p>
-        <h1 id="coding-standards" tabindex="-1">Coding Standards</h1>
+<h1 id="coding-standards" tabindex="-1">Coding Standards</h1>
 <p>Organizing code in a consistent and predictable way improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. Follow these general best practices across all programming languages:</p>
 <ul>
-<li>Use clear and descriptive naming conventions for variables, methods, and classes.</li>
-<li>Write meaningful comments to explain complex logic or important decisions.</li>
-<li>Handle errors gracefully with appropriate error handling and logging.</li>
-<li>Keep functions and methods focused on a single responsibility.</li>
-<li>Maintain consistent indentation and formatting throughout the codebase.</li>
+<li>Use clear and descriptive naming conventions for variables, methods, and classes.  </li>
+<li>Write meaningful comments to explain complex logic or important decisions.  </li>
+<li>Handle errors gracefully with appropriate error handling and logging.  </li>
+<li>Keep functions and methods focused on a single responsibility.  </li>
+<li>Maintain consistent indentation and formatting throughout the codebase.  </li>
 </ul>
 <p>Adhering to these principles lays a solid foundation for writing clean, maintainable, and understandable code.</p>
 <p>Take a look at the bottom of the page to see a 'live' example.</p>
-<hr>
+<hr />
 <h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
 <ul>
 <li><a href="#c-coding-standards">C# Coding Standards</a></li>
 <li><a href="#swift-coding-standards">Swift Coding Standards</a></li>
 <li><a href="#vbnet-coding-standards">VB.NET Coding Standards</a></li>
 </ul>
-<hr>
-<hr>
+<hr />
+<hr />
 <h1 id="c-coding-standards" tabindex="-1">C# Coding Standards</h1>
 <p>Organizing class members in a consistent and predictable order improves <strong>code readability, maintainability,</strong> and reduces <strong>merge conflicts</strong>. According to <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md" target="_blank" rel="noopener noreferrer">StyleCop's official rules</a>, here's the recommended ordering for elements inside a class, struct, or interface.</p>
-
     </article>
 </main>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
 
+<!-- DDS:RENDER:command-card-one-row:START -->
 <main class="markdown-body command-card-section command-card-one-row-section">
     <article>
         
 
         <div class="cards-flex-container">
             <div class="cards-container">
-                
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Class design</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash"># Use abstract when you need a contract + shared implementation.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Use virtual only when overriding is optional.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Keep override members together at the top of the class.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Concrete implementations go below abstract/virtual overrides.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">Within a class, struct, or interface, use this order:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. abstract</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. virtual</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. concrete</code></td></tr>
-                </table>
-            </div>
-            </div>
-            
-
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash"># Within a class, struct, or interface, use this order:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. Constant Fields</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. Fields</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. Constructors</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. Finalizers (Destructors)</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. Delegates</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">6. Events</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">7. Enums</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">8. Interfaces (interface implementations)</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">9. Properties</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">10. Indexers</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">11. Methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">12. Structs</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">13. Classes</code></td></tr>
-                    <tr>
-                    <td class="cmd one-row command-card-note">
-                        <blockquote>This helps separate state, behavior, and nested types clearly.</blockquote>
-                    </td>
-                    </tr>
-                </table>
-            </div>
-            </div>
-            
-
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Access Modifier Ordering (SA1202)</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash">Within each group above (e.g., methods or properties), order by access:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. public</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. internal</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. protected internal</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. protected</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. private</code></td></tr>
-                </table>
-            </div>
-            </div>
-            
-
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Static vs Instance (SA1204)</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash">Inside each access level, place static members first:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">- Static</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">- Non-static</code></td></tr>
-                </table>
-            </div>
-            </div>
-            
-
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash">When declaring fields, order them as:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. readonly</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. Non-readonly</code></td></tr>
-                    <tr>
-                    <td class="cmd one-row command-card-note">
-                        <blockquote>This rule helps you distinguish between immutable and mutable state.</blockquote>
-                    </td>
-                    </tr>
-                </table>
-            </div>
-            </div>
-            
-
-            <div class="card-container">
-            <div class="title-container">
-                <h2>Unrolled Method Example</h2>
-            </div>
-            <div class="info-container">
-                <table class="command-table command-table-one-row">
-                <tr><td class="cmd one-row"><code class="hljs language-bash">Here’s how the <strong>methods</strong> section would look when fully expanded:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. <span class="inline-code">public static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. <span class="inline-code">public</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. <span class="inline-code">internal static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. <span class="inline-code">internal</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. <span class="inline-code">protected internal static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">6. <span class="inline-code">protected internal</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">7. <span class="inline-code">protected static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">8. <span class="inline-code">protected</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">9. <span class="inline-code">private static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">10. <span class="inline-code">private</span> methods</code></td></tr>
-                </table>
-            </div>
-            </div>
-            
-
+                <div class="card-container">
+  <div class="title-container">
+    <h2>Class design</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash"># Use abstract when you need a contract + shared implementation.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Use virtual only when overriding is optional.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Keep override members together at the top of the class.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash"># Concrete implementations go below abstract/virtual overrides.</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">Within a class, struct, or interface, use this order:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. abstract</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. virtual</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. concrete</code></td></tr>
+    </table>
+  </div>
+</div>
+<div class="card-container">
+  <div class="title-container">
+    <h2>Top-Level Member Ordering (SA1201 &amp; SA1203)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash"># Within a class, struct, or interface, use this order:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. Constant Fields</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. Fields</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. Constructors</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. Finalizers (Destructors)</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. Delegates</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">6. Events</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">7. Enums</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">8. Interfaces (interface implementations)</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">9. Properties</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">10. Indexers</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">11. Methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">12. Structs</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">13. Classes</code></td></tr><tr><td class="cmd one-row command-card-note"><blockquote>This helps separate state, behavior, and nested types clearly.</blockquote></td></tr>
+    </table>
+  </div>
+</div>
+<div class="card-container">
+  <div class="title-container">
+    <h2>Access Modifier Ordering (SA1202)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash">Within each group above (e.g., methods or properties), order by access:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. public</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. internal</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. protected internal</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. protected</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. private</code></td></tr>
+    </table>
+  </div>
+</div>
+<div class="card-container">
+  <div class="title-container">
+    <h2>Static vs Instance (SA1204)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash">Inside each access level, place static members first:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">- Static</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">- Non-static</code></td></tr>
+    </table>
+  </div>
+</div>
+<div class="card-container">
+  <div class="title-container">
+    <h2>Readonly vs Non-Readonly Fields (SA1214 &amp; SA1215)</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash">When declaring fields, order them as:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. readonly</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. Non-readonly</code></td></tr><tr><td class="cmd one-row command-card-note"><blockquote>This rule helps you distinguish between immutable and mutable state.</blockquote></td></tr>
+    </table>
+  </div>
+</div>
+<div class="card-container">
+  <div class="title-container">
+    <h2>Unrolled Method Example</h2>
+  </div>
+  <div class="info-container">
+    <table class="command-table command-table-one-row">
+      <tr><td class="cmd one-row"><code class="hljs language-bash">Here’s how the <strong>methods</strong> section would look when fully expanded:</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">1. <span class="inline-code">public static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">2. <span class="inline-code">public</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">3. <span class="inline-code">internal static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">4. <span class="inline-code">internal</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">5. <span class="inline-code">protected internal static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">6. <span class="inline-code">protected internal</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">7. <span class="inline-code">protected static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">8. <span class="inline-code">protected</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">9. <span class="inline-code">private static</span> methods</code></td></tr><tr><td class="cmd one-row"><code class="hljs language-bash">10. <span class="inline-code">private</span> methods</code></td></tr>
+    </table>
+  </div>
+</div>
             </div>
         </div>
     </article>
 </main>
+<!-- DDS:RENDER:command-card-one-row:END -->
 
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
-        
-        <hr>
+        <hr />
 <h2 id="linq-usage" tabindex="-1">LINQ usage</h2>
 <ul>
 <li>Use query syntax for readability in complex queries.</li>
@@ -241,13 +224,13 @@
 <li>Always use Async suffix in method names.</li>
 <li>Avoid async void except for event handlers.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="async-await" tabindex="-1">Async/await</h2>
 <ul>
 <li>Always use Async suffix in method names.</li>
 <li>Avoid async void except for event handlers.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="handling-exceptions-to-the-rule" tabindex="-1">Handling Exceptions to the Rule</h2>
 <p>Sometimes you’ll want to <strong>group related members</strong> (like interface implementations) together, even if it breaks the standard order.</p>
 <p><strong>Best practice:</strong> use <strong>partial classes</strong> to separate those concerns cleanly.</p>
@@ -261,7 +244,7 @@
     <span class="hljs-comment">// Grouped interface methods</span>
 }
 </code></pre>
-<hr>
+<hr />
 <h2 id="example-class-layout" tabindex="-1">Example Class Layout</h2>
 <pre><code class="hljs csharp"><span class="hljs-comment">// Abstract base class demonstrating abstract and virtual members</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span>
@@ -334,8 +317,8 @@
     }
 }
 </code></pre>
-<hr>
-<hr>
+<hr />
+<hr />
 <h1 id="swift-coding-standards" tabindex="-1">Swift Coding Standards</h1>
 <p>Swift-specific coding standards and best practices will be added here to guide clean and maintainable Swift code development.</p>
 <h2 id="naming-conventions" tabindex="-1">Naming Conventions</h2>
@@ -379,45 +362,64 @@
     }
 }
 </code></pre>
-<hr>
-<hr>
+<hr />
+<hr />
 <h1 id="vbnet-coding-standards" tabindex="-1">VB.NET Coding Standards</h1>
 <h2 id="naming" tabindex="-1">Naming</h2>
 <ul>
 <li>Keep PascalCase for methods, camelCase for locals.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="class-order" tabindex="-1">Class order</h2>
 <ul>
 <li>Fields → Properties → Constructors → Methods → Events.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="interop" tabindex="-1">Interop</h2>
 <ul>
 <li>Keep all P/Invoke declarations in a dedicated module.</li>
 </ul>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

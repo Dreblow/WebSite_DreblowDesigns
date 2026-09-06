@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Learn how to setup wireguard on a linux server.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - WireGuard Self-Hosting Setup Instructions blog</title>
     <meta name="keywords" content="ubuntu, wireguard, networking, server configuration, linux, VPN">
+
+    <title>Dreblow Design - WireGuard Self-Hosting Setup Instructions blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/WireGuard Setup.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="WireGuard Self-Hosting Setup Instructions">
     <meta property="og:description" content="Learn how to setup wireguard on a linux server.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/WireGuard Setup.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -37,7 +41,7 @@
         "VPN",
         "Networking"
       ],
-      "datePublished": "2024-12-12T00:00:00.000Z",
+      "datePublished": "2024-12-12",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/WireGuard Setup.html",
       "publisher": {
@@ -50,262 +54,272 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="WireGuard Self-Hosting Setup Instructions">
     <meta name="twitter:description" content="Learn how to setup wireguard on a linux server.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Dec 12, 2024</em></p>
-        <h1 id="wireguard-self-hosting-setup-instructions" tabindex="-1">WireGuard Self-Hosting Setup Instructions</h1>
+<h1 id="wireguard-self-hosting-setup-instructions" tabindex="-1">WireGuard Self-Hosting Setup Instructions</h1>
 <h2 id="overview" tabindex="-1">Overview</h2>
 <p>This guide walks you through setting up a self-hosted WireGuard server for secure remote access, restricting access to only your Linux server on Hyper-V while keeping the rest of your network hidden.</p>
-<p>As of now this guide is WIP, which only supports IPv4 communications. I hope to explain IPv6 in the near future.</p>
-<hr>
+<p>As of now this guide is WIP, which only supports IPv4 communications. I hope to explain IPv6 in the near future. </p>
+<hr />
 <h2 id="1-install-wireguard-on-the-server" tabindex="-1">1. Install WireGuard on the Server</h2>
 <ul>
 <li>Ensure you have root access to the Linux server.</li>
-<li>Run the following commands:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y
-<span class="hljs-built_in">sudo</span> apt install wireguard
-</code></pre>
-</li>
+<li>Run the following commands:
+    <code>bash
+    sudo apt update &amp;&amp; sudo apt upgrade -y
+    sudo apt install wireguard</code></li>
 <li>Alternatively, you can use Docker if preferred.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="2-generate-keys" tabindex="-1">2. Generate Keys</h2>
 <ul>
-<li>Create private and public keys for the server. This example goes over how to setup the server and, MacBook Pro and iPhone as clients.<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> server_privatekey | wg pubkey &gt; server_publickey
-</code></pre>
-<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> maclappy_privatekey | wg pubkey &gt; maclappy_publickey
-</code></pre>
-<pre><code class="hljs bash">wg genkey | <span class="hljs-built_in">tee</span> phone_privatekey | wg pubkey &gt; phone_publickey
-</code></pre>
-</li>
-<li>This didn't work out the box, it was easiest to be in root. Some don't like this, but for the ease of this tutorial, we'll be bad ;)<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -i
-</code></pre>
-</li>
-<li>Also note, if you forgot your keys, you can look them up as so, but remember, if you used <code>sudo -i</code> then the files are in the root directory. Use <code>sudo ls /root/</code> to see them.<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span>  /root/maclappy_privatekey
-<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span>  /root/maclappy_publickey
-</code></pre>
-</li>
+<li>Create private and public keys for the server. This example goes over how to setup the server and, MacBook Pro and iPhone as clients.
+    <code>bash
+    wg genkey | tee server_privatekey | wg pubkey &gt; server_publickey</code>
+    <code>bash
+    wg genkey | tee maclappy_privatekey | wg pubkey &gt; maclappy_publickey</code>
+    <code>bash
+    wg genkey | tee phone_privatekey | wg pubkey &gt; phone_publickey</code></li>
+<li>This didn't work out the box, it was easiest to be in root. Some don't like this, but for the ease of this tutorial, we'll be bad ;)
+    <code>bash
+    sudo -i</code></li>
+<li>Also note, if you forgot your keys, you can look them up as so, but remember, if you used <code>sudo -i</code> then the files are in the root directory. Use <code>sudo ls /root/</code> to see them.
+    <code>bash
+    sudo cat  /root/maclappy_privatekey
+    sudo cat  /root/maclappy_publickey</code></li>
 <li>To exit out of root, type <code>exit</code> in terminal and hit enter.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="3-set-up-the-wireguard-configuration" tabindex="-1">3. Set Up the WireGuard Configuration</h2>
 <ul>
-<li>Create a configuration file with:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/wireguard/wg0.conf
-</code></pre>
+<li>Create a configuration file with:
+    <code>bash
+    sudo nano /etc/wireguard/wg0.conf</code></li>
+<li>
+<p>and add the following:
+    ```ini
+    [Interface]
+    PrivateKey = <ServerPrivateKey>
+    Address = 10.0.0.1/24
+    ListenPort = 42465</p>
+<h1 id="maclappy-configuration" tabindex="-1">MacLappy Configuration</h1>
+<p>[Peer]
+PublicKey = <MacLappyPublicKey>
+AllowedIPs = 10.0.0.2/32</p>
+<h1 id="iphone-configuration" tabindex="-1">iPhone Configuration</h1>
+<p>[Peer]
+PublicKey = <iPhonePublicKey>
+AllowedIPs = 10.0.0.3/32
+<code>``
+- Replace</code>ServerPrivateKey<code>and a</code>machinePublicKey` via the cat command back in section 2.</p>
 </li>
-<li>and add the following:<pre><code class="hljs ini"><span class="hljs-section">[Interface]</span>
-<span class="hljs-attr">PrivateKey</span> = &lt;ServerPrivateKey&gt;
-<span class="hljs-attr">Address</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.1</span>/<span class="hljs-number">24</span>
-<span class="hljs-attr">ListenPort</span> = <span class="hljs-number">42465</span>
-
-<span class="hljs-comment"># MacLappy Configuration</span>
-<span class="hljs-section">[Peer]</span>
-<span class="hljs-attr">PublicKey</span> = &lt;MacLappyPublicKey&gt;
-<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.2</span>/<span class="hljs-number">32</span>
-
-<span class="hljs-comment"># iPhone Configuration</span>
-<span class="hljs-section">[Peer]</span>
-<span class="hljs-attr">PublicKey</span> = &lt;iPhonePublicKey&gt;
-<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.3</span>/<span class="hljs-number">32</span>
-</code></pre>
-</li>
-<li>Replace <code>ServerPrivateKey</code> and a <code>machinePublicKey</code> via the cat command back in section 2.</li>
 </ul>
-<hr>
-<h2 id="4-enable-port-forwarding-wip-" tabindex="-1">4. Enable port forwarding (WIP)</h2>
+<hr />
+<h2 id="4-enable-port-forwarding-wip" tabindex="-1">4. Enable port forwarding (WIP)</h2>
 <ul>
+<li>Enabled IP forwarding to allow routing between the VPN subnet <code>10.0.0.0/24</code> and the specific network address <code>192.168.1.186</code></li>
+<li>To test if it is enabled, which should return a <code>1</code>
+  <code>bash
+  sysctl net.ipv4.ip_forward</code></li>
+<li>Edit <code>/etc/sysctl.conf</code> and ensure this line exists:
+  <code>bash
+  sudo nano /etc/sysctl.conf</code></li>
+<li>And update
+  <code>bash 
+  net.ipv4.ip_forward=1</code></li>
 <li>
-<p>Enabled IP forwarding to allow routing between the VPN subnet <code>10.0.0.0/24</code> and the specific network address <code>192.168.1.186</code></p>
+<p>And then apply
+  <code>bash
+  sudo sysctl -p</code></p>
 </li>
 <li>
-<p>To test if it is enabled, which should return a <code>1</code></p>
-<pre><code class="hljs bash">sysctl net.ipv4.ip_forward
-</code></pre>
+<p>Make sure the WireGuard server knows how to forward traffic from the 10.0.0.0/24 subnet to the specific IP in your LAN (e.g., 192.168.1. 186). Add this NAT rule to allow traffic to the specific IP:
+  <code>bash
+  sudo iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -d 192.168.1.186 -j MASQUERADE</code></p>
 </li>
 <li>
-<p>Edit <code>/etc/sysctl.conf</code> and ensure this line exists:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/sysctl.conf
-</code></pre>
+<p>Add this forwarding rule to allow traffic from <code>10.0.0.0/24</code> to <code>192.168.1.186</code>:
+  <code>bash
+  sudo iptables -A FORWARD -s 10.0.0.0/24 -d 192.168.1.186 -j ACCEPT</code></p>
 </li>
 <li>
-<p>And update</p>
-<pre><code class="hljs bash">net.ipv4.ip_forward=1
-</code></pre>
-</li>
-<li>
-<p>And then apply</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> sysctl -p
-</code></pre>
-</li>
-<li>
-<p>Make sure the WireGuard server knows how to forward traffic from the 10.0.0.0/24 subnet to the specific IP in your LAN (e.g., 192.168.1. 186). Add this NAT rule to allow traffic to the specific IP:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -d 192.168.1.186 -j MASQUERADE
-</code></pre>
-</li>
-<li>
-<p>Add this forwarding rule to allow traffic from <code>10.0.0.0/24</code> to <code>192.168.1.186</code>:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -A FORWARD -s 10.0.0.0/24 -d 192.168.1.186 -j ACCEPT
-</code></pre>
-</li>
-<li>
-<p>Save the rule to make it persistent across reboots:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install iptables-persistent
-<span class="hljs-built_in">sudo</span> netfilter-persistent save
-</code></pre>
+<p>Save the rule to make it persistent across reboots:
+  <code>bash
+  sudo apt install iptables-persistent
+  sudo netfilter-persistent save</code></p>
 </li>
 </ul>
-<hr>
+<hr />
 <h2 id="5-enable-and-start-the-wireguard-interface" tabindex="-1">5. Enable and Start the WireGuard Interface</h2>
 <ul>
-<li>Start the service<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl start wg-quick@wg0
-</code></pre>
-</li>
-<li>Or if you want to shutdown the service and restart it.<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> wg-quick down wg0
-<span class="hljs-built_in">sudo</span> wg-quick up wg0
-</code></pre>
-</li>
-<li>Persist after a reboot, add:<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> wg-quick@wg0
-</code></pre>
-</li>
+<li>Start the service
+    <code>bash
+    sudo systemctl start wg-quick@wg0</code></li>
+<li>Or if you want to shutdown the service and restart it.
+    <code>bash
+    sudo wg-quick down wg0
+    sudo wg-quick up wg0</code></li>
+<li>Persist after a reboot, add:
+    <code>bash
+    sudo systemctl enable wg-quick@wg0</code></li>
 </ul>
-<hr>
+<hr />
 <h2 id="5-firewall-configuration" tabindex="-1">5. Firewall Configuration</h2>
 <ul>
-<li>
-<p>Use <code>ufw</code> or <code>iptables</code> to allow traffic on port 51564:</p>
-</li>
+<li>Use <code>ufw</code> or <code>iptables</code> to allow traffic on port 51564:</li>
 <li>
 <p><code>ufw</code>:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ufw allow ListenPort = 51564/udp
-</code></pre>
-</li>
-<li>
-<p><code>iptables</code>:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> iptables -A INPUT -p udp --dport 51564 -j ACCEPT
-</code></pre>
+<p><code>bash
+sudo ufw allow ListenPort = 51564/udp</code>
+- <code>iptables</code>:
+<code>bash
+sudo iptables -A INPUT -p udp --dport 51564 -j ACCEPT</code></p>
 </li>
 </ul>
-<hr>
+<hr />
 <h2 id="6-router-configuration" tabindex="-1">6. Router Configuration</h2>
 <ul>
 <li>There is where you need to hop on the your web browser and put in the ip address of your router. Go find where port forwarding is handled. Since I setup the port to be <code>51564</code>. Mu router allowed for external and internal ports, internal ip address of the server, and the connection type <code>UDP</code></li>
 </ul>
-<hr>
+<hr />
 <h2 id="7-client-configuration" tabindex="-1">7. Client Configuration</h2>
 <ul>
 <li>Install WireGuard on your remote device (e.g., laptop or phone).</li>
-<li>Create a configuration file for the client, here is one for maclappy.conf:<pre><code class="hljs ini"><span class="hljs-section">[Interface]</span>
-<span class="hljs-attr">PrivateKey</span> = <span class="hljs-number">000000000000000000000000000000000000000000</span>= <span class="hljs-comment">#&lt;DevicePrivateKey&gt;</span>
-<span class="hljs-attr">Address</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.2</span>/<span class="hljs-number">24</span>
-<span class="hljs-attr">DNS</span> = <span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span>
-
-<span class="hljs-section">[Peer]</span>
-<span class="hljs-attr">PublicKey</span> = <span class="hljs-number">000000000000000000000000000000000000000000</span>= <span class="hljs-comment">#&lt;ServerPublicKey&gt;</span>
-<span class="hljs-attr">Endpoint</span> = <span class="hljs-number">999.999</span>.<span class="hljs-number">9.999</span>:<span class="hljs-number">42465</span>                          <span class="hljs-comment">#&lt;ServerPublicIP&gt;:51564</span>
-<span class="hljs-attr">AllowedIPs</span> = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">24</span>
-</code></pre>
+<li>
+<p>Create a configuration file for the client, here is one for maclappy.conf:
+    ```ini
+    [Interface]
+    PrivateKey = 000000000000000000000000000000000000000000= #<DevicePrivateKey>
+    Address = 10.0.0.2/24
+    DNS = 1.1.1.1</p>
+<p>[Peer]
+PublicKey = 000000000000000000000000000000000000000000= #<ServerPublicKey>
+Endpoint = 999.999.9.999:42465                          #<ServerPublicIP>:51564
+AllowedIPs = 10.0.0.0/24
+```
+- Then in the GUI app, upload the file to it, and let her rip!</p>
+<hr />
 </li>
-<li>Then in the GUI app, upload the file to it, and let her rip!</li>
 </ul>
-<hr>
 <h2 id="8-test-the-connection" tabindex="-1">8. Test the Connection</h2>
 <ul>
-<li>Start the client interface and verify connectivity on laptop:<pre><code class="hljs bash">wg-quick up wg0
-ping 10.0.0.1
-</code></pre>
-</li>
+<li>Start the client interface and verify connectivity on laptop:
+    <code>bash
+    wg-quick up wg0
+    ping 10.0.0.1</code></li>
 <li>From the phone, I used <a href="https://whatismyipaddress.com" target="_blank" rel="noopener noreferrer">whatismyipaddress</a> to confirm my home's outside IP address.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="optional-enhancements" tabindex="-1">Optional Enhancements</h2>
 <ul>
 <li><strong>NAT Traversal</strong>: Use <code>Tailscale</code> if your setup requires it.</li>
 <li><strong>DNS Configuration</strong>: Set up DNS for hostname resolution.</li>
 <li><strong>Firewall Setup</strong>: Ensure your router only exposes port 42465 to the server.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="notes" tabindex="-1">Notes</h2>
 <ul>
 <li>Use secure methods to store and transfer keys.</li>
 <li>Regularly update WireGuard and monitor the configuration for any unauthorized changes.</li>
 </ul>
-<hr>
+<hr />
 <h3 id="additional-resources" tabindex="-1">Additional Resources</h3>
 <ul>
 <li><a href="https://www.wireguard.com/" target="_blank" rel="noopener noreferrer">WireGuard Documentation</a></li>
 <li><a href="https://tailscale.com/kb/" target="_blank" rel="noopener noreferrer">Tailscale Documentation</a></li>
 </ul>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

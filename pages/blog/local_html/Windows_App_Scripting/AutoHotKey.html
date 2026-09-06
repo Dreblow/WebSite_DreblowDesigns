@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Global keyboard shortcuts for Windows OS, using these shortcuts to control MicroSoft PowerPoint when PowerPoint is not in the foreground.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - AutoHotKey blog</title>
     <meta name="keywords" content="AutoHotKey, Windows, Windows 11, Scripting, Microsoft, Power Point, PowerPoint">
+
+    <title>Dreblow Design - AutoHotKey blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Windows_App_Scripting/AutoHotKey.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="AutoHotKey">
     <meta property="og:description" content="Global keyboard shortcuts for Windows OS, using these shortcuts to control MicroSoft PowerPoint when PowerPoint is not in the foreground.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Windows_App_Scripting/AutoHotKey.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,7 +48,7 @@
         "PowerPoint",
         "GoTo Webinar"
       ],
-      "datePublished": "2024-12-31T00:00:00.000Z",
+      "datePublished": "2024-12-31",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Windows_App_Scripting/AutoHotKey.html",
       "publisher": {
@@ -57,139 +61,157 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AutoHotKey">
     <meta name="twitter:description" content="Global keyboard shortcuts for Windows OS, using these shortcuts to control MicroSoft PowerPoint when PowerPoint is not in the foreground.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Dec 31, 2024</em></p>
-        <h1 id="autohotkey-windows-powerpoint" tabindex="-1">AutoHotKey Windows PowerPoint</h1>
+<h1 id="autohotkey-windows-powerpoint" tabindex="-1">AutoHotKey Windows PowerPoint</h1>
 <h2 id="overview" tabindex="-1">Overview</h2>
 <p>I have a client, <a href="https://www.dreblowandassociates.com" target="_blank" rel="noopener noreferrer">Dreblow and Associates</a>, a company owned and operated by my family. My father, <a href="https://www.linkedin.com/in/daniel-dreblow-36047824?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BaPKSL6e%2BToCTeq6fUWYwyg%3D%3D" target="_blank" rel="noopener noreferrer">Daniel Dreblow</a>, is the Founder and President. As the head of IT, I manage the organization’s entire technical infrastructure, which includes developing and maintaining email addresses, websites, webinars, and a plethora of technical tools.</p>
 <p>In today’s challenge, we faced an issue while using GoToWebinar to broadcast a PowerPoint presentation while speaking to potential prospects, but they encountered an issue: whenever the GoToWebinar app was in focus, the PowerPoint slideshow lost focus, making it impossible to cycle through the slides during the presentation. To solve this, I used AutoHotKey (AHK) to create global keyboard shortcuts that worked across all windows, in Widnows 11. This allowed the client to control the PowerPoint slideshow seamlessly, even while GoToWebinar was the active application. The AHK script enabled smooth transitions between slides without disrupting the webinar, ensuring a professional and hassle-free presentation experience.</p>
 <p>This guide hopes to help those get AHK running with the provided script. The provided script interacts with Microsoft PowerPoint via PowerPoint API. When things are up and running, One will be able to control the slides via  <code>ctrl-left</code> for a previous slide and <code>ctrl-right</code> for the next slide.</p>
-<hr>
+<hr />
 <h4 id="1-download-ahk" tabindex="-1">1. Download AHK</h4>
 <ul>
 <li>Its recommended that one download the AutoHotKey from the <a href="https://apps.microsoft.com/store/detail/autohotkey/9NBLGGH4NHSW" target="_blank" rel="noopener noreferrer">Microsoft Store - AutoHotkey</a></li>
 </ul>
 <h4 id="2-creating-ahk-script" tabindex="-1">2. Creating AHK Script</h4>
-<p>Using the <strong>PowerPoint COM API</strong> is the most robust solution when other methods fail. Here’s a script leveraging the COM object model to control the slideshow programmatically. This will work even when PowerPoint is not the active window.</p>
-<ul>
-<li>Create a <code>txt</code> file, take the below script and paste it in the text file.</li>
-<li>Change the file type from <code>txt</code> to <code>ahk</code></li>
-<li>PowerPoint COM API Script<pre><code class="hljs ahk"><span class="hljs-meta">#NoEnv</span>
-SendMode Input
-<span class="hljs-built_in">SetTitleMatchMode,</span> <span class="hljs-number">2</span> <span class="hljs-comment">; Enable partial matching for window titles</span>
-<span class="hljs-meta">#Persistent</span>
+<p>Using the <strong>PowerPoint COM API</strong> is the most robust solution when other methods fail. Here’s a script leveraging the COM object model to control the slideshow programmatically. This will work even when PowerPoint is not the active window.
+* Create a <code>txt</code> file, take the below script and paste it in the text file.
+* Change the file type from <code>txt</code> to <code>ahk</code>
+* PowerPoint COM API Script
+    ```ahk
+    #NoEnv
+    SendMode Input
+    SetTitleMatchMode, 2 ; Enable partial matching for window titles
+    #Persistent</p>
+<pre><code>; Initialize PowerPoint COM object
+ppt := ComObjCreate("PowerPoint.Application")
 
-<span class="hljs-comment">; Initialize PowerPoint COM object</span>
-ppt := ComObjCreate(<span class="hljs-string">&quot;PowerPoint.Application&quot;</span>)
-
-<span class="hljs-comment">; Next Slide: Ctrl + Right</span>
-<span class="hljs-title">^Right::</span>
+; Next Slide: Ctrl + Right
+^Right::
     slideShow := GetSlideShow()
     if (slideShow) {
         slideShow.View.Next
     } else {
-<span class="hljs-built_in">        MsgBox,</span> No active PowerPoint slideshow found.
+        MsgBox, No active PowerPoint slideshow found.
     }
-    <span class="hljs-keyword">return</span>
+    return
 
-<span class="hljs-comment">; Previous Slide: Ctrl + Left</span>
-<span class="hljs-title">^Left::</span>
+; Previous Slide: Ctrl + Left
+^Left::
     slideShow := GetSlideShow()
     if (slideShow) {
         slideShow.View.Previous
     } else {
-<span class="hljs-built_in">        MsgBox,</span> No active PowerPoint slideshow found.
+        MsgBox, No active PowerPoint slideshow found.
     }
-    <span class="hljs-keyword">return</span>
+    return
 
-<span class="hljs-comment">; Function to get the active slideshow</span>
+; Function to get the active slideshow
 GetSlideShow() {
     global ppt
     try {
-        <span class="hljs-keyword">return</span> ppt.SlideShowWindows(<span class="hljs-number">1</span>) <span class="hljs-comment">; Get the first active slideshow window</span>
+        return ppt.SlideShowWindows(1) ; Get the first active slideshow window
     } catch {
-        <span class="hljs-keyword">return</span>
+        return
     }
 }
+```
 </code></pre>
-</li>
-</ul>
 <h4 id="3-launching-script" tabindex="-1">3. Launching Script</h4>
 <p>With AutoHotKey (AHK) installed and running, double-click on the .ahk file to start the script. Open a PowerPoint presentation of your choice and put it in slideshow mode. Then, open another application, such as Windows Explorer or a web browser, and position it in the foreground so that the PowerPoint presentation is visible in the background but not focused. This setup simulates the scenario where GoToWebinar (or another app) is in focus during a presentation.</p>
 <p>Now, test the global keyboard shortcuts you set in the AHK script. Press the assigned keys to cycle through the PowerPoint slides (e.g., next or previous), ensuring the commands work seamlessly even when the PowerPoint application is not the active window. Verify that the slides transition correctly without disrupting the application in the foreground. If everything functions as expected, your script is successfully enabling smooth slide control during presentations.</p>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

@@ -2,6 +2,7 @@
   "siteUrl": "https://www.dreblowdesigns.com",
   "includeExtensions": [".html"],
   "exclude": [
+    "local_dev/",
     "resources/dev/",
     "resources/js/",
     "resources/css/",

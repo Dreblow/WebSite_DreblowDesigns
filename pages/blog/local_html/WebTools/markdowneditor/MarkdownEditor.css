@@ -1,0 +1,254 @@
+/* ============================================================
+   Markdown Editor Layout
+   ============================================================ */
+
+.markdown-editor {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.markdown-editor-panels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 6px;
+    width: 100%;
+}
+
+.markdown-editor-panel {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    background-color: #0d1117;
+}
+
+.markdown-editor-panel-title {
+    padding: 8px 10px;
+    background-color: #161b22;
+    color: #f0f6fc;
+    border-bottom: 1px solid #30363d;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   Header, Toolbar, and Status
+   ============================================================ */
+
+.markdown-editor-header {
+    overflow: hidden;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    background-color: #0d1117;
+    margin-bottom: 4px;
+}
+
+.markdown-editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: #0d1117;
+}
+
+.markdown-editor-title {
+    color: #f0f6fc;
+    font-weight: 600;
+}
+
+.markdown-editor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.markdown-editor-actions button {
+    padding: 6px 10px;
+    background-color: #21262d;
+    color: #f0f6fc;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.markdown-editor-actions button:hover {
+    background-color: #30363d;
+}
+
+.dds-status {
+    padding: 6px 12px;
+    background-color: #161b22;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+    font-size: 0.8rem;
+}
+
+
+/* ============================================================
+   Font Size Controls
+   ============================================================ */
+
+.markdown-editor-font-size {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.markdown-editor-font-size button {
+    min-width: 34px;
+}
+
+.markdown-editor-font-size span {
+    min-width: 46px;
+    color: #f0f6fc;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   Monaco Editor
+   ============================================================ */
+
+#dds-monaco {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   Markdown Preview
+   ============================================================ */
+
+.dds-preview {
+    --dds-font-scale: 1;
+
+    height: 700px;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: #0d1117;
+    color: #f0f6fc;
+    font-size: calc(18px * var(--dds-font-scale));
+}
+
+.dds-preview h1 {
+    font-size: calc(1.55em * var(--dds-font-scale));
+}
+
+.dds-preview h2 {
+    font-size: calc(1.3em * var(--dds-font-scale));
+}
+
+.dds-preview h3 {
+    font-size: calc(1.15em * var(--dds-font-scale));
+}
+
+.dds-preview h4,
+.dds-preview h5,
+.dds-preview h6 {
+    font-size: calc(1em * var(--dds-font-scale));
+}
+
+.dds-preview p {
+    line-height: 1.6;
+}
+
+/*
+ * Code block colors, background, padding, border radius, and font family
+ * are owned by /pages/blog/local_css/dds-code-theme.css.
+ *
+ * The editor only controls code font scaling here.
+ */
+.dds-preview pre code {
+    font-size: calc(14px * var(--dds-font-scale));
+}
+
+
+/* ============================================================
+   Spellcheck Context Menu
+   ============================================================ */
+
+.dds-spellcheck-menu {
+    position: fixed;
+    z-index: 10000;
+    min-width: 220px;
+    padding: 6px;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.dds-spellcheck-menu-title {
+    padding: 6px 8px;
+    color: #8b949e;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.dds-spellcheck-menu-item {
+    display: block;
+    width: 100%;
+    padding: 7px 8px;
+    background: none;
+    color: #f0f6fc;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dds-spellcheck-menu-item:hover {
+    background-color: #30363d;
+}
+
+.dds-spellcheck-menu-empty {
+    padding: 7px 8px;
+    color: #8b949e;
+    font-size: 0.85rem;
+}
+
+.dds-spellcheck-menu-separator {
+    height: 1px;
+    margin: 5px 0;
+    background-color: #30363d;
+}
+
+
+/* ============================================================
+   Responsive Layout
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .markdown-editor-panels {
+        grid-template-columns: 1fr;
+    }
+
+    #dds-monaco,
+    .dds-preview {
+        height: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .markdown-editor-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .markdown-editor-actions {
+        width: 100%;
+    }
+
+    .markdown-editor-actions button {
+        width: 100%;
+    }
+
+    #dds-monaco,
+    .dds-preview {
+        height: 500px;
+    }
+}

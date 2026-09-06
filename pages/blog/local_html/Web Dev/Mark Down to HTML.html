@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Learn how to convert Markdown files into HTML using Node.js, Markdown-It, and Highlight.js.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Converting Markdown to HTML with Node.js blog</title>
     <meta name="keywords" content="Markdown, HTML, Node.js, Markdown-It, Highlight.js, Web Development">
+
+    <title>Dreblow Design - Converting Markdown to HTML with Node.js blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Mark Down to HTML.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Converting Markdown to HTML with Node.js">
     <meta property="og:description" content="Learn how to convert Markdown files into HTML using Node.js, Markdown-It, and Highlight.js.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Mark Down to HTML.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +43,7 @@
         "Markdown",
         "Node.js"
       ],
-      "datePublished": "2025-02-23T00:00:00.000Z",
+      "datePublished": "2025-02-23",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Web Dev/Mark Down to HTML.html",
       "publisher": {
@@ -52,62 +56,62 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Converting Markdown to HTML with Node.js">
     <meta name="twitter:description" content="Learn how to convert Markdown files into HTML using Node.js, Markdown-It, and Highlight.js.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Feb 23, 2025</em></p>
-        <h1 id="converting-markdown-to-html-with-nodejs" tabindex="-1"><strong>Converting Markdown to HTML with Node.js</strong></h1>
-<p>Converting Markdown (<code>.md</code>) files into HTML is a common task when generating static web pages, documentation, or blogs. This guide explains how to build a Markdown-to-HTML converter using <strong>Node.js</strong>, <strong>Markdown-It</strong>, and <strong>Highlight.js</strong> for syntax highlighting. The
-blow js file is what I use on my own sites.</p>
+<h1 id="converting-markdown-to-html-with-nodejs" tabindex="-1"><strong>Converting Markdown to HTML with Node.js</strong></h1>
+<p>Converting Markdown (<code>.md</code>) files into HTML is a common task when generating static web pages, documentation, or blogs. This guide explains how to build a Markdown-to-HTML converter using <strong>Node.js</strong>, <strong>Markdown-It</strong>, and <strong>Highlight.js</strong> for syntax highlighting. The 
+blow js file is what I use on my own sites. </p>
 <p>Some of the key features:</p>
 <ul>
 <li>Parses Front Matter: Extracts metadata like title, description, and version.</li>
@@ -115,16 +119,16 @@ blow js file is what I use on my own sites.</p>
 <li>Custom HTML Template: Wraps the converted Markdown content in a structured HTML template.</li>
 <li>Recursive Directory Processing: Converts all Markdown files, even inside subdirectories.</li>
 </ul>
-<hr>
+<hr />
 <h2 id="prerequisites" tabindex="-1"><strong>Prerequisites</strong></h2>
 <p>Before running the script, ensure you have the necessary dependencies installed.</p>
 <h3 id="install-required-packages" tabindex="-1"><strong>Install Required Packages</strong></h3>
 <p>Run the following command:</p>
 <pre><code class="hljs sh">npm install fs path markdown-it gray-matter highlight.js
 </code></pre>
-<hr>
+<hr />
 <p>At the very end, I'll provide the js script I use, but I wanted to take a minute and break down the script. I usually don't like
-to add mindless filler text, so its just the code. It should be self explanatory.</p>
+to add mindless filler text, so its just the code. It should be self explanatory. </p>
 <h2 id="import-required-modules" tabindex="-1">Import Required Modules</h2>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
@@ -206,7 +210,7 @@ to add mindless filler text, so its just the code. It should be self explanatory
 <h2 id="run-the-script" tabindex="-1">Run the Script</h2>
 <pre><code class="hljs sh">node convert.js
 </code></pre>
-<hr>
+<hr />
 <h2 id="personal-code-edited" tabindex="-1">Personal Code - edited</h2>
 <p>Below is my personal code, I use it still to this day.</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
@@ -326,14 +330,14 @@ to add mindless filler text, so its just the code. It should be self explanatory
     &lt;meta name=&quot;author&quot; content=&quot;<span class="hljs-subst">${author}</span>&quot;&gt;
     &lt;meta name=&quot;keywords&quot; content=&quot;<span class="hljs-subst">${keyword}</span>&quot;&gt;
     &lt;link rel=&quot;canonical&quot; href=&quot;https://dreblowdesigns.com/pages/blog/local_html/blog.html&quot;&gt;
-    
+
     &lt;!-- Open Graph Metadata --&gt;
     &lt;meta property=&quot;og:title&quot; content=&quot;<span class="hljs-subst">${title}</span>&quot;&gt;
     &lt;meta property=&quot;og:description&quot; content=&quot;<span class="hljs-subst">${description}</span>&quot;&gt;
     &lt;meta property=&quot;og:image&quot; content=&quot;<span class="hljs-subst">${image}</span>&quot;&gt;
     &lt;meta property=&quot;og:url&quot; content=&quot;<span class="hljs-subst">${url}</span>&quot;&gt;
     &lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
-    
+
     &lt;!-- Twitter Card Metadata --&gt;
     &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
     &lt;meta name=&quot;twitter:title&quot; content=&quot;<span class="hljs-subst">${title}</span>&quot;&gt;
@@ -350,10 +354,10 @@ to add mindless filler text, so its just the code. It should be self explanatory
     &lt;!-- Apple Touch Icon --&gt;
     &lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;180x180&quot; href=&quot;https://dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png&quot; /&gt;
     &lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;Dreblow Designs&quot;&gt;
-    
+
     &lt;!-- Site Manifest--&gt;
     &lt;link rel=&quot;manifest&quot; href=&quot;https://dreblowdesigns.com/resources/images/favicon_io/site.webmanifest&quot; /&gt;
-    
+
 
     &lt;!-- Google tag (gtag.js) --&gt;
     &lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=&quot;&gt;&lt;/script&gt;
@@ -421,28 +425,47 @@ to add mindless filler text, so its just the code. It should be self explanatory
 <span class="hljs-comment">// Start processing from the root directory</span>
 <span class="hljs-title function_">processDirectory</span>(inputDir, outputDir);
 </code></pre>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

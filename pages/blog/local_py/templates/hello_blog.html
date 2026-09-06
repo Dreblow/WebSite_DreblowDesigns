@@ -5,60 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Tips and tricks for ssh">
-    <meta name="author" content="Derek Dreblow">
-    <meta name="keywords" content="ubuntu, networking, server configuration, linux, ssh">
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ author }}">
+    <meta name="keywords" content="{{ keywords }}">
 
-    <title>Dreblow Design - All that is ssh blog</title>
+    <title>Dreblow Design - {{ title }} blog</title>
 
-    <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/AllThatIsSSH.html">
+    <link rel="canonical" href="{{ canonical_url }}">
 
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="All that is ssh">
-    <meta property="og:description" content="Tips and tricks for ssh">
-    <meta property="og:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
-    <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/AllThatIsSSH.html">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ image }}">
+    <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:type" content="website">
 
     <!-- JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "All that is ssh",
-      "description": "Tips and tricks for ssh",
-      "author": {
-        "@type": "Person",
-        "name": "Derek Dreblow"
-      },
-      "keywords": [
-        "linux",
-        "configuration",
-        "ssh"
-      ],
-      "articleSection": [
-        "Ubuntu Server",
-        "Networking"
-      ],
-      "datePublished": "2024-12-14",
-      "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
-      "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/AllThatIsSSH.html",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Dreblow Designs",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png"
-        }
-      }
-    }
-    </script>
+    {{ json_ld }}
 
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="All that is ssh">
-    <meta name="twitter:description" content="Tips and tricks for ssh">
-    <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ image }}">
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
@@ -84,7 +53,7 @@
     <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
     <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
+    {{ renderer_css }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -102,32 +71,7 @@
 </header>
 <!-- DDS:HEAD:END -->
 
-<!-- DDS:RENDER:git-wiki-style-blog:START -->
-<main class="markdown-body git-wiki-section">
-    <article>
-        <p><em class="blogVersion">Version: Dec 14, 2024</em></p>
-<h1 id="all-that-is-ssh" tabindex="-1">All that is ssh</h1>
-<h2 id="overview" tabindex="-1">Overview</h2>
-<p>For now this is the area of the blog where I put ssh commands I use hardly so I don't remember by heart. Hopefully it grows into something great!</p>
-<hr />
-<h2 id="1-removing-rsa-key-from-a-know-ip" tabindex="-1">1. Removing RSA key from a know IP</h2>
-<ul>
-<li>
-<p>This is useful when you redid a computer and set it to the same static IP address. So if you're working from a Mac or other machine, you need to
-  remove the old RSA key so it can be replaced with the new one from the new machine.</p>
-</li>
-<li>
-<p>Run the following command to remove the conflicting key associated with the specific IP address:
-  <code>bash
-  ssh-keygen -R &lt;IP_ADDRESS&gt;</code></p>
-</li>
-<li>For example:
-  <code>bash
-  ssh-keygen -R 192.168.1.100</code></li>
-</ul>
-    </article>
-</main>
-<!-- DDS:RENDER:git-wiki-style-blog:END -->
+{{ render_sections }}
 
 <!-- DDS:FOOTER:START -->
 <footer>

@@ -24,6 +24,16 @@ This blog was inspired by all the note taking I have done over all my projects. 
 * [UML - Unified Modeling Language](./Dev/uml.html)
 * [Git - Maybe a cheat sheet](./Dev/git.html)
 
+#### Linux
+* [Linux & Unix CLI Toolbox](./Linux/Linux&UnixTerminalToolbox.html)
+* [Linux Shortcuts](./Linux/linux.html)
+* [Setting IP to Static](./Linux/Setting%20IP%20to%20Static.html)
+* [All that is SSH](./Linux/AllThatIsSSH.html)
+* [Nginx Web Server Setup Guide](./Linux/NginxWebServer.html)
+
+#### Web Tools
+* [Markdown Editor](./WebTools//markdowneditor/MarkdownEditor.html)
+
 #### Python
 * [Python Basics](./Python/PythonBasics.html)
 
@@ -32,14 +42,6 @@ This blog was inspired by all the note taking I have done over all my projects. 
 * [Local Server - PHP Base](./Web%20Dev/Local%20Server-PHP.html)
 * [Sitemap Generator](./Web%20Dev/Sitemap%20Generator.html)
 * [Mark Down to HTML js converter](./Web%20Dev/Mark%20Down%20to%20HTML.html)
-
-#### Linux
-
-* [Linux & Unix CLI Toolbox](./Linux/Linux&UnixTerminalToolbox.html)
-* [Linux Shortcuts](./Linux/linux.html)
-* [Setting IP to Static](./Linux/Setting%20IP%20to%20Static.html)
-* [All that is SSH](./Linux/AllThatIsSSH.html)
-* [Nginx Web Server Setup Guide](./Linux/NginxWebServer.html)
 
 #### VPN
 * [WireGuard](./Linux/WireGuard%20Setup.html)

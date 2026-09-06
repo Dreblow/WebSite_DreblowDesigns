@@ -1,14 +1,18 @@
+<!-- DDS:HEAD:START -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
     <meta name="author" content="Derek Dreblow">
-    <title>Dreblow Design - Nginx Web Server Setup Guide blog</title>
     <meta name="keywords" content="nginx, ubuntu, linux, server configuration, ssl, networking, web hosting">
+
+    <title>Dreblow Design - Nginx Web Server Setup Guide blog</title>
+
     <link rel="canonical" href="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/NginxWebServer.html">
-    
+
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Nginx Web Server Setup Guide">
     <meta property="og:description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
@@ -16,7 +20,7 @@
     <meta property="og:url" content="https://www.dreblowdesigns.com/pages/blog/local_html/Linux/NginxWebServer.html">
     <meta property="og:type" content="website">
 
-    <!-- Jason LD -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +43,7 @@
         "Server Configuration",
         "Networking"
       ],
-      "datePublished": "2025-02-03T00:00:00.000Z",
+      "datePublished": "2025-02-03",
       "image": "https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png",
       "url": "https://www.dreblowdesigns.com/pages/blog/local_html/Linux/NginxWebServer.html",
       "publisher": {
@@ -52,64 +56,64 @@
       }
     }
     </script>
-    
+
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nginx Web Server Setup Guide">
     <meta name="twitter:description" content="A step-by-step guide to installing and configuring Nginx on Ubuntu, setting up SSL, and managing a web server.">
     <meta name="twitter:image" content="https://www.dreblowdesigns.com/pages/blog/local_images/BlogFavicon.png">
 
-    <!-- Default favicon -->
-    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg" />
-    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico" />
-
-    <!-- PNG favicon for high-resolution displays -->
-    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96" />
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon.svg">
+    <link rel="shortcut icon" href="https://www.dreblowdesigns.com/favicon.ico">
+    <link rel="icon" type="image/png" href="https://www.dreblowdesigns.com/resources/images/favicon_io/favicon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.dreblowdesigns.com/resources/images/favicon_io/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-title" content="Dreblow Designs">
-    
-    <!-- Site Manifest-->
-    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest" />
-    
+    <link rel="manifest" href="https://www.dreblowdesigns.com/resources/images/favicon_io/site.webmanifest">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RT1T06DM1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RT1T06DM1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-9RT1T06DM1");
     </script>
 
-    <link rel="stylesheet" href="../../../../resources/css/styles.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/blog.css?v=__DDS_CACHE_BUST__">
-    <link rel="stylesheet" href="../../local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
-        <link rel="stylesheet" href="../../local_css/git-wiki-style-blog.css?v=3">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/resources/css/styles.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/blog.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/github-dark.min.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/dds-code-theme.css?v=__DDS_CACHE_BUST__">
+    <link rel="stylesheet" href="/pages/blog/local_css/git-wiki-style-blog.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/" aria-label="Home">Home</a></li>
-                <li><a href="../../../../pages/about.html" aria-label="About">About</a></li>
-                <!--<li><a href="../../../../pages/portfolio.html">Portfolio</a></li>-->
-                <li><a href="../../../../pages/contact/contact.html" aria-label="Contact">Contact</a></li>
-                <li><a href="../../../../pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/" aria-label="Home">Home</a></li>
+            <li><a href="/pages/about.html" aria-label="About">About</a></li>
+            <li><a href="/pages/contact/contact.html" aria-label="Contact">Contact</a></li>
+            <li><a href="/pages/blog/local_html/blog.html" aria-label="Blog">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- DDS:HEAD:END -->
+
+<!-- DDS:RENDER:git-wiki-style-blog:START -->
 <main class="markdown-body git-wiki-section">
     <article>
         <p><em class="blogVersion">Version: Feb 3, 2025</em></p>
-        <h1 id="nginx-web-server-setup-guide" tabindex="-1">Nginx Web Server Setup Guide</h1>
+<h1 id="nginx-web-server-setup-guide" tabindex="-1">Nginx Web Server Setup Guide</h1>
 <h2 id="overview" tabindex="-1">Overview</h2>
 <p>This guide goes over how to install and setup Ngnix Web Server. Don't believe it? You're using it right now! Running on
 Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
-<hr>
+<hr />
 <h2 id="1-install-nginx" tabindex="-1">1. Install Nginx</h2>
 <pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt install nginx -y
 </code></pre>
@@ -120,7 +124,7 @@ Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 <p>To check status</p>
 <pre><code class="hljs bash">systemctl status nginx
 </code></pre>
-<h2 id="3-configure-firewall-if-needed-" tabindex="-1">3. Configure Firewall (if needed)</h2>
+<h2 id="3-configure-firewall-if-needed" tabindex="-1">3. Configure Firewall (if needed)</h2>
 <p><strong>Allow HTTP &amp; HTTPS traffic:</strong></p>
 <pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> ufw allow <span class="hljs-string">&#x27;Nginx Full&#x27;</span>  <span class="hljs-comment"># Ubuntu/Debian</span>
 <span class="hljs-built_in">sudo</span> firewall-cmd --permanent --add-service=http
@@ -150,7 +154,7 @@ Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 <pre><code class="hljs nginx"><span class="hljs-section">server</span> {
     <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
     <span class="hljs-attribute">server_name</span> mywebsite.com www.mywebsite.com;
-    
+
     <span class="hljs-attribute">root</span> /var/www/mywebsite.com/html;
     <span class="hljs-attribute">index</span> index.html index.htm;
 
@@ -168,7 +172,7 @@ Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 <p>Restart Nginx:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
 </code></pre>
-<h2 id="6-configure-ssl-with-let-s-encrypt-https-" tabindex="-1">6. Configure SSL with Let’s Encrypt (HTTPS)</h2>
+<h2 id="6-configure-ssl-with-let-s-encrypt-https" tabindex="-1">6. Configure SSL with Let’s Encrypt (HTTPS)</h2>
 <p>Install Certbot:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install certbot python3-certbot-nginx -y
 </code></pre>
@@ -192,30 +196,30 @@ Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 <h2 id="8-commands-to-remember-for-nginx" tabindex="-1">8. Commands to remember for Nginx</h2>
 <ul>
 <li>
-<p>Restart Nginx:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart nginx
-</code></pre>
+<p>Restart Nginx:
+  <code>bash
+  sudo systemctl restart nginx</code></p>
 </li>
 <li>
-<p>Stop Nginx:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl stop nginx
-</code></pre>
+<p>Stop Nginx:
+  <code>bash
+  sudo systemctl stop nginx</code></p>
 </li>
 <li>
-<p>Reload (without downtime):</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl reload nginx
-</code></pre>
+<p>Reload (without downtime):
+  <code>bash
+  sudo systemctl reload nginx</code></p>
 </li>
 <li>
-<p>View logs:</p>
-<pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tail</span> -f /var/log/nginx/access.log
-<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tail</span> -f /var/log/nginx/error.log
-</code></pre>
+<p>View logs:
+  <code>bash
+  sudo tail -f /var/log/nginx/access.log
+  sudo tail -f /var/log/nginx/error.log</code></p>
 </li>
 </ul>
-<h2 id="thank-you-enjoy-" tabindex="-1">Thank You &amp; Enjoy!</h2>
+<h2 id="thank-you-enjoy" tabindex="-1">Thank You &amp; Enjoy!</h2>
 <p>Thank you for following this guide! I hope it helped you successfully set up your Nginx web server. Whether you're hosting a personal project, a portfolio, or a business site, you're now equipped with the knowledge to configure, secure, and manage your server effectively.</p>
-<h3 id="-what-we-learned-" tabindex="-1">🔥 What We Learned:</h3>
+<h3 id="-what-we-learned" tabindex="-1">🔥 What We Learned:</h3>
 <ul>
 <li>How to <strong>install and configure Nginx</strong> on Ubuntu.</li>
 <li>Setting up <strong>virtual hosts</strong> and serving multiple domains.</li>
@@ -225,28 +229,47 @@ Windows 10, Hyper-V on Ubuntu Server, using Nginx.</p>
 </ul>
 <p>Now you’re ready to deploy, scale, and maintain your Nginx server like a pro. If you have any issues, feel free to troubleshoot, tweak, and explore more advanced configurations.</p>
 <p>Happy hosting! 🚀🎉</p>
-
     </article>
 </main>
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/Dreblow" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://leetcode.com/u/dreblow/" target="_blank">
-                <img src="../../../../resources/images/brands/LeetCode/leetcode.png" alt="LeetCode Logo" style="width: 15px; height: 15px;"> LeetCode
-            </a>
-            <a href="https://www.threads.net/@derek_dre" target="_blank">
-                <img src="../../../../resources/images/brands/threads/threads.png" alt="Threads Logo" style="width: 15px; height: 15px;"> Threads
-            </a>
-        </div>
-        <p class="copy-right">&copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
-        <script>
-            document.getElementById("copyright-year").textContent = new Date().getFullYear();
-        </script>
-    </footer>
+<!-- DDS:RENDER:git-wiki-style-blog:END -->
+
+<!-- DDS:FOOTER:START -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/derek-dreblow-4756134b/"
+            target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+        </a>
+        <a href="https://github.com/Dreblow" 
+            target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+        </a>
+        <a href="https://leetcode.com/u/dreblow/"
+           target="_blank">
+            <img
+                src="/resources/images/brands/LeetCode/leetcode.png"
+                alt="LeetCode Logo"
+                style="width: 15px; height: 15px;">
+            LeetCode
+        </a>
+        <a href="https://www.threads.net/@derek_dre"
+           target="_blank">
+            <img
+                src="/resources/images/brands/threads/threads.png"
+                alt="Threads Logo"
+                style="width: 15px; height: 15px;">
+            Threads
+        </a>
+    </div>
+
+    <p class="copy-right"> &copy; 2024 - <span id="copyright-year"></span> Derek Dreblow, Dreblow Designs. All Rights Reserved.</p>
+
+    <script>
+        document.getElementById("copyright-year").textContent = new Date().getFullYear();
+    </script>
+</footer>
 </body>
 </html>
+<!-- DDS:FOOTER:END -->

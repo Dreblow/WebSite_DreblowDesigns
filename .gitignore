@@ -1,6 +1,13 @@
 #Website keys
 resources/config.php
 
+# Python
+__pycache__/
+*.pyc
+
+# Local Python environment
+local_dev/.venv/
+
 #ignore node modules
 **/node_modules/
 
@@ -9,3 +16,6 @@ resources/config.php
 
 #ignore NAS directory
 resources/media
+
+#ignore zip files
+**/*.zip
