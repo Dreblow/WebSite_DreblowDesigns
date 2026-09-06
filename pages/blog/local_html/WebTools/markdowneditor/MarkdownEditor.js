@@ -490,7 +490,7 @@ This sentnce has a misspeled wurd.
 
 <!-- Describe your approach to solving the problem. -->
 
-The MarchHMI application communicates with the EPC.
+Your thoughts to your solution, including any edge cases you considered.
 
 # Complexity
 
