@@ -1,3 +1,28 @@
+.markdown-editor-header {
+    overflow: hidden;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    background-color: #0d1117;
+    margin-bottom: 4px;
+}
+
+.markdown-editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: #0d1117;
+}
+
+.dds-status {
+    padding: 6px 12px;
+    background-color: #161b22;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+    font-size: 0.8rem;
+}
+
 .markdown-editor {
     width: 100%;
     box-sizing: border-box;
@@ -56,7 +81,7 @@
 .markdown-editor-panels {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 12px;
+    gap: 6px;
     width: 100%;
 }
 
@@ -145,4 +170,29 @@
     .dds-preview {
         height: 500px;
     }
+}
+
+.markdown-editor-header {
+    overflow: hidden;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    background-color: #0d1117;
+    margin-bottom: 4px;
+}
+
+.markdown-editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: #0d1117;
+}
+
+.dds-status {
+    padding: 6px 12px;
+    background-color: #161b22;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+    font-size: 0.8rem;
 }

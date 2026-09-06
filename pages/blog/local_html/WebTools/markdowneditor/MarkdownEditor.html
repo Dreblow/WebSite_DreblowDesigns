@@ -123,20 +123,22 @@
 <link rel="stylesheet" href="MarkdownEditor.css">
 
 <section class="markdown-editor">
-    <div class="markdown-editor-toolbar">
-        <div class="markdown-editor-title">
-            DDS Markdown Editor
+    <div class="markdown-editor-header">
+        <div class="markdown-editor-toolbar">
+            <div class="markdown-editor-title">
+                DDS Markdown Editor
+            </div>
+
+            <div class="markdown-editor-actions">
+                <button id="dds-clear-learned" type="button">
+                    Clear Learned Words
+                </button>
+            </div>
         </div>
 
-        <div class="markdown-editor-actions">
-            <button id="dds-clear-learned" type="button">
-                Clear Learned Words
-            </button>
+        <div id="dds-status" class="dds-status">
+            Loading editor...
         </div>
-    </div>
-
-    <div id="dds-status" class="dds-status">
-        Loading editor...
     </div>
 
     <div class="markdown-editor-panels">
