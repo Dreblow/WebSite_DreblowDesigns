@@ -131,19 +131,19 @@
     overflow: auto;
     background-color: #0d1117;
     color: #f0f6fc;
-    font-size: calc(14px * var(--dds-font-scale));
+    font-size: calc(18px * var(--dds-font-scale));
 }
 
 .dds-preview h1 {
-    font-size: calc(2em * var(--dds-font-scale));
+    font-size: calc(1.55em * var(--dds-font-scale));
 }
 
 .dds-preview h2 {
-    font-size: calc(1.5em * var(--dds-font-scale));
+    font-size: calc(1.3em * var(--dds-font-scale));
 }
 
 .dds-preview h3 {
-    font-size: calc(1.25em * var(--dds-font-scale));
+    font-size: calc(1.15em * var(--dds-font-scale));
 }
 
 .dds-preview h4,
@@ -163,7 +163,7 @@
  * The editor only controls code font scaling here.
  */
 .dds-preview pre code {
-    font-size: calc(13px * var(--dds-font-scale));
+    font-size: calc(14px * var(--dds-font-scale));
 }
 
 
