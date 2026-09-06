@@ -6,6 +6,7 @@ const DDS_SPELLCHECK_OWNER = "dds-spellcheck";
 let ddsEditor = null;
 let ddsDictionary = null;
 let spellcheckTimer = null;
+let spellcheckMenu = null;
 
 const statusElement = document.getElementById("dds-status");
 const downloadButton = document.getElementById("dds-download");
@@ -293,26 +294,161 @@ function getWordAtCursor() {
 
 
 /* ============================================================
-   Monaco Actions
+   Spellcheck Context Menu
    ============================================================ */
 
-function registerEditorActions() {
-    ddsEditor.addAction({
-        id: "dds-learn-word",
-        label: "DDS: Learn Word",
-        contextMenuGroupId: "navigation",
-        contextMenuOrder: 1.5,
+function closeSpellcheckMenu() {
+    if (!spellcheckMenu) {
+        return;
+    }
 
-        run: function () {
-            const word = getWordAtCursor();
+    spellcheckMenu.remove();
+    spellcheckMenu = null;
+}
 
-            if (!word) {
-                return;
-            }
 
-            learnWord(word);
+function replaceWord(wordInfo, lineNumber, replacement) {
+    const range = new monaco.Range(
+        lineNumber,
+        wordInfo.startColumn,
+        lineNumber,
+        wordInfo.endColumn
+    );
+
+    ddsEditor.executeEdits("dds-spellcheck", [
+        {
+            range: range,
+            text: replacement,
+            forceMoveMarkers: true
+        }
+    ]);
+
+    ddsEditor.focus();
+}
+
+
+function createSpellcheckMenuItem(label, action) {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "dds-spellcheck-menu-item";
+    button.textContent = label;
+
+    button.addEventListener("click", () => {
+        closeSpellcheckMenu();
+        action();
+    });
+
+    return button;
+}
+
+
+function showSpellcheckMenu(event) {
+    event.preventDefault();
+    closeSpellcheckMenu();
+
+    if (!ddsEditor || !ddsDictionary) {
+        return;
+    }
+
+    const target = ddsEditor.getTargetAtClientPoint(event.clientX, event.clientY);
+
+    if (!target || !target.position) {
+        return;
+    }
+
+    const model = ddsEditor.getModel();
+    const position = target.position;
+    const wordInfo = model.getWordAtPosition(position);
+
+    if (!wordInfo) {
+        return;
+    }
+
+    ddsEditor.setPosition(position);
+
+    const word = wordInfo.word;
+    const normalized = word.toLowerCase();
+    const learnedWords = getLearnedWords();
+    const isLearned = learnedWords.has(normalized);
+    const isCorrect = ddsDictionary.check(word);
+    const suggestions = !isLearned && !isCorrect ? ddsDictionary.suggest(word).slice(0, 5) : [];
+
+    spellcheckMenu = document.createElement("div");
+    spellcheckMenu.className = "dds-spellcheck-menu";
+
+    const title = document.createElement("div");
+    title.className = "dds-spellcheck-menu-title";
+    title.textContent = word;
+
+    spellcheckMenu.appendChild(title);
+
+    if (suggestions.length > 0) {
+        for (const suggestion of suggestions) {
+            spellcheckMenu.appendChild(
+                createSpellcheckMenuItem(suggestion, () => {
+                    replaceWord(wordInfo, position.lineNumber, suggestion);
+                })
+            );
+        }
+    } else {
+        const noSuggestions = document.createElement("div");
+        noSuggestions.className = "dds-spellcheck-menu-empty";
+        noSuggestions.textContent = "No suggestions";
+
+        spellcheckMenu.appendChild(noSuggestions);
+    }
+
+    const separator = document.createElement("div");
+    separator.className = "dds-spellcheck-menu-separator";
+
+    spellcheckMenu.appendChild(separator);
+
+    if (!isLearned) {
+        spellcheckMenu.appendChild(
+            createSpellcheckMenuItem(`Learn "${word}"`, () => {
+                learnWord(word);
+            })
+        );
+    }
+
+    spellcheckMenu.appendChild(
+        createSpellcheckMenuItem("Clear Learned Words", () => {
+            clearLearnedWords();
+        })
+    );
+
+    spellcheckMenu.style.left = `${event.clientX}px`;
+    spellcheckMenu.style.top = `${event.clientY}px`;
+
+    document.body.appendChild(spellcheckMenu);
+
+    const menuBounds = spellcheckMenu.getBoundingClientRect();
+
+    if (menuBounds.right > window.innerWidth) {
+        spellcheckMenu.style.left = `${window.innerWidth - menuBounds.width - 8}px`;
+    }
+
+    if (menuBounds.bottom > window.innerHeight) {
+        spellcheckMenu.style.top = `${window.innerHeight - menuBounds.height - 8}px`;
+    }
+}
+
+
+function registerSpellcheckContextMenu() {
+    const editorElement = document.getElementById("dds-monaco");
+
+    editorElement.addEventListener("contextmenu", showSpellcheckMenu);
+
+    document.addEventListener("click", closeSpellcheckMenu);
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeSpellcheckMenu();
         }
     });
+
+    window.addEventListener("resize", closeSpellcheckMenu);
 }
 
 
@@ -371,6 +507,7 @@ class Solution {
                 theme: "vs-dark",
                 automaticLayout: true,
                 wordWrap: "on",
+                contextmenu: false,
 
                 minimap: {
                     enabled: false
@@ -391,7 +528,7 @@ class Solution {
 
         renderPreview();
 
-        registerEditorActions();
+        registerSpellcheckContextMenu();
 
         ddsEditor.onDidChangeModelContent(() => {
             scheduleSpellcheck();
