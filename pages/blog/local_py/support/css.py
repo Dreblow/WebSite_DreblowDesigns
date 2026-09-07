@@ -36,7 +36,7 @@ def build_renderer_css(sections) -> str:
     return "\n".join(
         (
             '<link rel="stylesheet" '
-            f'href="/pages/blog/local_css/{css_file}.css?v=3">'
+            f'href="/pages/blog/local_css/{css_file}.css?v=__DDS_CACHE_BUST__">'
         )
         for css_file in css_files
     )
