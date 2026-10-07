@@ -9,7 +9,8 @@
         "resources/css/",
         "resources/images/",
         "drafts/",
-        "404.html"
+        "404.html",
+        "pages/blog/local_py/"
         ],
 
         "changefreq": "monthly"
