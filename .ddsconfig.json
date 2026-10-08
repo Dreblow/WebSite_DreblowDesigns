@@ -16,6 +16,17 @@
         "changefreq": "monthly"
     },
 
+    "imageBuild": {
+        "exclude": [
+            "local_dev/",
+            "pages/blog/local_py/",
+            "server/",
+            ".git/",
+            ".github/",
+            ".vscode/"
+        ]
+    },
+
     "server": {
         "nginx": {
             "extraRules": "server/nginx/extra-rules.conf"
